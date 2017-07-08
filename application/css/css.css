@@ -1,0 +1,16 @@
+.header {
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+    font-size: 30px;
+}
+
+.name {
+    width: 50%;
+
+}
+
+
+body {
+    background-color: #f3f3f3;
+}
