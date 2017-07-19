@@ -54,7 +54,7 @@
     }
 </style>
 </nav>
-	<form action="http://localhost/training/index.php/home/login" method="POST" role="form">
+	<form action="<?php echo base_url();?>/home/login" method="POST" role="form">
 	
 		<div class="title"> Login</div>
 		

@@ -84,8 +84,8 @@ if(isset($student) && count($student)) {
             <td>
                 <?php echo $val['role']; ?>
             </td>
-            <td><a href="http://localhost/training/index.php/home/update/<?php echo $val['id']; ?>" title="">Sửa</a></td>
-            <td><a href="http://localhost/training/index.php/home/delete/<?php echo $val['id']; ?>" title="">xóa</a></td>
+            <td><a href="<?php echo base_url();?>/index.php/home/update/<?php echo $val['id']; ?>" title="">Sửa</a></td>
+            <td><a href="<?php echo base_url();?>/index.php/home/delete/<?php echo $val['id']; ?>" title="">xóa</a></td>
             </tr>
         <?php       
 
