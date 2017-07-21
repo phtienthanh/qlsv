@@ -1,65 +1,70 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> </title>
     <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <!--  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>asset/csstable/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body>  
     <style>
-    table {
-        width: 100%;
+    .container-fluid{
+        background-color: #eee;
+        margin-bottom: 50px;
     }
-    
-    td {
+    form{
+        margin: 27px;
+    }
+    table{
+        padding: 27px;
+    }
+    .title{
         text-align: center;
     }
-    
-    body {
-        background-color: #f3f3f3;
+    .back{
+        margin-bottom: 30px;
     }
-    
-    .title {
-        font-size: 30px;
-        text-align: center;
-        padding-bottom: 40px;
+    .left{
+        float: right;
     }
-    
-    .check_all {
-        display: inline-block;
-        text-align: center;
-        margin-left: 15px;
-    }
+
     </style>
-    <div class="title">
-        Manager student
-    </div>
-    <form action="<?php echo base_url('index.php/home/insert')  ?> " method="get" accept-charset="utf-8" id="dataTable">
-        <input type="submit" value="thêm mới">
+   
+    <h1 class="title" >Manage article</h1>
+    <span> <a href="" title="" class="btn btn-primary back">Back</a></span>
+    <br>
+
+    
+    <span> <a href="" title="" class="btn btn-primary left"> Add new categories</a></span>
+
+    <form action="<?php echo base_url('index.php/controller_article/add')  ?> " method="get" accept-charset="utf-8" id="dataTable"  >
+        <input type="submit" value="Add new article" class="btn btn-primary" >
     </form>
-    <table class="table">
+    <table class="table container responstable">
         <thead class="thead-inverse">
             <tr>
                 <th>
                     <INPUT type="checkbox" name="checkAll" class="checkAll" /> </th>
                 <th>Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
+                <th>Title</th>
+                <th>Content</th>
                 <th>Avarta</th>
-                <th>Role</th>
+                <th>Author</th>
+                <th>Categories</th>
                 <th>Sửa</th>
                 <th>Xóa</th>
             </tr>
         </thead>
         <tbody>
             <?php 
+            
 
 if(isset($student) && count($student)) {
 
@@ -70,22 +75,24 @@ if(isset($student) && count($student)) {
             <td>
                 <?php echo $val['id']; ?> </td>
             <td>
-                <?php echo $val['first_name']; ?>
+                <?php echo $val['title']; ?>
             </td>
             <td>
-                <?php echo $val['last_name']; ?>
+                <?php echo $val['content']; ?>
+            </td>
+            
+            <td>
+            <img src="<?php echo base_url();?>images/<?php echo $val['image']; ?>" width="50px">
+                   
             </td>
             <td>
-                <?php echo $val['email']; ?>
+                <?php echo $val['author']; ?>
             </td>
-            <td>
-                <?php echo $val['avatar'];?>
+              <td>
+                <?php echo $val['categories']; ?>
             </td>
-            <td>
-                <?php echo $val['role']; ?>
-            </td>
-            <td><a href="<?php echo base_url();?>/index.php/home/update/<?php echo $val['id']; ?>" title="">Sửa</a></td>
-            <td><a href="<?php echo base_url();?>/index.php/home/delete/<?php echo $val['id']; ?>" title="">xóa</a></td>
+            <td><a href="<?php echo base_url();?>controller_article/update/<?php echo $val['id']; ?>" title="">Sửa</a></td>
+            <td><a href="<?php echo base_url();?>controller_article/delete/<?php echo $val['id']; ?>" title="">xóa</a></td>
             </tr>
         <?php       
 
@@ -96,7 +103,7 @@ if(isset($student) && count($student)) {
   ?>
         </tbody>
     </table>
-    <input type="submit" name="delall" class="dellall" value="Delete">
+    <input type="submit" name="delall" class="btn btn-primary dellall" value="Delete">
     <script>
     $(document).ready(function() {
 
@@ -121,11 +128,11 @@ if(isset($student) && count($student)) {
 
                 } else {
 
-                    url = '<?php echo base_url();?>index.php/home/delete_multiple/';
+                    url = '<?php echo base_url();?>index.php/controller_article/delete_multiple/';
 
                     $.ajax({
 
-                        url: '<?php echo base_url();?>index.php/home/delete_multiple/',
+                        url: '<?php echo base_url();?>index.php/controller_article/delete_multiple/',
 
                         method: 'POST',
 

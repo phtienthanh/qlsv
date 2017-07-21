@@ -261,6 +261,8 @@ class Sinhvien extends MY_Controller {
        		header('Location:'.base_url("/index.php/sinhvien/show"));   
        			    
        	}
+       	
+       	$this->load->view('home/header',$this->data);
 
    		$this->load->view("sinhvien/update",$data);
 
@@ -313,6 +315,7 @@ class Sinhvien extends MY_Controller {
        		header('Location:'.base_url("/index.php/sinhvien/show"));   
        			    
        	}
+       	$this->load->view('home/header',$this->data);
 
    		$this->load->view("sinhvien/changepass",$data);
  

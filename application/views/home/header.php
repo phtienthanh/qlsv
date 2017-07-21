@@ -50,7 +50,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a class="manage_student" href="<?php echo base_url();?>index.php/sinhvien/show">Manage student</a></li>
-        <li><a class="manage_student" href="#">Manage profile</a></li>
+        <li><a class="manage_student" href="<?php echo base_url();?>index.php/controller_article/home">Manage article</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a class="manage_login1" href="<?php echo base_url();?>index.php/home/login">Login</a></li>

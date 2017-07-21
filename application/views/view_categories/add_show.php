@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,71 +28,77 @@
     .title{
         text-align: center;
     }
+    .back{
+        margin-bottom: 30px;
+    }
+    .left{
+        float: right;
+    }
+    .input_text{
+        width: 50%;
+        padding: 4px;
+    }
+    .responstable {
+        
+    }
+    .center{
+        text-align: center !important;
+        width: 10%;
+    }
+    
     </style>
-
-        <h1 class="title" >Manage student</h1>
    
+    <h1 class="title" >Manage categories</h1>
+    <span> <a href="<?php echo base_url('controller_article/home')  ?>" title="" class="btn btn-primary back">Back</a></span>
+    <br>
 
+    <form action="" method="post" accept-charset="utf-8" id="dataTable"  >
+        <input type="text" name="input_text" class="input_text">
 
-    <form action="<?php echo base_url('index.php/sinhvien/insert')  ?> " method="get" accept-charset="utf-8" id="dataTable"  >
-        <input type="submit" value="Add new student" class="btn btn-primary" >
+        <input type="submit" name="submit" value="thêm mới" class="btn btn-primary" >
+        <?php echo form_error("input_text"); ?>
     </form>
+    
     <table class="table container responstable">
         <thead class="thead-inverse">
             <tr>
                 <th>
                     <INPUT type="checkbox" name="checkAll" class="checkAll" /> </th>
                 <th>Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Avarta</th>
-                <th>Role</th>
-                <th>Sửa</th>
-                <th>Xóa</th>
+                <th>Name</th>
+                <th class="center"></th>
+                <th class="center"></th>
+               
             </tr>
         </thead>
         <tbody>
-            <?php 
-            
+        <?php 
 
-if(isset($student) && count($student)) {
+        if(isset($student) && count($student)) {
 
-    foreach ($student as $key => $val) { ?>
-        <tr class="reload">
-             <td>
-                <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
-            <td>
-                <?php echo $val['id']; ?> </td>
-            <td>
-                <?php echo $val['first_name']; ?>
-            </td>
-            <td>
-                <?php echo $val['last_name']; ?>
-            </td>
-            <td>
-                <?php echo $val['email']; ?>
-            </td>
-            <td>
-            <img src="<?php echo base_url();?>images/<?php echo $val['avatar']; ?>" width="50px">
-                   
-            </td>
-            <td>
-                <?php echo $val['role']; ?>
-            </td>
-            <td><a href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title="">Sửa</a></td>
-            <td><a href="<?php echo base_url();?>sinhvien/delete/<?php echo $val['id']; ?>" title="">xóa</a></td>
-            </tr>
-        <?php       
+            foreach ($student as $key => $val) { ?>
+                <tr class="reload">
+                     <td>
+                        <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
+                    <td>
+                        <?php echo $val['id']; ?> </td>
+                    <td>
+                        <?php echo $val['name']; ?>
+                    </td>
+                  
+                    <td class="center"><a class="btn btn-success" href="<?php echo base_url();?>controller_categories/update/<?php echo $val['id']; ?>" title="">Update</a></td>
+                    <td class="center"><a class="btn btn-danger" href="<?php echo base_url();?>controller_categories/delete/<?php echo $val['id']; ?>" title="">Delete</a></td>
+                    </tr>
+                <?php       
 
-     }
+             }
 
-}
-   
-  ?>
+        }
+           
+          ?>
         </tbody>
     </table>
-    <input type="submit" name="delall" class="btn btn-primary dellall" value="Delete" >
+    <input type="submit" name="delall" class="btn btn-primary dellall" value="Delete">
     <script>
     $(document).ready(function() {
 
@@ -118,11 +123,11 @@ if(isset($student) && count($student)) {
 
                 } else {
 
-                    url = '<?php echo base_url();?>index.php/sinhvien/delete_multiple/';
+                    url = '<?php echo base_url();?>index.php/controller_categories/delete_multiple/';
 
                     $.ajax({
 
-                        url: '<?php echo base_url();?>index.php/sinhvien/delete_multiple/',
+                        url: '<?php echo base_url();?>index.php/controller_categories/delete_multiple/',
 
                         method: 'POST',
 

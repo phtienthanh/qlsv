@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,28 +28,44 @@
     .title{
         text-align: center;
     }
+    .center{
+        text-align: center !important;
+    }
+    .update{
+        width: 8%;      
+    }
+    .addcate{
+        float: right;
+        margin-bottom: 20px;
+    }
+    .back{
+        margin-bottom: 20px;
+    }
     </style>
-
-        <h1 class="title" >Manage student</h1>
    
+    <h1 class="title" >Manage article</h1>
+    <span class="back"> <a href="" title="" class="btn btn-primary back">Back</a></span> 
+    <br> 
 
 
-    <form action="<?php echo base_url('index.php/sinhvien/insert')  ?> " method="get" accept-charset="utf-8" id="dataTable"  >
-        <input type="submit" value="Add new student" class="btn btn-primary" >
-    </form>
+    
+     <span class=""> <a href="<?php echo base_url('controller_article/add') ?>" title="" class="btn btn-success back">Add article</a></span> 
+    <span class="addcate"> <a href="<?php echo base_url('controller_categories/add') ?>" title="" class="btn btn-warning back">Add categories</a></span> 
+
+
     <table class="table container responstable">
         <thead class="thead-inverse">
             <tr>
                 <th>
                     <INPUT type="checkbox" name="checkAll" class="checkAll" /> </th>
                 <th>Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
+                <th>Title</th>
+                <th>Content</th>
                 <th>Avarta</th>
-                <th>Role</th>
-                <th>Sửa</th>
-                <th>Xóa</th>
+                <th>Author</th>
+                <th>Categories</th>
+                <th class="update"></th>
+                <th class="update"></th>
             </tr>
         </thead>
         <tbody>
@@ -66,23 +81,24 @@ if(isset($student) && count($student)) {
             <td>
                 <?php echo $val['id']; ?> </td>
             <td>
-                <?php echo $val['first_name']; ?>
+                <?php echo $val['title']; ?>
             </td>
             <td>
-                <?php echo $val['last_name']; ?>
+                <?php echo $val['content']; ?>
             </td>
+            
             <td>
-                <?php echo $val['email']; ?>
-            </td>
-            <td>
-            <img src="<?php echo base_url();?>images/<?php echo $val['avatar']; ?>" width="50px">
+            <img src="<?php echo base_url();?>images/<?php echo $val['image']; ?>" width="50px">
                    
             </td>
             <td>
-                <?php echo $val['role']; ?>
+                <?php echo $val['author']; ?>
             </td>
-            <td><a href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title="">Sửa</a></td>
-            <td><a href="<?php echo base_url();?>sinhvien/delete/<?php echo $val['id']; ?>" title="">xóa</a></td>
+              <td>
+                <?php echo $val['categories']; ?>
+            </td>
+            <td class="center"><a class="btn btn-success" href="<?php echo base_url();?>controller_article/update/<?php echo $val['id']; ?>" title="">Update</a></td>
+            <td class="center"><a class="btn btn-danger" href="<?php echo base_url();?>controller_article/delete/<?php echo $val['id']; ?>" title="">Delete</a></td>
             </tr>
         <?php       
 
@@ -93,7 +109,7 @@ if(isset($student) && count($student)) {
   ?>
         </tbody>
     </table>
-    <input type="submit" name="delall" class="btn btn-primary dellall" value="Delete" >
+    <input type="submit" name="delall" class="btn btn-primary dellall" value="Delete">
     <script>
     $(document).ready(function() {
 
@@ -118,11 +134,11 @@ if(isset($student) && count($student)) {
 
                 } else {
 
-                    url = '<?php echo base_url();?>index.php/sinhvien/delete_multiple/';
+                    url = '<?php echo base_url();?>index.php/controller_article/delete_multiple/';
 
                     $.ajax({
 
-                        url: '<?php echo base_url();?>index.php/sinhvien/delete_multiple/',
+                        url: '<?php echo base_url();?>index.php/controller_article/delete_multiple/',
 
                         method: 'POST',
 

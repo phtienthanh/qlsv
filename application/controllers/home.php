@@ -84,6 +84,11 @@ class Home extends MY_Controller {
 	}
 
 	 public function profile($id) {
+	 	
+	 	if ($this->input->post("changepass")) {
+
+	 		header('Location:'.base_url("/index.php/sinhvien/changepass/$id"));
+	 	}
 
 	 	$this->load->library('form_validation');
        

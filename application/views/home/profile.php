@@ -30,6 +30,9 @@
     .hinden_img{
         display: none;
     }
+    .btn-form{
+        display: inline-block;
+    }
 </style>
 
 <body class="fix-header card-no-border">
@@ -181,9 +184,9 @@
 
                             <center class="m-t-30"> <img src="<?php echo base_url();?>images/<?php echo $student["avatar"]; ?>" class="img-circle" width="150" />
 
-                            <input type="file" name="userfile">
+                            <input type="file" name="userfile" class="btn">
                             <input type="text" class="hinden_img" name="img_name" value="<?php echo $student["avatar"]; ?>">
-                             <input type="submit" name="submit" value="upload">
+                             <input type="submit" name="submit" value="upload" class="btn btn-success">
                                 
                             </form>
                                 
@@ -231,8 +234,11 @@
                                     </div>
                                   
                                     <div class="form-group">
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-6 btn-form">
                                             <input type="submit" name="submit" class="btn btn-success" value="Update" >
+                                        </div>
+                                        <div class="col-sm-3 btn-form">
+                                            <input  type="submit" name="changepass" class="btn btn-success" value="Change password" >
                                         </div>
                                     </div>
                                 </form>
