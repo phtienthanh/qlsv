@@ -1,64 +1,66 @@
+
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> </title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
     <!--  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<?php echo base_url();?>asset/csstable/style.css" rel="stylesheet">
 </head>
 
-<body>  
+<body>
     <style>
-    .container-fluid{
+    .container-fluid {
         background-color: #eee;
         margin-bottom: 50px;
     }
-    form{
+
+    form {
         margin: 27px;
     }
-    table{
+
+    table {
         padding: 27px;
     }
-    .title{
+
+    .title {
         text-align: center;
     }
-    .back{
+
+    .back {
         margin-bottom: 30px;
     }
-    .left{
+
+    .left {
         float: right;
     }
-    .input_text{
+
+    .input_text {
         width: 50%;
         padding: 4px;
     }
-    .responstable {
-        
-    }
-    .center{
+
+    .responstable {}
+
+    .center {
         text-align: center !important;
         width: 10%;
     }
-    
     </style>
-   
-    <h1 class="title" >Manage categories</h1>
-    <span> <a href="<?php echo base_url('controller_article/home')  ?>" title="" class="btn btn-primary back">Back</a></span>
+    <h1 class="title">Manage categories</h1>
+    <span> <a href="<?php echo base_url('article/home')  ?>" title="" class="btn btn-primary back">Back</a></span>
     <br>
-
-    <form action="" method="post" accept-charset="utf-8" id="dataTable"  >
+    <form action="" method="post" accept-charset="utf-8" id="dataTable">
         <input type="text" name="input_text" class="input_text">
-
-        <input type="submit" name="submit" value="thêm mới" class="btn btn-primary" >
+        <input type="submit" name="submit" value="thêm mới" class="btn btn-primary">
         <?php echo form_error("input_text"); ?>
     </form>
-    
     <table class="table container responstable">
         <thead class="thead-inverse">
             <tr>
@@ -68,28 +70,26 @@
                 <th>Name</th>
                 <th class="center"></th>
                 <th class="center"></th>
-               
             </tr>
         </thead>
         <tbody>
-        <?php 
+            <?php 
 
         if(isset($student) && count($student)) {
 
             foreach ($student as $key => $val) { ?>
-                <tr class="reload">
-                     <td>
-                        <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
-                    <td>
-                        <?php echo $val['id']; ?> </td>
-                    <td>
-                        <?php echo $val['name']; ?>
-                    </td>
-                  
-                    <td class="center"><a class="btn btn-success" href="<?php echo base_url();?>controller_categories/update/<?php echo $val['id']; ?>" title="">Update</a></td>
-                    <td class="center"><a class="btn btn-danger" href="<?php echo base_url();?>controller_categories/delete/<?php echo $val['id']; ?>" title="">Delete</a></td>
-                    </tr>
-                <?php       
+            <tr class="reload">
+                <td>
+                    <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
+                <td>
+                    <?php echo $val['id']; ?> </td>
+                <td>
+                    <?php echo $val['name']; ?>
+                </td>
+                <td class="center"><a class="btn btn-success" href="<?php echo base_url();?>categories/update/<?php echo $val['id']; ?>" title="">Update</a></td>
+                <td class="center"><a class="btn btn-danger" href="<?php echo base_url();?>categories/delete/<?php echo $val['id']; ?>" title="">Delete</a></td>
+            </tr>
+            <?php       
 
              }
 
@@ -123,11 +123,11 @@
 
                 } else {
 
-                    url = '<?php echo base_url();?>index.php/controller_categories/delete_multiple/';
+                    url = '<?php echo base_url();?>index.php/categories/delete_multiple/';
 
                     $.ajax({
 
-                        url: '<?php echo base_url();?>index.php/controller_categories/delete_multiple/',
+                        url: '<?php echo base_url();?>index.php/categories/delete_multiple/',
 
                         method: 'POST',
 
@@ -163,9 +163,9 @@
 
             $(this).closest('table').find('tbody :checkbox')
 
-            .prop('checked', this.checked)
+                .prop('checked', this.checked)
 
-            .closest('tr').toggleClass('selected', this.checked);
+                .closest('tr').toggleClass('selected', this.checked);
 
         });
 

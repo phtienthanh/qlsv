@@ -1,0 +1,63 @@
+    container-fluid {
+        background-color: #eee;
+        margin-bottom: 50px;
+    }
+
+    form {
+        margin: 27px;
+    }
+
+    table {
+        padding: 27px;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .center {
+        text-align: center !important;
+    }
+
+    .update {
+        width: 8%;
+    }
+
+    .addcate {
+        float: right;
+        margin-bottom: 20px;
+    }
+
+    .back {
+        margin-bottom: 20px;
+    }
+
+    .row_xxx {
+        overflow: hidden;
+        height: 170px;
+        position: relative;
+        background-color: #fff;
+        margin: 20px 0;
+    }
+
+    .content1 {
+        white-space: pre-line;
+        height: 105px !important;
+        border: 1px solid #ececec;
+    }
+
+    .avarta_1 {
+        height: 173px;
+        width: auto;
+    }
+
+    .btn_control {
+        position: absolute;
+        top: 30%;
+        right: -11px;
+    }
+
+    .checkbox {
+        top: 40%;
+        text-align: center;
+    }

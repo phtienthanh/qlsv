@@ -3,6 +3,7 @@
 class Model_article extends CI_Model {
  
     protected $table = 'article';
+    
     public function get_all() {
     
         $query = $this->db->get('article');

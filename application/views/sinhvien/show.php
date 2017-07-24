@@ -7,36 +7,34 @@
     <title> </title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
     <!--  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<?php echo base_url();?>asset/csstable/style.css" rel="stylesheet">
 </head>
 
-<body>  
+<body>
     <style>
-    .container-fluid{
+    .container-fluid {
         background-color: #eee;
         margin-bottom: 50px;
     }
-    form{
+
+    form {
         margin: 27px;
     }
-    table{
+
+    table {
         padding: 27px;
     }
-    .title{
+
+    .title {
         text-align: center;
     }
     </style>
-
-        <h1 class="title" >Manage student</h1>
-   
-
-
-    <form action="<?php echo base_url('index.php/sinhvien/insert')  ?> " method="get" accept-charset="utf-8" id="dataTable"  >
-        <input type="submit" value="Add new student" class="btn btn-primary" >
+    <h1 class="title">Manage student</h1>
+    <form action="<?php echo base_url('index.php/sinhvien/insert')  ?> " method="get" accept-charset="utf-8" id="dataTable">
+        <input type="submit" value="Add new student" class="btn btn-primary">
     </form>
     <table class="table container responstable">
         <thead class="thead-inverse">
@@ -60,31 +58,30 @@
 if(isset($student) && count($student)) {
 
     foreach ($student as $key => $val) { ?>
-        <tr class="reload">
-             <td>
-                <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
-            <td>
-                <?php echo $val['id']; ?> </td>
-            <td>
-                <?php echo $val['first_name']; ?>
-            </td>
-            <td>
-                <?php echo $val['last_name']; ?>
-            </td>
-            <td>
-                <?php echo $val['email']; ?>
-            </td>
-            <td>
-            <img src="<?php echo base_url();?>images/<?php echo $val['avatar']; ?>" width="50px">
-                   
-            </td>
-            <td>
-                <?php echo $val['role']; ?>
-            </td>
-            <td><a href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title="">Sửa</a></td>
-            <td><a href="<?php echo base_url();?>sinhvien/delete/<?php echo $val['id']; ?>" title="">xóa</a></td>
+            <tr class="reload">
+                <td>
+                    <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
+                <td>
+                    <?php echo $val['id']; ?> </td>
+                <td>
+                    <?php echo $val['first_name']; ?>
+                </td>
+                <td>
+                    <?php echo $val['last_name']; ?>
+                </td>
+                <td>
+                    <?php echo $val['email']; ?>
+                </td>
+                <td>
+                    <img src="<?php echo base_url();?>images/<?php echo $val['avatar']; ?>" width="50px">
+                </td>
+                <td>
+                    <?php echo $val['role']; ?>
+                </td>
+                <td><a href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title="">Sửa</a></td>
+                <td><a href="<?php echo base_url();?>sinhvien/delete/<?php echo $val['id']; ?>" title="">xóa</a></td>
             </tr>
-        <?php       
+            <?php       
 
      }
 
@@ -93,7 +90,7 @@ if(isset($student) && count($student)) {
   ?>
         </tbody>
     </table>
-    <input type="submit" name="delall" class="btn btn-primary dellall" value="Delete" >
+    <input type="submit" name="delall" class="btn btn-primary dellall" value="Delete">
     <script>
     $(document).ready(function() {
 
@@ -158,9 +155,9 @@ if(isset($student) && count($student)) {
 
             $(this).closest('table').find('tbody :checkbox')
 
-            .prop('checked', this.checked)
+                .prop('checked', this.checked)
 
-            .closest('tr').toggleClass('selected', this.checked);
+                .closest('tr').toggleClass('selected', this.checked);
 
         });
 

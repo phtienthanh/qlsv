@@ -182,6 +182,26 @@
         margin: 0;
     }
 
+    .cate {
+        width: 100%;
+        margin-bottom: 10px;
+        background: rgba(0, 0, 0, 0.3);
+        border: none;
+        outline: none;
+        padding: 10px;
+        font-size: 13px;
+        color: #fff;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
+        -webkit-transition: box-shadow .5s ease;
+        -moz-transition: box-shadow .5s ease;
+        -o-transition: box-shadow .5s ease;
+        -ms-transition: box-shadow .5s ease;
+        transition: box-shadow .5s ease;
+    }
+
     input:focus {
         box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
     }
@@ -191,47 +211,49 @@
 
 <body>
     <div class="login">
-        <h1>Add new student</h1>
+        <h1>Add new article</h1>
         <form action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <input type="submit" name="back" value="Back" class="btn btn-primary btn-block btn-large">
             <br>
-            <h3 for="">First name</h3>
+            <h3 for="">Title</h3>
             <br>
-            <input type="text" name="first_name" placeholder="First name" value="<?php echo set_value(" first_name "); ?>">
-            <?php echo form_error("first_name"); ?>
+            <input type="text" name="title" placeholder="Title" value="<?php echo set_value(" first_name "); ?>">
+            <?php echo form_error("title"); ?>
             <br>
-            <h3 for="">Last name</h3>
+            <h3 for="">Content</h3>
             <br>
-            <input type="text" name="last_name" placeholder="Last name" value="<?php echo set_value(" last_name "); ?>">
-            <?php echo form_error("last_name"); ?>
+            <textarea rows="4" name="content" cols="35">
+            </textarea>
+            <?php echo form_error("content"); ?>
             <br>
-            <h3 for="">Email</h3>
-            <br>
-            <input type="text" name="email" placeholder="Email" value="<?php echo set_value(" email ");?>">
-            <?php echo form_error("email"); ?>
-            <br>
-            <h3 for="">Password</h3>
-            <br>
-            <input type="password" name="password" placeholder="Password" value="<?php echo set_value(" password ");?>">
-            <?php echo form_error("password"); ?>
-            <br>
-            <h3 for="">Confirm Password</h3>
-            <br>
-            <input type="password" name="confirm_password" placeholder="Confirm password" value="<?php echo set_value(" confirm_password ");?>">
-            <?php echo form_error("confirm_password"); ?>
             <br>
             <h3 for="">Avatar</h3>
-            <?php echo $error;?>
             <br>
             <input type="file" name="userfile">
             <br>
-            <label for="">Role</label>
+            <h3 for="">Author</h3>
             <br>
-            <select name="role">
-                <option>Admin</option>
-                <option>User</option>
+            <input type="text" name="author" placeholder="Content" value="<?php echo set_value(" author "); ?>">
+            <?php echo form_error("author"); ?>
+            <br>
+            <h3 for="">Categories</h3>
+            <select name="categories" class="cate">
+                <?php 
+ 		if(isset($student) && count($student)) {
+
+    	foreach ($student as $key => $val) { ?>
+                <option>
+                    <?php echo $val['name']; ?>
+                </option>
+                <?php       
+
+     }
+
+}
+?>
             </select>
-            <?php echo form_error("role"); ?>
+            <?php echo form_error("categories"); ?>
+            <br>
             <br>
             <input type="submit" name="submit" value="insert" class="btn btn-primary btn-block btn-large">
         </form>

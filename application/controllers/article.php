@@ -3,12 +3,21 @@
 
 if (!defined('BASEPATH')) exit ('No direct script access allowed');  
 
-class Controller_article extends MY_Controller {
-	
+class article extends MY_Controller {
 
-public function home(){
+	public function __construct() {
+	        
+	        parent::__construct();
 
+	        if (!$this->ion_auth->logged_in()) {
+	            
+	            redirect('home/login');
 
+	        }	
+
+	    }
+
+	public function home() {
 
 		$this->load->model('model_article');
 		
@@ -16,34 +25,33 @@ public function home(){
 
 		$this->load->view('home/header',$this->data);
 
-		$this->load->view('view_article/home',$this->data);
+		$this->load->view('article/home',$this->data);
 
-	
-}
+	}
 
-public function add(){
+	public function add() {
 
-		$this->load->library('form_validation');
-       
-       	$this->load->helper('form');
+			$this->load->library('form_validation');
+	       
+	       	$this->load->helper('form');
 
-       	$this->load->model('Model_categories');
+	       	$this->load->model('Model_categories');
 
-       	$this->data['student'] = $this->Model_categories->get_all();
-       
-       	if ($this->input->post("submit")) {
+	       	$this->data['student'] = $this->Model_categories->get_all();
+	       
+	       	if ($this->input->post("submit")) {
 
-	       	$this->form_validation->set_rules('title','title','required|is_unique[article.title]');
+		       	$this->form_validation->set_rules('title','title','required|is_unique[article.title]');
 
-	       	$this->form_validation->set_message('required','%s không được bỏ trống');
-	       	
-	       	$this->form_validation->set_rules('content','content','required');
+		       	$this->form_validation->set_message('required','%s không được bỏ trống');
+		       	
+		       	$this->form_validation->set_rules('content','content','required');
 
-	       	$this->form_validation->set_message('is_unique','%s đã tồn tại');
+		       	$this->form_validation->set_message('is_unique','%s đã tồn tại');
 
-	       	$this->form_validation->set_rules('author','author','required');
+		       	$this->form_validation->set_rules('author','author','required');
 
-	       	$this->form_validation->set_rules('categories','categories','required');
+		       	$this->form_validation->set_rules('categories','categories','required');
 
 	    		if ($this->form_validation->run()) {
 	    			
@@ -67,6 +75,7 @@ public function add(){
 					$list['image'] = 'doanthi';
 	    			
 	    			} 
+
 					$this->load->model('model_article');
 
 					$this->model_article->insert($list);
@@ -89,27 +98,23 @@ public function add(){
 
 					}
 
-						header('Location:'.base_url("/Controller_article/home"));  
+				header('Location:'.base_url("/article/home"));  
 
-				}
-
-		
-						       
+			}
+					       
        	} else if ($this->input->post("back")) {
 
-       		header('Location:'.base_url("/Controller_article/home"));   
-       			    	
-       	}
-	
-       
+       		header('Location:'.base_url("/article/home"));   
+	       			    	
+	    }
+	       
 		$this->load->view('home/header',$this->data);
 
-		$this->load->view('view_article/add',$this->data);
-
+		$this->load->view('article/add',$this->data);
 	
 	}
 
-	 public function update($id) {
+	public function update($id) {
 
     	if ($this->input->post("change_password")) {
 
@@ -123,11 +128,10 @@ public function add(){
 
    		$this->load->model('model_article');
 
-      	$data['student'] = $this->model_article->getsinhvien($id); 		
+      	$data['student'] = $this->model_article->getsinhvien($id); 
       	
-      	if ($this->input->post("insert")) {
+      	if ($this->input->post("submit")) {
 
-	      
 	       	$this->form_validation->set_rules('title','title','required');
 
 	       	$this->form_validation->set_message('required','%s không được bỏ trống');
@@ -141,7 +145,6 @@ public function add(){
 	       	$this->form_validation->set_rules('categories','categories','required');
     
 	       	if ($this->form_validation->run()) {
-
 	       		
 	       		if ($_FILES['userfile']['name']=='' && $this->input->post("img_name")=='doanthi' ) {
 
@@ -149,19 +152,15 @@ public function add(){
 
 	       			$list_update= array(
 
-					
 						"title"=>$this->input->post("title"),
 						
 						"content"=>$this->input->post("content"),
-						
-					
-						"image"=>$this->input->post("img_name"),
 						
 						"author"=>$this->input->post("author"),
 
 						"categories"=>$this->input->post("categories"),
 					
-				);
+					);
 	       			
 	       		} else if ($_FILES['userfile']['name']=='' && $this->input->post("img_name")!='doanthi' ) {
 
@@ -171,13 +170,11 @@ public function add(){
 					
 					"content"=>$this->input->post("content"),
 					
-					"image"=>$this->input->post("img_name"),
-						
 					"author"=>$this->input->post("author"),
 
 					"categories"=>$this->input->post("categories"),
 					
-				);
+					);
 
 	       		} else {
 
@@ -187,13 +184,11 @@ public function add(){
 						
 						"content"=>$this->input->post("content"),
 						
-						"image"=>$_FILES['userfile']['name'],
-						
 						"author"=>$this->input->post("author"),
 
 						"categories"=>$this->input->post("categories"),
 					
-				);
+					);
 
 	       		}
 				
@@ -218,19 +213,17 @@ public function add(){
 
 				}
 
-				header('Location:'.base_url("/Controller_article/home"));  
+				header('Location:'.base_url("/article/home"));  
 
 			}
 	         
        	} else if ($this->input->post("back")) {
 
-       		header('Location:'.base_url("/Controller_article/home"));    
+       		header('Location:'.base_url("/article/home"));    
        			    
        	}
        	
-       	$this->load->view('home/header',$this->data);
-
-   		$this->load->view("view_article/update",$data);
+   		$this->load->view("article/update",$data);
 
     }
 
@@ -240,7 +233,7 @@ public function add(){
 
      	$this->model_article->delete($id);
      	
-     	header('Location:'.base_url("/Controller_article/home"));  
+     	header('Location:'.base_url("/article/home"));  
     
     }
 
@@ -258,19 +251,95 @@ public function add(){
 				
 			}
 
-		}   
+		} 
 
     }
 
-    public function show(){
-    		$this->load->model('model_article');
+    public function show() {
+
+    	$this->load->model('model_article');
 		
 		$this->data['student'] = $this->model_article->get_all();
 
     	$this->load->view('home/header',$this->data);
 
-    	$this->load->view('view_article/show');
+    	$this->load->view('article/show');
+
     }
-    		
+
+     public function upload($id) {
+
+    	$this->load->library('form_validation');
+       
+       	$this->load->helper('form');
+
+   		$this->load->model('model_article');
+
+      	$data['student'] = $this->model_article->getsinhvien($id); 		
+	       		
+   		if ($_FILES['userfile']['name'] == '' && $this->input->post("img_name")=='doanthi' ) {
+
+   				// $_FILES['userfile']['name']=$this->input->post("img_name");
+
+   			$list_update= array(
+
+			"image"=>$this->input->post("img_name"),
+
+			);
+   			# code...
+   		} else if ($_FILES['userfile']['name']=='' && $this->input->post("img_name")!='doanthi' ) {
+
+   			$list_update= array(
+
+			"image"=>$this->input->post("img_name"),
+
+			);
+
+   		} else {
+
+   			$list_update = array(
+
+			"image"=>$_FILES['userfile']['name'],
+			
+			);
+
+   		}
+				
+		$this->model_article->update($id,$list_update);
+
+		$config['upload_path'] = './images/';
+
+		$config['allowed_types'] = 'gif|jpg|png';
+
+		$this->load->library('upload', $config);				
+
+		if (!$this->upload->do_upload()) {
+
+			$error = array('error' => $this->upload->display_errors());
+
+			$this->load->view('sinhvien/insert', $error);
+
+		} else {
+			
+			$file_data =  $this->upload->data();
+			
+			$data['img'] = base_url().'/images'.$file_data['file_name'];
+
+		}
+
+		header('Location:'.base_url("/article/home"));  
+
+    }
+
+    public function preview($id){
+
+    	$this->load->model('model_article');
+
+      	$data['student'] = $this->model_article->getsinhvien($id); 	
+
+    	$this->load->view("article/preview",$data);
+
+    }		
    
 }
+

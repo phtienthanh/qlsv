@@ -201,20 +201,10 @@
         <form class="login" action="" method="POST">
             <input type="submit" name="back" value="Back" class="color_input">
             <br>
-            <label for="">Current password</label>
+            <label for="">Name</label>
             <br>
-            <input type="password" name="old_password" placeholder="Current password">
-            <?php echo form_error('old_password'); ?>
-            <br>
-            <label for="">New password</label>
-            <br>
-            <input type="password" name="new_password" placeholder="New password">
-            <?php echo form_error("new_password"); ?>
-            <br>
-            <label for="">Confirm password</label>
-            <br>
-            <input type="password" name="new_password_confirm" placeholder="Confirm password">
-            <?php echo form_error("new_password_confirm"); ?>
+            <input type="text" name="name" value="<?php echo $student['name'];  ?>">
+            <?php echo form_error("name"); ?>
             <br>
             <input type="submit" name="change" value="change" class="color_input">
         </form>
