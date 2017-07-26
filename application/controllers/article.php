@@ -19,9 +19,9 @@ class article extends MY_Controller {
 
 	public function home() {
 
-		$this->load->model('model_article');
+		$this->load->model('Marticle');
 		
-		$this->data['student'] = $this->model_article->get_all();
+		$this->data['student'] = $this->Marticle->get_all();
 
 		$this->load->view('home/header',$this->data);
 
@@ -35,9 +35,9 @@ class article extends MY_Controller {
 	       
 	       	$this->load->helper('form');
 
-	       	$this->load->model('Model_categories');
+	       	$this->load->model('categories');
 
-	       	$this->data['student'] = $this->Model_categories->get_all();
+	       	$this->data['student'] = $this->categories->get_all();
 	       
 	       	if ($this->input->post("submit")) {
 
@@ -57,28 +57,27 @@ class article extends MY_Controller {
 	    			
 					$list = array(
 
-						"title"=>$this->input->post("title"),
+						"title" => $this->input->post("title"),
 						
-						"content"=>$this->input->post("content"),
+						"content" => $this->input->post("content"),
 						
-						"image"=>$_FILES['userfile']['name'],
+						"image" => $_FILES['userfile']['name'],
 						
-						"author"=>$this->input->post("author"),
+						"author" => $this->input->post("author"),
 
-						"categories"=>$this->input->post("categories"),
+						"categories" => $this->input->post("categories"),
 						
 					);
 					
-					
-					if($list['image']==''){
+					if($list['image'] == '') {
 
 					$list['image'] = 'doanthi';
 	    			
 	    			} 
 
-					$this->load->model('model_article');
+					$this->load->model('Marticle');
 
-					$this->model_article->insert($list);
+					$this->Marticle->insert($list);
 
 					$config['upload_path'] = './images/';
 
@@ -92,19 +91,19 @@ class article extends MY_Controller {
 
 					} else {
 
-						$file_data=  $this->upload->data();
+						$file_data =  $this->upload->data();
 						
-						$data['img']=base_url().'/images'.$file_data['file_name'];
+						$data['img'] = base_url().'/images'.$file_data['file_name'];
 
 					}
 
-				header('Location:'.base_url("/article/home"));  
+				redirect('article/home');	  
 
 			}
 					       
        	} else if ($this->input->post("back")) {
 
-       		header('Location:'.base_url("/article/home"));   
+       		redirect('article/home');	  
 	       			    	
 	    }
 	       
@@ -116,19 +115,13 @@ class article extends MY_Controller {
 
 	public function update($id) {
 
-    	if ($this->input->post("change_password")) {
-
-       		header('Location:'.base_url("/index.php/sinhvien/changepass/$id"));   
-       	
-       	}
-
     	$this->load->library('form_validation');
        
        	$this->load->helper('form');
 
-   		$this->load->model('model_article');
+   		$this->load->model('Marticle');
 
-      	$data['student'] = $this->model_article->getsinhvien($id); 
+      	$data['student'] = $this->Marticle->getsinhvien($id); 
       	
       	if ($this->input->post("submit")) {
 
@@ -146,53 +139,23 @@ class article extends MY_Controller {
     
 	       	if ($this->form_validation->run()) {
 	       		
-	       		if ($_FILES['userfile']['name']=='' && $this->input->post("img_name")=='doanthi' ) {
+	       		if ($_FILES['userfile']['name'] == '') {
 
-	       				// $_FILES['userfile']['name']=$this->input->post("img_name");
+	       			$list_update = array(
 
-	       			$list_update= array(
-
-						"title"=>$this->input->post("title"),
+						"title" => $this->input->post("title"),
 						
-						"content"=>$this->input->post("content"),
+						"content" => $this->input->post("content"),
 						
-						"author"=>$this->input->post("author"),
+						"author" => $this->input->post("author"),
 
-						"categories"=>$this->input->post("categories"),
+						"categories" => $this->input->post("categories"),
 					
 					);
 	       			
-	       		} else if ($_FILES['userfile']['name']=='' && $this->input->post("img_name")!='doanthi' ) {
-
-	       			$list_update= array(
-
-					"title"=>$this->input->post("title"),
-					
-					"content"=>$this->input->post("content"),
-					
-					"author"=>$this->input->post("author"),
-
-					"categories"=>$this->input->post("categories"),
-					
-					);
-
-	       		} else {
-
-	       			$list_update= array(
-
-						"title"=>$this->input->post("title"),
-						
-						"content"=>$this->input->post("content"),
-						
-						"author"=>$this->input->post("author"),
-
-						"categories"=>$this->input->post("categories"),
-					
-					);
-
 	       		}
 				
-				$this->model_article->update($id,$list_update);	
+				$this->Marticle->update($id,$list_update);	
 
 				$config['upload_path'] = './images/';
 
@@ -203,23 +166,22 @@ class article extends MY_Controller {
 				if (!$this->upload->do_upload()) {
 
 					$error = array('error' => $this->upload->display_errors());
-
 					
 				} else {
 					
-					$file_data=  $this->upload->data();
+					$file_data =  $this->upload->data();
 					
-					$data['img']=base_url().'/images'.$file_data['file_name'];
+					$data['img'] = base_url().'/images'.$file_data['file_name'];
 
 				}
 
-				header('Location:'.base_url("/article/home"));  
+				redirect('article/home');	   
 
 			}
 	         
        	} else if ($this->input->post("back")) {
 
-       		header('Location:'.base_url("/article/home"));    
+       		redirect('article/home');	   
        			    
        	}
        	
@@ -227,19 +189,19 @@ class article extends MY_Controller {
 
     }
 
-    	public function delete($id) {
-     	
-     	$this->load->model('model_article');
+	public function delete($id) {
+ 	
+	 	$this->load->model('Marticle');
 
-     	$this->model_article->delete($id);
-     	
-     	header('Location:'.base_url("/article/home"));  
+	 	$this->Marticle->delete($id);
+	 	
+	 	redirect('article/home');	    
     
     }
 
     public function delete_multiple() {
 
-     	$this->load->model('model_article');
+     	$this->load->model('Marticle');
 
 		$dataId = $this->input->post('id');
 
@@ -247,7 +209,7 @@ class article extends MY_Controller {
 
 			if ($value != 'on') {
 
-				$check = $this->model_article->delete_multiple($value);
+				$check = $this->Marticle->delete_multiple($value);
 				
 			}
 
@@ -257,9 +219,9 @@ class article extends MY_Controller {
 
     public function show() {
 
-    	$this->load->model('model_article');
+    	$this->load->model('Marticle');
 		
-		$this->data['student'] = $this->model_article->get_all();
+		$this->data['student'] = $this->Marticle->get_all();
 
     	$this->load->view('home/header',$this->data);
 
@@ -273,25 +235,23 @@ class article extends MY_Controller {
        
        	$this->load->helper('form');
 
-   		$this->load->model('model_article');
+   		$this->load->model('Marticle');
 
-      	$data['student'] = $this->model_article->getsinhvien($id); 		
+      	$data['student'] = $this->Marticle->getsinhvien($id); 		
 	       		
-   		if ($_FILES['userfile']['name'] == '' && $this->input->post("img_name")=='doanthi' ) {
+   		if ($_FILES['userfile']['name'] == '' && $this->input->post("img_name") == 'doanthi' ) {
 
-   				// $_FILES['userfile']['name']=$this->input->post("img_name");
+   			$list_update = array(
 
-   			$list_update= array(
-
-			"image"=>$this->input->post("img_name"),
+				"image" => $this->input->post("img_name"),
 
 			);
-   			# code...
-   		} else if ($_FILES['userfile']['name']=='' && $this->input->post("img_name")!='doanthi' ) {
+   			
+   		} else if ($_FILES['userfile']['name'] == '' && $this->input->post("img_name") != 'doanthi' ) {
 
-   			$list_update= array(
+   			$list_update = array(
 
-			"image"=>$this->input->post("img_name"),
+				"image" => $this->input->post("img_name"),
 
 			);
 
@@ -299,13 +259,13 @@ class article extends MY_Controller {
 
    			$list_update = array(
 
-			"image"=>$_FILES['userfile']['name'],
+				"image" => $_FILES['userfile']['name'],
 			
 			);
 
    		}
 				
-		$this->model_article->update($id,$list_update);
+		$this->Marticle->update($id,$list_update);
 
 		$config['upload_path'] = './images/';
 
@@ -327,15 +287,15 @@ class article extends MY_Controller {
 
 		}
 
-		header('Location:'.base_url("/article/home"));  
+		redirect('article/home');  
 
     }
 
-    public function preview($id){
+    public function preview($id) {
 
-    	$this->load->model('model_article');
+    	$this->load->model('Marticle');
 
-      	$data['student'] = $this->model_article->getsinhvien($id); 	
+      	$data['student'] = $this->Marticle->getsinhvien($id); 	
 
     	$this->load->view("article/preview",$data);
 

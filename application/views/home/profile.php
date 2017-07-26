@@ -238,7 +238,8 @@
                                             <input type="submit" name="submit" class="btn btn-success" value="Update" >
                                         </div>
                                         <div class="col-sm-3 btn-form">
-                                            <input  type="submit" name="changepass" class="btn btn-success" value="Change password" >
+                                        <span><a class="btn btn-success" href="<?php echo base_url();?>sinhvien/changepass/<?php echo $student["id"];?>" title=""> Change password</a></span>
+                                            
                                         </div>
                                     </div>
                                 </form>

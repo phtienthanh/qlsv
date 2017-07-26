@@ -15,7 +15,7 @@ class Sinhvien extends MY_Controller {
 
 		}
 		
-		if ($this->data['role']=='User') {
+		if ($this->data['role'] == 'User') {
 			
 			redirect('home/index');
 
@@ -27,13 +27,13 @@ class Sinhvien extends MY_Controller {
 
     public function show() {
 
-		$this->load->model('model_sinhvien');
+		$this->load->model('Msinhvien');
 		
-		$this->data['student'] = $this->model_sinhvien->get_all();
+		$this->data['student'] = $this->Msinhvien->get_all();
 
 		$this->load->view('home/header',$this->data);
 
-		$this->load->view('sinhvien/show',$this->data);
+		$this->load->view('Sinhvien/show',$this->data);
 
 	}
    
@@ -65,34 +65,34 @@ class Sinhvien extends MY_Controller {
 	       	
 	       	$this->form_validation->set_rules('role','Role','required');
 
-	       	if( $this->input->post("role")=='Admin' || $this->input->post("role")=='User' ){
+	       	if( $this->input->post("role") == 'Admin' || $this->input->post("role") == 'User' ){
     		
 	    		if ($this->form_validation->run()) {
 	    			
 					$list = array(
 
-						"first_name"=>$this->input->post("first_name"),
+						"first_name" => $this->input->post("first_name"),
 						
-						"last_name"=>$this->input->post("last_name"),
+						"last_name" => $this->input->post("last_name"),
 						
-						"email"=>$this->input->post("email"),
+						"email" => $this->input->post("email"),
 						
-						"password"=>$this->input->post("password"),
+						"password" => $this->input->post("password"),
 						
-						"avatar"=>$_FILES['userfile']['name'],
+						"avatar" => $_FILES['userfile']['name'],
 						
-						"role"=>$this->input->post("role"),
+						"role" => $this->input->post("role"),
 						
 					);
 					
-					if($list['avatar']==''){
+					if($list['avatar'] == ''){
 
 					$list['avatar'] = 'doanthi';
 	    			
 	    			} 
-					$this->load->model('model_sinhvien');
+					$this->load->model('Msinhvien');
 
-					$this->model_sinhvien->insert($list);
+					$this->Msinhvien->insert($list);
 
 					$config['upload_path'] = './images/';
 
@@ -106,13 +106,13 @@ class Sinhvien extends MY_Controller {
 
 					} else {
 
-						$file_data=  $this->upload->data();
+						$file_data =  $this->upload->data();
 						
-						$data['img']=base_url().'/images'.$file_data['file_name'];
+						$data['img'] = base_url().'/images'.$file_data['file_name'];
 
 					}
 
-						header('Location:'.base_url("/index.php/sinhvien/show"));  
+					redirect('sinhvien/show');
 
 				}
 
@@ -120,7 +120,7 @@ class Sinhvien extends MY_Controller {
 				
 				echo "<script>";
 
-				echo "alert('Role error');t ";
+				echo "alert('Role error'); ";
 
 				echo "</script>";
 
@@ -128,7 +128,7 @@ class Sinhvien extends MY_Controller {
 						       
        	} else if ($this->input->post("back")) {
 
-       		header('Location:'.base_url("/index.php/sinhvien/show"));   
+       		redirect('sinhvien/show');   
        			    	
        	}
 	
@@ -136,15 +136,13 @@ class Sinhvien extends MY_Controller {
    
     }
 
-   	public function delete() {
-
-   		$id = $this->uri->segment(3);
+   	public function delete($id) {
      	
-     	$this->load->model('model_sinhvien');
+     	$this->load->model('Msinhvien');
 
-     	$this->model_sinhvien->delete($id);
-     	
-     	header('Location:'.base_url("/index.php/sinhvien/show"));  
+     	$this->Msinhvien->delete($id);
+
+     	redirect('sinhvien/show');
     
     }
 
@@ -160,9 +158,9 @@ class Sinhvien extends MY_Controller {
        
        	$this->load->helper('form');
 
-   		$this->load->model('model_sinhvien');
+   		$this->load->model('Msinhvien');
 
-      	$data['student'] = $this->model_sinhvien->getsinhvien($id); 		
+      	$data['student'] = $this->Msinhvien->getsinhvien($id); 		
       	
       	if ($this->input->post("insert")) {
 
@@ -179,59 +177,41 @@ class Sinhvien extends MY_Controller {
 	       	if ($this->form_validation->run()) {
 
 	       		
-	       		if ($_FILES['userfile']['name']=='' && $this->input->post("img_name")=='doanthi' ) {
+	       		if ($_FILES['userfile']['name'] == '') {
 
-	       				// $_FILES['userfile']['name']=$this->input->post("img_name");
+	       			$list_update = array(
 
-	       			$list_update= array(
+					"first_name" => $this->input->post("first_name"),
+					
+					"last_name" => $this->input->post("last_name"),
+					
+					"email" => $this->input->post("email"),
 
-					"first_name"=>$this->input->post("first_name"),
+					"avatar" => $this->input->post("img_name"),
 					
-					"last_name"=>$this->input->post("last_name"),
+					"role" => $this->input->post("role"),
 					
-					"email"=>$this->input->post("email"),
-
-					"avatar"=>$this->input->post("img_name"),
-					
-					"role"=>$this->input->post("role"),
-					
-				);
+					);
 	       			
-	       		} else if ($_FILES['userfile']['name']=='' && $this->input->post("img_name")!='doanthi' ) {
-
-	       			$list_update= array(
-
-					"first_name"=>$this->input->post("first_name"),
-					
-					"last_name"=>$this->input->post("last_name"),
-					
-					"email"=>$this->input->post("email"),
-					
-					"avatar"=>$this->input->post("img_name"),
-					
-					"role"=>$this->input->post("role"),
-					
-				);
-
 	       		} else {
 
-	       			$list_update= array(
+	       			$list_update = array(
 
-					"first_name"=>$this->input->post("first_name"),
+					"first_name" => $this->input->post("first_name"),
 					
-					"last_name"=>$this->input->post("last_name"),
+					"last_name" => $this->input->post("last_name"),
 					
-					"email"=>$this->input->post("email"),
+					"email" => $this->input->post("email"),
 					
-					"avatar"=>$_FILES['userfile']['name'],
+					"avatar" => $_FILES['userfile']['name'],
 					
-					"role"=>$this->input->post("role"),
+					"role" => $this->input->post("role"),
 					
-				);
+					);
 
 	       		}
 				
-				$this->model_sinhvien->update($id,$list_update);	
+				$this->Msinhvien->update($id,$list_update);	
 
 				$config['upload_path'] = './images/';
 
@@ -246,19 +226,19 @@ class Sinhvien extends MY_Controller {
 					$this->load->view('sinhvien/insert', $error);
 				} else {
 					
-					$file_data=  $this->upload->data();
+					$file_data =  $this->upload->data();
 					
-					$data['img']=base_url().'/images'.$file_data['file_name'];
+					$data['img'] = base_url().'/images'.$file_data['file_name'];
 
 				}
 
-				header('Location:'.base_url("/index.php/sinhvien/show"));  
+				redirect('sinhvien/show');  
 
 			}
 	         
        	} else if ($this->input->post("back")) {
 
-       		header('Location:'.base_url("/index.php/sinhvien/show"));   
+       		redirect('sinhvien/show');   
        			    
        	}
        	
@@ -274,9 +254,9 @@ class Sinhvien extends MY_Controller {
        
        	$this->load->helper('form');
 
-   		$this->load->model('model_sinhvien');
+   		$this->load->model('Msinhvien');
 
-      	$data = $this->model_sinhvien->getsinhvien($id);
+      	$data = $this->Msinhvien->getsinhvien($id);
 
      	$password2 = $data['password'];
 
@@ -294,17 +274,17 @@ class Sinhvien extends MY_Controller {
     
 	       	if ($this->form_validation->run()) {
 
-	       		if ( $data['password']==$this->input->post("old_password")) {
+	       		if ( $data['password'] == $this->input->post("old_password")) {
 	       		
 	       			$change = array(
 	       			
-	       				'password'=>$this->input->post("new_password"),
+	       				'password' => $this->input->post("new_password"),
 	       			
 	       			);
 	       			
-	       			$this->model_sinhvien->changepass($id,$change );	
+	       			$this->Msinhvien->changepass($id,$change );	
 
-					header('Location:'.base_url("/index.php/sinhvien/show"));  
+					redirect('sinhvien/show'); 
 	       		
 	       		} else echo "mật khẩu sai nhập lại";	
 	
@@ -312,7 +292,7 @@ class Sinhvien extends MY_Controller {
 	         
        	} else if ($this->input->post("back")) {
 
-       		header('Location:'.base_url("/index.php/sinhvien/show"));   
+       		redirect('sinhvien/show');  
        			    
        	}
        	$this->load->view('home/header',$this->data);
@@ -323,7 +303,7 @@ class Sinhvien extends MY_Controller {
 
 	public function delete_multiple() {
 
-     	$this->load->model('model_sinhvien');
+     	$this->load->model('Msinhvien');
 
 		$dataId = $this->input->post('id');
 
@@ -331,7 +311,7 @@ class Sinhvien extends MY_Controller {
 
 			if ($value != 'on') {
 
-				$check = $this->model_sinhvien->delete_multiple($value);
+				$check = $this->Msinhvien->delete_multiple($value);
 				
 			}
 

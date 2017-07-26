@@ -42,7 +42,7 @@ class Home extends MY_Controller {
 
 				$data = $user->role;
 
-				$this->data['role']=$data;
+				$this->data['role'] = $data;
 
 				redirect('home', 'refresh');
 
@@ -76,27 +76,21 @@ class Home extends MY_Controller {
 		
 		$logout = $this->ion_auth->logout();
 
-
 		$this->session->set_flashdata('message', $this->ion_auth->messages());
 
 		redirect('home/login', 'refresh');
 
 	}
 
-	 public function profile($id) {
-	 	
-	 	if ($this->input->post("changepass")) {
-
-	 		header('Location:'.base_url("/index.php/sinhvien/changepass/$id"));
-	 	}
+	public function profile($id) {
 
 	 	$this->load->library('form_validation');
        
        	$this->load->helper('form');
 
-   		$this->load->model('model_sinhvien');
+   		$this->load->model('Msinhvien');
 
-      	$data['student'] = $this->model_sinhvien->getsinhvien($id); 
+      	$data['student'] = $this->Msinhvien->getsinhvien($id); 
       
 
       	if ($this->input->post("submit")) {
@@ -107,82 +101,65 @@ class Home extends MY_Controller {
 	       	
 	       	$this->form_validation->set_rules('email','Email','required');
 	       	
-	       	// $this->form_validation->set_rules('avarta','Avatar','required');
-	       	
 	       	$this->form_validation->set_rules('role','Role','required');
 
 	       	$this->form_validation->set_message('required','%s không được bỏ trống');
       		
       		if ($this->form_validation->run()) {
 
-		      		$list_update = array(
+	      		$list_update = array(
 
-						"first_name"=>$this->input->post("first_name"),
-						
-						"last_name"=>$this->input->post("last_name"),
-						
-						"email"=>$this->input->post("email"),
+					"first_name" => $this->input->post("first_name"),
+					
+					"last_name" => $this->input->post("last_name"),
+					
+					"email" => $this->input->post("email"),
 
-						"role"=>$this->input->post("role"),
-						
-					);	
-						var_dump($list_update);
+					"role" => $this->input->post("role"),
+					
+				);	
 
-		       		}
-		       		$this->model_sinhvien->update($id,$list_update);
+		    }
 
-		       		header('Location:'.base_url("/index.php/sinhvien/show"));  
+       		$this->Msinhvien->update($id,$list_update);
+
+       		redirect('sinhvien/show'); 
 
     	} 
 	    	
-	$this->load->view("home/profile",$data);
+		$this->load->view("home/profile",$data);
     
-}
-    public function upload($id){
+	}
 
-		if ($this->input->post("change_password")) {
-
-       		header('Location:'.base_url("/index.php/sinhvien/changepass/$id"));   
-       	
-       	}
+    public function upload($id) {
 
     	$this->load->library('form_validation');
        
        	$this->load->helper('form');
 
-   		$this->load->model('model_sinhvien');
+   		$this->load->model('Msinhvien');
 
-      	$data['student'] = $this->model_sinhvien->getsinhvien($id); 		
+      	$data['student'] = $this->Msinhvien->getsinhvien($id); 		
 	       		
-   		if ($_FILES['userfile']['name'] == '' && $this->input->post("img_name")=='doanthi' ) {
+   		if ($_FILES['userfile']['name'] == '') {
 
-   				// $_FILES['userfile']['name']=$this->input->post("img_name");
+   			$list_update = array(
 
-   			$list_update= array(
-
-			"avatar"=>$this->input->post("img_name"),
+				"avatar" => $this->input->post("img_name"),
 
 			);
-   			# code...
-   		} else if ($_FILES['userfile']['name']=='' && $this->input->post("img_name")!='doanthi' ) {
-
-   			$list_update= array(
-
-			"avatar"=>$this->input->post("img_name"),
-
-			);
-
+   			
    		} else {
 
    			$list_update = array(
 
-			"avatar"=>$_FILES['userfile']['name'],
+				"avatar" => $_FILES['userfile']['name'],
 			
 			);
 
    		}
 				
-		$this->model_sinhvien->update($id,$list_update);
+		$this->Msinhvien->update($id,$list_update);
 
 		$config['upload_path'] = './images/';
 
@@ -194,7 +171,9 @@ class Home extends MY_Controller {
 
 			$error = array('error' => $this->upload->display_errors());
 
+		
 			$this->load->view('sinhvien/insert', $error);
+
 		} else {
 			
 			$file_data =  $this->upload->data();
@@ -203,7 +182,7 @@ class Home extends MY_Controller {
 
 		}
 
-		header('Location:'.base_url("/index.php/sinhvien/show"));  
+		redirect('sinhvien/show');
 
     }
 

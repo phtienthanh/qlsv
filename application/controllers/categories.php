@@ -3,7 +3,8 @@
 
 if (!defined('BASEPATH')) exit ('No direct script access allowed');  
 
-class categories extends MY_Controller {
+class Categories extends MY_Controller {
+
     public function __construct() {
         
         parent::__construct();
@@ -16,11 +17,11 @@ class categories extends MY_Controller {
         
     }
 
-    public function add(){
+    public function add() {
 
-        $this->load->model('model_categories');
+        $this->load->model('Mcategories');
         
-        $this->data['student'] = $this->model_categories->get_all();
+        $this->data['student'] = $this->Mcategories->get_all();
 
         $this->load->library('form_validation');
        
@@ -38,19 +39,17 @@ class categories extends MY_Controller {
                 
                 $list = array(
 
-                    "name"=>$this->input->post("input_text"),
-                    
+                    "name" => $this->input->post("input_text"),
                     
                 );
           
-            $this->load->model('model_categories');
+            $this->load->model('Mcategories');
 
-            $this->model_categories->insert($list);        
+            $this->Mcategories->insert($list);    
 
-            header('Location:'.base_url("/categories/add"));  
+            redirect('categories/add');    
 
             }
-
         }
         
         $this->load->view('home/header',$this->data);
@@ -59,23 +58,16 @@ class categories extends MY_Controller {
 
     }
 
-    
 
     public function update($id) {
-
-        if ($this->input->post("change_password")) {
-
-            header('Location:'.base_url("/index.php/sinhvien/changepass/$id"));   
-        
-        }
 
         $this->load->library('form_validation');
        
         $this->load->helper('form');
 
-        $this->load->model('model_categories');
+        $this->load->model('Mcategories');
 
-        $data['student'] = $this->model_categories->getsinhvien($id);      
+        $data['student'] = $this->Mcategories->getsinhvien($id);      
         
         if ($this->input->post("change")) {
           
@@ -87,13 +79,13 @@ class categories extends MY_Controller {
 
                 $list_update = array(
 
-                    "name"=>$this->input->post("name"),
+                    "name" => $this->input->post("name"),
                  
                 );
                
-                $this->model_categories->update($id,$list_update); 
+                $this->Mcategories->update($id,$list_update); 
 
-                header('Location:'.base_url("/categories/add"));  
+                redirect('categories/add');
 
             }
              
@@ -108,17 +100,17 @@ class categories extends MY_Controller {
 
     public function delete($id) {
     
-        $this->load->model('model_categories');
+        $this->load->model('Mcategories');
 
-        $this->model_categories->delete($id);
+        $this->Mcategories->delete($id);
         
-        header('Location:'.base_url("/categories/add"));  
+        redirect('categories/add');  
     
     }
 
     public function delete_multiple() {
 
-        $this->load->model('model_categories');
+        $this->load->model('Mcategories');
 
         $dataId = $this->input->post('id');
 
@@ -126,7 +118,7 @@ class categories extends MY_Controller {
 
             if ($value != 'on') {
 
-                $check = $this->model_categories->delete_multiple($value);
+                $check = $this->Mcategories->delete_multiple($value);
                 
             }
 
