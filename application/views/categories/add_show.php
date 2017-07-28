@@ -7,51 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> </title>
     <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!--  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/csstable/style.css" rel="stylesheet">
-</head>
-
+    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/add_show.css" rel="stylesheet">
 <body>
-    <style>
-    .container-fluid {
-        background-color: #eee;
-        margin-bottom: 50px;
-    }
-
-    form {
-        margin: 27px;
-    }
-
-    table {
-        padding: 27px;
-    }
-
-    .title {
-        text-align: center;
-    }
-
-    .back {
-        margin-bottom: 30px;
-    }
-
-    .left {
-        float: right;
-    }
-
-    .input_text {
-        width: 50%;
-        padding: 4px;
-    }
-
-    .responstable {}
-
-    .center {
-        text-align: center !important;
-        width: 10%;
-    }
+   
     </style>
     <h1 class="title">Manage categories</h1>
     <span> <a href="<?php echo base_url('article/home')  ?>" title="" class="btn btn-primary back">Back</a></span>
@@ -99,87 +59,10 @@
         </tbody>
     </table>
     <input type="submit" name="delall" class="btn btn-primary dellall" value="Delete">
-    <script>
-    $(document).ready(function() {
-
-        $('.dellall').click(function() {
-
-            if (confirm("Are you sure you want to delete this?")) {
-
-                var id = [];
-
-                var reload = [];
-
-                $(':checkbox:checked').each(function(i) {
-
-                    id[i] = $(this).val();
-
-                });
-
-
-                if (id.length === 0) {
-
-                    alert("Please Select atleast one checkbox");
-
-                } else {
-
-                    url = '<?php echo base_url();?>index.php/categories/delete_multiple/';
-
-                    $.ajax({
-
-                        url: '<?php echo base_url();?>index.php/categories/delete_multiple/',
-
-                        method: 'POST',
-
-                        data: {
-                            id: id
-                        },
-
-                        success: function(events) {
-
-                            $('.selected').remove();
-
-                        },
-                        error: function(events) {
-                            alert("that bai");
-                        },
-
-                    });
-
-                }
-
-            } else {
-
-                return false;
-            }
-
-        });
-
-    });
-
-    $(document).ready(function() {
-
-        $('.checkAll').on('click', function() {
-
-            $(this).closest('table').find('tbody :checkbox')
-
-                .prop('checked', this.checked)
-
-                .closest('tr').toggleClass('selected', this.checked);
-
-        });
-
-        $('tbody :checkbox').on('click', function() {
-
-            $(this).closest('tr').toggleClass('selected', this.checked); //Classe de seleção na row
-
-            $(this).closest('table').find('.checkAll').prop('checked', ($(this).closest('table').find('tbody :checkbox:checked').length == $(this).closest('table').find('tbody :checkbox').length)); //Tira / coloca a seleção no .checkAll
-
-        });
-
-    });
-    </script>
+   
 </body>
+<script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>asset/js/js-add.js"></script>
 
 </html>
 <style>

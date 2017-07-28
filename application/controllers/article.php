@@ -35,9 +35,9 @@ class article extends MY_Controller {
 	       
 	       	$this->load->helper('form');
 
-	       	$this->load->model('categories');
+	       	$this->load->model('Mcategories');
 
-	       	$this->data['student'] = $this->categories->get_all();
+	       	$this->data['student'] = $this->Mcategories->get_all();
 	       
 	       	if ($this->input->post("submit")) {
 
@@ -79,7 +79,7 @@ class article extends MY_Controller {
 
 					$this->Marticle->insert($list);
 
-					$config['upload_path'] = './images/';
+					$config['upload_path'] = './asset/images/';
 
 					$config['allowed_types'] = 'gif|jpg|png';
 
@@ -157,7 +157,7 @@ class article extends MY_Controller {
 				
 				$this->Marticle->update($id,$list_update);	
 
-				$config['upload_path'] = './images/';
+				$config['upload_path'] = './asset/images/';
 
 				$config['allowed_types'] = 'gif|jpg|png';
 
@@ -267,7 +267,7 @@ class article extends MY_Controller {
 				
 		$this->Marticle->update($id,$list_update);
 
-		$config['upload_path'] = './images/';
+		$config['upload_path'] = './asset/images/';
 
 		$config['allowed_types'] = 'gif|jpg|png';
 

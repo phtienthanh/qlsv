@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
     <link href="favicon.ico" rel="shortcut icon">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery-3.1.1.min.js"></script>
+    
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/bootstrap.css" rel="stylesheet">
     <!-- Template CSS -->
@@ -16,28 +17,14 @@
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/custom.css" rel="stylesheet">
     <!-- Google Fonts-->
-    <link href="http://fonts.googleapis.com/css?family=Raleway:100,300,400" type="text/css" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Roboto:400,300" type="text/css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/header.css">
+ 
 </head>
 
 <body>
     <style type="text/css" media="screen">
-    .navbar-default {
-        margin: 0px !important;
-    }
-
-    a {
-        font-weight: bold;
-    }
-
-    .container-fluid {
-        margin: 0 !important;
-    }
-
-    .menu-header {
-        background-color: #fff !important;
-    }
+ 
     </style>
     <nav class="navbar navbar-default">
         <div class="container-fluid">

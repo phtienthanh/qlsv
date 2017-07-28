@@ -117,3 +117,17 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.hinden_img {
+    display: none;
+}
+
+.btn-form {
+    display: inline-block;
+}
+
+.page-wrapper {
+    margin: 0;
+}
+.float_r{
+    float: right;
+}

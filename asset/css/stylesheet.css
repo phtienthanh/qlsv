@@ -29,14 +29,15 @@
     }
 
     .back {
-        margin-bottom: 20px;
+      margin: 20px;
     }
 
     .row_xxx {
+        padding: 10px;
         overflow: hidden;
-        height: 170px;
+        height: 200px;
         position: relative;
-        background-color: #fff;
+        background-color: #D6F3F5;
         margin: 20px 0;
     }
 
@@ -60,4 +61,7 @@
     .checkbox {
         top: 40%;
         text-align: center;
+    }
+    .dellall{
+        margin: 20px;
     }

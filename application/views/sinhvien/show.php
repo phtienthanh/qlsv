@@ -10,28 +10,12 @@
     <!--  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/csstable/style.css" rel="stylesheet">
+    <script type="text/javascript" src="<?php echo base_url();?>asset/js/show.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css" rel="stylesheet">
 </head>
 
 <body>
-    <style>
-    .container-fluid {
-        background-color: #eee;
-        margin-bottom: 50px;
-    }
-
-    form {
-        margin: 27px;
-    }
-
-    table {
-        padding: 27px;
-    }
-
-    .title {
-        text-align: center;
-    }
-    </style>
+  
     <h1 class="title">Manage student</h1>
     <form action="<?php echo base_url('index.php/sinhvien/insert')  ?> " method="get" accept-charset="utf-8" id="dataTable">
         <input type="submit" value="Add new student" class="btn btn-primary">
@@ -73,7 +57,7 @@ if(isset($student) && count($student)) {
                     <?php echo $val['email']; ?>
                 </td>
                 <td>
-                    <img src="<?php echo base_url();?>images/<?php echo $val['avatar']; ?>" width="50px">
+                    <img src="<?php echo base_url();?>asset/images/<?php echo $val['avatar']; ?>" width="50px">
                 </td>
                 <td>
                     <?php echo $val['role']; ?>
@@ -91,8 +75,10 @@ if(isset($student) && count($student)) {
         </tbody>
     </table>
     <input type="submit" name="delall" class="btn btn-primary dellall" value="Delete">
-    <script>
-    $(document).ready(function() {
+
+</body>
+<script>
+     $(document).ready(function() {
 
         $('.dellall').click(function() {
 
@@ -116,6 +102,7 @@ if(isset($student) && count($student)) {
                 } else {
 
                     url = '<?php echo base_url();?>index.php/sinhvien/delete_multiple/';
+                    console.log('url');
 
                     $.ajax({
 
@@ -148,30 +135,8 @@ if(isset($student) && count($student)) {
         });
 
     });
-
-    $(document).ready(function() {
-
-        $('.checkAll').on('click', function() {
-
-            $(this).closest('table').find('tbody :checkbox')
-
-                .prop('checked', this.checked)
-
-                .closest('tr').toggleClass('selected', this.checked);
-
-        });
-
-        $('tbody :checkbox').on('click', function() {
-
-            $(this).closest('tr').toggleClass('selected', this.checked); //Classe de seleção na row
-
-            $(this).closest('table').find('.checkAll').prop('checked', ($(this).closest('table').find('tbody :checkbox:checked').length == $(this).closest('table').find('tbody :checkbox').length)); //Tira / coloca a seleção no .checkAll
-
-        });
-
-    });
-    </script>
-</body>
+    
+</script>
 
 </html>
 <style>

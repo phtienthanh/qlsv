@@ -1,0 +1,40 @@
+	.title {
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 40px;
+}
+ table {
+        width: 100%;
+    }
+    .container-fluid{
+    	background-color: #ddd;
+    }
+    
+    td {
+        text-align: center;
+    }
+    
+    body {
+    	text-align: center;
+        background-color: #f3f3f3;
+    }
+    .form-gr{
+    	text-align: center;
+    	width: 20%;
+    	display: inline-block;
+    }
+    input{
+    	width: 100%;
+    	padding: 5px;
+    }
+    label {
+    	float: left;
+    }
+    .button_login{
+    	width: 70%;
+    }
+    p{
+   		text-align: left;
+    	color: red;
+    	margin: 10px;
+    }

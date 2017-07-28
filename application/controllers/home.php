@@ -161,7 +161,7 @@ class Home extends MY_Controller {
 				
 		$this->Msinhvien->update($id,$list_update);
 
-		$config['upload_path'] = './images/';
+		$config['upload_path'] = './asset/images/';
 
 		$config['allowed_types'] = 'gif|jpg|png';
 

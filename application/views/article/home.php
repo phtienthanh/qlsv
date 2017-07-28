@@ -12,8 +12,7 @@
     <script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery.shorten.1.0.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/csstable/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/stylesheet.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/stylesheet.css">
 </head>
 
 <body>
@@ -23,6 +22,7 @@
     <span class=""> <a href="<?php echo base_url('article/add') ?>" title="" class="btn btn-success back">Add article</a></span>
     <span class="addcate"> <a href="<?php echo base_url('categories/add') ?>" title="" class="btn btn-warning back">Add categories</a></span>
     <?php 
+    
             
 if(isset($student) && count($student)) {
 
@@ -32,7 +32,7 @@ if(isset($student) && count($student)) {
             <div class="col-md-1 checkbox">
                 <input type="checkbox" name="checkboxlist[]" value="<?php echo $val['id'];?>">
             </div>
-            <div class="col-md-3"> <img class="avarta_1" src="<?php echo base_url();?>images/<?php echo $val['image']; ?>" width="90%"></div>
+            <div class="col-md-3"> <img class="avarta_1" src="<?php echo base_url();?>asset/images/<?php echo $val['image']; ?>" width="90%"></div>
             <div class="col-md-5">
                 <p class="title">
                     <?php echo $val['title']; ?>
@@ -132,29 +132,9 @@ if(isset($student) && count($student)) {
 
     });
 
-    $(document).ready(function() {
 
-        $('.checkAll').on('click', function() {
-
-            $(this).closest('table').find('tbody :checkbox')
-
-                .prop('checked', this.checked)
-
-                .closest('tr').toggleClass('selected', this.checked);
-
-        });
-
-        $('tbody :checkbox').on('click', function() {
-
-            $(this).closest('tr').toggleClass('selected', this.checked); //Classe de seleção na row
-
-            $(this).closest('table').find('.checkAll').prop('checked', ($(this).closest('table').find('tbody :checkbox:checked').length == $(this).closest('table').find('tbody :checkbox').length)); //Tira / coloca a seleção no .checkAll
-
-        });
-
-
-    });
     </script>
+    <script type="text/javascript" src="<?php echo base_url();?>asset/js/show.js"></script>
 </body>
 
 </html>

@@ -24,23 +24,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<style type="text/css" media="screen">
-.hinden_img {
-    display: none;
-}
 
-.btn-form {
-    display: inline-block;
-}
-
-.page-wrapper {
-    margin: 0;
-}
-.float_r{
-    float: right;
-}
-
-</style>
 
 <body class="fix-header card-no-border">
     <!-- ============================================================== -->
@@ -100,7 +84,7 @@
                     <!-- ============================================================== -->
                     <ul class="navbar-nav my-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url();?>images/<?php echo  $student["image"]; ?>" alt="user" class="profile-pic m-r-5" /><?php echo  $student["title"]; ?></a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url();?>asset/images/<?php echo  $student["image"]; ?>" alt="user" class="profile-pic m-r-5" /><?php echo  $student["title"]; ?></a>
                         </li>
                     </ul>
                 </div>
@@ -155,7 +139,7 @@
                         <div class="card">
                             <div class="card-block">
                                 <form action="<?php echo base_url();?>article/upload/<?php echo  $student["id"]; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-                                    <center class="m-t-30"> <img src="<?php echo base_url();?>images/<?php echo $student["image"]; ?>" class="img-circle" width="150" />
+                                    <center class="m-t-30"> <img src="<?php echo base_url();?>asset/images/<?php echo $student["image"]; ?>" class="img-circle" width="150" />
                                         <input type="file" name="userfile" class="btn">
                                         <input type="text" class="hinden_img" name="img_name" value="<?php echo $student["image"]; ?>">
                                         <input type="submit" name="submit" value="upload" class="btn btn-success">
