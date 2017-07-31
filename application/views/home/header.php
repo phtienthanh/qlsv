@@ -7,17 +7,8 @@
     <title></title>
     <link href="favicon.ico" rel="shortcut icon">
     <script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery-3.1.1.min.js"></script>
-    
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/bootstrap.css" rel="stylesheet">
-    <!-- Template CSS -->
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/animate.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/nexus.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/custom.css" rel="stylesheet">
-    <!-- Google Fonts-->
-  
+    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/header.css">
  
 </head>
@@ -46,7 +37,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="manage_login1" href="<?php echo base_url();?>index.php/home/login">Login</a></li>
                     <li class="dropdown manage_logout">
-                        <a href="#" class="dropdown-toggle fa-user " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle fa fa-user " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
                         <ul class="dropdown-menu menu-header">
                             <li class="manage_logout"><a class="manage_logout" href="<?php echo base_url();?>index.php/home/profile/<?php echo $id; ?>"> Manage profile </a></li>
                             <li class="manage_logout"><a href="<?php echo base_url();?>index.php/home/logout">Logout</a></li>

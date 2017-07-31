@@ -1,5 +1,7 @@
+         var base_url = '<?php echo base_url(); ?>';
  $(document).ready(function() {
 
+        
 
         $('.dellall').click(function() { 
 
@@ -24,12 +26,11 @@
 
                 } else {
                         console.log('id.length');
-                    // ,     
-                    // var url = '<?php echo base_url();?>index.php/categories/delete_multiple/';
+                  
 
                     $.ajax({
  
-                        url: "<?php echo base_url();?>"+"categories/delete_multiple/",
+                        url: base_url+"categories/delete_multiple/",
 
                         method: 'POST',
 

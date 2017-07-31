@@ -5,14 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> </title>
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!--  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script> -->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-    <script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery.shorten.1.0.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/stylesheet.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/article/stylesheet.css">
 </head>
 
 <body>
@@ -20,15 +13,23 @@
     <span class="back"> <a href="<?php echo base_url('home') ?>" title="" class="btn btn-primary back">Back</a></span>
     <br>
     <span class=""> <a href="<?php echo base_url('article/add') ?>" title="" class="btn btn-success back">Add article</a></span>
-    <span class="addcate"> <a href="<?php echo base_url('categories/add') ?>" title="" class="btn btn-warning back">Add categories</a></span>
-    <?php 
-    
+    <span class="addcate"> <a href="<?php echo base_url('categories/home') ?>" title="" class="btn btn-warning back">Categories</a></span>
+    <table>
+       
+        <thead class="thead-inverse">
+            <tr>
             
+                
+            </tr>
+        </thead>
+        <tbody>
+                  <?php 
+      
 if(isset($student) && count($student)) {
 
     foreach ($student as $key => $val) { ?>
     <tr>
-        <div class="row row_xxx row_xxx<?php echo $val['id'];?>">
+    <td><div class="row row_xxx row_xxx<?php echo $val['id'];?>">
             <div class="col-md-1 checkbox">
                 <input type="checkbox" name="checkboxlist[]" value="<?php echo $val['id'];?>">
             </div>
@@ -38,7 +39,7 @@ if(isset($student) && count($student)) {
                     <?php echo $val['title']; ?>
                 </p>
                 <pre class="content1">
-      <?php echo $val['content']; ?>
+         <?php echo $val['content']; ?>
 
     </pre>
                 <div>
@@ -52,90 +53,59 @@ if(isset($student) && count($student)) {
             </div>
             <div class="col-md-3 btn_control">
                 <span><a class="btn btn-success" href="<?php echo base_url();?>article/update/<?php echo $val['id']; ?>" title="">Update</a></span>
-                <span><a class="btn btn-danger" href="<?php echo base_url();?>article/delete/<?php echo $val['id']; ?>" title="">Delete</a></span>
-                <span><a class="btn btn-warning" href="<?php echo base_url();?>article/preview/<?php echo $val['id']; ?>" title="">Preview</a></span>
+                 <button class="btn btn-danger"  data-toggle="modal" data-target="#confirm-delete">
+                  Delete
+                </button>
+                 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                   Delete 
+                </div>
+                 <div class="modal-header">
+                    You want to delete ???
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a  href="<?php echo base_url();?>article/delete/<?php echo $val['id']; ?>" class="btn btn-danger btn-ok">Delete</a>
             </div>
         </div>
+    </div>
+</div>
+                <span><a class="btn btn-warning" href="<?php echo base_url();?>article/preview/<?php echo $val['id']; ?>" title="">Preview</a></span>
+            </div>
+        </div></td>
+        
     </tr>
     <?php       
 
-     }
+        }
 
 }
    
   ?>
+        </tbody>
+    </table>
+    
+        <tbody> 
+        
+  <tbody>
     <input type="submit" name="delall" class="btn btn-primary dellall" value="Delete">
-    <script>
-    $(document).ready(function() {
-
-        $('.dellall').click(function() {
-
-            if (confirm("Are you sure you want to delete this?")) {
-
-                var id = [];
-
-                var reload = [];
-
-                $(':checkbox:checked').each(function(i) {
-
-                    id[i] = $(this).val();
-
-                });
-
-
-                if (id.length === 0) {
-
-                    alert("Please Select atleast one checkbox");
-
-                } else {
-
-                    url = '<?php echo base_url();?>index.php/article/delete_multiple/';
-
-                    $.ajax({
-
-                        url: '<?php echo base_url();?>index.php/article/delete_multiple/',
-
-                        method: 'POST',
-
-                        data: {
-                            id: id
-                        },
-
-                        success: function(events) {
-
-
-                            $(".row").removeAttr('checked');
-
-                        },
-                        error: function(events) {
-                            alert("that bai");
-                        },
-
-                    });
-
-                }
-
-            } else {
-
-                return false;
-            }
-
-        });
-
-        $(".dellall").on("click", function() {
-            $("input:checkbox").each(function() {
-                if ($(this).is(":checked")) {
-                    $('.row_xxx').parent().remove();
-                }
-            });
-        });
-
-    });
-
-
-    </script>
-    <script type="text/javascript" src="<?php echo base_url();?>asset/js/show.js"></script>
+    <button type="button" class="btn btn-primary dell-11" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
+    <div class="modal fade bs-example-modal-lg " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content content-ss">
+     Please Select atleast one checkbox
+    </div>
+  </div>
+</div>
+    
 </body>
-
+<script type="text/javascript"> 
+  var baseURL = "<?php echo base_url(); ?>";
+</script>
+<script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>asset/js/article/show.js"></script>
 </html>
 <style>

@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!--  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>asset/js/show.js"></script>
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css" rel="stylesheet">
 </head>
@@ -41,7 +40,12 @@
 
 if(isset($student) && count($student)) {
 
-    foreach ($student as $key => $val) { ?>
+    foreach ($student as $key => $val) { 
+        if ( $val['delete_is'] == 0) {
+            # code...
+        
+
+        ?>
             <tr class="reload">
                 <td>
                     <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
@@ -62,10 +66,33 @@ if(isset($student) && count($student)) {
                 <td>
                     <?php echo $val['role']; ?>
                 </td>
-                <td><a href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title="">Sửa</a></td>
-                <td><a href="<?php echo base_url();?>sinhvien/delete/<?php echo $val['id']; ?>" title="">xóa</a></td>
+
+                <td><a  class="btn btn-default"  href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title="">Sửa</a></td>
+              
+                <td>
+                <button class="btn btn-default"  data-toggle="modal" data-target="#confirm-delete">
+                  Delete
+                </button>
+                 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                   Delete 
+                </div>
+                 <div class="modal-header">
+                    You want to delete ???
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a  href="<?php echo base_url();?>sinhvien/delete/<?php echo $val['id']; ?>" class="btn btn-danger btn-ok">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+</td>
             </tr>
-            <?php       
+            <?php  
+            }     
 
      }
 
@@ -74,69 +101,20 @@ if(isset($student) && count($student)) {
   ?>
         </tbody>
     </table>
+    <button type="button" class="btn btn-primary dell-11" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
     <input type="submit" name="delall" class="btn btn-primary dellall" value="Delete">
-
+    <div class="modal fade bs-example-modal-lg " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content content-ss">
+     Please Select atleast one checkbox
+    </div>
+  </div>
+</div>
 </body>
-<script>
-     $(document).ready(function() {
-
-        $('.dellall').click(function() {
-
-            if (confirm("Are you sure you want to delete this?")) {
-
-                var id = [];
-
-                var reload = [];
-
-                $(':checkbox:checked').each(function(i) {
-
-                    id[i] = $(this).val();
-
-                });
-
-
-                if (id.length === 0) {
-
-                    alert("Please Select atleast one checkbox");
-
-                } else {
-
-                    url = '<?php echo base_url();?>index.php/sinhvien/delete_multiple/';
-                    console.log('url');
-
-                    $.ajax({
-
-                        url: '<?php echo base_url();?>index.php/sinhvien/delete_multiple/',
-
-                        method: 'POST',
-
-                        data: {
-                            id: id
-                        },
-
-                        success: function(events) {
-
-                            $('.selected').remove();
-
-                        },
-                        error: function(events) {
-                            alert("that bai");
-                        },
-
-                    });
-
-                }
-
-            } else {
-
-                return false;
-            }
-
-        });
-
-    });
-    
+<script type="text/javascript"> 
+  var baseURL = "<?php echo base_url(); ?>";
 </script>
-
+<script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>asset/js/student/show.js"></script>
 </html>
 <style>

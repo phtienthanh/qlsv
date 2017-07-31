@@ -18,13 +18,13 @@
         <link href="favicon.ico" rel="shortcut icon">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <!-- Bootstrap Core CSS -->
-        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/bootstrap.css" rel="stylesheet">
         <!-- Template CSS -->
-        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/animate.css" rel="stylesheet">
-        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/font-awesome.css" rel="stylesheet">
-        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/nexus.css" rel="stylesheet">
-        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/responsive.css" rel="stylesheet">
-        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/custom.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/animate.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/nexus.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/responsive.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/custom.css" rel="stylesheet">
         <!-- Google Fonts-->
         <link href="http://fonts.googleapis.com/css?family=Raleway:100,300,400" type="text/css" rel="stylesheet">
         <link href="http://fonts.googleapis.com/css?family=Roboto:400,300" type="text/css" rel="stylesheet">
@@ -395,19 +395,19 @@
             <script type="text/javascript" src="<?php echo base_url();?>asset/js/bootstrap.min.js" type="text/javascript"></script>
             <script type="text/javascript" src="<?php echo base_url();?>asset/js/scripts.js"></script>
             <!-- Isotope - Portfolio Sorting -->
-            <script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery.isotope.js" type="text/javascript"></script>
+            <script type="text/javascript" src="<?php echo base_url();?>asset/js/home/jquery.isotope.js" type="text/javascript"></script>
             <!-- Mobile Menu - Slicknav -->
-            <script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery.slicknav.js" type="text/javascript"></script>
+            <script type="text/javascript" src="<?php echo base_url();?>asset/js/home/jquery.slicknav.js" type="text/javascript"></script>
             <!-- Animate on Scroll-->
-            <script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery.visible.js" charset="utf-8"></script>
+            <script type="text/javascript" src="<?php echo base_url();?>asset/js/home/jquery.visible.js" charset="utf-8"></script>
             <!-- Stellar Parallax -->
-            <script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery.stellar.js" charset="utf-8"></script>
+            <script type="text/javascript" src="<?php echo base_url();?>asset/js/home/jquery.stellar.js" charset="utf-8"></script>
             <!-- Sticky Div -->
-            <script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery.sticky.js" charset="utf-8"></script>
+            <script type="text/javascript" src="<?php echo base_url();?>asset/js/home/jquery.sticky.js" charset="utf-8"></script>
             <!-- Slimbox2-->
-            <script type="text/javascript" src="<?php echo base_url();?>asset/js/slimbox2.js" charset="utf-8"></script>
+            <script type="text/javascript" src="<?php echo base_url();?>asset/js/home/slimbox2.js" charset="utf-8"></script>
             <!-- Modernizr -->
-            <script src="<?php echo base_url();?>asset/js/modernizr.custom.js" type="text/javascript"></script>
+            <script src="<?php echo base_url();?>asset/js/home/modernizr.custom.js" type="text/javascript"></script>
             <!-- End JS -->
     </body>
 </html>

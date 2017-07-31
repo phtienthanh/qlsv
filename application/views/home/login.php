@@ -5,8 +5,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>form login </title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<!-- <link href="<? echo base_url();?>asset/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+	<link rel="stylesheet" href="<?php echo base_url();?>asset/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/login.css">
 
 	
@@ -32,8 +32,9 @@
 			<input type="password" class="form-control" name="password"  id="" placeholder="Input field">
 			<?php echo form_error('password'); ?> 
 			<br>
-			<input type="submit" name="submit" value="Login" class="btn btn-success button_login">
+			<input type="submit" name="submit" value="Login" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">
 		</div>
 	</form>
 </body>
+<script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
 </html>

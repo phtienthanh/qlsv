@@ -15,7 +15,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url();?>asset/profile/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="<?php echo base_url();?>asset/profile/css/style.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>asset/profile/css/article/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="<?php echo base_url();?>asset/profile/css/colors/blue.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

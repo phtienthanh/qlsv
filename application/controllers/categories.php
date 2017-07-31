@@ -17,6 +17,18 @@ class Categories extends MY_Controller {
         
     }
 
+    public function home(){
+
+        $this->load->model('Mcategories');
+        
+        $this->data['student'] = $this->Mcategories->get_all();
+
+        $this->load->view('home/header',$this->data);
+
+        $this->load->view('categories/show',$this->data);
+
+    }
+
     public function add() {
 
         $this->load->model('Mcategories');
@@ -47,14 +59,14 @@ class Categories extends MY_Controller {
 
             $this->Mcategories->insert($list);    
 
-            redirect('categories/add');    
+            redirect('categories/home');    
 
             }
         }
         
         $this->load->view('home/header',$this->data);
 
-        $this->load->view('categories/add_show',$this->data);
+        $this->load->view('categories/add',$this->data);
 
     }
 
@@ -85,7 +97,7 @@ class Categories extends MY_Controller {
                
                 $this->Mcategories->update($id,$list_update); 
 
-                redirect('categories/add');
+                redirect('categories/home');
 
             }
              
@@ -104,7 +116,7 @@ class Categories extends MY_Controller {
 
         $this->Mcategories->delete($id);
         
-        redirect('categories/add');  
+        redirect('categories/home');  
     
     }
 

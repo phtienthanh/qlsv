@@ -35,24 +35,37 @@ class Home extends MY_Controller {
 		if ($this->form_validation->run() == true) {
 			
 			$user = $this->ion_auth->login($this->input->post('email'), $this->input->post('password'));
-
+			
 			if ($user) {
+
+				if ($user->delete_is == 1) {
+
+
+					echo "<p class='error'>Email or password error</p>";
+
+					$this->load->view('home/header',$this->data);
+
+					$this->load->view('home/login');
+					
+				} else{
+
+					$this->session->set_flashdata('message', $this->ion_auth->messages());
+
+					$data = $user->role; 
+
+					$this->data['role'] = $data;
+
+					redirect('home', 'refresh');
+
+
+				}
+
 				
-				$this->session->set_flashdata('message', $this->ion_auth->messages());
-
-				$data = $user->role;
-
-				$this->data['role'] = $data;
-
-				redirect('home', 'refresh');
+				
 
 			} else {
 
-				echo "<script>";
-				
-				echo " alert('Email or password error');";
-				
-				echo " </script>";
+				echo "<p class='error'>Email or password error</p>";
 
 				$this->load->view('home/header',$this->data);
 

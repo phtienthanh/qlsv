@@ -1,0 +1,78 @@
+    container-fluid {
+        background-color: #eee;
+        margin-bottom: 50px;
+    }
+
+    form {
+        margin: 27px;
+    }
+
+    table {
+        width: 100%;
+        padding: 27px;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .center {
+        text-align: center !important;
+    }
+
+    .update {
+        width: 8%;
+    }
+
+    .addcate {
+        float: right;
+        margin-bottom: 20px;
+    }
+
+    .back {
+        margin: 20px;
+    }
+
+    .row_xxx {
+        padding: 10px;
+        overflow: hidden;
+        height: 200px;
+        position: relative;
+        background-color: #D6F3F5;
+        margin: 20px 0;
+    }
+
+    .content1 {
+        white-space: pre-line;
+        height: 105px !important;
+        border: 1px solid #ececec;
+    }
+
+    .avarta_1 {
+        height: 173px;
+        width: auto;
+    }
+
+    .btn_control {
+        position: absolute;
+        top: 30%;
+        right: -11px;
+    }
+
+    .checkbox {
+        top: 40%;
+        text-align: center;
+    }
+
+    .dellall {
+        margin: 20px;
+    }
+
+    .dell-11 {
+        display: none;
+    }
+
+    .content-ss {
+        padding: 15px;
+        text-align: center;
+    }

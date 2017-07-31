@@ -42,6 +42,12 @@ class Sinhvien extends MY_Controller {
        	$this->load->library('form_validation');
        
        	$this->load->helper('form');
+
+       	$this->load->model('Msinhvien');
+
+      	$data = $this->Msinhvien->get_all();
+
+      	
        
        	if ($this->input->post("submit")) {
 
@@ -82,6 +88,8 @@ class Sinhvien extends MY_Controller {
 						"avatar" => $_FILES['userfile']['name'],
 						
 						"role" => $this->input->post("role"),
+
+						"delete_is" => 0,
 						
 					);
 					
@@ -90,6 +98,7 @@ class Sinhvien extends MY_Controller {
 					$list['avatar'] = 'doanthi';
 	    			
 	    			} 
+	    			
 					$this->load->model('Msinhvien');
 
 					$this->Msinhvien->insert($list);
@@ -137,12 +146,27 @@ class Sinhvien extends MY_Controller {
     }
 
    	public function delete($id) {
-     	
-     	$this->load->model('Msinhvien');
+   
 
-     	$this->Msinhvien->delete($id);
+   		$this->load->model('Msinhvien');
 
-     	redirect('sinhvien/show');
+   		$data['student'] = $this->Msinhvien->getsinhvien($id); 
+
+			$list_update = array(
+			
+			"delete_is" => 1,
+			
+			);	
+	       					
+		$this->Msinhvien->update($id,$list_update);	
+
+		redirect('sinhvien/show');  
+
+       	$this->load->view('home/header',$this->data);
+
+   		$this->load->view("sinhvien/update",$data);
+
+
     
     }
 
@@ -224,6 +248,7 @@ class Sinhvien extends MY_Controller {
 					$error = array('error' => $this->upload->display_errors());
 
 					$this->load->view('sinhvien/insert', $error);
+
 				} else {
 					
 					$file_data =  $this->upload->data();
