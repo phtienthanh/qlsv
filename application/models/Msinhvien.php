@@ -14,6 +14,21 @@ class Msinhvien extends CI_Model {
 
     }
 
+    
+    public function get_email(){
+        
+        $this->load->database();
+
+        $this->db->where("email",$this->input->post('email'));
+
+        $this->db->where("delete_is",0);
+
+        return $this->db->get($this->table)->row_array();
+
+    }
+
+
+
     public function insert($data) {
 
     	$this->load->database();

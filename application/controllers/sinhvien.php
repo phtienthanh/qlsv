@@ -38,18 +38,26 @@ class Sinhvien extends MY_Controller {
 	}
    
     public function insert() {
+
+    	$this->load->model('Msinhvien');
+		
+		$data = $this->Msinhvien->get_all();
+
+		
     	
        	$this->load->library('form_validation');
        
        	$this->load->helper('form');
-
-       	$this->load->model('Msinhvien');
-
-      	$data = $this->Msinhvien->get_all();
-
-      	
        
        	if ($this->input->post("submit")) {
+
+       		foreach ($data as $key => $value) {
+       			
+       			if ($value['delete_is'] == 0 )  {
+
+       					$this->form_validation->set_rules('email','Email','required|valid_email|is_unique[student.email]');
+       			}
+       		}
 
 	       	$this->form_validation->set_rules('first_name','First name','required');
 
@@ -57,7 +65,7 @@ class Sinhvien extends MY_Controller {
 	       	
 	       	$this->form_validation->set_rules('last_name','Last name','required');
 	       	
-	       	$this->form_validation->set_rules('email','Email','required|valid_email|is_unique[student.email]');
+	       
 
 	       	$this->form_validation->set_message('valid_email','%s không  được định dạng');
 
@@ -90,6 +98,7 @@ class Sinhvien extends MY_Controller {
 						"role" => $this->input->post("role"),
 
 						"delete_is" => 0,
+
 						
 					);
 					
@@ -146,21 +155,20 @@ class Sinhvien extends MY_Controller {
     }
 
    	public function delete($id) {
-   
 
    		$this->load->model('Msinhvien');
 
    		$data['student'] = $this->Msinhvien->getsinhvien($id); 
 
-			$list_update = array(
+			$list_update = array(	
 			
 			"delete_is" => 1,
 			
 			);	
 	       					
-		$this->Msinhvien->update($id,$list_update);	
+				$this->Msinhvien->update($id,$list_update);	
 
-		redirect('sinhvien/show');  
+				redirect('sinhvien/show');  
 
        	$this->load->view('home/header',$this->data);
 
@@ -248,7 +256,6 @@ class Sinhvien extends MY_Controller {
 					$error = array('error' => $this->upload->display_errors());
 
 					$this->load->view('sinhvien/insert', $error);
-
 				} else {
 					
 					$file_data =  $this->upload->data();

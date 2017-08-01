@@ -8,6 +8,14 @@ class Home extends MY_Controller {
 	    
 	    parent::__construct();	
 
+	    $this->load->library(array('ion_auth','form_validation'));
+       
+       	$this->load->helper('form');
+
+		$this->load->model('ion_auth_model');
+
+		$this->load->model('Msinhvien');
+
     }   
 
 	public function index() {		
@@ -21,33 +29,28 @@ class Home extends MY_Controller {
 	public function login() {
 
 		$this->data['title'] = $this->lang->line('login_heading');
-
-    	$this->load->library(array('ion_auth','form_validation'));
-       
-       	$this->load->helper('form');
-
-		$this->load->model('ion_auth_model');
 		
 		$this->form_validation->set_rules('email', str_replace(':', '', $this->lang->line('login_identity_label')), 'required|valid_email');
 		
 		$this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
 
 		if ($this->form_validation->run() == true) {
+
+			$this->Msinhvien->get_email();
+
+			if (count($this->Msinhvien->get_email()) == 0) {
+				
+				echo "<p class='error'>Email or password error</p>";
+
+				$this->load->view('home/header',$this->data);
+
+				$this->load->view('home/login');
 			
-			$user = $this->ion_auth->login($this->input->post('email'), $this->input->post('password'));
+			} else {
+				
+				$user = $this->ion_auth->login($this->input->post('email'), $this->input->post('password'));
 			
-			if ($user) {
-
-				if ($user->delete_is == 1) {
-
-
-					echo "<p class='error'>Email or password error</p>";
-
-					$this->load->view('home/header',$this->data);
-
-					$this->load->view('home/login');
-					
-				} else{
+				if ($user) {
 
 					$this->session->set_flashdata('message', $this->ion_auth->messages());
 
@@ -55,22 +58,18 @@ class Home extends MY_Controller {
 
 					$this->data['role'] = $data;
 
-					redirect('home', 'refresh');
+					redirect('home', 'refresh');	
 
+				} else {
 
+					echo "<p class='error'>Email or password error</p>";
+
+					$this->load->view('home/header',$this->data);
+
+					$this->load->view('home/login');
+		
 				}
-
 				
-				
-
-			} else {
-
-				echo "<p class='error'>Email or password error</p>";
-
-				$this->load->view('home/header',$this->data);
-
-				$this->load->view('home/login');
-	
 			}
 		
 		} else {
@@ -96,10 +95,6 @@ class Home extends MY_Controller {
 	}
 
 	public function profile($id) {
-
-	 	$this->load->library('form_validation');
-       
-       	$this->load->helper('form');
 
    		$this->load->model('Msinhvien');
 
@@ -145,10 +140,6 @@ class Home extends MY_Controller {
 	}
 
     public function upload($id) {
-
-    	$this->load->library('form_validation');
-       
-       	$this->load->helper('form');
 
    		$this->load->model('Msinhvien');
 

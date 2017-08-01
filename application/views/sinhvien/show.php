@@ -70,10 +70,11 @@ if(isset($student) && count($student)) {
                 <td><a  class="btn btn-default"  href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title="">Sửa</a></td>
               
                 <td>
-                <button class="btn btn-default"  data-toggle="modal" data-target="#confirm-delete">
+                <button class="btn btn-default"  data-toggle="modal" data-target="#<?php echo $val['id']; ?>">
                   Delete
                 </button>
-                 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                 <div class="modal fade <?php echo $val['id']; ?>" id="<?php echo $val['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                 
                 <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
