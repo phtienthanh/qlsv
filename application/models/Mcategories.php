@@ -16,7 +16,7 @@ class Mcategories extends CI_Model {
 
     }
 
-    public function getsinhvien($id) {
+    public function get_categories($id) {
         
         $this->load->database();
 

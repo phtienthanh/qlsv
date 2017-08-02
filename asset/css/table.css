@@ -9,8 +9,8 @@ If you like this solution, you might also want to check out the 1.0 version:
 */
 
 .responstable {
-    margin: 1em 0;
-    width: 100%;
+        margin:  50px;
+    width: 93%;
     overflow: hidden;
     background: #FFF;
     color: #024457;
@@ -93,7 +93,7 @@ If you like this solution, you might also want to check out the 1.0 version:
 }
 
 body {
-    padding: 0 2em;
+    
     font-family: Arial, sans-serif;
     color: #024457;
     background: #f2f2f2;
@@ -110,13 +110,19 @@ h1 span {
     color: #167F92;
 }
 
-.container-fluid {
+.container-fluid, .container-f {
+     margin: 100px 0;
     background-color: #eee;
     margin-bottom: 50px;
 }
 
-form {
-    margin: 27px;
+#dataTable{
+    margin: 50px;
+}
+.container-f {
+     margin: 100px 0 !important;
+    background-color: #eee;
+    margin-bottom: 50px;
 }
 
 table {
@@ -136,4 +142,86 @@ table {
 .dell-11 {
     display: none;
     
+}
+.dellall{
+    margin: 50px;
+    margin-top: 0;
+}
+.Form_insert, .wrapper{
+    width: 50%;
+    display: inline-block;
+    text-align: left;
+}
+.insert{
+        margin:50px;
+    text-align: center;
+}
+body{
+    padding-bottom: 50px;
+}
+.btn-insert{
+    width: 20% !important;
+}
+.hinden{
+    display: none;
+}
+.row_xxx{
+    margin: 20px;
+    padding:30px;
+    background-color: #fff;
+}
+.content1{
+    height: 100px;
+}
+.back{
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.btn_control{
+    margin-top: 50px;
+}
+.avarta_1{
+    width: 60%;
+}
+.checkbox{
+    margin-top: 54px;
+}
+.table_article{
+    width: 100%;
+}
+.page-wrapper{
+     padding:20px 100px;
+
+    background-color: #fff !important;
+}
+.card-block{
+ 
+
+}
+.row_ud{
+
+    padding: 40px 20px;
+    background-color: #818BB4;
+   
+}
+.m-t-30{
+    padding: 20px;
+    background-color: #DCF3F4;
+}
+.align-self-center{
+    padding: 0;
+}
+.body-profile{
+    background-color: #fff;
+}
+.row_av{
+   padding: 40px 20px;
+    background-color: #818BB4;
+
+}
+.form-g{
+    padding: 15px;
+}
+.add-cate{
+    margin-top: 10px;
 }

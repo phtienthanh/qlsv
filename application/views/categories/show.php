@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!--  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
      <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/categories/show.css" rel="stylesheet">
 
@@ -37,7 +37,7 @@
         <tbody>
             <?php 
 
-        if(isset($student) && count($student)) {
+        if(isset($student) && count($student) >0) {
 
             foreach ($student as $key => $val) { ?>
             <tr class="reload">
@@ -51,10 +51,10 @@
                 
                 <td class="center"><a class="btn btn-success" href="<?php echo base_url();?>categories/update/<?php echo $val['id']; ?>" title="">Update</a></td>
                 <td>
-                    <button class="btn btn-danger"  data-toggle="modal" data-target="#confirm-delete">
+                    <button class="btn btn-danger"  data-toggle="modal" data-target="#<?php echo $val['id']; ?>">
                   Delete
                 </button>
-                <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal fade" id="<?php echo $val['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -100,6 +100,7 @@ var baseURL = "<?php echo base_url();?>";
 
 
 <script type="text/javascript" src="<?php echo base_url();?>asset/js/categories/show.js"></script>
+<script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
 
 </html>
 <style>

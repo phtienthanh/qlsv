@@ -976,8 +976,10 @@ class Ion_auth_model extends CI_Model
 		$this->trigger_events('extra_where');
 
 		$this->db->where('email', $email);
-  		
-  		$this->db->where('password', $password);
+
+  		$this->db->where('password',$password);
+
+  		$this->db->where('delete_is',0);
        	
        	$query = $this->db->get('student');
        

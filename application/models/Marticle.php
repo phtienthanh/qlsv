@@ -22,7 +22,7 @@ class Marticle extends CI_Model {
     }
 
 
-    public function getsinhvien($id) {
+    public function get_article($id) {
         
         $this->load->database();
 

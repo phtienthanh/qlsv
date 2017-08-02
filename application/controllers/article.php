@@ -15,6 +15,14 @@ class article extends MY_Controller {
 
 	        }	
 
+	        if ($this->data['role'] == 'User') {
+			
+			redirect('home/index');
+
+			}
+
+	        $this->load->view('home/header',$this->data);
+
 	    }
 
 	public function home() {
@@ -22,8 +30,6 @@ class article extends MY_Controller {
 		$this->load->model('Marticle');
 		
 		$this->data['student'] = $this->Marticle->get_all();
-
-		$this->load->view('home/header',$this->data);
 
 		$this->load->view('article/home',$this->data);
 
@@ -106,8 +112,6 @@ class article extends MY_Controller {
        		redirect('article/home');	  
 	       			    	
 	    }
-	       
-		$this->load->view('home/header',$this->data);
 
 		$this->load->view('article/add',$this->data);
 	
@@ -121,7 +125,7 @@ class article extends MY_Controller {
 
    		$this->load->model('Marticle');
 
-      	$data['student'] = $this->Marticle->getsinhvien($id); 
+      	$data['student'] = $this->Marticle->get_article($id); 
       	
       	if ($this->input->post("submit")) {
 
@@ -186,7 +190,6 @@ class article extends MY_Controller {
        	}
        	
    		$this->load->view("article/update",$data);
-
     }
 
 	public function delete($id) {
@@ -223,8 +226,6 @@ class article extends MY_Controller {
 		
 		$this->data['student'] = $this->Marticle->get_all();
 
-    	$this->load->view('home/header',$this->data);
-
     	$this->load->view('article/show');
 
     }
@@ -237,7 +238,7 @@ class article extends MY_Controller {
 
    		$this->load->model('Marticle');
 
-      	$data['student'] = $this->Marticle->getsinhvien($id); 		
+      	$data['student'] = $this->Marticle->get_article($id); 		
 	       		
    		if ($_FILES['userfile']['name'] == '' && $this->input->post("img_name") == 'doanthi' ) {
 
@@ -295,7 +296,7 @@ class article extends MY_Controller {
 
     	$this->load->model('Marticle');
 
-      	$data['student'] = $this->Marticle->getsinhvien($id); 	
+      	$data['student'] = $this->Marticle->get_article($id); 	
 
     	$this->load->view("article/preview",$data);
 

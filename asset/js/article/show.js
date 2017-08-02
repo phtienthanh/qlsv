@@ -2,7 +2,7 @@
 
         $('.dellall').click(function() {
 
-            if (confirm("Are you sure you want to delete this?")) {
+            
 
                 var id = [];
 
@@ -17,7 +17,8 @@
 
                 if (id.length === 0) {
 
-                     $('.dell-11').click();
+
+                     $('.checkxxx').click();
 
                 } else {
 
@@ -48,10 +49,7 @@
 
                 }
 
-            } else {
-
-                return false;
-            }
+            
 
         });
 

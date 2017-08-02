@@ -14,6 +14,16 @@ class Categories extends MY_Controller {
             redirect('home/login');
 
         }
+        if ($this->data['role'] == 'User') {
+            
+            redirect('home/index');
+
+        }
+        if ($this->data['role'] == 'User') {
+            
+            redirect('home/index');
+
+        }
         
     }
 
@@ -79,7 +89,7 @@ class Categories extends MY_Controller {
 
         $this->load->model('Mcategories');
 
-        $data['student'] = $this->Mcategories->getsinhvien($id);      
+        $data['student'] = $this->Mcategories->get_categories($id);      
         
         if ($this->input->post("change")) {
           

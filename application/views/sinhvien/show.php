@@ -16,7 +16,7 @@
 <body>
   
     <h1 class="title">Manage student</h1>
-    <form action="<?php echo base_url('index.php/sinhvien/insert')  ?> " method="get" accept-charset="utf-8" id="dataTable">
+    <form action="<?php echo base_url('sinhvien/insert')  ?> " method="get" accept-charset="utf-8" id="dataTable">
         <input type="submit" value="Add new student" class="btn btn-primary">
     </form>
     <table class="table container responstable">
@@ -31,18 +31,16 @@
                 <th>Avarta</th>
                 <th>Role</th>
                 <th>Sửa</th>
-                <th>Xóa</th>
             </tr>
         </thead>
         <tbody>
             <?php 
             
 
-if(isset($student) && count($student)) {
+if(isset($student) && count($student > 0)) {
 
     foreach ($student as $key => $val) { 
         if ( $val['delete_is'] == 0) {
-            # code...
         
 
         ?>
@@ -69,29 +67,12 @@ if(isset($student) && count($student)) {
 
                 <td><a  class="btn btn-default"  href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title="">Sửa</a></td>
               
-                <td>
-                <button class="btn btn-default"  data-toggle="modal" data-target="#<?php echo $val['id']; ?>">
-                  Delete
-                </button>
+                
                  <div class="modal fade <?php echo $val['id']; ?>" id="<?php echo $val['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                  
-                <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                   Delete 
-                </div>
-                 <div class="modal-header">
-                    You want to delete ???
-                </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a  href="<?php echo base_url();?>sinhvien/delete/<?php echo $val['id']; ?>" class="btn btn-danger btn-ok">Delete</a>
-            </div>
-        </div>
-    </div>
 </div>
-</td>
-            </tr>
+
+          
             <?php  
             }     
 

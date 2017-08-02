@@ -23,6 +23,8 @@ class Sinhvien extends MY_Controller {
 
 		$this->load->helper(array('form', 'url'));
 
+		$this->load->view('home/header',$this->data);
+
     }
 
     public function show() {
@@ -30,8 +32,6 @@ class Sinhvien extends MY_Controller {
 		$this->load->model('Msinhvien');
 		
 		$this->data['student'] = $this->Msinhvien->get_all();
-
-		$this->load->view('home/header',$this->data);
 
 		$this->load->view('Sinhvien/show',$this->data);
 
@@ -42,8 +42,6 @@ class Sinhvien extends MY_Controller {
     	$this->load->model('Msinhvien');
 		
 		$data = $this->Msinhvien->get_all();
-
-		
     	
        	$this->load->library('form_validation');
        
@@ -55,8 +53,10 @@ class Sinhvien extends MY_Controller {
        			
        			if ($value['delete_is'] == 0 )  {
 
-       					$this->form_validation->set_rules('email','Email','required|valid_email|is_unique[student.email]');
+       				$this->form_validation->set_rules('email','Email','required|valid_email|is_unique[student.email]');
+       			
        			}
+       		
        		}
 
 	       	$this->form_validation->set_rules('first_name','First name','required');
@@ -64,8 +64,6 @@ class Sinhvien extends MY_Controller {
 	       	$this->form_validation->set_message('required','%s không được bỏ trống');
 	       	
 	       	$this->form_validation->set_rules('last_name','Last name','required');
-	       	
-	       
 
 	       	$this->form_validation->set_message('valid_email','%s không  được định dạng');
 
@@ -158,7 +156,14 @@ class Sinhvien extends MY_Controller {
 
    		$this->load->model('Msinhvien');
 
-   		$data['student'] = $this->Msinhvien->getsinhvien($id); 
+   		$data['student'] = $this->Msinhvien->get_sinhvien($id); 
+
+   		// var_dump($data['student']['role']);exit();
+   		if ($data['student']['role'] == Admin) {
+
+   			echo "No deleted";
+   		
+   		} else {
 
 			$list_update = array(	
 			
@@ -169,8 +174,7 @@ class Sinhvien extends MY_Controller {
 				$this->Msinhvien->update($id,$list_update);	
 
 				redirect('sinhvien/show');  
-
-       	$this->load->view('home/header',$this->data);
+			}
 
    		$this->load->view("sinhvien/update",$data);
 
@@ -182,7 +186,7 @@ class Sinhvien extends MY_Controller {
 
     	if ($this->input->post("change_password")) {
 
-       		header('Location:'.base_url("/index.php/sinhvien/changepass/$id"));   
+       		header('Location:'.base_url("/sinhvien/changepass/$id"));   
        	
        	}
 
@@ -192,7 +196,7 @@ class Sinhvien extends MY_Controller {
 
    		$this->load->model('Msinhvien');
 
-      	$data['student'] = $this->Msinhvien->getsinhvien($id); 		
+      	$data['student'] = $this->Msinhvien->get_sinhvien($id); 		
       	
       	if ($this->input->post("insert")) {
 
@@ -273,8 +277,6 @@ class Sinhvien extends MY_Controller {
        		redirect('sinhvien/show');   
        			    
        	}
-       	
-       	$this->load->view('home/header',$this->data);
 
    		$this->load->view("sinhvien/update",$data);
 
@@ -288,7 +290,7 @@ class Sinhvien extends MY_Controller {
 
    		$this->load->model('Msinhvien');
 
-      	$data = $this->Msinhvien->getsinhvien($id);
+      	$data = $this->Msinhvien->get_sinhvien($id);
 
      	$password2 = $data['password'];
 
@@ -327,7 +329,6 @@ class Sinhvien extends MY_Controller {
        		redirect('sinhvien/show');  
        			    
        	}
-       	$this->load->view('home/header',$this->data);
 
    		$this->load->view("sinhvien/changepass",$data);
  

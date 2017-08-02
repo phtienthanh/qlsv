@@ -39,7 +39,7 @@
                 <div class="row">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="<?php echo base_url();?>index.php/sinhvien" title="">
+                        <a href="<?php echo base_url();?>sinhvien" title="">
                             <img src="<?php echo base_url();?>asset/img/logo.png" alt="Logo" />
                         </a>
                     </div>
@@ -51,7 +51,7 @@
                         <div class="text-center visible-lg">
                             <ul id="hornavmenu" class="nav navbar-nav">
                                 <li>
-                                    <a href="<?php echo base_url();?>index.php/sinhvien" class="fa-home active">Home</a>
+                                    <a href="<?php echo base_url();?>sinhvien" class="fa-home active">Home</a>
                                 </li>
                                 <li>
                                     <span class="fa-gears ">Features</span>
@@ -61,7 +61,7 @@
                                     <span class="fa-copy ">Pages</span>
                                     <ul>
                                         <li>
-                                            <a class="manage_login" href="<?php echo base_url();?>index.php/sinhvien/show">Manage student</a>
+                                            <a class="manage_login" href="<?php echo base_url();?>sinhvien/show">Manage student</a>
                                         </li>
                                         
                                     </ul>
@@ -74,8 +74,8 @@
                                     <span class="fa-user ">User</span>
                                     <ul>
                                         <li>
-                                            <a id="login_section" href="<?php echo base_url();?>index.php/home/login">Login</a>
-                                            <a id="logout_section" href="<?php echo base_url();?>index.php/home/logout">Logout</a>
+                                            <a id="login_section" href="<?php echo base_url();?>home/login">Login</a>
+                                            <a id="logout_section" href="<?php echo base_url();?>home/logout">Logout</a>
                                         </li>
                                         
                                     </ul>

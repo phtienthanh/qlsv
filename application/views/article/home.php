@@ -5,16 +5,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> </title>
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/article/stylesheet.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css">
 </head>
 
 <body>
     <h1 class="title">Manage article</h1>
-    <span class="back"> <a href="<?php echo base_url('home') ?>" title="" class="btn btn-primary back">Back</a></span>
+    <span class="back"> <a href="<?php echo base_url('home') ?>" title="" class="btn btn-primary">Back</a></span>
     <br>
     <span class=""> <a href="<?php echo base_url('article/add') ?>" title="" class="btn btn-success back">Add article</a></span>
     <span class="addcate"> <a href="<?php echo base_url('categories/home') ?>" title="" class="btn btn-warning back">Categories</a></span>
-    <table>
+    <table class="table_article">
        
         <thead class="thead-inverse">
             <tr>
@@ -29,7 +29,8 @@ if(isset($student) && count($student)) {
 
     foreach ($student as $key => $val) { ?>
     <tr>
-    <td><div class="row row_xxx row_xxx<?php echo $val['id'];?>">
+    <td>
+    <div class="row row_xxx row_xxx<?php echo $val['id'];?>">
             <div class="col-md-1 checkbox">
                 <input type="checkbox" name="checkboxlist[]" value="<?php echo $val['id'];?>">
             </div>
@@ -39,7 +40,7 @@ if(isset($student) && count($student)) {
                     <?php echo $val['title']; ?>
                 </p>
                 <pre class="content1">
-         <?php echo $val['content']; ?>
+         <?php echo substr( htmlentities($val['content']),0,100); ?>
 
     </pre>
                 <div>
@@ -53,10 +54,10 @@ if(isset($student) && count($student)) {
             </div>
             <div class="col-md-3 btn_control">
                 <span><a class="btn btn-success" href="<?php echo base_url();?>article/update/<?php echo $val['id']; ?>" title="">Update</a></span>
-                 <button class="btn btn-danger"  data-toggle="modal" data-target="#confirm-delete">
+                 <button class="btn btn-danger"  data-toggle="modal" data-target="#<?php echo $val['id']; ?>">
                   Delete
                 </button>
-                 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                 <div class="modal fade" id="<?php echo $val['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -90,16 +91,46 @@ if(isset($student) && count($student)) {
         <tbody> 
         
   <tbody>
-    <input type="submit" name="delall" class="btn btn-primary dellall" value="Delete">
-    <button type="button" class="btn btn-primary dell-11" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
-    <div class="modal fade bs-example-modal-lg " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content content-ss">
-     Please Select atleast one checkbox
+   <button class="btn btn-danger"  data-toggle="modal" data-target="#delall"> Delete</button>
+    <div class="modal fade" id="delall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                Delete 
+                </div>
+                <div class="modal-header">
+                You want to delete ???
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a  href="" class="btn btn-danger btn-ok dellall">Delete</a>
+                </div>
+            </div>
+        </div>
     </div>
+     <button type="button" class="btn btn-info btn-lg checkxxx" data-toggle="modal" data-target="#myModal">Open Modal</button>
+    <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
   </div>
 </div>
     
+    
+        
 </body>
 <script type="text/javascript"> 
   var baseURL = "<?php echo base_url(); ?>";

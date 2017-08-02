@@ -16,11 +16,18 @@ class Home extends MY_Controller {
 
 		$this->load->model('Msinhvien');
 
+		$this->load->view('home/header',$this->data);
+		
+		if ($this->data['role'] == 'User') {
+			
+			redirect('home/index');
+
+		}
+
+
     }   
 
 	public function index() {		
-
-    	$this->load->view('home/header',$this->data);
     
     	$this->load->view('home/home');
 
@@ -35,46 +42,30 @@ class Home extends MY_Controller {
 		$this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
 
 		if ($this->form_validation->run() == true) {
+			
+			$user = $this->ion_auth->login($this->input->post('email'), $this->input->post('password'));
+		
+			if ($user) {
 
-			$this->Msinhvien->get_email();
+				$this->session->set_flashdata('message', $this->ion_auth->messages());
 
-			if (count($this->Msinhvien->get_email()) == 0) {
-				
+				$data = $user->role; 
+
+				$this->data['role'] = $data;
+
+				redirect('home', 'refresh');	
+
+			} else {
+
 				echo "<p class='error'>Email or password error</p>";
 
-				$this->load->view('home/header',$this->data);
-
 				$this->load->view('home/login');
-			
-			} else {
-				
-				$user = $this->ion_auth->login($this->input->post('email'), $this->input->post('password'));
-			
-				if ($user) {
-
-					$this->session->set_flashdata('message', $this->ion_auth->messages());
-
-					$data = $user->role; 
-
-					$this->data['role'] = $data;
-
-					redirect('home', 'refresh');	
-
-				} else {
-
-					echo "<p class='error'>Email or password error</p>";
-
-					$this->load->view('home/header',$this->data);
-
-					$this->load->view('home/login');
-		
-				}
-				
+	
 			}
 		
 		} else {
 
-			$this->load->view('home/header',$this->data);
+			
 
 			$this->load->view('home/login');
 
@@ -98,7 +89,7 @@ class Home extends MY_Controller {
 
    		$this->load->model('Msinhvien');
 
-      	$data['student'] = $this->Msinhvien->getsinhvien($id); 
+      	$data['student'] = $this->Msinhvien->get_sinhvien($id); 
       
 
       	if ($this->input->post("submit")) {
@@ -143,7 +134,7 @@ class Home extends MY_Controller {
 
    		$this->load->model('Msinhvien');
 
-      	$data['student'] = $this->Msinhvien->getsinhvien($id); 		
+      	$data['student'] = $this->Msinhvien->get_sinhvien($id); 		
 	       		
    		if ($_FILES['userfile']['name'] == '') {
 

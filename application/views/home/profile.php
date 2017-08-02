@@ -13,11 +13,12 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url();?>asset/profile/images/favicon.png">
     <title>Monster Admin Template - The Most Complete & Trusted Bootstrap 4 Admin Template</title>
     <!-- Bootstrap Core CSS -->
-    <link href="<?php echo base_url();?>asset/profile/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
     <!-- Custom CSS -->
-    <link href="<?php echo base_url();?>asset/profile/css/style.css" rel="stylesheet">
+    
     <!-- You can change the theme colors from here -->
     <link href="<?php echo base_url();?>asset/profile/css/profile.css" id="theme" rel="stylesheet">
+    <link href="<?php echo base_url();?>asset/css/table.css" id="theme" rel="stylesheet"
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -26,14 +27,11 @@
 <![endif]-->
 </head>
 
-<body class="fix-header card-no-border">
+<body class="fix-header card-no-border body-profile">
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <div class="preloader">
-        <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
-    </div>
+   
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -41,98 +39,14 @@
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
-        <header class="topbar">
-            <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
-                <!-- ============================================================== -->
-                <!-- Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
-                        <!-- Logo icon -->
-                        <b>
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            <!-- Dark Logo icon -->
-                            <img src="<?php echo base_url();?>asset/profile/images/logo-icon.png" alt="homepage" class="dark-logo" />
-                            
-                        </b>
-                        <!--End Logo icon -->
-                        <!-- Logo text -->
-                        <span>
-                            <!-- dark Logo text -->
-                            <img src="<?php echo base_url();?>asset/profile/images/logo-text.png" alt="homepage" class="dark-logo" />
-                        </span>
-                    </a>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-collapse">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav mr-auto mt-md-0 ">
-                        <!-- This is  -->
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-                        <li class="nav-item hidden-sm-down">
-                            <form class="app-search p-l-20">
-                                <input type="text" class="form-control" placeholder="Search for..."> <a class="srh-btn"><i class="ti-search"></i></a>
-                            </form>
-                        </li>
-                    </ul>
-                    <!-- ============================================================== -->
-                    <!-- User profile and search -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav my-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo base_url();?>asset/images/<?php echo  $student["avatar"]; ?>" alt="user" class="profile-pic m-r-5" /><?php echo  $student["last_name"]; ?></a>
-
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+        
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <aside class="left-sidebar">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <li>
-                            <a href="index.html" class="waves-effect"><i class="fa fa-clock-o m-r-10" aria-hidden="true"></i>Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="pages-profile.html" class="waves-effect"><i class="fa fa-user m-r-10" aria-hidden="true"></i>Profile</a>
-                        </li>
-                        <li>
-                            <a href="table-basic.html" class="waves-effect"><i class="fa fa-table m-r-10" aria-hidden="true"></i>Basic Table</a>
-                        </li>
-                        <li>
-                            <a href="icon-fontawesome.html" class="waves-effect"><i class="fa fa-font m-r-10" aria-hidden="true"></i>Icons</a>
-                        </li>
-                        <li>
-                            <a href="map-google.html" class="waves-effect"><i class="fa fa-globe m-r-10" aria-hidden="true"></i>Google Map</a>
-                        </li>
-                        <li>
-                            <a href="pages-blank.html" class="waves-effect"><i class="fa fa-columns m-r-10" aria-hidden="true"></i>Blank Page</a>
-                        </li>
-                        <li>
-                            <a href="pages-error-404.html" class="waves-effect"><i class="fa fa-info-circle m-r-10" aria-hidden="true"></i>Error 404</a>
-                        </li>
-                    </ul>
-                    <div class="text-center m-t-30">
-                        <a href="<?php echo base_url();?>index.php/home" class="btn btn-danger"> Upgrade to Pro</a>
-                    </div>
-                </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </aside>
+        
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
@@ -143,22 +57,11 @@
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-            <div class="container-fluid">
+            <div class="container-fluid container-f">
                 <!-- ============================================================== -->
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
-                <div class="row page-titles">
-                    <div class="col-md-6 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Profile</h3>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Profile</li>
-                        </ol>
-                    </div>
-                    <div class="col-md-6 col-4 align-self-center">
-                        <a href="<?php echo base_url();?>index.php/home" class="btn pull-right hidden-sm-down btn-success"> Home</a>
-                    </div>
-                </div>
+                
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
@@ -166,7 +69,7 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <!-- Row -->
-                <div class="row">
+                <div class="row row_av">
                     <!-- Column -->
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
@@ -176,7 +79,7 @@
                             <center class="m-t-30"> <img src="<?php echo base_url();?>asset/images/<?php echo $student["avatar"]; ?>" class="img-circle" width="150" />
 
                             <input type="file" name="userfile" class="btn">
-                            <input type="text" class="hinden_img" name="img_name" value="<?php echo $student["avatar"]; ?>">
+                            <input type="text" class="hinden" name="img_name" value="<?php echo $student["avatar"]; ?>">
                              <input type="submit" name="submit" value="upload" class="btn btn-success">
                                 
                             </form>
@@ -189,7 +92,7 @@
                     </div>
                     <!-- Column -->
                     <!-- Column -->
-                    <div class="col-lg-8 col-xlg-9 col-md-7">
+                    <div class="col-lg-8 col-xlg-9 col-md-7 Content-right">
                         <div class="card">
                             <div class="card-block">
                                 <form action="" method="post" class="form-horizontal form-material">
@@ -208,7 +111,7 @@
                                     <div class="form-group">
                                         <label for="example-email" class="col-md-12">Email</label>
                                         <div class="col-md-12">
-                                            <input type="email" name="email" placeholder="johnathan@admin.com" class="form-control form-control-line" name="example-email" id="example-email" value="<?php echo  $student["email"]; ?>" >
+                                            <input type="email" readonly="value" name="email" placeholder="johnathan@admin.com" class="form-control form-control-line" name="example-email" id="example-email" value="<?php echo  $student["email"]; ?>" >
                                         </div>
                                     </div>
                                    <!--  <div class="form-group">
@@ -217,11 +120,13 @@
                                             <input type="password" name="password" value="<?php echo $password; ?>" class="form-control form-control-line">
                                         </div>
                                     </div> -->
-                                    <div class="form-group">
+                                    <div class="form-group form-g">
                                         <label class="col-md-12">Role</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="role" placeholder="123 456 7890" class="form-control form-control-line" value="<?php echo $student["role"]; ?>">
-                                        </div>
+                                        <select name="role" class="form-control">
+                                        <option>Admin</option>
+                                        <option>User</option>
+                                    </select>
+                                    <?php echo form_error("role"); ?>
                                     </div>
                                   
                                     <div class="form-group">
@@ -261,30 +166,11 @@
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="<?php echo base_url();?>asset/profile/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="<?php echo base_url();?>asset/profile/plugins/bootstrap/js/tether.min.js"></script>
-    <script src="<?php echo base_url();?>asset/profile/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="<?php echo base_url();?>asset/profile/js/jquery.slimscroll.js"></script>
-    <!--Wave Effects -->
-    <script src="<?php echo base_url();?>asset/profile/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="<?php echo base_url();?>asset/profile/js/sidebarmenu.js"></script>
-    <!--stickey kit -->
-    <script src="<?php echo base_url();?>asset/profile/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
-    <!--Custom JavaScript -->
+    
     <script src="<?php echo base_url();?>asset/profile/js/custom.min.js"></script>
-    <!-- ============================================================== -->
-    <!-- Style switcher -->
-    <!-- ============================================================== -->
-    <script src="<?php echo base_url();?>asset/profile//plugins/styleswitcher/jQuery.style.switcher.js"></script>
+    <script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
+ \
+    
 </body>
 
 </html>
