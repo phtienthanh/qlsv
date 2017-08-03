@@ -1,56 +1,61 @@
  $(document).ready(function() {
 
+    // $('#close').click(function() {
+
+    //     $('#erroModal').hide();
+    //     $('.modal-backdrop').hide();
+
+    // });
+
         $('.dellall').click(function() {
 
-            
+            var id = [];
 
-                var id = [];
+            var reload = [];
 
-                var reload = [];
+            $(':checkbox:checked').each(function(i) {
 
-                $(':checkbox:checked').each(function(i) {
+                id[i] = $(this).val();
 
-                    id[i] = $(this).val();
+            });
+
+            if (id.length === 0) {
+                
+                $(".btn-can").click();
+
+                $(".checkxxx").click();
+
+            } else {
+
+                
+
+                $.ajax({
+                
+                    url: baseURL+"article/delete_checkbox",
+
+                    method: 'POST',
+
+                    data: {
+                        id: id
+                    },
+
+                    success: function(events) {
+
+
+                        $('.selected').remove();
+
+                    },
+                    error: function(events) {
+
+                    
+                        alert("that bai");
+                    
+                    },
 
                 });
 
-
-                if (id.length === 0) {
-
-
-                     $('.checkxxx').click();
-
-                } else {
-
-                    $.ajax({
-                    
-                        url: baseURL+"article/delete_multiple",
-
-                        method: 'POST',
-
-                        data: {
-                            id: id
-                        },
-
-                        success: function(events) {
-
-
-                            $('.selected').remove();
-
-                        },
-                        error: function(events) {
-
-                        
-                            alert("that bai");
-                        
-                        },
-
-                    });
-
-                }
-
-            
-
+            }
+        
         });
 
     });
@@ -62,18 +67,18 @@
 
             $(this).closest('thread').find('tbody :checkbox')
 
-                .prop('checked', this.checked)
+            .prop('checked', this.checked)
 
-                .closest('tr').toggleClass('selected', this.checked);
+            .closest('tr').toggleClass('selected', this.checked);
 
         });
 
         $('tbody :checkbox').on('click', function() {
 
-            $(this).closest('tr').toggleClass('selected', this.checked); //Classe de seleção na row
+        $(this).closest('tr').toggleClass('selected', this.checked); //Classe de seleção na row
 
-            $(this).closest('table').find('.checkAll').prop('checked', ($(this).closest('table').find('tbody :checkbox:checked').length == $(this).closest('table').find('tbody :checkbox').length)); //Tira / coloca a seleção no .checkAll
-
-        });
+        $(this).closest('table').find('.checkAll').prop('checked', ($(this).closest('table').find('tbody :checkbox:checked').length == $(this).closest('table').find('tbody :checkbox').length)); //Tira / coloca a seleção no .checkAll
 
     });
+
+ });

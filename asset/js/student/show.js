@@ -2,8 +2,6 @@
 
         $('.dellall').click(function() {
 
-            if (confirm("Are you sure you want to delete this?")) {
-
                 var id = [];
 
                 var reload = [];
@@ -14,19 +12,17 @@
 
                 });
 
-
                 if (id.length === 0) {
 
-                   $('.dell-11').click();
+                    $(".btn-can").click();
 
+                    $(".checkxxx").click();
+                  
                 } else {
-
-                    url = '<?php echo base_url();?>index.php/sinhvien/delete_multiple/';
-                    console.log('url');
 
                     $.ajax({
 
-                        url: baseURL+'sinhvien/delete_multiple/',
+                        url: baseURL+'sinhvien/delete_checkbox/',
 
                         method: 'POST',
 
@@ -34,9 +30,9 @@
                             id: id
                         },
 
-                        success: function(events) {
+                        success: function(data) {
 
-                            $('.selected').remove();
+                            console.log(data);
 
                         },
                         error: function(events) {
@@ -47,10 +43,7 @@
 
                 }
 
-            } else {
-
-                return false;
-            }
+            
 
         });
 

@@ -91,9 +91,10 @@ if(isset($student) && count($student)) {
         <tbody> 
         
   <tbody>
-   <button class="btn btn-danger"  data-toggle="modal" data-target="#delall"> Delete</button>
+   <button class="btn btn-danger delete"  data-toggle="modal" data-target="#delall"> Delete</button>
+
     <div class="modal fade" id="delall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog model-de">
             <div class="modal-content">
                 <div class="modal-header">
                 Delete 
@@ -102,30 +103,28 @@ if(isset($student) && count($student)) {
                 You want to delete ???
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a  href="" class="btn btn-danger btn-ok dellall">Delete</a>
+                <button type="button" class="btn btn-default btn-can" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-danger btn-ok dellall">Delete</button>
                 </div>
             </div>
         </div>
     </div>
-     <button type="button" class="btn btn-info btn-lg checkxxx" data-toggle="modal" data-target="#myModal">Open Modal</button>
-    <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
+    <button type="button" class="btn btn-info btn-lg checkxxx" data-toggle="modal" data-target="#erroModal">Open Modal</button>
+    <div id="erroModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
     <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
   </div>
 </div>
     

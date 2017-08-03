@@ -51,7 +51,7 @@ class Sinhvien extends MY_Controller {
 
        		foreach ($data as $key => $value) {
        			
-       			if ($value['delete_is'] == 0 )  {
+       			if ($this->input->post('email') == $value['email'] && $value['delete_is'] == 0 )  {
 
        				$this->form_validation->set_rules('email','Email','required|valid_email|is_unique[student.email]');
        			
@@ -345,11 +345,84 @@ class Sinhvien extends MY_Controller {
 			if ($value != 'on') {
 
 				$check = $this->Msinhvien->delete_multiple($value);
+
 				
 			}
 
 		}   
 
     }
+    public function delete_checkbox() {
+
+     	$this->load->model('Msinhvien');
+
+		$dataId = $this->input->post('id');
+
+		$stack = array();
+
+		foreach ($dataId as $key => $val) {
+
+			if ($val != "0") {
+
+				$data = $this->Msinhvien->get_sinhvien($val);
+
+						if($data['role'] == "User") {
+
+								array_push($stack, $data['id']);
+
+							}
+
+			}
+
+		}
+
+		var_dump(count($stack));exit();
+
+		// foreach ($stack as $key => $value) {
+
+		// 	$data = $this->Msinhvien->get_sinhvien($value);
+
+		// 	if($data['role'] == "Admin"){
+
+		// 		echo "No deleted";
+			
+		// 	} else if ($value != 'on') {
+
+		// 		$list_update = array(	
+		
+		// 			"delete_is" => 1,
+				
+		// 		);	
+
+		// 			var_dump(count($stack));exit();
+
+		// 		// if ($this->Msinhvien->delete_checkbox($value,$list_update)) {
+
+
+
+		// 		// 	echo json_encode($stack);
+
+		// 		// } else {
+
+		// 		// 	echo json_encode(0);
+
+		// 		// }
+				
+		// 	}	
+
+		// }
+
+		if(count($stack)>0) {
+
+			echo json_encode('true');
+
+		} else {
+
+			echo json_encode('false');
+
+		}
+
+    }
    
 }
+

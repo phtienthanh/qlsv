@@ -225,3 +225,12 @@ body{
 .add-cate{
     margin-top: 10px;
 }
+.checkxxx{
+    display: none;
+}
+.delete{
+    margin-left: 20px;
+}
+.delete_std{
+    margin-left: 50px;
+}

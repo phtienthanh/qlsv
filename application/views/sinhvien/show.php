@@ -7,9 +7,9 @@
     <title> </title>
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!--  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url();?>asset/js/show.js"></script>
+     <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+  
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css" rel="stylesheet">
 </head>
 
@@ -23,8 +23,8 @@
         <thead class="thead-inverse">
             <tr>
                 <th>
-                    <INPUT type="checkbox" name="checkAll" class="checkAll" /> </th>
-                <th>Id</th>
+                    <INPUT type="checkbox" value="0" name="checkAll" class="checkAll" /> </th>
+                <th >Id</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
@@ -35,16 +35,20 @@
         </thead>
         <tbody>
             <?php 
+
             
 
 if(isset($student) && count($student > 0)) {
 
     foreach ($student as $key => $val) { 
+        
         if ( $val['delete_is'] == 0) {
         
 
         ?>
             <tr class="reload">
+
+            
                 <td>
                     <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
                 <td>
@@ -68,10 +72,7 @@ if(isset($student) && count($student > 0)) {
                 <td><a  class="btn btn-default"  href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title="">Sửa</a></td>
               
                 
-                 <div class="modal fade <?php echo $val['id']; ?>" id="<?php echo $val['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                 
-</div>
-
+            </tr>     
           
             <?php  
             }     
@@ -83,13 +84,41 @@ if(isset($student) && count($student > 0)) {
   ?>
         </tbody>
     </table>
-    <button type="button" class="btn btn-primary dell-11" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
-    <input type="submit" name="delall" class="btn btn-primary dellall" value="Delete">
-    <div class="modal fade bs-example-modal-lg " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content content-ss">
-     Please Select atleast one checkbox
+ 
+   <button class="btn btn-danger delete_std"  data-toggle="modal" data-target="#delall"> Delete</button>
+
+    <div class="modal fade" id="delall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog model-de">
+            <div class="modal-content">
+                <div class="modal-header">
+                Delete 
+                </div>
+                <div class="modal-header">
+                You want to delete ???
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-can" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-danger btn-ok dellall">Delete</button>
+                </div>
+            </div>
+        </div>
     </div>
+    <button type="button" class="btn btn-info btn-lg checkxxx" data-toggle="modal" data-target="#erroModal">Open Modal</button>
+    <div id="erroModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+    <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
   </div>
 </div>
 </body>
