@@ -27,7 +27,10 @@
       
 if(isset($student) && count($student)) {
 
-    foreach ($student as $key => $val) { ?>
+    foreach ($student as $key => $val) { 
+
+        if ( $val['delete_is'] == 0) {
+        ?>
     <tr>
     <td>
     <div class="row row_xxx row_xxx<?php echo $val['id'];?>">
@@ -78,11 +81,12 @@ if(isset($student) && count($student)) {
         </div></td>
         
     </tr>
-    <?php       
+    <?php   
+            }    
 
         }
 
-}
+    }
    
   ?>
         </tbody>
@@ -116,17 +120,36 @@ if(isset($student) && count($student)) {
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"></button>
-                    <h4 class="modal-title">Modal Header</h4>
+                    <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
-                    <p>Some text in the modal.</p>
+                    <p>Please select checkbox.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-  </div>
-</div>
+        </div>
+    </div>
+
+<button type="button" class="btn btn-info btn-lg hinden delete-c" data-toggle="modal" data-target="#nodelete">Open Modal</button>
+    <div id="nodelete" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+    <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p>Delete !!!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
     
         

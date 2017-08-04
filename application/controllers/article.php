@@ -23,12 +23,12 @@ class article extends MY_Controller {
 
 	        $this->load->view('home/header',$this->data);
 
+	        $this->load->model('Marticle');
+
 	    }
 
 	public function home() {
 
-		$this->load->model('Marticle');
-		
 		$this->data['student'] = $this->Marticle->get_all();
 
 		$this->load->view('article/home',$this->data);
@@ -41,13 +41,28 @@ class article extends MY_Controller {
 	       
 	       	$this->load->helper('form');
 
+	       	$data = $this->Marticle->get_all();
+
 	       	$this->load->model('Mcategories');
 
 	       	$this->data['student'] = $this->Mcategories->get_all();
 	       
 	       	if ($this->input->post("submit")) {
 
-		       	$this->form_validation->set_rules('title','title','required|is_unique[article.title]');
+	       		foreach ($data as $key => $value) {
+ 
+
+       			
+	       			if ($this->input->post('title') == $value['title'] && $value['delete_is'] == "0" )  {
+
+	       				$this->form_validation->set_rules('title','title','|is_unique[article.title]');
+	       			
+	       			}
+       		
+       			}
+       			
+
+		       	$this->form_validation->set_rules('title','title','required');
 
 		       	$this->form_validation->set_message('required','%s không được bỏ trống');
 		       	
@@ -72,6 +87,8 @@ class article extends MY_Controller {
 						"author" => $this->input->post("author"),
 
 						"categories" => $this->input->post("categories"),
+
+						"delete_is" =>0,
 						
 					);
 					
@@ -80,8 +97,6 @@ class article extends MY_Controller {
 					$list['image'] = 'doanthi';
 	    			
 	    			} 
-
-					$this->load->model('Marticle');
 
 					$this->Marticle->insert($list);
 
@@ -122,8 +137,6 @@ class article extends MY_Controller {
     	$this->load->library('form_validation');
        
        	$this->load->helper('form');
-
-   		$this->load->model('Marticle');
 
       	$data['student'] = $this->Marticle->get_article($id); 
       	
@@ -193,8 +206,6 @@ class article extends MY_Controller {
     }
 
 	public function delete($id) {
- 	
-	 	$this->load->model('Marticle');
 
 	 	$this->Marticle->delete($id);
 	 	
@@ -203,8 +214,6 @@ class article extends MY_Controller {
     }
 
     public function delete_multiple() {
-
-     	$this->load->model('Marticle');
 
 		$dataId = $this->input->post('id');
 
@@ -221,8 +230,6 @@ class article extends MY_Controller {
     }
 
     public function show() {
-
-    	$this->load->model('Marticle');
 		
 		$this->data['student'] = $this->Marticle->get_all();
 
@@ -235,8 +242,6 @@ class article extends MY_Controller {
     	$this->load->library('form_validation');
        
        	$this->load->helper('form');
-
-   		$this->load->model('Marticle');
 
       	$data['student'] = $this->Marticle->get_article($id); 		
 	       		
@@ -294,13 +299,32 @@ class article extends MY_Controller {
 
     public function preview($id) {
 
-    	$this->load->model('Marticle');
-
       	$data['student'] = $this->Marticle->get_article($id); 	
 
     	$this->load->view("article/preview",$data);
 
-    }		
+    }	
+
+    public function delete_checkbox() {
+
+		$dataId = $this->input->post('id');
+
+		foreach ($dataId as $key => $value) {
+
+			$data = $this->Marticle->get_article($value);
+
+			$list_update = array(	
+		
+					"delete_is" => 1,
+				
+				);	
+				
+			$this->Marticle->delete_checkbox($value,$list_update);
+	
+
+		}		
+
+    }	
    
 }
 

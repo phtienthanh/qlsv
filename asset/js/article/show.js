@@ -1,11 +1,6 @@
  $(document).ready(function() {
 
-    // $('#close').click(function() {
 
-    //     $('#erroModal').hide();
-    //     $('.modal-backdrop').hide();
-
-    // });
 
         $('.dellall').click(function() {
 
@@ -27,8 +22,6 @@
 
             } else {
 
-                
-
                 $.ajax({
                 
                     url: baseURL+"article/delete_checkbox",
@@ -40,6 +33,11 @@
                     },
 
                     success: function(events) {
+
+
+                        $(".delete-c").click();
+
+                        $(".btn-can").click();
 
 
                         $('.selected').remove();

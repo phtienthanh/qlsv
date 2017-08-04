@@ -383,24 +383,19 @@ class Sinhvien extends MY_Controller {
 
 				$data = $this->Msinhvien->get_sinhvien($value);
 
-				if($data['role'] == "Admin"){
-
-					echo "No deleted";
-				
-				} else if ($value != 'on') {
-
-					$list_update = array(	
-			
-						"delete_is" => 1,
-					
-					);	
-					
-					$this->Msinhvien->delete_checkbox($value,$list_update);
+				$list_update = array(	
 		
-				}	
+					"delete_is" => 1,
+				
+				);
+
+				unlink($data['avatar']);
+
+				$this->Msinhvien->delete_checkbox($value,$list_update);
+			
 
 			}
-
+				
 			$returnData = array(
 
 			   'status' => 1,
