@@ -64,6 +64,16 @@ class Marticle extends CI_Model {
 
     }
 
+     public function delete_checkbox($id,$data) {
+        
+        $this->load->database();
+        
+        $this->db->where("id",$id);
+
+        $this->db->update($this->table,$data);
+    
+    }
+
 }
 
 ?>

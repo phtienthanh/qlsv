@@ -22,7 +22,7 @@ class Msinhvien extends CI_Model {
     
     }
      
-     public function delete($id) {
+    public function delete($id) {
      	
      	$this->load->database();
      	
@@ -62,7 +62,7 @@ class Msinhvien extends CI_Model {
       
     }
 
-   public function delete_multiple($id) {
+    public function delete_multiple($id) {
         
         $this->load->database();
         
@@ -98,7 +98,7 @@ class Msinhvien extends CI_Model {
     
     }  
 
-     public function delete_checkbox($id,$data) {
+    public function delete_checkbox($id,$data) {
         
         $this->load->database();
         

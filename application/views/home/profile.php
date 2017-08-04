@@ -114,28 +114,18 @@
                                             <input type="email" readonly="value" name="email" placeholder="johnathan@admin.com" class="form-control form-control-line" name="example-email" id="example-email" value="<?php echo  $student["email"]; ?>" >
                                         </div>
                                     </div>
-                                   <!--  <div class="form-group">
-                                        <label class="col-md-12">Password</label>
-                                        <div class="col-md-12">
-                                            <input type="password" name="password" value="<?php echo $password; ?>" class="form-control form-control-line">
-                                        </div>
-                                    </div> -->
+                                  
                                     <div class="form-group form-g">
                                         <label class="col-md-12">Role</label>
-                                        <select name="role" class="form-control">
-                                        <option>Admin</option>
-                                        <option>User</option>
-                                    </select>
-                                    <?php echo form_error("role"); ?>
+                                        <input type="text"  name="role" readonly="value"  class="form-control form-control-line" value="<?php echo $student["role"]; ?>" >
                                     </div>
-                                  
+                                    <?php echo form_error("role"); ?>
                                     <div class="form-group">
                                         <div class="col-sm-6 btn-form">
                                             <input type="submit" name="submit" class="btn btn-success" value="Update" >
                                         </div>
                                         <div class="col-sm-3 btn-form">
-                                        <span><a class="btn btn-success" href="<?php echo base_url();?>sinhvien/changepass/<?php echo $student["id"];?>" title=""> Change password</a></span>
-                                            
+                                            <span><a class="btn btn-success" href="<?php echo base_url();?>sinhvien/changepass/<?php echo $student["id"];?>" title=""> Change password</a></span>    
                                         </div>
                                     </div>
                                 </form>

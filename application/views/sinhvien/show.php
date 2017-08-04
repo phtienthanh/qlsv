@@ -36,19 +36,17 @@
         <tbody>
             <?php 
 
-            
+            if(isset($student) && count($student > 0)) {
 
-if(isset($student) && count($student > 0)) {
+                foreach ($student as $key => $val) { 
+                    
+                    if ( $val['delete_is'] == 0) {
+                    
 
-    foreach ($student as $key => $val) { 
-        
-        if ( $val['delete_is'] == 0) {
-        
-
-        ?>
+            ?>
             <tr class="reload">
 
-            
+            <tr class="<?php echo $val['role']; ?>"> 
                 <td>
                     <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
                 <td>
@@ -72,7 +70,8 @@ if(isset($student) && count($student > 0)) {
                 <td><a  class="btn btn-default"  href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title="">Sửa</a></td>
               
                 
-            </tr>     
+            </tr>   
+            </tr>  
           
             <?php  
             }     
@@ -110,10 +109,10 @@ if(isset($student) && count($student > 0)) {
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"></button>
-                    <h4 class="modal-title">Modal Header</h4>
+                    <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
-                    <p>Some text in the modal.</p>
+                    <p>Please select checkbox.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -121,6 +120,46 @@ if(isset($student) && count($student > 0)) {
             </div>
   </div>
 </div>
+
+<button type="button" class="btn btn-info btn-lg hinden Delete " data-toggle="modal" data-target="#Delete">Open Modal</button>
+    <div id="Delete" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+    <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p>Delete</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-info btn-lg hinden nodelete" data-toggle="modal" data-target="#nodelete">Open Modal</button>
+    <div id="nodelete" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+    <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p>Can't Delete Admin Account !!!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+  </div>
+</div>
+
+
 </body>
 <script type="text/javascript"> 
   var baseURL = "<?php echo base_url(); ?>";

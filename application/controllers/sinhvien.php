@@ -352,6 +352,7 @@ class Sinhvien extends MY_Controller {
 		}   
 
     }
+
     public function delete_checkbox() {
 
      	$this->load->model('Msinhvien');
@@ -366,61 +367,67 @@ class Sinhvien extends MY_Controller {
 
 				$data = $this->Msinhvien->get_sinhvien($val);
 
-						if($data['role'] == "User") {
+				if($data['role'] == "User") {
 
-								array_push($stack, $data['id']);
+					array_push($stack, $data['id']);
 
-							}
+				}
 
 			}
 
 		}
 
-		var_dump(count($stack));exit();
+		if (count($stack) > 0) {
 
-		// foreach ($stack as $key => $value) {
+			foreach ($stack as $key => $value) {
 
-		// 	$data = $this->Msinhvien->get_sinhvien($value);
+				$data = $this->Msinhvien->get_sinhvien($value);
 
-		// 	if($data['role'] == "Admin"){
+				if($data['role'] == "Admin"){
 
-		// 		echo "No deleted";
+					echo "No deleted";
+				
+				} else if ($value != 'on') {
+
+					$list_update = array(	
 			
-		// 	} else if ($value != 'on') {
-
-		// 		$list_update = array(	
+						"delete_is" => 1,
+					
+					);	
+					
+					$this->Msinhvien->delete_checkbox($value,$list_update);
 		
-		// 			"delete_is" => 1,
-				
-		// 		);	
+				}	
 
-		// 			var_dump(count($stack));exit();
+			}
 
-		// 		// if ($this->Msinhvien->delete_checkbox($value,$list_update)) {
+			$returnData = array(
 
+			   'status' => 1,
+			   'data' => $stack,
+			   'message' => "Delete !!!",
+			
+			);
 
+			echo json_encode($returnData);
 
-		// 		// 	echo json_encode($stack);
-
-		// 		// } else {
-
-		// 		// 	echo json_encode(0);
-
-		// 		// }
-				
-		// 	}	
-
-		// }
-
-		if(count($stack)>0) {
-
-			echo json_encode('true');
+	   		exit();
 
 		} else {
 
-			echo json_encode('false');
+			$returnData = array(
 
-		}
+			   'status' => 0,
+			   'data' => null,
+			   'message' => "Can't Delete Admin Account !!!",
+			   
+			);
+
+			echo json_encode($returnData);
+
+			exit();
+
+		} 		
 
     }
    

@@ -17,13 +17,6 @@ class Home extends MY_Controller {
 		$this->load->model('Msinhvien');
 
 		$this->load->view('home/header',$this->data);
-		
-		if ($this->data['role'] == 'User') {
-			
-			redirect('home/index');
-
-		}
-
 
     }   
 
