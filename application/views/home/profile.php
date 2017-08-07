@@ -76,7 +76,7 @@
                             <div class="card-block">
                             <form action="<?php echo base_url();?>home/upload/<?php echo  $student["id"]; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
-                            <center class="m-t-30"> <img src="<?php echo base_url();?>asset/images/<?php echo $student["avatar"]; ?>" class="img-circle" width="150" />
+                            <center class="m-t-30"> <img src="<?php echo base_url();?>asset/images/student/<?php echo $student["avatar"]; ?>" class="img-circle" width="150" />
 
                             <input type="file" name="userfile" class="btn">
                             <input type="text" class="hinden" name="img_name" value="<?php echo $student["avatar"]; ?>">

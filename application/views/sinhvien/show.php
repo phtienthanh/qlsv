@@ -30,7 +30,7 @@
                 <th>Email</th>
                 <th>Avarta</th>
                 <th>Role</th>
-                <th>Sửa</th>
+                <th>Edit</th>
             </tr>
         </thead>
         <tbody>
@@ -61,13 +61,13 @@
                     <?php echo $val['email']; ?>
                 </td>
                 <td>
-                    <img src="<?php echo base_url();?>asset/images/<?php echo $val['avatar']; ?>" width="50px">
+                    <img src="<?php echo base_url();?>asset/images/student/<?php echo $val['avatar']; ?>" width="50px">
                 </td>
                 <td>
                     <?php echo $val['role']; ?>
                 </td>
 
-                <td><a  class="btn btn-default"  href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title="">Sửa</a></td>
+                <td><a  class="btn btn-default glyphicon glyphicon-edit"  href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title=""></a></td>
               
                 
             </tr>   

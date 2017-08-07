@@ -100,7 +100,7 @@ class article extends MY_Controller {
 
 					$this->Marticle->insert($list);
 
-					$config['upload_path'] = './asset/images/';
+					$config['upload_path'] = './asset/images/article/';
 
 					$config['allowed_types'] = 'gif|jpg|png';
 
@@ -114,7 +114,7 @@ class article extends MY_Controller {
 
 						$file_data =  $this->upload->data();
 						
-						$data['img'] = base_url().'/images'.$file_data['file_name'];
+						$data['img'] = base_url().'/images/article'.$file_data['file_name'];
 
 					}
 
@@ -174,7 +174,7 @@ class article extends MY_Controller {
 				
 				$this->Marticle->update($id,$list_update);	
 
-				$config['upload_path'] = './asset/images/';
+				$config['upload_path'] = './asset/images/article/';
 
 				$config['allowed_types'] = 'gif|jpg|png';
 
@@ -188,7 +188,7 @@ class article extends MY_Controller {
 					
 					$file_data =  $this->upload->data();
 					
-					$data['img'] = base_url().'/images'.$file_data['file_name'];
+					$data['img'] = base_url().'/images/article'.$file_data['file_name'];
 
 				}
 
@@ -273,7 +273,7 @@ class article extends MY_Controller {
 				
 		$this->Marticle->update($id,$list_update);
 
-		$config['upload_path'] = './asset/images/';
+		$config['upload_path'] = './asset/images/article/';
 
 		$config['allowed_types'] = 'gif|jpg|png';
 
@@ -289,7 +289,7 @@ class article extends MY_Controller {
 			
 			$file_data =  $this->upload->data();
 			
-			$data['img'] = base_url().'/images'.$file_data['file_name'];
+			$data['img'] = base_url().'/images/article'.$file_data['file_name'];
 
 		}
 
@@ -312,16 +312,24 @@ class article extends MY_Controller {
 		foreach ($dataId as $key => $value) {
 
 			$data = $this->Marticle->get_article($value);
+			
 
 			$list_update = array(	
 		
 					"delete_is" => 1,
 				
 				);	
-				
-			$this->Marticle->delete_checkbox($value,$list_update);
-	
 
+			if (file_exists("asset/images/article/".$data['image'])) {
+			        
+		        if(unlink("asset/images/article/".$data['image'])) {
+
+		            $this->Marticle->delete_checkbox($value,$list_update);  
+		        
+		        } 
+     			
+     		}
+	
 		}		
 
     }	

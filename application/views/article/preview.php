@@ -86,7 +86,7 @@
                             <div class="card-block">
                             <form action="<?php echo base_url();?>article/upload/<?php echo  $student["id"]; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
-                            <center class="m-t-30"> <img src="<?php echo base_url();?>asset/images/<?php echo $student["image"]; ?>" class="img-circle" width="150" />
+                            <center class="m-t-30"> <img src="<?php echo base_url();?>asset/images/article/<?php echo $student["image"]; ?>" class="img-circle" width="150" />
 <!-- 
                             <input type="file" name="userfile" class="btn">
                             <input type="text" class="hinden_img" name="img_name" value="<?php echo $student["image"]; ?>">

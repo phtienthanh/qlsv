@@ -81,7 +81,7 @@ class CI_Upload {
 	public function initialize($config = array())
 	{
 		$defaults = array(
-							'max_size'			=> 0,
+							'max_size'			=> 10000000,
 							'max_width'			=> 0,
 							'max_height'		=> 0,
 							'max_filename'		=> 0,

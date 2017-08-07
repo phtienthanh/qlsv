@@ -108,13 +108,14 @@ class Sinhvien extends MY_Controller {
 	    			
 					$this->load->model('Msinhvien');
 
-					$this->Msinhvien->insert($list);
+					$config['max_size'] = 20480;
 
-					$config['upload_path'] = './asset/images/';
+					$config['upload_path'] = './asset/images/student/';
 
 					$config['allowed_types'] = 'gif|jpg|png';
 
 					$this->load->library('upload', $config);
+
 
 					if (!$this->upload->do_upload()) {
 
@@ -124,11 +125,13 @@ class Sinhvien extends MY_Controller {
 
 						$file_data =  $this->upload->data();
 						
-						$data['img'] = base_url().'/images'.$file_data['file_name'];
-
+						$data['img'] = base_url().'isset/images'.$file_data['file_name'];	
+				
 					}
 
-					redirect('sinhvien/show');
+					$this->Msinhvien->insert($list);
+
+					redirect('sinhvien/show');	
 
 				}
 
@@ -245,31 +248,34 @@ class Sinhvien extends MY_Controller {
 					
 					);
 
-	       		}
-				
-				$this->Msinhvien->update($id,$list_update);	
+	       		} 
 
-				$config['upload_path'] = './asset/images/';
+       			$config['max_size'] = 20480;
+
+				$config['upload_path'] = './asset/images/student/';
 
 				$config['allowed_types'] = 'gif|jpg|png';
 
-				$this->load->library('upload', $config);				
+				$this->load->library('upload', $config);	
 
 				if (!$this->upload->do_upload()) {
 
 					$error = array('error' => $this->upload->display_errors());
 
 					$this->load->view('sinhvien/insert', $error);
+
 				} else {
-					
+
 					$file_data =  $this->upload->data();
-					
+						
 					$data['img'] = base_url().'/images'.$file_data['file_name'];
 
 				}
 
-				redirect('sinhvien/show');  
+				$this->Msinhvien->update($id,$list_update);
 
+				redirect('sinhvien/show');
+			
 			}
 	         
        	} else if ($this->input->post("back")) {
@@ -277,6 +283,7 @@ class Sinhvien extends MY_Controller {
        		redirect('sinhvien/show');   
        			    
        	}
+      
 
    		$this->load->view("sinhvien/update",$data);
 
@@ -361,6 +368,8 @@ class Sinhvien extends MY_Controller {
 
 		$stack = array();
 
+		
+
 		foreach ($dataId as $key => $val) {
 
 			if ($val != "0") {
@@ -389,10 +398,22 @@ class Sinhvien extends MY_Controller {
 				
 				);
 
-				unlink($data['avatar']);
 
-				$this->Msinhvien->delete_checkbox($value,$list_update);
-			
+				if (file_exists("asset/images/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg" ) {
+			        
+			        if(unlink("asset/images/student/".$data['avatar'])) {
+
+			            $this->Msinhvien->delete_checkbox($value,$list_update);    
+			        
+			        } 
+     			
+     			} else {
+
+     				$this->Msinhvien->delete_checkbox($value,$list_update);    
+
+     			}
+
+				
 
 			}
 				
