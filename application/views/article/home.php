@@ -57,9 +57,6 @@ if(isset($student) && count($student)) {
             </div>
             <div class="col-md-3 btn_control">
                 <span><a class="btn btn-success" href="<?php echo base_url();?>article/update/<?php echo $val['id']; ?>" title="">Update</a></span>
-                 <button class="btn btn-danger"  data-toggle="modal" data-target="#<?php echo $val['id']; ?>">
-                  Delete
-                </button>
                  <div class="modal fade" id="<?php echo $val['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
             <div class="modal-content">

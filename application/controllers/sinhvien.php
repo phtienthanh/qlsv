@@ -39,6 +39,44 @@ class Sinhvien extends MY_Controller {
    
     public function insert() {
 
+    	$config['protocol']    = 'smtp';
+        
+        $config['smtp_host']    = 'ssl://smtp.gmail.com';
+        
+        $config['smtp_port']    = '465';
+        
+        $config['smtp_timeout'] = '7';
+        
+        $config['smtp_user']    = 'doanthi2241@gmail.com';
+        
+        $config['smtp_pass']    = 'doanthi123';
+        
+        $config['charset']    = 'utf-8';
+        
+        $config['newline']    = "\r\n";
+        
+        $config['mailtype'] = 'text'; // or html
+        
+        $config['validation'] = TRUE; // bool whether to validate email or not      
+
+        $this->email->initialize($config);
+
+        $this->email->from('doanthi2241@gmail.com', 'Ron');
+
+        $this->email->to($this->input->post("email")); 
+
+        $this->email->subject('Email Test');
+
+        $message = "Contact form\n\n";
+
+		$message .= "Last namet : ".$this->input->post("last_name") . "\n";
+
+		$message .= "Email: ".$this->input->post("email") . "\n";
+
+		$message .= "Role: ".$this->input->post("role") . "\n";
+
+        $this->email->message($message);  
+
     	$this->load->model('Msinhvien');
 		
 		$data = $this->Msinhvien->get_all();
@@ -97,12 +135,11 @@ class Sinhvien extends MY_Controller {
 
 						"delete_is" => 0,
 
-						
 					);
 					
-					if($list['avatar'] == ''){
+					if($list['avatar'] == '') {
 
-					$list['avatar'] = 'doanthi';
+						$list['avatar'] = 'doanthi';
 	    			
 	    			} 
 	    			
@@ -129,9 +166,17 @@ class Sinhvien extends MY_Controller {
 				
 					}
 
-					$this->Msinhvien->insert($list);
+					if ($this->Msinhvien->insert($list)) {
 
-					redirect('sinhvien/show');	
+						$this->email->send();
+
+						redirect('sinhvien/show');	
+				
+					} else {
+
+						echo "Thêm thất bại";
+
+					}	
 
 				}
 
@@ -161,7 +206,6 @@ class Sinhvien extends MY_Controller {
 
    		$data['student'] = $this->Msinhvien->get_sinhvien($id); 
 
-   		// var_dump($data['student']['role']);exit();
    		if ($data['student']['role'] == Admin) {
 
    			echo "No deleted";
@@ -181,8 +225,6 @@ class Sinhvien extends MY_Controller {
 
    		$this->load->view("sinhvien/update",$data);
 
-
-    
     }
 
     public function update($id) {
@@ -215,7 +257,6 @@ class Sinhvien extends MY_Controller {
     
 	       	if ($this->form_validation->run()) {
 
-	       		
 	       		if ($_FILES['userfile']['name'] == '') {
 
 	       			$list_update = array(
@@ -284,7 +325,6 @@ class Sinhvien extends MY_Controller {
        			    
        	}
       
-
    		$this->load->view("sinhvien/update",$data);
 
     }
@@ -368,8 +408,6 @@ class Sinhvien extends MY_Controller {
 
 		$stack = array();
 
-		
-
 		foreach ($dataId as $key => $val) {
 
 			if ($val != "0") {
@@ -398,7 +436,6 @@ class Sinhvien extends MY_Controller {
 				
 				);
 
-
 				if (file_exists("asset/images/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg" ) {
 			        
 			        if(unlink("asset/images/student/".$data['avatar'])) {
@@ -412,8 +449,6 @@ class Sinhvien extends MY_Controller {
      				$this->Msinhvien->delete_checkbox($value,$list_update);    
 
      			}
-
-				
 
 			}
 				
@@ -445,6 +480,11 @@ class Sinhvien extends MY_Controller {
 
 		} 		
 
+    }
+
+    public function sendmail(){
+
+    	 
     }
    
 }

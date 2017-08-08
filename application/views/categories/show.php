@@ -19,9 +19,9 @@
     </style>
     <h1 class="title">Manage categories</h1>
 
-    <span> <a href="<?php echo base_url('article/home')  ?>" title="" class="btn btn-primary back">Back</a></span>
+    <span  class="addcate"> <a href="<?php echo base_url('article/home')  ?>" title="" class="btn btn-primary ">Back</a></span>
     <br>
-    <span class="addcate"> <a href="<?php echo base_url('categories/add') ?>" title="" class="btn btn-warning back">Add Categories</a></span>
+    <span class="addcate"> <a href="<?php echo base_url('categories/add') ?>" title="" class="btn btn-warning btn-addct">Add Categories</a></span>
    
     <table class="table container responstable">
         <thead class="thead-inverse">
@@ -82,7 +82,27 @@
           ?>
         </tbody>
     </table>
-    <input type="submit" name="delall" class="btn btn-primary dellall" value="Delete">
+    
+      <button class="btn btn-danger delete_std"  data-toggle="modal" data-target="#delall"> Delete</button>
+
+    <div class="modal fade" id="delall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog model-de">
+            <div class="modal-content">
+                <div class="modal-header">
+                Delete 
+                </div>
+                <div class="modal-header">
+                You want to delete ???
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-can" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-danger btn-ok dellall">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <input type="submit" name="delall" class="btn btn-primary dellall" value="Delete"> -->
     <button type="button" class="btn btn-primary dell-11" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
     <div class="modal fade bs-example-modal-lg " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg" role="document">

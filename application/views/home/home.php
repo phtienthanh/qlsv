@@ -60,9 +60,6 @@
                                 <li>
                                     <span class="fa-copy ">Pages</span>
                                     <ul>
-                                        <li>
-                                            <a class="manage_login" href="<?php echo base_url();?>sinhvien/show">Manage student</a>
-                                        </li>
                                         
                                     </ul>
                                 </li>
@@ -73,10 +70,7 @@
                                 <li>
                                     <span class="fa-user ">User</span>
                                     <ul>
-                                        <li>
-                                            <a id="login_section" href="<?php echo base_url();?>home/login">Login</a>
-                                            <a id="logout_section" href="<?php echo base_url();?>home/logout">Logout</a>
-                                        </li>
+                                        
                                         
                                     </ul>
                                 </li>

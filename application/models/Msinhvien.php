@@ -17,8 +17,16 @@ class Msinhvien extends CI_Model {
     public function insert($data) {
 
     	$this->load->database();
-     	
-     	$this->db->insert($this->table, $data);
+
+        if($this->db->insert($this->table, $data)){
+
+            return true;
+        
+        } else {
+
+            return false;
+        
+        }
     
     }
      

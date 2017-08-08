@@ -5,57 +5,50 @@
 
         $('.dellall').click(function() { 
 
+            var id = [];
 
-            if (confirm("Are you sure you want to delete this?")) {
+            var reload = [];
 
-                var id = [];
+            $(':checkbox:checked').each(function(i) {
 
-                var reload = [];
+                id[i] = $(this).val();
 
-                $(':checkbox:checked').each(function(i) {
+            });
 
-                    id[i] = $(this).val();
+            if (id.length === 0) {
+
+                 $('.dell-11').click();
+
+                 $(".btn-can").click();
+
+            } else {
+                    console.log('id.length');
+              
+
+                $.ajax({
+
+                    url: baseURL+"categories/delete_multiple",
+
+                    method: 'POST',
+
+                    data: {
+                        id: id
+                    },
+
+                    success: function(events) {
+                       console.log(id);
+
+                        $('.selected').remove();
+                        $(".btn-can").click();
+
+                    },
+                    error: function(events) {
+                        alert("that bai");
+                    },
 
                 });
 
-                
-
-                if (id.length === 0) {
-
-                     $('.dell-11').click();
-
-                } else {
-                        console.log('id.length');
-                  
-
-                    $.ajax({
- 
-                        url: baseURL+"categories/delete_multiple",
-
-                        method: 'POST',
-
-                        data: {
-                            id: id
-                        },
-
-                        success: function(events) {
-                           console.log(id);
-
-                            $('.selected').remove();
-
-                        },
-                        error: function(events) {
-                            alert("that bai");
-                        },
-
-                    });
-
-                }
-
-            } else {
-
-                return false;
-            }
+            }   
 
         });
 

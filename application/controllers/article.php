@@ -320,7 +320,7 @@ class article extends MY_Controller {
 				
 				);	
 
-			if (file_exists("asset/images/article/".$data['image'])) {
+			if (file_exists("asset/images/article/".$data['image']) && $data['image'] != "doanthi.jpg" ) {
 			        
 		        if(unlink("asset/images/article/".$data['image'])) {
 
