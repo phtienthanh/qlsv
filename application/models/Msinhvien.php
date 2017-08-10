@@ -18,7 +18,7 @@ class Msinhvien extends CI_Model {
 
     	$this->load->database();
 
-        if($this->db->insert($this->table, $data)) {
+        if ($this->db->insert($this->table, $data)) {
 
             return true;
         
@@ -94,7 +94,7 @@ class Msinhvien extends CI_Model {
        
         $query = $this->db->get($this->table);           
         
-        if($query->num_rows() == 1) {
+        if ($query->num_rows() == 1) {
              
             return $query->result();
             
@@ -115,6 +115,7 @@ class Msinhvien extends CI_Model {
         $this->db->update($this->table,$data);
     
     }
+    
     public function forget($email) {
 
         $this->load->database();
@@ -125,7 +126,7 @@ class Msinhvien extends CI_Model {
 
         $query = $this->db->get($this->table);           
         
-        if($query->num_rows() == 1) {
+        if ($query->num_rows() == 1) {
              
             return $query->result();
             
@@ -165,7 +166,7 @@ class Msinhvien extends CI_Model {
 
             $query = $this->db->get($this->table);         
         
-            if($query->num_rows() == 1) {
+            if ($query->num_rows() == 1) {
              
             return $query->result();
             

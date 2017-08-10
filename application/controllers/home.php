@@ -58,8 +58,6 @@ class Home extends MY_Controller {
 		
 		} else {
 
-			
-
 			$this->load->view('home/login');
 
 		}
@@ -79,6 +77,12 @@ class Home extends MY_Controller {
 	}
 
 	public function profile($id) {
+
+		 if (!$this->ion_auth->logged_in()) {
+			
+			redirect('home/index');
+
+		}
 
    		$this->load->model('Msinhvien');
 
@@ -175,113 +179,113 @@ class Home extends MY_Controller {
 
     public function register() {
 
-    	
-
     	$this->load->model('Msinhvien');
 		
-		$data = $this->Msinhvien->get_all();
+		$data = $this->Msinhvien->forget($this->input->post('email'));
        
        	if ($this->input->post("submit")) {
 
-       		foreach ($data as $key => $value) {
-       			
-       			if ($this->input->post('email') == $value['email'] && $value['delete_is'] == 0 )  {
+       		if ($data > 1) {
 
-       				$this->form_validation->set_rules('email','Email','required|valid_email|is_unique[student.email]');
-       			
-       			}
+       			$data_fail = "Email already exists";
+
+				$this->data = $data_fail;
        		
-       		}
+       		} else {
 
-	       	$this->form_validation->set_rules('first_name','First name','required');
+	       		$this->form_validation->set_rules('email','Email','required|valid_email');
+	 
+		       	$this->form_validation->set_rules('first_name','First name','required');
 
-	       	$this->form_validation->set_message('required','%s không được bỏ trống');
-	       	
-	       	$this->form_validation->set_rules('last_name','Last name','required');
+		       	$this->form_validation->set_message('required','%s không được bỏ trống');
+		       	
+		       	$this->form_validation->set_rules('last_name','Last name','required');
 
-	       	$this->form_validation->set_message('valid_email','%s không  được định dạng');
+		       	$this->form_validation->set_message('valid_email','%s không  được định dạng');
 
-	       	$this->form_validation->set_message('is_unique','%s đã tồn tại');
+		       	$this->form_validation->set_message('is_unique','%s đã tồn tại');
 
-	       	$this->form_validation->set_message('matches','%s không được để trống');
+		       	$this->form_validation->set_message('matches','%s không được để trống');
 
-	       	$this->form_validation->set_rules('password','Password','required|matches[confirm_password]');
+		       	$this->form_validation->set_rules('password','Password','required|matches[confirm_password]');
 
-	       	$this->form_validation->set_rules('confirm_password','Confirm password','required');
-		
-    		if($this->form_validation->run()) {
-    			
-				$list = array(
-
-					"first_name" => $this->input->post("first_name"),
-					
-					"last_name" => $this->input->post("last_name"),
-					
-					"email" => $this->input->post("email"),
-					
-					"password" => $this->input->post("password"),
-					
-					"avatar" => "doanthi",
-					
-					"role" => 'User',
-
-					"delete_is" => 0,
-
-					"active" => 0,
-
-				);
-    			
-				$this->load->model('Msinhvien');
-
-				if ($this->Msinhvien->insert($list)) {
-
-					$config['protocol']    = 'smtp';
-			        
-			        $config['smtp_host']    = 'ssl://smtp.gmail.com';
-			        
-			        $config['smtp_port']    = '465';
-			        
-			        $config['smtp_timeout'] = '7';
-			        
-			        $config['smtp_user']    = 'doanthi2241@gmail.com';
-			        
-			        $config['smtp_pass']    = 'doanthi123';
-			        
-			        $config['charset']    = 'utf-8';
-			        
-			        $config['newline']    = "\r\n";
-			        
-			        $config['mailtype'] = 'text'; // or html
-			        
-			        $config['validation'] = TRUE; // bool whether to validate email or not      
-
-			        $this->email->initialize($config);
-
-			        $this->email->from('doanthi2241@gmail.com', 'Ron');
-
-			        $this->email->to($this->input->post("email")); 
-
-			        $this->email->subject('Email Test');
-
-					$message = base_url('home/active/').'/'.$this->db->insert_id(). "\n";
-
-			        $this->email->message($message);  
-
-					$this->email->send();
-
-					redirect('home/success');	
+		       	$this->form_validation->set_rules('confirm_password','Confirm password','required');
 			
-				} else {
+	    		if ($this->form_validation->run()) {
+	    			
+					$list = array(
 
-					$data_fail = "Registration failed";
+						"first_name" => $this->input->post("first_name"),
+						
+						"last_name" => $this->input->post("last_name"),
+						
+						"email" => $this->input->post("email"),
+						
+						"password" => $this->input->post("password"),
+						
+						"avatar" => "doanthi",
+						
+						"role" => 'User',
 
-					$this->data = $data_fail;
+						"delete_is" => 0,
 
-				}	
+						"active" => 0,
 
-			}
-						       
-       	}
+					);
+	    			
+					$this->load->model('Msinhvien');
+
+					if ($this->Msinhvien->insert($list)) {
+
+						$config['protocol']    = 'smtp';
+				        
+				        $config['smtp_host']    = 'ssl://smtp.gmail.com';
+				        
+				        $config['smtp_port']    = '465';
+				        
+				        $config['smtp_timeout'] = '7';
+				        
+				        $config['smtp_user']    = 'doanthi2241@gmail.com';
+				        
+				        $config['smtp_pass']    = 'doanthi123';
+				        
+				        $config['charset']    = 'utf-8';
+				        
+				        $config['newline']    = "\r\n";
+				        
+				        $config['mailtype'] = 'text'; // or html
+				        
+				        $config['validation'] = TRUE; // bool whether to validate email or not      
+
+				        $this->email->initialize($config);
+
+				        $this->email->from('doanthi2241@gmail.com', 'Ron');
+
+				        $this->email->to($this->input->post("email")); 
+
+				        $this->email->subject('Email Test');
+
+						$message = base_url('home/active/').'/'.$this->db->insert_id(). "\n";
+
+				        $this->email->message($message);  
+
+						$this->email->send();
+
+						redirect('home/success');	
+				
+					} else {
+
+						$data_fail = "Registration failed";
+
+						$this->data = $data_fail;
+
+					}	
+
+				}
+							       
+	       	}
+
+       }
 	
         $this->load->view('home/register',$this->data);
    
@@ -319,8 +323,6 @@ class Home extends MY_Controller {
 
         $this->email->subject('Email Test');
 
-        $data = $this->Msinhvien->get_all();
-
         $message = "Contact form\n\n";
 
 		$message .= "Password: ". base_url('home/change/').'/'.$token . "\n";
@@ -337,7 +339,7 @@ class Home extends MY_Controller {
 
         		$user = $this->Msinhvien->forget($this->input->post('email'));
 
-        		if( $user > 0){
+        		if ($user > 0){
 
         			$id = $user["0"]->id;
 
@@ -350,6 +352,10 @@ class Home extends MY_Controller {
 					if ($this->Msinhvien->update_forget($id,$list_update)) {
 
 						$this->email->send();
+
+						$data_11 = "Please check your mail again";
+
+        				$this->data = $data_11;
 						
 					}
 
@@ -424,7 +430,7 @@ class Home extends MY_Controller {
 		$this->load->view('home/change_success');
 	
 	}
-	
+
 	public function active($id) {
 
 		$list_update = array(	

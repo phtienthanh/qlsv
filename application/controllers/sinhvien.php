@@ -113,9 +113,9 @@ class Sinhvien extends MY_Controller {
 	       	
 	       	$this->form_validation->set_rules('role','Role','required');
 
-	       	if( $this->input->post("role") == 'Admin' || $this->input->post("role") == 'User' ){
+	       	if ($this->input->post("role") == 'Admin' || $this->input->post("role") == 'User' ) {
     		
-	    		if($this->form_validation->run()) {
+	    		if ($this->form_validation->run()) {
 	    			
 					$list = array(
 
@@ -137,7 +137,7 @@ class Sinhvien extends MY_Controller {
 
 					);
 					
-					if($list['avatar'] == '') {
+					if ($list['avatar'] == '') {
 
 						$list['avatar'] = 'doanthi';
 	    			
@@ -209,9 +209,9 @@ class Sinhvien extends MY_Controller {
 			
 			);	
 	       					
-				$this->Msinhvien->update($id,$list_update);	
+			$this->Msinhvien->update($id,$list_update);	
 
-				redirect('sinhvien/show');  
+			redirect('sinhvien/show');  
 
 			}
 
@@ -422,7 +422,7 @@ class Sinhvien extends MY_Controller {
 
 				if (file_exists("asset/images/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg" ) {
 			        
-			        if(unlink("asset/images/student/".$data['avatar'])) {
+			        if (unlink("asset/images/student/".$data['avatar'])) {
 
 			            $this->Msinhvien->delete_checkbox($value,$list_update);    
 			        
@@ -464,9 +464,7 @@ class Sinhvien extends MY_Controller {
 
 		} 		
 
-    }
-
-    
+    }   
    
 }
 

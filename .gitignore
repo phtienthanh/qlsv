@@ -11,3 +11,7 @@ application/logs/*
 /application/config/config.php
 /application/config/database.php
 
+/asset/images/student/*.*
+/asset/images/article/*.*
+!/asset/images/student/doanthi.jpg
+!/asset/images/student/avarta.png

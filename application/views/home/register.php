@@ -12,7 +12,7 @@
 <body>
     <div class="insert">
         <h1>Register student</h1>
-        <h1> <?php  $this->data; ?></h1>
+        <h3 class="error"> <?php echo $this->data; ?></h3>
         <form action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
            <a class="btn btn-default btn-register" href="<?php echo base_url();?>home/login" title="">Back</a>
             <br>

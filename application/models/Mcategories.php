@@ -4,7 +4,6 @@ class Mcategories extends CI_Model {
  
     protected $table = 'categories';
 
-   
     public function get_all() {
     
         $query = $this->db->get('categories');
@@ -12,7 +11,6 @@ class Mcategories extends CI_Model {
         $ar = $query->result_array();
 
         return $ar;
-
 
     }
 
@@ -41,7 +39,6 @@ class Mcategories extends CI_Model {
         
         $this->db->where("id",$id);
 
-         
         $this->db->update($this->table, $data);
     
     }
