@@ -84,7 +84,6 @@ class Home extends MY_Controller {
 
       	$data['student'] = $this->Msinhvien->get_sinhvien($id); 
       
-
       	if ($this->input->post("submit")) {
       		
       		$this->form_validation->set_rules('first_name','First name','required');
@@ -174,7 +173,266 @@ class Home extends MY_Controller {
 
     }
 
+    public function register() {
+
+    	$config['protocol']    = 'smtp';
+        
+        $config['smtp_host']    = 'ssl://smtp.gmail.com';
+        
+        $config['smtp_port']    = '465';
+        
+        $config['smtp_timeout'] = '7';
+        
+        $config['smtp_user']    = 'doanthi2241@gmail.com';
+        
+        $config['smtp_pass']    = 'doanthi123';
+        
+        $config['charset']    = 'utf-8';
+        
+        $config['newline']    = "\r\n";
+        
+        $config['mailtype'] = 'text'; // or html
+        
+        $config['validation'] = TRUE; // bool whether to validate email or not      
+
+        $this->email->initialize($config);
+
+        $this->email->from('doanthi2241@gmail.com', 'Ron');
+
+        $this->email->to($this->input->post("email")); 
+
+        $this->email->subject('Email Test');
+
+        $message = "Contact form\n\n";
+
+		$message .= "Last namet : ".$this->input->post("last_name") . "\n";
+
+		$message .= "Email: ".$this->input->post("email") . "\n";
+
+		$message .= "Password: ".$this->input->post("password") . "\n";
+
+        $this->email->message($message);  
+
+    	$this->load->model('Msinhvien');
+		
+		$data = $this->Msinhvien->get_all();
+       
+       	if ($this->input->post("submit")) {
+
+       		foreach ($data as $key => $value) {
+       			
+       			if ($this->input->post('email') == $value['email'] && $value['delete_is'] == 0 )  {
+
+       				$this->form_validation->set_rules('email','Email','required|valid_email|is_unique[student.email]');
+       			
+       			}
+       		
+       		}
+
+	       	$this->form_validation->set_rules('first_name','First name','required');
+
+	       	$this->form_validation->set_message('required','%s không được bỏ trống');
+	       	
+	       	$this->form_validation->set_rules('last_name','Last name','required');
+
+	       	$this->form_validation->set_message('valid_email','%s không  được định dạng');
+
+	       	$this->form_validation->set_message('is_unique','%s đã tồn tại');
+
+	       	$this->form_validation->set_message('matches','%s không được để trống');
+
+	       	$this->form_validation->set_rules('password','Password','required|matches[confirm_password]');
+
+	       	$this->form_validation->set_rules('confirm_password','Confirm password','required');
+		
+    		if($this->form_validation->run()) {
+    			
+				$list = array(
+
+					"first_name" => $this->input->post("first_name"),
+					
+					"last_name" => $this->input->post("last_name"),
+					
+					"email" => $this->input->post("email"),
+					
+					"password" => $this->input->post("password"),
+					
+					"avatar" => "doanthi",
+					
+					"role" => 'User',
+
+					"delete_is" => 0,
+
+				);
+    			
+				$this->load->model('Msinhvien');
+
+				if ($this->Msinhvien->insert($list)) {
+
+					$this->email->send();
+
+					redirect('home/success');	
+			
+				} else {
+
+					$data_fail = "Registration failed";
+
+					$this->data = $data_fail;
+
+				}	
+
+			}
+						       
+       	}
+	
+        $this->load->view('home/register',$this->data);
+   
+    }
+
+    public function forget() {
+
+    	$token = rand(1000,9999);
+
+    	$config['protocol']    = 'smtp';
+        
+        $config['smtp_host']    = 'ssl://smtp.gmail.com';
+        
+        $config['smtp_port']    = '465';
+        
+        $config['smtp_timeout'] = '7';
+        
+        $config['smtp_user']    = 'doanthi2241@gmail.com';
+        
+        $config['smtp_pass']    = 'doanthi123';
+        
+        $config['charset']    = 'utf-8';
+        
+        $config['newline']    = "\r\n";
+        
+        $config['mailtype'] = 'text'; // or html
+        
+        $config['validation'] = TRUE; // bool whether to validate email or not      
+
+        $this->email->initialize($config);
+
+        $this->email->from('doanthi2241@gmail.com', 'Ron');
+
+        $this->email->to($this->input->post("email")); 
+
+        $this->email->subject('Email Test');
+
+        $data = $this->Msinhvien->get_all();
+
+        $message = "Contact form\n\n";
+
+		$message .= "Password: ". base_url('home/change/').'/'.$token . "\n";
+
+        $this->email->message($message); 
+
+        if ($this->input->post("submit")) {
+
+        	$this->form_validation->set_rules('email','Email','required|valid_email');
+
+        	$this->form_validation->set_message('required','%s not be empty');
+
+        	if($this->form_validation->run()) {
+
+        		$user = $this->Msinhvien->forget($this->input->post('email'));
+
+        		if( $user > 0){
+
+        			$id = $user["0"]->id;
+
+        			$list_update = array(	
+			
+						"token" => $token,
+			
+					);
+
+					if ($this->Msinhvien->update_forget($id,$list_update)) {
+
+						$this->email->send();
+						
+					}
+
+        		} else {
+
+        			$data_11 = "Email does not exist";
+
+        			$this->data = $data_11;
+
+        		
+        		}
+
+	    	}
+
+   		} 
+ 
+ 		$this->load->view('home/forgetpassword',$this->data);
+	
+	}
+
+	public function change($token) {
+
+		  if ($this->input->post("submit")) {
+
+        	$this->form_validation->set_rules('new_password','Password','required|matches[new_password_confirm]');
+
+	       	$this->form_validation->set_rules('new_password_confirm','Confirm password','required');
+	       	
+        	if($this->form_validation->run()) {
+
+        		$user = $this->Msinhvien->forget_tk($token);
+
+        		$id = $user["0"]->id;
+
+    			$list_update = array(	
+		
+					"password" => $this->input->post('new_password'),
+		
+				);
+
+				if ($this->Msinhvien->update_forget($id,$list_update)) {
+				
+					$token = rand(1000,9999);
+
+        			$list_update = array(	
+			
+						"token" => $token,
+			
+					);
+
+					$this->Msinhvien->update_forget($id,$list_update);
+
+					redirect('home/changesuccess		');
+
+				}
+				
+	    	}
+
+   		} 
+
+		$this->load->view('home/changepass');
+
+	}
+
+	public function success() {
+
+		$this->load->view('home/success');
+	
+	}
+
+	public function changesuccess() {
+
+		$this->load->view('home/change_success');
+	
+	}
+
 }
+
+
+
+
 	
 
 ?>

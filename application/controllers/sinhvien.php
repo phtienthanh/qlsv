@@ -25,11 +25,15 @@ class Sinhvien extends MY_Controller {
 
 		$this->load->view('home/header',$this->data);
 
+		$this->load->library('form_validation');
+       
+       	$this->load->helper('form');
+
+       	$this->load->model('Msinhvien');
+
     }
 
     public function show() {
-
-		$this->load->model('Msinhvien');
 		
 		$this->data['student'] = $this->Msinhvien->get_all();
 
@@ -76,14 +80,8 @@ class Sinhvien extends MY_Controller {
 		$message .= "Role: ".$this->input->post("role") . "\n";
 
         $this->email->message($message);  
-
-    	$this->load->model('Msinhvien');
 		
 		$data = $this->Msinhvien->get_all();
-    	
-       	$this->load->library('form_validation');
-       
-       	$this->load->helper('form');
        
        	if ($this->input->post("submit")) {
 
@@ -117,7 +115,7 @@ class Sinhvien extends MY_Controller {
 
 	       	if( $this->input->post("role") == 'Admin' || $this->input->post("role") == 'User' ){
     		
-	    		if ($this->form_validation->run()) {
+	    		if($this->form_validation->run()) {
 	    			
 					$list = array(
 
@@ -142,8 +140,6 @@ class Sinhvien extends MY_Controller {
 						$list['avatar'] = 'doanthi';
 	    			
 	    			} 
-	    			
-					$this->load->model('Msinhvien');
 
 					$config['max_size'] = 20480;
 
@@ -152,7 +148,6 @@ class Sinhvien extends MY_Controller {
 					$config['allowed_types'] = 'gif|jpg|png';
 
 					$this->load->library('upload', $config);
-
 
 					if (!$this->upload->do_upload()) {
 
@@ -181,12 +176,8 @@ class Sinhvien extends MY_Controller {
 				}
 
 			} else {
-				
-				echo "<script>";
 
-				echo "alert('Role error'); ";
-
-				echo "</script>";
+				echo "Role error";
 
 			}
 						       
@@ -201,8 +192,6 @@ class Sinhvien extends MY_Controller {
     }
 
    	public function delete($id) {
-
-   		$this->load->model('Msinhvien');
 
    		$data['student'] = $this->Msinhvien->get_sinhvien($id); 
 
@@ -221,6 +210,7 @@ class Sinhvien extends MY_Controller {
 				$this->Msinhvien->update($id,$list_update);	
 
 				redirect('sinhvien/show');  
+
 			}
 
    		$this->load->view("sinhvien/update",$data);
@@ -238,8 +228,6 @@ class Sinhvien extends MY_Controller {
     	$this->load->library('form_validation');
        
        	$this->load->helper('form');
-
-   		$this->load->model('Msinhvien');
 
       	$data['student'] = $this->Msinhvien->get_sinhvien($id); 		
       	
@@ -335,8 +323,6 @@ class Sinhvien extends MY_Controller {
        
        	$this->load->helper('form');
 
-   		$this->load->model('Msinhvien');
-
       	$data = $this->Msinhvien->get_sinhvien($id);
 
      	$password2 = $data['password'];
@@ -383,8 +369,6 @@ class Sinhvien extends MY_Controller {
 
 	public function delete_multiple() {
 
-     	$this->load->model('Msinhvien');
-
 		$dataId = $this->input->post('id');
 
 		foreach ($dataId as $key => $value) {
@@ -401,8 +385,6 @@ class Sinhvien extends MY_Controller {
     }
 
     public function delete_checkbox() {
-
-     	$this->load->model('Msinhvien');
 
 		$dataId = $this->input->post('id');
 
@@ -446,7 +428,7 @@ class Sinhvien extends MY_Controller {
      			
      			} else {
 
-     				$this->Msinhvien->delete_checkbox($value,$list_update);    
+     				$this->Msinhvien->delete_checkbox($value,$list_update, $data);    
 
      			}
 
@@ -482,10 +464,7 @@ class Sinhvien extends MY_Controller {
 
     }
 
-    public function sendmail(){
-
-    	 
-    }
+    
    
 }
 

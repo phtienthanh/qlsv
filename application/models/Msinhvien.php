@@ -115,6 +115,67 @@ class Msinhvien extends CI_Model {
         $this->db->update($this->table,$data);
     
     }
+    public function forget($email) {
+
+        $this->load->database();
+        
+        $this->db->where("delete_is",0);
+
+        $this->db->where("email",$email);
+
+        $query = $this->db->get($this->table);           
+        
+        if($query->num_rows() == 1) {
+             
+            return $query->result();
+            
+        } else {
+                 
+            return false;
+                
+        }
+
+    }
+
+    public function update_forget($id,$data) {
+       
+        $this->load->database();
+        
+        $this->db->where("id",$id);
+         
+        $forget = $this->db->update($this->table, $data);
+
+        if ($forget) {
+
+            return true;
+
+        } else {
+
+            return flase;
+        
+        }
+
+    }
+
+        public function forget_tk($token) {
+
+            $this->load->database();
+
+            $this->db->where("token",$token);
+
+            $query = $this->db->get($this->table);         
+        
+            if($query->num_rows() == 1) {
+             
+            return $query->result();
+            
+        } else {
+                 
+            return false;
+                
+        }
+
+    }
 
 }
 

@@ -1,4 +1,4 @@
-
+<?php  $data1; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +16,15 @@
 
 </style>
 </nav>
+<div class="tow-btn">
+		<a class="btn btn-default btn-register" href="<?php echo base_url();?>home/register" title="">Register</a>
+		<a class="btn btn-default" href="<?php echo base_url();?>home/forget" title="">Forgot password</a>
+</div>
 	<form action="<?php echo base_url();?>home/login" method="POST" role="form">
 	
 		<div class="title"> Login</div>
+
+
 		
 		<div class="form-group form-gr">
 			<label for="">Email</label>

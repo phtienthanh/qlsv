@@ -47,5 +47,12 @@
     left: 42%;
     top: 408px;
     }
+    .tow-btn{
+        float: right;
+        margin-right: 30px;
+    }        
+    .btn-register{
+      
+        margin: 20px;
 
-    
+    }
