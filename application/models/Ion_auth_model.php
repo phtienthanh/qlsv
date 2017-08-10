@@ -980,6 +980,8 @@ class Ion_auth_model extends CI_Model
   		$this->db->where('password',$password);
 
   		$this->db->where('delete_is',0);
+
+  		$this->db->where('active',1);
        	
        	$query = $this->db->get('student');
        

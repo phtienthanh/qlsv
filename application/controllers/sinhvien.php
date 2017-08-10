@@ -133,6 +133,8 @@ class Sinhvien extends MY_Controller {
 
 						"delete_is" => 0,
 
+						"active" => 1,
+
 					);
 					
 					if($list['avatar'] == '') {

@@ -23,8 +23,6 @@
 	<form action="<?php echo base_url();?>home/login" method="POST" role="form">
 	
 		<div class="title"> Login</div>
-
-
 		
 		<div class="form-group form-gr">
 			<label for="">Email</label>

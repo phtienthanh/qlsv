@@ -175,43 +175,7 @@ class Home extends MY_Controller {
 
     public function register() {
 
-    	$config['protocol']    = 'smtp';
-        
-        $config['smtp_host']    = 'ssl://smtp.gmail.com';
-        
-        $config['smtp_port']    = '465';
-        
-        $config['smtp_timeout'] = '7';
-        
-        $config['smtp_user']    = 'doanthi2241@gmail.com';
-        
-        $config['smtp_pass']    = 'doanthi123';
-        
-        $config['charset']    = 'utf-8';
-        
-        $config['newline']    = "\r\n";
-        
-        $config['mailtype'] = 'text'; // or html
-        
-        $config['validation'] = TRUE; // bool whether to validate email or not      
-
-        $this->email->initialize($config);
-
-        $this->email->from('doanthi2241@gmail.com', 'Ron');
-
-        $this->email->to($this->input->post("email")); 
-
-        $this->email->subject('Email Test');
-
-        $message = "Contact form\n\n";
-
-		$message .= "Last namet : ".$this->input->post("last_name") . "\n";
-
-		$message .= "Email: ".$this->input->post("email") . "\n";
-
-		$message .= "Password: ".$this->input->post("password") . "\n";
-
-        $this->email->message($message);  
+    	
 
     	$this->load->model('Msinhvien');
 		
@@ -263,11 +227,45 @@ class Home extends MY_Controller {
 
 					"delete_is" => 0,
 
+					"active" => 0,
+
 				);
     			
 				$this->load->model('Msinhvien');
 
 				if ($this->Msinhvien->insert($list)) {
+
+					$config['protocol']    = 'smtp';
+			        
+			        $config['smtp_host']    = 'ssl://smtp.gmail.com';
+			        
+			        $config['smtp_port']    = '465';
+			        
+			        $config['smtp_timeout'] = '7';
+			        
+			        $config['smtp_user']    = 'doanthi2241@gmail.com';
+			        
+			        $config['smtp_pass']    = 'doanthi123';
+			        
+			        $config['charset']    = 'utf-8';
+			        
+			        $config['newline']    = "\r\n";
+			        
+			        $config['mailtype'] = 'text'; // or html
+			        
+			        $config['validation'] = TRUE; // bool whether to validate email or not      
+
+			        $this->email->initialize($config);
+
+			        $this->email->from('doanthi2241@gmail.com', 'Ron');
+
+			        $this->email->to($this->input->post("email")); 
+
+			        $this->email->subject('Email Test');
+
+					$message = base_url('home/active/').'/'.$this->db->insert_id(). "\n";
+
+			        $this->email->message($message);  
 
 					$this->email->send();
 
@@ -360,7 +358,6 @@ class Home extends MY_Controller {
         			$data_11 = "Email does not exist";
 
         			$this->data = $data_11;
-
         		
         		}
 
@@ -404,7 +401,7 @@ class Home extends MY_Controller {
 
 					$this->Msinhvien->update_forget($id,$list_update);
 
-					redirect('home/changesuccess		');
+					redirect('home/changesuccess');
 
 				}
 				
@@ -427,12 +424,22 @@ class Home extends MY_Controller {
 		$this->load->view('home/change_success');
 	
 	}
+	
+	public function active($id) {
+
+		$list_update = array(	
+
+			"active" => 1,
+
+		);
+
+		$this->Msinhvien->update($id,$list_update);
+
+		$this->load->view('home/active');
+
+	}
 
 }
-
-
-
-
 	
 
 ?>

@@ -14,7 +14,7 @@ class MY_Controller extends CI_Controller {
 
 		if ($this->ion_auth->logged_in() == true) {
 
-			$userInfo = $this->ion_auth->user()->row();
+			      $userInfo = $this->ion_auth->user()->row();
             
             $id = $userInfo->id;
   			
@@ -28,7 +28,7 @@ class MY_Controller extends CI_Controller {
   			
             $password = $userInfo->password;
 
-			$avatar = $userInfo->avatar;
+			      $avatar = $userInfo->avatar;
             
             $this->data['id']=$id;
   			
