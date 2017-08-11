@@ -37,17 +37,25 @@ class Home extends MY_Controller {
 		if ($this->form_validation->run() == true) {
 			
 			$user = $this->ion_auth->login($this->input->post('email'), $this->input->post('password'));
-		
+
 			if ($user) {
 
-				$this->session->set_flashdata('message', $this->ion_auth->messages());
+				if($user->first_login == null) {
+				
+					redirect('sinhvien/changepass/'.$user->id);
 
-				$data = $user->role; 
+				} else {
 
-				$this->data['role'] = $data;
+					$this->session->set_flashdata('message', $this->ion_auth->messages());
 
-				redirect('home', 'refresh');	
+					$data = $user->role; 
 
+					$this->data['role'] = $data;
+
+					redirect('home', 'refresh');	
+
+				}
+				
 			} else {
 
 				echo "<p class='error'>Email or password error</p>";
@@ -78,7 +86,13 @@ class Home extends MY_Controller {
 
 	public function profile($id) {
 
-		 if (!$this->ion_auth->logged_in()) {
+		if ($this->data['first_login'] == null) {
+					
+			redirect('sinhvien/changepass/'.$this->data['id']);
+
+		}
+
+		if (!$this->ion_auth->logged_in()) {
 			
 			redirect('home/index');
 
@@ -152,7 +166,7 @@ class Home extends MY_Controller {
 				
 		$this->Msinhvien->update($id,$list_update);
 
-		$config['upload_path'] = './asset/images/';
+		$config['upload_path'] = './asset/images/student/';
 
 		$config['allowed_types'] = 'gif|jpg|png';
 

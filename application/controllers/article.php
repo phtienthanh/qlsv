@@ -15,11 +15,17 @@ class article extends MY_Controller {
 
 	        }	
 
-	        if ($this->data['role'] == 'User') {
-			
-			redirect('home/index');
+	        if ($this->data['first_login'] == null) {
+					
+				redirect('sinhvien/changepass/'.$this->data['id']);
 
 			}
+
+	        if ($this->data['role'] == 'User') {
+			
+				redirect('home/index');
+
+			}			
 
 	        $this->load->view('home/header',$this->data);
 

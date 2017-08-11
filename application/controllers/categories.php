@@ -14,11 +14,13 @@ class Categories extends MY_Controller {
             redirect('home/login');
 
         }
-        if ($this->data['role'] == 'User') {
-            
-            redirect('home/index');
+
+        if ($this->data['first_login'] == null) {
+                
+            redirect('sinhvien/changepass/'.$this->data['id']);
 
         }
+        
         if ($this->data['role'] == 'User') {
             
             redirect('home/index');

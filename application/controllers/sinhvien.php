@@ -15,11 +15,7 @@ class Sinhvien extends MY_Controller {
 
 		}
 		
-		if ($this->data['role'] == 'User') {
-			
-			redirect('home/index');
 
-		}
 
 		$this->load->helper(array('form', 'url'));
 
@@ -34,6 +30,19 @@ class Sinhvien extends MY_Controller {
     }
 
     public function show() {
+
+		if ($this->data['first_login'] == null) {
+				
+			redirect('sinhvien/changepass/'.$this->data['id']);
+
+		}
+
+		if ($this->data['role'] == 'User') {
+            
+            redirect('home/index');
+
+        }
+        
 		
 		$this->data['student'] = $this->Msinhvien->get_all();
 
@@ -42,6 +51,19 @@ class Sinhvien extends MY_Controller {
 	}
    
     public function insert() {
+
+        if ($this->data['first_login'] == null) {
+					
+			redirect('sinhvien/changepass/'.$this->data['id']);
+
+		}
+
+		if ($this->data['role'] == 'User') {
+            
+            redirect('home/index');
+
+        }
+        
 
     	$config['protocol']    = 'smtp';
         
@@ -195,6 +217,19 @@ class Sinhvien extends MY_Controller {
 
    	public function delete($id) {
 
+   		if ($this->data['first_login'] == null) {
+				
+			redirect('sinhvien/changepass/'.$this->data['id']);
+
+		}
+
+		if ($this->data['role'] == 'User') {
+            
+            redirect('home/index');
+
+        }
+        
+
    		$data['student'] = $this->Msinhvien->get_sinhvien($id); 
 
    		if ($data['student']['role'] == Admin) {
@@ -220,6 +255,19 @@ class Sinhvien extends MY_Controller {
     }
 
     public function update($id) {
+
+    	if ($this->data['first_login'] == null) {
+				
+			redirect('sinhvien/changepass/'.$this->data['id']);
+
+		}
+
+		if ($this->data['role'] == 'User') {
+            
+            redirect('home/index');
+
+        }
+        
 
     	if ($this->input->post("change_password")) {
 
@@ -348,12 +396,14 @@ class Sinhvien extends MY_Controller {
 	       			$change = array(
 	       			
 	       				'password' => $this->input->post("new_password"),
+
+	       				'first_login' => 1,
 	       			
 	       			);
 	       			
 	       			$this->Msinhvien->changepass($id,$change );	
 
-					redirect('sinhvien/show'); 
+					redirect('home'); 
 	       		
 	       		} else echo "mật khẩu sai nhập lại";	
 	
@@ -369,24 +419,15 @@ class Sinhvien extends MY_Controller {
  
     }	
 
-	public function delete_multiple() {
 
-		$dataId = $this->input->post('id');
-
-		foreach ($dataId as $key => $value) {
-
-			if ($value != 'on') {
-
-				$check = $this->Msinhvien->delete_multiple($value);
-
-				
-			}
-
-		}   
-
-    }
 
     public function delete_checkbox() {
+
+    	if ($this->data['first_login'] == null) {
+				
+			redirect('sinhvien/changepass/'.$this->data['id']);
+
+		}
 
 		$dataId = $this->input->post('id');
 
