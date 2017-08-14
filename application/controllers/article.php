@@ -165,6 +165,8 @@ class article extends MY_Controller {
 
 		$this->load->model('Marticle');
 
+		$slug1 = create_slug($this->input->post('slug'));
+
       	$data['student'] = $this->Marticle->get_article1($slug); 
       	
       	if ($this->input->post("submit")) {
@@ -195,7 +197,7 @@ class article extends MY_Controller {
 
 						"categories" => $this->input->post("categories"),
 
-						"slug" =>$this->input->post("slug").'.html',
+						"slug" =>$slug1.'.html',
 					
 					);
 	       			

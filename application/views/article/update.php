@@ -94,19 +94,19 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Title</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="title" placeholder="Johnathan Doe" class="form-control form-control-line" value="<?php echo $student["title"]; ?>">
+                                            <input type="text" name="title" placeholder="Title" class="form-control form-control-line" value="<?php echo $student["title"]; ?>">
                                         </div>
                                     </div>
                                      <div class="form-group">
                                         <label class="col-md-12">Slug</label>
                                         <div class="col-md-12">
-                                            <input type="text"  name="slug" placeholder="Johnathan Doe" class="form-control form-control-line" value="<?php echo substr($student["slug"],0,-5); ?>">
+                                            <input type="text"  name="slug" placeholder="Slug" class="form-control form-control-line" value="<?php echo substr($student["slug"],0,-5); ?>">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Author</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="author" placeholder="Johnathan Doe" class="form-control form-control-line" value="<?php echo $student["author"]; ?>">
+                                            <input type="text" name="author" placeholder="Author" class="form-control form-control-line" value="<?php echo $student["author"]; ?>">
                                         </div>
                                     </div>
                                     <div class="form-group">

@@ -35,7 +35,7 @@
             <br>
             <h3 for="">Author</h3>
             <br>
-            <input type="text" class="form-control form-control-line" name="author" placeholder="Content" value="<?php echo set_value(" author "); ?>">
+            <input type="text" class="form-control form-control-line" name="author" placeholder="Author" value="<?php echo set_value(" author "); ?>">
             <?php echo form_error("author"); ?>
             <br>
             <h3 for="">Categories</h3>
