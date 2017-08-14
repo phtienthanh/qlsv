@@ -29,11 +29,17 @@ class article extends MY_Controller {
 
 	        $this->load->view('home/header',$this->data);
 
-	        $this->load->model('Marticle');
+	  
+
+	        $this->load->helper("slug" , "form" );
+
+	        $this->load->library('form_validation');
 
 	    }
 
 	public function home() {
+
+		$this->load->model('Marticle');
 
 		$this->data['student'] = $this->Marticle->get_all();
 
@@ -43,48 +49,65 @@ class article extends MY_Controller {
 
 	public function add() {
 
-			$this->load->library('form_validation');
-	       
-	       	$this->load->helper('form');
+		$this->data = null;
 
-	       	$data = $this->Marticle->get_all();
+		$this->load->model('Marticle');
 
-	       	$this->load->model('Mcategories');
+       	$data = $this->Marticle->get_all();
 
-	       	$this->data['student'] = $this->Mcategories->get_all();
-	       
-	       	if ($this->input->post("submit")) {
+       	$data2 = '';
 
-	       		foreach ($data as $key => $value) {
- 
+		$this->data['slug'] = $data2;
 
+       	$this->load->model('Mcategories');
+
+       	$slug = create_slug($this->input->post('title')).'.html';
+
+       	$this->data['student'] = $this->Mcategories->get_all();
+
+       	$values = $this->Marticle->get_article2($slug);
+
+       	if ($this->input->post("submit")) {
+
+       		foreach ($data as $key => $value) {
+
+       			if ($this->input->post('title') == $value['title'] && $value['delete_is'] == "0" )  {
+
+       				$this->form_validation->set_rules('title','title','|is_unique[article.title]');
        			
-	       			if ($this->input->post('title') == $value['title'] && $value['delete_is'] == "0" )  {
-
-	       				$this->form_validation->set_rules('title','title','|is_unique[article.title]');
-	       			
-	       			}
-       		
        			}
-       			
+   		
+   			}
 
-		       	$this->form_validation->set_rules('title','title','required');
+        	$this->form_validation->set_rules('slug','slug','|is_unique[article.slug]');
+   			
+	       	$this->form_validation->set_rules('title','title','required');
 
-		       	$this->form_validation->set_message('required','%s không được bỏ trống');
-		       	
-		       	$this->form_validation->set_rules('content','content','required');
+	       	$this->form_validation->set_message('required','%s không được bỏ trống');
+	       	
+	       	$this->form_validation->set_rules('content','content','required');
 
-		       	$this->form_validation->set_message('is_unique','%s đã tồn tại');
+	       	$this->form_validation->set_message('is_unique','%s đã tồn tại');
 
-		       	$this->form_validation->set_rules('author','author','required');
+	       	$this->form_validation->set_rules('author','author','required');
 
-		       	$this->form_validation->set_rules('categories','categories','required');
+	       	$this->form_validation->set_rules('categories','categories','required');
 
-	    		if ($this->form_validation->run()) {
-	    			
-					$list = array(
+    		if ($this->form_validation->run()) {
 
-						"title" => $this->input->post("title"),
+    			var_dump($values);
+
+    			if( count($values) > 0){
+
+    				$data = "Slug exists";
+
+    				$this->data['slug'] = $data;
+
+    			} else {
+
+    				$list = array(
+
+						"title" => $this->input->post('title'),
 						
 						"content" => $this->input->post("content"),
 						
@@ -95,16 +118,18 @@ class article extends MY_Controller {
 						"categories" => $this->input->post("categories"),
 
 						"delete_is" =>0,
-						
-					);
+
+						"slug" => $slug,
 					
+					);
+
 					if($list['image'] == '') {
 
-					$list['image'] = 'doanthi';
+						$list['image'] = 'doanthi.jpg';
 	    			
 	    			} 
 
-					$this->Marticle->insert($list);
+	    			$this->Marticle->insert($list);
 
 					$config['upload_path'] = './asset/images/article/';
 
@@ -124,27 +149,27 @@ class article extends MY_Controller {
 
 					}
 
-				redirect('article/home');	  
+				redirect('article/home');
+
+	    		}
 
 			}
-					       
-       	} else if ($this->input->post("back")) {
+				       
+   		} else if ($this->input->post("back")) {
 
-       		redirect('article/home');	  
-	       			    	
-	    }
+   			redirect('article/home');	  
+       			    	
+    	}
 
 		$this->load->view('article/add',$this->data);
-	
+
 	}
 
-	public function update($id) {
+	public function update($slug) {
 
-    	$this->load->library('form_validation');
-       
-       	$this->load->helper('form');
+		$this->load->model('Marticle');
 
-      	$data['student'] = $this->Marticle->get_article($id); 
+      	$data['student'] = $this->Marticle->get_article1($slug); 
       	
       	if ($this->input->post("submit")) {
 
@@ -161,7 +186,7 @@ class article extends MY_Controller {
 	       	$this->form_validation->set_rules('categories','categories','required');
     
 	       	if ($this->form_validation->run()) {
-	       		
+
 	       		if ($_FILES['userfile']['name'] == '') {
 
 	       			$list_update = array(
@@ -173,18 +198,20 @@ class article extends MY_Controller {
 						"author" => $this->input->post("author"),
 
 						"categories" => $this->input->post("categories"),
+
+						"slug" =>$this->input->post("slug").'.html',
 					
 					);
 	       			
 	       		}
 				
-				$this->Marticle->update($id,$list_update);	
+				$this->Marticle->update1($slug,$list_update);
 
 				$config['upload_path'] = './asset/images/article/';
 
 				$config['allowed_types'] = 'gif|jpg|png';
 
-				$this->load->library('upload', $config);				
+				$this->load->library('upload', $config);			
 
 				if (!$this->upload->do_upload()) {
 
@@ -213,6 +240,8 @@ class article extends MY_Controller {
 
 	public function delete($id) {
 
+		$this->load->model('Marticle');
+
 	 	$this->Marticle->delete($id);
 	 	
 	 	redirect('article/home');	    
@@ -220,6 +249,8 @@ class article extends MY_Controller {
     }
 
     public function delete_multiple() {
+
+    	$this->load->model('Marticle');
 
 		$dataId = $this->input->post('id');
 
@@ -236,6 +267,8 @@ class article extends MY_Controller {
     }
 
     public function show() {
+
+    	$this->load->model('Marticle');
 		
 		$this->data['student'] = $this->Marticle->get_all();
 
@@ -245,9 +278,7 @@ class article extends MY_Controller {
 
      public function upload($id) {
 
-    	$this->load->library('form_validation');
-       
-       	$this->load->helper('form');
+     	$this->load->model('Marticle');
 
       	$data['student'] = $this->Marticle->get_article($id); 		
 	       		
@@ -303,9 +334,11 @@ class article extends MY_Controller {
 
     }
 
-    public function preview($id) {
+    public function preview($slug) {
 
-      	$data['student'] = $this->Marticle->get_article($id); 	
+    	$this->load->model('Marticle');
+
+      	$data['student'] = $this->Marticle->get_article1($slug); 	
 
     	$this->load->view("article/preview",$data);
 
@@ -313,18 +346,19 @@ class article extends MY_Controller {
 
     public function delete_checkbox() {
 
+    	$this->load->model('Marticle');
+
 		$dataId = $this->input->post('id');
 
 		foreach ($dataId as $key => $value) {
 
 			$data = $this->Marticle->get_article($value);
-			
 
 			$list_update = array(	
 		
-					"delete_is" => 1,
+				"delete_is" => 1,
 				
-				);	
+			);	
 
 			if (file_exists("asset/images/article/".$data['image']) && $data['image'] != "doanthi.jpg" ) {
 			        
@@ -332,8 +366,12 @@ class article extends MY_Controller {
 
 		            $this->Marticle->delete_checkbox($value,$list_update);  
 		        
-		        } 
+		        }
      			
+     		} else if (file_exists("asset/images/article/".$data['image']) && $data['image'] == "doanthi.jpg" ){
+
+     			$this->Marticle->delete_checkbox($value,$list_update);  
+
      		}
 	
 		}		

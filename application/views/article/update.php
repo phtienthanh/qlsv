@@ -97,6 +97,12 @@
                                             <input type="text" name="title" placeholder="Johnathan Doe" class="form-control form-control-line" value="<?php echo $student["title"]; ?>">
                                         </div>
                                     </div>
+                                     <div class="form-group">
+                                        <label class="col-md-12">Slug</label>
+                                        <div class="col-md-12">
+                                            <input type="text"  name="slug" placeholder="Johnathan Doe" class="form-control form-control-line" value="<?php echo substr($student["slug"],0,-5); ?>">
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Author</label>
                                         <div class="col-md-12">
@@ -120,7 +126,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Categories</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="categories" placeholder="123 456 7890" class="form-control form-control-line" value="<?php echo $student["categories"]; ?>">
+                                            <input type="text" readonly="value" name="categories" placeholder="123 456 7890" class="form-control form-control-line" value="<?php echo $student["categories"]; ?>">
                                         </div>
                                     </div>
                                     <div class="form-group">

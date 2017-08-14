@@ -56,7 +56,7 @@ if(isset($student) && count($student)) {
                 </div>
             </div>
             <div class="col-md-3 btn_control">
-                <span><a class="btn btn-success" href="<?php echo base_url();?>article/update/<?php echo $val['id']; ?>" title="">Update</a></span>
+                <span><a class="btn btn-success" href="<?php echo base_url();?>article/update/<?php echo $val['slug']; ?>" title="">Update</a></span>
                  <div class="modal fade" id="<?php echo $val['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
             <div class="modal-content">
@@ -73,7 +73,7 @@ if(isset($student) && count($student)) {
         </div>
     </div>
 </div>
-                <span><a class="btn btn-warning" href="<?php echo base_url();?>article/preview/<?php echo $val['id']; ?>" title="">Preview</a></span>
+                <span><a class="btn btn-warning" href="<?php echo base_url();?>article/preview/<?php echo $val['slug']; ?>" title="">Preview</a></span>
             </div>
         </div></td>
         

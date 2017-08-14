@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,6 +12,8 @@
 <body>
     <div class="insert">
         <h1>Add new article</h1>
+        <h4><?php echo $slug; ?></h4>
+
         <form class="Form_insert" action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <input type="submit" name="back" value="Back" class="btn btn-warning btn-block btn-large btn-insert">
             <br>

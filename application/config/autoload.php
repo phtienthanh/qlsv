@@ -63,7 +63,7 @@ $autoload['libraries'] = array('database','session','email','ion_auth');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','file','date');
+$autoload['helper'] = array('url','file','date','slug');
 
 
 /*

@@ -21,7 +21,6 @@ class Marticle extends CI_Model {
      	$this->db->insert($this->table, $data);
     }
 
-
     public function get_article($id) {
         
         $this->load->database();
@@ -32,11 +31,43 @@ class Marticle extends CI_Model {
 
     }
 
+    public function get_article1($slug) {
+        
+        $this->load->database();
+
+        $this->db->where("slug",$slug);
+
+        return $this->db->get($this->table)->row_array();
+
+    }
+
+    public function get_article2($slug) {
+        
+        $this->load->database();
+
+        $this->db->where("slug",$slug);
+
+        $this->db->where("delete_is",0);
+
+        return $this->db->get($this->table)->row_array();
+
+    }
+
     public function update($id,$data) {
        
         $this->load->database();
         
         $this->db->where("id",$id);
+         
+        $this->db->update($this->table, $data);
+
+    }
+
+    public function update1($slug,$data) {
+       
+        $this->load->database();
+        
+        $this->db->where("slug",$slug);
          
         $this->db->update($this->table, $data);
 
@@ -58,7 +89,7 @@ class Marticle extends CI_Model {
         
         $this->db->where("id",$id);
 
-        $db = $this->db->delete($this->table);
+        $db = $this->db->update($this->table);
 
         return $db;
 
