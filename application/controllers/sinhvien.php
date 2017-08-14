@@ -14,8 +14,6 @@ class Sinhvien extends MY_Controller {
 			redirect('home/index');
 
 		}
-		
-
 
 		$this->load->helper(array('form', 'url'));
 
@@ -42,7 +40,6 @@ class Sinhvien extends MY_Controller {
             redirect('home/index');
 
         }
-        
 		
 		$this->data['student'] = $this->Msinhvien->get_all();
 
@@ -64,7 +61,6 @@ class Sinhvien extends MY_Controller {
 
         }
         
-
     	$config['protocol']    = 'smtp';
         
         $config['smtp_host']    = 'ssl://smtp.gmail.com';
@@ -229,7 +225,6 @@ class Sinhvien extends MY_Controller {
 
         }
         
-
    		$data['student'] = $this->Msinhvien->get_sinhvien($id); 
 
    		if ($data['student']['role'] == Admin) {
@@ -299,15 +294,15 @@ class Sinhvien extends MY_Controller {
 
 	       			$list_update = array(
 
-					"first_name" => $this->input->post("first_name"),
-					
-					"last_name" => $this->input->post("last_name"),
-					
-					"email" => $this->input->post("email"),
+						"first_name" => $this->input->post("first_name"),
+						
+						"last_name" => $this->input->post("last_name"),
+						
+						"email" => $this->input->post("email"),
 
-					"avatar" => $this->input->post("img_name"),
-					
-					"role" => $this->input->post("role"),
+						"avatar" => $this->input->post("img_name"),
+						
+						"role" => $this->input->post("role"),
 					
 					);
 	       			
@@ -315,15 +310,15 @@ class Sinhvien extends MY_Controller {
 
 	       			$list_update = array(
 
-					"first_name" => $this->input->post("first_name"),
-					
-					"last_name" => $this->input->post("last_name"),
-					
-					"email" => $this->input->post("email"),
-					
-					"avatar" => $_FILES['userfile']['name'],
-					
-					"role" => $this->input->post("role"),
+						"first_name" => $this->input->post("first_name"),
+						
+						"last_name" => $this->input->post("last_name"),
+						
+						"email" => $this->input->post("email"),
+						
+						"avatar" => $_FILES['userfile']['name'],
+						
+						"role" => $this->input->post("role"),
 					
 					);
 
@@ -418,8 +413,6 @@ class Sinhvien extends MY_Controller {
    		$this->load->view("sinhvien/changepass",$data);
  
     }	
-
-
 
     public function delete_checkbox() {
 

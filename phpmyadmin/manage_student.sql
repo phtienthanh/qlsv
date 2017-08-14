@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 07, 2017 at 03:36 AM
+-- Generation Time: Aug 14, 2017 at 09:22 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -33,15 +33,21 @@ CREATE TABLE `article` (
   `author` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `categories` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `delete_is` tinyint(1) NOT NULL
+  `delete_is` tinyint(1) NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `article`
 --
 
-INSERT INTO `article` (`id`, `title`, `content`, `author`, `categories`, `image`, `delete_is`) VALUES
-(38, '123', '$config = array(\r\n    \'allowed_types\' => \'jpg|jpeg|gif|png\',\r\n    \'upload_path\'   => $this->article_path.\'/magazine\',\r\n    \'max_size\'      => 2000\r\n);\r\n\r\n$this->load->library(\'upload\', $config);\r\n\r\nif ( ! $this->upload->do_upload()) //important!\r\n{\r\n    // something went really wrong show error page\r\n    $error = array(\'error\' => $this->upload->display_errors()); //associate view variable $error with upload errors\r\n\r\n    $this->load->view(\'upload_form\', $error); //show error page\r\n}\r\nelse\r\n{\r\n    //all is good we upload\r\n    $data = array(\'upload_data\' => $this->upload->data()); \r\n', '123', '123123123123', 'img5.png', 1);
+INSERT INTO `article` (`id`, `title`, `content`, `author`, `categories`, `image`, `delete_is`, `slug`) VALUES
+(43, 'bao bong da13', '                                                                                                                                                                                                                                                                                                123123                                                                                                                                                                                                                                                                                    ', '123223', '123123123123', '18051863_1845066435743499_851238315_n.jpg', 1, '123123'),
+(49, 'League of Legends', '                                                                                                                                                                                                                                                123a123123123                                                                                                                                                                                                                            ', 'sport', 'bai bao', '01001101101101101_jpg.jpg', 0, '123123121.html'),
+(57, 'League of Legends1', '                                                            12123                                            ', '123123', 'bai bao', '29.jpg', 0, 'league-of-legends1123.html'),
+(58, '123123', '            123123', '123123', '123123123123', 'doanthi.jpg', 1, '123123.html'),
+(59, '123123123', '            123123', '123123', '123123123123', '18051863_1845066435743499_851238315_n.jpg', 0, '123123123.html'),
+(60, 'bao bong da  real', 'ealasdjaklsdqweyyutqwe', 'author1123', 'bai bao', 'doanthi.jpg', 1, 'bao-bong-da-real.html');
 
 -- --------------------------------------------------------
 
@@ -60,7 +66,7 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `name`) VALUES
 (29, '123123123123'),
-(25, '12312');
+(32, 'bai bao');
 
 -- --------------------------------------------------------
 
@@ -76,15 +82,23 @@ CREATE TABLE `student` (
   `password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `role` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `delete_is` tinyint(1) NOT NULL
+  `delete_is` tinyint(1) NOT NULL,
+  `token` int(11) DEFAULT NULL,
+  `active` tinyint(1) NOT NULL,
+  `first_login` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`id`, `first_name`, `last_name`, `email`, `password`, `avatar`, `role`, `delete_is`) VALUES
-(235, '123', '123', '123123@gmail.com ', '123123', 'hover.png', 'Admin', 0);
+INSERT INTO `student` (`id`, `first_name`, `last_name`, `email`, `password`, `avatar`, `role`, `delete_is`, `token`, `active`, `first_login`) VALUES
+(250, 'thi', '123123', 'doanthi2241@gmail.com', '123123', '29.jpg', 'User', 0, 7803, 1, 1),
+(247, 'daonthi', 'thi', '123123@gmail.com ', '12341234', 'doanthi', 'Admin', 0, 6571, 1, 1),
+(276, '123123', '123123', '123122323@gmail.com', '123123', 'doanthi', 'User', 0, NULL, 0, NULL),
+(263, '123', '123', '1231232323@gmail.com', '123123', 'doanthi', 'Admin', 0, NULL, 0, NULL),
+(262, '123123', '123123', '1231223322@gmail.com', '123123', 'doanthi', 'User', 0, NULL, 0, NULL),
+(286, 'doan', 'thi', 'anhthu.dautay196@gmail.com', '12345', '18051863_1845066435743499_851238315_n.jpg', 'User', 0, 5378, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -116,17 +130,17 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=240;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=287;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

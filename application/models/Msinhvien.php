@@ -158,18 +158,18 @@ class Msinhvien extends CI_Model {
 
     }
 
-        public function forget_tk($token) {
+    public function forget_tk($token) {
 
-            $this->load->database();
+        $this->load->database();
 
-            $this->db->where("token",$token);
+        $this->db->where("token",$token);
 
-            $query = $this->db->get($this->table);         
+        $query = $this->db->get($this->table);         
+    
+        if ($query->num_rows() == 1) {
+         
+        return $query->result();
         
-            if ($query->num_rows() == 1) {
-             
-            return $query->result();
-            
         } else {
                  
             return false;

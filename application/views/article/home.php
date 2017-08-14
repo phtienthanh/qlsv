@@ -18,8 +18,6 @@
        
         <thead class="thead-inverse">
             <tr>
-            
-                
             </tr>
         </thead>
         <tbody>
@@ -44,7 +42,6 @@ if(isset($student) && count($student)) {
                 </p>
                 <pre class="content1">
          <?php echo substr( htmlentities($val['content']),0,100); ?>
-
     </pre>
                 <div>
                     <p class="col-md-6"><b>Categories:</b>
@@ -93,7 +90,6 @@ if(isset($student) && count($student)) {
         
   <tbody>
    <button class="btn btn-danger delete"  data-toggle="modal" data-target="#delall"> Delete</button>
-
     <div class="modal fade" id="delall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog model-de">
             <div class="modal-content">

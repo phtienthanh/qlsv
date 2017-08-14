@@ -29,8 +29,6 @@ class article extends MY_Controller {
 
 	        $this->load->view('home/header',$this->data);
 
-	  
-
 	        $this->load->helper("slug" , "form" );
 
 	        $this->load->library('form_validation');
@@ -94,8 +92,6 @@ class article extends MY_Controller {
 	       	$this->form_validation->set_rules('categories','categories','required');
 
     		if ($this->form_validation->run()) {
-
-    			var_dump($values);
 
     			if( count($values) > 0){
 

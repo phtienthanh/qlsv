@@ -74,6 +74,7 @@ class Categories extends MY_Controller {
             redirect('categories/home');    
 
             }
+
         }
         
         $this->load->view('home/header',$this->data);
@@ -81,7 +82,6 @@ class Categories extends MY_Controller {
         $this->load->view('categories/add',$this->data);
 
     }
-
 
     public function update($id) {
 
@@ -120,7 +120,6 @@ class Categories extends MY_Controller {
         $this->load->view("categories/update",$data);
     
     }
-
 
     public function delete($id) {
     
