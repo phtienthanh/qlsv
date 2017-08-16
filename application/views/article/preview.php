@@ -106,22 +106,22 @@
                         <div class="card">
                             <div class="card-block">
                                 <form action="<?php echo base_url();?>article/home" method="post" class="form-horizontal form-material" enctype="multipart/form-data" >
-                                 <div class="form-group">
-                                        <label class="col-md-12">Title</label>
-                                        <div class="col-md-12">
-                                        <p> <?php echo $student["title"]; ?></p>
-                                            
-                                        </div>
-                                    </div>
+                                
                                     <div class="form-group">
-                                        <label class="col-md-12">Author</label>
-                                        <div class="col-md-12">
+                                        <label class="col-md-6"><b>Author :</b></label>
+                                        <div class="col-md-6">
                                         <p> <?php echo $student["author"]; ?></p>
                                             
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="example-email" class="col-md-12">Content</label>
+                                        <label class="col-md-6"><b>Categories :</b></label>
+                                        <div class="col-md-6">
+                                        <p><?php echo $student["categories"]; ?> </p>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                      
                                         <p> <?php echo nl2br( $student["content"], false); ?></p>
                                                                            </div>
@@ -131,13 +131,7 @@
                                             <input type="password" name="password" value="<?php echo $password; ?>" class="form-control form-control-line">
                                         </div>
                                     </div> -->
-                                    <div class="form-group">
-                                        <label class="col-md-12">Categories</label>
-                                        <div class="col-md-12">
-                                        <p><?php echo $student["categories"]; ?> </p>
-                                            
-                                        </div>
-                                    </div>
+                                    
                                   
                                     <div class="form-group">
                                         <div class="col-sm-6 btn-form">
@@ -162,9 +156,6 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center">
-                © 2017 Monster Admin by wrappixel.com
-            </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->

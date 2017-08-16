@@ -32,8 +32,10 @@ class Categories extends MY_Controller {
     public function home(){
 
         $this->load->model('Mcategories');
+
+        $this->db->order_by("id","desc");
         
-        $this->data['student'] = $this->Mcategories->get_all();
+        $this->data['categories'] = $this->Mcategories->get_all();
 
         $this->load->view('home/header',$this->data);
 
@@ -44,8 +46,6 @@ class Categories extends MY_Controller {
     public function add() {
 
         $this->load->model('Mcategories');
-        
-        $this->data['student'] = $this->Mcategories->get_all();
 
         $this->load->library('form_validation');
        
@@ -64,7 +64,10 @@ class Categories extends MY_Controller {
                 $list = array(
 
                     "name" => $this->input->post("input_text"),
+
+                    "delete_is" => 0,
                     
+                    "role" => 1,
                 );
           
             $this->load->model('Mcategories');
@@ -95,7 +98,7 @@ class Categories extends MY_Controller {
         
         if ($this->input->post("change")) {
           
-            $this->form_validation->set_rules('name','name','required');
+            $this->form_validation->set_rules('input_text','name','required');
 
             $this->form_validation->set_message('required','%s không được bỏ trống');
             
@@ -103,7 +106,7 @@ class Categories extends MY_Controller {
 
                 $list_update = array(
 
-                    "name" => $this->input->post("name"),
+                    "name" => $this->input->post("input_text"),
                  
                 );
                
@@ -121,16 +124,6 @@ class Categories extends MY_Controller {
     
     }
 
-    public function delete($id) {
-    
-        $this->load->model('Mcategories');
-
-        $this->Mcategories->delete($id);
-        
-        redirect('categories/home');  
-    
-    }
-
     public function delete_multiple() {
 
         $this->load->model('Mcategories');
@@ -139,13 +132,29 @@ class Categories extends MY_Controller {
 
         foreach ($dataId as $key => $value) {
 
-            if ($value != 'on') {
-
-                $check = $this->Mcategories->delete_multiple($value);
+            if ($value == 1) {
                 
-            }
+                $list_update = array(   
+        
+                    "delete_is" => 0,
+                
+                );
 
-        }   
+                $this->Mcategories->delete_checkbox($value,$list_update);  
+
+            } else {
+
+                $list_update = array(   
+        
+                    "delete_is" => 1,
+                
+                );
+
+                $this->Mcategories->delete_checkbox($value,$list_update); 
+
+            }  
+
+        } 
 
     }       
    

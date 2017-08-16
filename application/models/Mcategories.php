@@ -24,7 +24,7 @@ class Mcategories extends CI_Model {
 
     }
     
-      public function insert($data) {
+    public function insert($data) {
 
         $this->load->database();
         
@@ -34,7 +34,6 @@ class Mcategories extends CI_Model {
 
     public function update($id,$data) {
 
-
         $this->load->database();
         
         $this->db->where("id",$id);
@@ -42,26 +41,22 @@ class Mcategories extends CI_Model {
         $this->db->update($this->table, $data);
     
     }
-
-    public function delete($id) {
-        
-        $this->load->database();
-        
-        $this->db->where("id",$id);
     
-        $this->db->delete($this->table);
-
-    }
-    
-    public function delete_multiple($id) {
+     public function delete_checkbox($id,$data) {
         
         $this->load->database();
         
         $this->db->where("id",$id);
 
-        $db = $this->db->delete($this->table);
+        if ($this->db->update($this->table,$data)) {
+            
+            return true;
 
-        return $db;
+        } else {
+
+            return false;
+            
+        }
     
     }
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> </title>
@@ -23,9 +23,9 @@
         <tbody>
                   <?php 
       
-if(isset($student) && count($student)) {
+if(isset($article) && count($article)) {
 
-    foreach ($student as $key => $val) { 
+    foreach ($article as $keyarticle => $val) { 
 
         if ( $val['delete_is'] == 0) {
         ?>
@@ -40,12 +40,25 @@ if(isset($student) && count($student)) {
                 <p class="title">
                     <?php echo $val['title']; ?>
                 </p>
-                <pre class="content1">
-         <?php echo substr( htmlentities($val['content']),0,100); ?>
-    </pre>
+        <pre class="content1">
+            <?php echo substr( htmlentities($val['content']),0,100); ?>
+        </pre>
                 <div>
-                    <p class="col-md-6"><b>Categories:</b>
-                        <?php echo $val['categories']; ?>
+                    <p class="col-md-6"><b>Categories:</b> <?php echo $newArray[$val['categories']] ?>
+                        <!-- <?php 
+                         foreach ($categories as $keycate => $categories) {
+
+                            if ($val['categories'] == $categories['id'] && $categories['delete_is'] == 0) {
+
+                                echo $categories['name'];
+
+                            } else if ($val['categories'] == $categories['id'] && $categories['delete_is'] == 1) {
+                            
+                                echo "Default";
+                            
+                            }
+
+                        } ?> -->
                     </p>
                     <p class="col-md-6"><b>Author:</b>
                         <?php echo $val['author']; ?>

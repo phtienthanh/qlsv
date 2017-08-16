@@ -75,7 +75,7 @@
                         <div class="card">
                             <div class="card-block">
                                 <form action="<?php echo base_url();?>article/upload/<?php echo  $student["id"]; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-                                    <center class="m-t-30"> <img src="<?php echo base_url();?>asset/images/article/<?php echo $student["image"]; ?>" class="img-circle" width="150" />
+                                    <center class="m-t-30"> <img src="<?php echo base_url();?>asset/images/article/<?php echo $student["image"]; ?>"  width="150" />
                                         <input type="file" name="userfile" class="btn">
                                         <input type="text" class="hinden" name="img_name" value="<?php echo $student["image"]; ?>">
                                         <input type="submit" name="submit" value="upload" class="btn btn-success">
@@ -112,9 +112,7 @@
                                     <div class="form-group">
                                         <label for="example-email" class="col-md-12">Content</label>
                                         <div class="col-md-12">
-                                            <textarea rows="4"  class="form-control form-control-line" name="content" cols="85" value="">
-                                                <?php echo  $student["content"]; ?>
-                                            </textarea>
+                                            <textarea rows="4"  cols="85"  class="form-control form-control-line" name="content" > <?php echo  $student["content"]; ?></textarea>
                                         </div>
                                     </div>
                                     <!--  <div class="form-group">
@@ -126,12 +124,45 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Categories</label>
                                         <div class="col-md-12">
-                                            <input type="text" readonly="value" name="categories" placeholder="123 456 7890" class="form-control form-control-line" value="<?php echo $student["categories"]; ?>">
+                                            <select name="categories" class="form-control form-control-line cate" >
+
+                                            <option value="1" selected>
+                                               --- Select categories ---
+                                            </option>
+
+                                            <?php 
+                                                    
+                                            if(isset($categoriess) && count($categoriess)) {
+
+                                                foreach ($categoriess as $key => $val) {
+
+                                                    if ( $val['delete_is'] == 0) {
+
+                                                    ?>
+
+                                                        <option value="<?php echo $val['id']; ?>"  <?php if ($student["categories"] == $val['id'] ) {
+                                                            echo "selected";
+                                                            
+                                                            } 
+                                                        ?>>
+                                                         <?php echo $val['name']; ?>
+
+                                                        </option>
+
+                                                        <?php  
+
+                                                    }
+                                                }
+
+                                            }
+                                            ?>
+
                                         </div>
                                     </div>
+
                                     <div class="form-group">
-                                        <div class="col-sm-6 btn-form">
-                                            <input type="submit" name="submit" class="btn btn-warning" value="Update">
+                                        <div class="col-sm-12 btn-form">
+                                            <input type="submit" name="submit" class="btn btn-warning update-btn" value="Update">
                                         </div>
                                     </div>
                                 </form>

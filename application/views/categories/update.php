@@ -18,7 +18,7 @@
             <br>
             <label for="">Name</label>
             <br>
-            <input type="text" class="form-control form-control-line name="name" value="<?php echo $student['name'];  ?>">
+            <input type="text" class="form-control form-control-line" name="input_text" value="<?php echo $student['name'];  ?>">
             <?php echo form_error("name"); ?>
             <br>
             <input type="submit" class="btn btn-success"  name="change" value="change" class="color_input">

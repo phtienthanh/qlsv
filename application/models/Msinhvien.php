@@ -70,18 +70,6 @@ class Msinhvien extends CI_Model {
       
     }
 
-    public function delete_multiple($id) {
-        
-        $this->load->database();
-        
-        $this->db->where("id",$id);
-
-        $db = $this->db->delete($this->table);
-
-        return $db;
-    
-    }
-
     public function login($email,$password) {
             
         $this->load->database();
@@ -128,7 +116,7 @@ class Msinhvien extends CI_Model {
         
         if ($query->num_rows() == 1) {
              
-            return $query->result();
+            return true;
             
         } else {
                  
@@ -168,7 +156,7 @@ class Msinhvien extends CI_Model {
     
         if ($query->num_rows() == 1) {
          
-        return $query->result();
+            return $query->result();
         
         } else {
                  

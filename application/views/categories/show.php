@@ -37,10 +37,17 @@
         <tbody>
             <?php 
 
-        if(isset($student) && count($student) >0) {
+        if(isset($categories) && count($categories) >0) {
 
-            foreach ($student as $key => $val) { ?>
-            <tr class="reload">
+            foreach ($categories as $key => $val) { 
+
+                if ($val['delete_is'] == 0 ) {
+                    
+                
+
+                ?>
+
+            <tr class="reload <?php echo $val['role']; ?>">
                 <td>
                     <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
                 <td>
@@ -51,9 +58,6 @@
                 
                 <td class="center"><a class="btn btn-success" href="<?php echo base_url();?>categories/update/<?php echo $val['id']; ?>" title="">Update</a></td>
                 <td>
-                    <button class="btn btn-danger"  data-toggle="modal" data-target="#<?php echo $val['id']; ?>">
-                  Delete
-                </button>
                 <div class="modal fade" id="<?php echo $val['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -73,7 +77,8 @@
                 </td>
                 
             </tr>
-            <?php       
+            <?php  
+            }     
 
              }
 

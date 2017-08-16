@@ -14,8 +14,6 @@ class Home extends MY_Controller {
 
 		$this->load->model('ion_auth_model');
 
-		$this->load->model('Msinhvien');
-
 		$this->load->view('home/header',$this->data);
 
     }   
@@ -27,6 +25,12 @@ class Home extends MY_Controller {
     }
 
 	public function login() {
+
+		if ($this->ion_auth->logged_in()) {
+            
+            redirect('home');
+
+        }	
 
 		$this->data['title'] = $this->lang->line('login_heading');
 		
@@ -40,7 +44,7 @@ class Home extends MY_Controller {
 
 			if ($user) {
 
-				if($user->first_login == null) {
+				if ($user->first_login == null) {
 				
 					redirect('sinhvien/changepass/'.$user->id);
 
@@ -86,6 +90,8 @@ class Home extends MY_Controller {
 
 	public function profile($id) {
 
+    	$this->load->library('form_validation');
+
 		if ($this->data['first_login'] == null) {
 					
 			redirect('sinhvien/changepass/'.$this->data['id']);
@@ -104,13 +110,9 @@ class Home extends MY_Controller {
       
       	if ($this->input->post("submit")) {
       		
-      		$this->form_validation->set_rules('first_name','First name','required');
+      		$this->form_validation->set_rules('first_name','first_name','required');
        	
 	       	$this->form_validation->set_rules('last_name','Last name','required');
-	       	
-	       	$this->form_validation->set_rules('email','Email','required');
-	       	
-	       	$this->form_validation->set_rules('role','Role','required');
 
 	       	$this->form_validation->set_message('required','%s không được bỏ trống');
       		
@@ -122,17 +124,13 @@ class Home extends MY_Controller {
 					
 					"last_name" => $this->input->post("last_name"),
 					
-					"email" => $this->input->post("email"),
-
-					"role" => $this->input->post("role"),
-					
 				);	
 
+				$this->Msinhvien->update($id,$list_update);
+
+	       		redirect('home/profile/'.$id);
+
 		    }
-
-       		$this->Msinhvien->update($id,$list_update);
-
-       		redirect('sinhvien/show'); 
 
     	} 
 	    	
@@ -166,6 +164,8 @@ class Home extends MY_Controller {
 				
 		$this->Msinhvien->update($id,$list_update);
 
+		$config['max_size'] = 20480;
+
 		$config['upload_path'] = './asset/images/student/';
 
 		$config['allowed_types'] = 'gif|jpg|png';
@@ -193,17 +193,23 @@ class Home extends MY_Controller {
 
     public function register() {
 
+    	if ($this->ion_auth->logged_in()) {
+            
+            redirect('home');
+
+        }	
+
     	$this->load->model('Msinhvien');
 		
 		$data = $this->Msinhvien->forget($this->input->post('email'));
        
        	if ($this->input->post("submit")) {
 
-       		if ($data > 1) {
+       		if ($data) {
 
        			$data_fail = "Email already exists";
 
-				$this->data = $data_fail;
+				$this->data['data_fail'] = $data_fail;
        		
        		} else {
 
@@ -246,8 +252,6 @@ class Home extends MY_Controller {
 						"active" => 0,
 
 					);
-	    			
-					$this->load->model('Msinhvien');
 
 					if ($this->Msinhvien->insert($list)) {
 
@@ -291,7 +295,7 @@ class Home extends MY_Controller {
 
 						$data_fail = "Registration failed";
 
-						$this->data = $data_fail;
+						$this->data['data_fail'] = $data_fail;
 
 					}	
 
@@ -351,6 +355,8 @@ class Home extends MY_Controller {
 
         	if($this->form_validation->run()) {
 
+        		$this->load->model('Msinhvien');
+
         		$user = $this->Msinhvien->forget($this->input->post('email'));
 
         		if ($user > 0){
@@ -367,17 +373,17 @@ class Home extends MY_Controller {
 
 						$this->email->send();
 
-						$data_11 = "Please check your mail again";
+						$checkmail = "Please check your mail again";
 
-        				$this->data = $data_11;
+        				$this->data['checkmail'] = $checkmail;
 						
 					}
 
         		} else {
 
-        			$data_11 = "Email does not exist";
+        			$checkmail = "Email does not exist";
 
-        			$this->data = $data_11;
+        			$this->data['checkmail'] = $checkmail;
         		
         		}
 
@@ -398,6 +404,8 @@ class Home extends MY_Controller {
 	       	$this->form_validation->set_rules('new_password_confirm','Confirm password','required');
 	       	
         	if($this->form_validation->run()) {
+
+        		$this->load->model('Msinhvien');
 
         		$user = $this->Msinhvien->forget_tk($token);
 
@@ -452,6 +460,8 @@ class Home extends MY_Controller {
 			"active" => 1,
 
 		);
+
+		$this->load->model('Msinhvien');
 
 		$this->Msinhvien->update($id,$list_update);
 

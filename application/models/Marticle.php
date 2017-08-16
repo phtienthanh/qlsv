@@ -5,6 +5,8 @@ class Marticle extends CI_Model {
     protected $table = 'article';
     
     public function get_all() {
+
+        $this->db->order_by("id","desc");
     
         $query = $this->db->get('article');
       
@@ -31,7 +33,7 @@ class Marticle extends CI_Model {
 
     }
 
-    public function get_article1($slug) {
+    public function get__slug_article($slug) {
         
         $this->load->database();
 
@@ -41,7 +43,7 @@ class Marticle extends CI_Model {
 
     }
 
-    public function get_article2($slug) {
+    public function get_delete_article($slug) {
         
         $this->load->database();
 

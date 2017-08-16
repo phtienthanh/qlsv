@@ -42,10 +42,20 @@
         <label for="">Role</label>
         <br>
         <select name="role" class="form-control" value="<?php echo $student["role"];?>">
-            <option>Admin</option>
-            <option>User</option>
+            <option <?php if ($student["role"] == "Admin") {
+
+               echo "selected";
+
+            }  ?>>Admin</option>
+
+            <option <?php if ($student["role"] == "User") {
+            
+               echo "selected";
+            
+            }  ?>>User</option>
+        
         </select>
-        <!--  <input type="text"  name="role" placeholder="Role" value="<?php echo $student["role"];?>"> -->
+
         <?php echo form_error("role"); ?>
         <br>
         <input class="btn btn-warning" type="submit" name="insert" value="Update">

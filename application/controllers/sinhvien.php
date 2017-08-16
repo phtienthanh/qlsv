@@ -235,7 +235,7 @@ class Sinhvien extends MY_Controller {
 
 			$list_update = array(	
 			
-			"delete_is" => 1,
+				"delete_is" => 1,
 			
 			);	
 	       					
@@ -263,7 +263,6 @@ class Sinhvien extends MY_Controller {
 
         }
         
-
     	if ($this->input->post("change_password")) {
 
        		header('Location:'.base_url("/sinhvien/changepass/$id"));   
@@ -374,11 +373,11 @@ class Sinhvien extends MY_Controller {
 
       	if ($this->input->post("change")) {
 
-	    	$this->form_validation->set_rules('old_password','old_password','required');
+	    	$this->form_validation->set_rules('old_password','Current password ','required');
 	       	
-	       	$this->form_validation->set_rules('new_password','new_password','required');
+	       	$this->form_validation->set_rules('new_password','New password','required');
 	       	
-	       	$this->form_validation->set_rules('new_password_confirm','new_password_confirm','required|matches[new_password]');
+	       	$this->form_validation->set_rules('new_password_confirm','Confirm password ','required|matches[new_password]');
 
 	       	$this->form_validation->set_message('required','%s không được bỏ trống');
 	       	
@@ -386,7 +385,7 @@ class Sinhvien extends MY_Controller {
     
 	       	if ($this->form_validation->run()) {
 
-	       		if ( $data['password'] == $this->input->post("old_password")) {
+	       		if ($data['password'] == $this->input->post("old_password")) {
 	       		
 	       			$change = array(
 	       			

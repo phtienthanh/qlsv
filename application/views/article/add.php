@@ -24,8 +24,7 @@
             <br>
             <h3 for="">Content</h3>
             <br>
-            <textarea rows="4" class="form-control form-control-line" name="content" cols="35">
-            </textarea>
+            <textarea rows="4" class="form-control form-control-line" name="content" cols="35"></textarea>
             <?php echo form_error("content"); ?>
             <br>
             <br>
@@ -40,17 +39,26 @@
             <br>
             <h3 for="">Categories</h3>
             <select name="categories" class="form-control form-control-line cate">
+             <option selected>
+                   --- Select categories ---
+                </option>
+
                 <?php 
                 
- 		if(isset($student) && count($student)) {
+ 		if(isset($categories) && count($categories)) {
 
-    	foreach ($student as $key => $val) { ?>
-                <option>
+    	foreach ($categories as $key => $val) {
+
+            if ($val['delete_is'] == 0) {
+              
+             ?>
+                <option value="<?php echo $val['id']; ?>">
                     <?php echo $val['name']; ?>
                 </option>
                 <?php       
 
-     }
+         }  
+    }
 
 }
 ?>

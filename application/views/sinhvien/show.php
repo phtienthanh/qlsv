@@ -36,14 +36,13 @@
         <tbody>
             <?php 
 
-            if(isset($student) && count($student > 0)) {
+        if(isset($student) && count($student > 0)) {
 
-                foreach ($student as $key => $val) { 
-                    
-                    if ( $val['delete_is'] == 0) {
-                    
-
-            ?>
+            foreach ($student as $key => $val) { 
+                
+                if ( $val['delete_is'] == 0) {
+                
+        ?>
             <tr class="reload">
 
             <tr class="<?php echo $val['role']; ?>"> 
@@ -61,22 +60,19 @@
                     <?php echo $val['email']; ?>
                 </td>
                 <td>
-                    <img src="<?php echo base_url();?>asset/images/student/<?php echo $val['avatar']; ?>" width="50px">
+                    <img src="<?php echo base_url();?>asset/images/student/<?php echo $val['avatar']; ?>" height="75px">
                 </td>
                 <td>
                     <?php echo $val['role']; ?>
                 </td>
 
                 <td><a  class="btn btn-default glyphicon glyphicon-edit"  href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title=""></a></td>
-              
-                
             </tr>   
             </tr>  
           
             <?php  
-            }     
-
-     }
+        }     
+    }
 
 }
    
@@ -95,7 +91,7 @@
                 <div class="modal-header">
                 You want to delete ???
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer for-footer">
                 <button type="button" class="btn btn-default btn-can" data-dismiss="modal">Cancel</button>
                 <button class="btn btn-danger btn-ok dellall">Delete</button>
                 </div>

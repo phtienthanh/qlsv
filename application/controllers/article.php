@@ -39,7 +39,23 @@ class article extends MY_Controller {
 
 		$this->load->model('Marticle');
 
-		$this->data['student'] = $this->Marticle->get_all();
+		$this->load->model('Mcategories');
+
+		$listCg = $this->Mcategories->get_all();
+
+        $newArray=[];
+        
+        foreach ($listCg as $listCgKey => $listCgValue) {
+
+            $newArray[$listCgValue['id']] = $listCgValue['name'];
+
+        }
+
+        $this->data['newArray'] = $newArray;
+
+		$this->data['categories'] =  $this->Mcategories->get_all();
+
+		$this->data['article'] = $this->Marticle->get_all();
 
 		$this->load->view('article/home',$this->data);
 
@@ -61,9 +77,9 @@ class article extends MY_Controller {
 
        	$slug = create_slug($this->input->post('title')).'.html';
 
-       	$this->data['student'] = $this->Mcategories->get_all();
+       	$this->data['categories'] = $this->Mcategories->get_all();
 
-       	$values = $this->Marticle->get_article2($slug);
+       	$values = $this->Marticle->get_delete_article($slug);
 
        	if ($this->input->post("submit")) {
 
@@ -127,6 +143,8 @@ class article extends MY_Controller {
 
 	    			$this->Marticle->insert($list);
 
+	    			$config['max_size'] = 20480;
+
 					$config['upload_path'] = './asset/images/article/';
 
 					$config['allowed_types'] = 'gif|jpg|png';
@@ -165,9 +183,13 @@ class article extends MY_Controller {
 
 		$this->load->model('Marticle');
 
+		$this->load->model('Mcategories');
+
+		$data['categoriess'] = $this->Mcategories->get_all();
+
 		$slug1 = create_slug($this->input->post('slug'));
 
-      	$data['student'] = $this->Marticle->get_article1($slug); 
+      	$data['student'] = $this->Marticle->get__slug_article($slug); 
       	
       	if ($this->input->post("submit")) {
 
@@ -204,6 +226,8 @@ class article extends MY_Controller {
 	       		}
 				
 				$this->Marticle->update1($slug,$list_update);
+
+				$config['max_size'] = 20480;
 
 				$config['upload_path'] = './asset/images/article/';
 
@@ -336,7 +360,7 @@ class article extends MY_Controller {
 
     	$this->load->model('Marticle');
 
-      	$data['student'] = $this->Marticle->get_article1($slug); 	
+      	$data['student'] = $this->Marticle->get__slug_article($slug); 	
 
     	$this->load->view("article/preview",$data);
 

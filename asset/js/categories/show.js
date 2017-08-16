@@ -36,9 +36,8 @@
                     },
 
                     success: function(events) {
-                       console.log(id);
 
-                        $('.selected').remove();
+                        $('.1.selected').remove();
                         $(".btn-can").click();
 
                     },

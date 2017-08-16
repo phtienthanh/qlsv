@@ -220,7 +220,8 @@ body{
 
 }
 .form-g{
-    padding: 15px;
+    padding: 0 15px;
+
 }
 .add-cate{
     margin-top: 10px;
@@ -241,9 +242,22 @@ body{
   
   margin-top: 20px !important;
 
-    }
+}
 
-    .error{
-        color: red;
-        font-size: 20px;
-    }
+.error{
+    color: red;
+    font-size: 20px;
+}
+
+.content-form{
+
+    word-break: break-all;
+
+    height: 100px !important;
+}
+.update-btn{
+    margin-top: 20px;
+}
+.modal-footer{
+    margin-top: 0px !important;
+}
