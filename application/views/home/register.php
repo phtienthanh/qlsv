@@ -12,7 +12,12 @@
 <body>
     <div class="insert">
         <h1>Register student</h1>
-        <h3 class="error"> <?php echo $data_fail; ?></h3>
+
+        <h3 class="error"> <?php if(isset($data_fail) && count($data_fail) > 0){
+
+            echo $data_fail;
+
+            }  ?></h3>
         <form action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
            <a class="btn btn-default btn-register" href="<?php echo base_url();?>home/login" title="">Back</a>
             <br>

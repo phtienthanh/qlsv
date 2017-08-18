@@ -116,6 +116,25 @@
     </div>
   </div>
 </div>
+
+<button type="button" class="btn btn-info btn-lg hinden Delete " data-toggle="modal" data-target="#Delete">Open Modal</button>
+    <div id="Delete" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+    <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p>Successfully deleted !!! </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+  </div>
+</div>
 </body>
    
 </body>

@@ -35,7 +35,7 @@ class Categories extends MY_Controller {
 
         $this->db->order_by("id","desc");
         
-        $this->data['categories'] = $this->Mcategories->get_all();
+        $this->data['categories'] = $this->Mcategories->get_all_categories();
 
         $this->load->view('home/header',$this->data);
 
@@ -88,40 +88,48 @@ class Categories extends MY_Controller {
 
     public function update($id) {
 
-        $this->load->library('form_validation');
-       
-        $this->load->helper('form');
+        if (isset($id) && count($id) > 0 ) {
 
-        $this->load->model('Mcategories');
+            $this->load->library('form_validation');
+           
+            $this->load->helper('form');
 
-        $data['student'] = $this->Mcategories->get_categories($id);      
-        
-        if ($this->input->post("change")) {
-          
-            $this->form_validation->set_rules('input_text','name','required');
+            $this->load->model('Mcategories');
 
-            $this->form_validation->set_message('required','%s không được bỏ trống');
+            $data['student'] = $this->Mcategories->get_categories($id);      
             
-            if ($this->form_validation->run()) {
+            if ($this->input->post("change")) {
+              
+                $this->form_validation->set_rules('input_text','name','required');
 
-                $list_update = array(
+                $this->form_validation->set_message('required','%s không được bỏ trống');
+                
+                if ($this->form_validation->run()) {
 
-                    "name" => $this->input->post("input_text"),
+                    $list_update = array(
+
+                        "name" => $this->input->post("input_text"),
+                     
+                    );
+                   
+                    $this->Mcategories->update($id,$list_update); 
+
+                    redirect('categories/home');
+
+                }
                  
-                );
-               
-                $this->Mcategories->update($id,$list_update); 
+            } 
+            
+            $this->load->view('home/header',$this->data);
 
-                redirect('categories/home');
+            $this->load->view("categories/update",$data);
 
-            }
-             
+        } else {
+
+            return false;
+
         } 
-        
-        $this->load->view('home/header',$this->data);
 
-        $this->load->view("categories/update",$data);
-    
     }
 
     public function delete_multiple() {

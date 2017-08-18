@@ -39,6 +39,7 @@
 
                         $('.1.selected').remove();
                         $(".btn-can").click();
+                         $(".Delete").click();
 
                     },
                     error: function(events) {

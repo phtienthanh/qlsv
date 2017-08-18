@@ -4,7 +4,7 @@ class Marticle extends CI_Model {
  
     protected $table = 'article';
     
-    public function get_all() {
+    public function get_all_article() {
 
         $this->db->order_by("id","desc");
     
@@ -18,22 +18,49 @@ class Marticle extends CI_Model {
 
     public function insert($data) {
 
-    	$this->load->database();
-     	
-     	$this->db->insert($this->table, $data);
+        if (isset($data) && count($data) > 0) {
+           
+            $this->load->database();
+            
+            if ($this->db->insert($this->table, $data)) {
+
+                return true;
+    
+            } else {
+
+                return false;
+
+            } 
+
+        } else {
+
+            return false;
+
+        }
+
     }
 
     public function get_article($id) {
-        
-        $this->load->database();
 
-        $this->db->where("id",$id);
+        if (isset($id) && count($id) > 0) {
+            
+            $this->load->database();
 
-        return $this->db->get($this->table)->row_array();
+            $this->db->where("id",$id);
+
+            return $this->db->get($this->table)->row_array();
+
+        } else {
+
+            return false;
+
+        }
 
     }
 
-    public function get__slug_article($slug) {
+    public function get_slug_article($slug) {
+
+        if (isset($slug) && count($slug) > 0) {
         
         $this->load->database();
 
@@ -41,9 +68,17 @@ class Marticle extends CI_Model {
 
         return $this->db->get($this->table)->row_array();
 
+        } else {
+
+            return false;
+
+        }
+
     }
 
     public function get_delete_article($slug) {
+
+        if (isset($slug) && count($slug) > 0) {
         
         $this->load->database();
 
@@ -53,57 +88,109 @@ class Marticle extends CI_Model {
 
         return $this->db->get($this->table)->row_array();
 
+        } else {
+
+            return false;
+
+        }
+
     }
 
     public function update($id,$data) {
+
+        if (isset($id) && count($id) > 0) {
        
-        $this->load->database();
-        
-        $this->db->where("id",$id);
-         
-        $this->db->update($this->table, $data);
+            $this->load->database();
+            
+            $this->db->where("id",$id);
+             
+            if ($this->db->update($this->table, $data)) {
+               
+                return true;
+
+            } else {
+
+                return false;
+
+            }
+
+        } else {
+
+            return false;
+
+        }
 
     }
 
-    public function update1($slug,$data) {
+    public function update_slug_article($slug,$data) {
+
+        if (isset($slug) && count($slug) > 0) {
        
-        $this->load->database();
-        
-        $this->db->where("slug",$slug);
-         
-        $this->db->update($this->table, $data);
+            $this->load->database();
+            
+            $this->db->where("slug",$slug);
+             
+            if ($this->db->update($this->table, $data)) {
+                
+                return true;
 
-    }
+            } else {
 
-    public function delete($id) {
-     	
-     	$this->load->database();
-     	
-        $this->db->where("id",$id);
-    
-    	$this->db->delete($this->table);
+                return false;
+
+            }
+
+        } else {
+
+            return false;
+
+        }
 
     }
 
     public function delete_multiple($id) {
-        
-        $this->load->database();
-        
-        $this->db->where("id",$id);
 
-        $db = $this->db->update($this->table);
+        if (isset($slug) && count($slug) > 0) {
+            
+            $this->load->database();
+            
+            $this->db->where("id",$id);
 
-        return $db;
+            $db = $this->db->update($this->table);
+
+            return $db;
+
+        } else {
+
+            return false;
+
+        }
 
     }
 
      public function delete_checkbox($id,$data) {
-        
-        $this->load->database();
-        
-        $this->db->where("id",$id);
 
-        $this->db->update($this->table,$data);
+        if (isset($id) && count($id) > 0) {
+        
+            $this->load->database();
+            
+            $this->db->where("id",$id);
+
+            if ($this->db->update($this->table,$data)) {
+                
+                return true;
+
+            } else {
+
+                return false;
+
+            }
+
+        } else {
+
+            return false;
+
+        }
     
     }
 

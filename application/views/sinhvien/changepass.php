@@ -10,14 +10,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css" rel="stylesheet">
     <style>
-    /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
 
-  
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 </head>
 
 <body>
+
+    <h1 class="title"> Change password</h1>
+    <h3 class="title"><?php if (isset($change_succes) && count($change_succes) > 0) {
+
+    echo $change_succes;
+
+} ?></h3>
     <div class="insert">
         <form class="login wrapper" action="" method="POST">
             <input type="submit"   class="btn btn-warning" name="back" value="Back" class="color_input">

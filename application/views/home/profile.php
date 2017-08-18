@@ -28,6 +28,11 @@
 </head>
 
 <body class="fix-header card-no-border body-profile">
+<h1 class="title">Manage profile</h1>
+
+<h3 class="title"><?php if (isset($notification) && count($notification) > 0) {
+   echo $notification;
+} ?></h3>
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -99,7 +104,7 @@
                                  <div class="form-group">
                                         <label class="col-md-12">First Name</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="first_name" placeholder="Johnathan Doe" class="form-control form-control-line" value="<?php echo $student["first_name"]; ?>">
+                                            <input type="text" name="first_name" placeholder="First name" class="form-control form-control-line" value="<?php echo $student["first_name"]; ?>">
                                             <?php echo form_error("first_name"); ?>
                                         </div>
                                         
@@ -107,20 +112,20 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Last Name</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="last_name" placeholder="Johnathan Doe" class="form-control form-control-line" value="<?php echo $student["last_name"]; ?>">
+                                            <input type="text" name="last_name" placeholder="Last name" class="form-control form-control-line" value="<?php echo $student["last_name"]; ?>">
                                             <?php echo form_error("last_name"); ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="example-email" class="col-md-12">Email</label>
                                         <div class="col-md-12">
-                                            <input type="email" readonly="value" name="email" placeholder="johnathan@admin.com" class="form-control form-control-line" name="example-email" id="example-email" value="<?php echo  $student["email"]; ?>" >
+                                            <input type="email" readonly="value" name="email"  class="form-control form-control-line" name="example-email" id="example-email" value="<?php echo  $student["email"]; ?>" >
                                             <?php echo form_error("email"); ?>
                                         </div>
                                     </div>
                                   
                                     <div class="form-group form-g">
-                                        <label class="col-md-12">Role</label>
+                                        <label class="col-md-12 col-role">Role</label>
                                         <input type="text"  name="role" readonly="value"  class="form-control form-control-line" value="<?php echo $student["role"]; ?>" >
                                         <?php echo form_error("role"); ?>
                                     </div>
@@ -150,9 +155,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center">
-                © 2017 Monster Admin by wrappixel.com
-            </footer>
+
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->

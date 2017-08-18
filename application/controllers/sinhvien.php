@@ -20,10 +20,6 @@ class Sinhvien extends MY_Controller {
 		$this->load->view('home/header',$this->data);
 
 		$this->load->library('form_validation');
-       
-       	$this->load->helper('form');
-
-       	$this->load->model('Msinhvien');
 
     }
 
@@ -40,8 +36,10 @@ class Sinhvien extends MY_Controller {
             redirect('home/index');
 
         }
+
+        $this->load->model('Msinhvien');
 		
-		$this->data['student'] = $this->Msinhvien->get_all();
+		$this->data['student'] = $this->Msinhvien->get_all_sinhvien();
 
 		$this->load->view('Sinhvien/show',$this->data);
 
@@ -97,9 +95,11 @@ class Sinhvien extends MY_Controller {
 
 		$message .= "Role: ".$this->input->post("role") . "\n";
 
-        $this->email->message($message);  
+        $this->email->message($message); 
+
+        $this->load->model('Msinhvien'); 
 		
-		$data = $this->Msinhvien->get_all();
+		$data = $this->Msinhvien->get_all_sinhvien();
        
        	if ($this->input->post("submit")) {
 
@@ -157,7 +157,7 @@ class Sinhvien extends MY_Controller {
 					
 					if ($list['avatar'] == '') {
 
-						$list['avatar'] = 'doanthi';
+						$list['avatar'] = 'doanthi.jpg';
 	    			
 	    			} 
 
@@ -213,203 +213,252 @@ class Sinhvien extends MY_Controller {
 
    	public function delete($id) {
 
-   		if ($this->data['first_login'] == null) {
-				
-			redirect('sinhvien/changepass/'.$this->data['id']);
+   		if (isset($id) && count($id) > 0) {
 
-		}
-
-		if ($this->data['role'] == 'User') {
-            
-            redirect('home/index');
-
-        }
-        
-   		$data['student'] = $this->Msinhvien->get_sinhvien($id); 
-
-   		if ($data['student']['role'] == Admin) {
-
-   			echo "No deleted";
-   		
-   		} else {
-
-			$list_update = array(	
-			
-				"delete_is" => 1,
-			
-			);	
-	       					
-			$this->Msinhvien->update($id,$list_update);	
-
-			redirect('sinhvien/show');  
+	   		if ($this->data['first_login'] == null) {
+					
+				redirect('sinhvien/changepass/'.$this->data['id']);
 
 			}
 
-   		$this->load->view("sinhvien/update",$data);
+			if ($this->data['role'] == 'User') {
+	            
+	            redirect('home/index');
 
-    }
+	        }
 
-    public function update($id) {
+	        $this->load->model('Msinhvien');
+	        
+	   		$data['student'] = $this->Msinhvien->get_sinhvien($id); 
 
-    	if ($this->data['first_login'] == null) {
+	   		if ($data['student']['role'] == Admin) {
+
+	   			echo "No deleted";
+	   		
+	   		} else {
+
+				$list_update = array(	
 				
-			redirect('sinhvien/changepass/'.$this->data['id']);
+					"delete_is" => 1,
+				
+				);	
+		       					
+				$this->Msinhvien->update($id,$list_update);	
 
-		}
-
-		if ($this->data['role'] == 'User') {
-            
-            redirect('home/index');
-
-        }
-        
-    	if ($this->input->post("change_password")) {
-
-       		header('Location:'.base_url("/sinhvien/changepass/$id"));   
-       	
-       	}
-
-    	$this->load->library('form_validation');
-       
-       	$this->load->helper('form');
-
-      	$data['student'] = $this->Msinhvien->get_sinhvien($id); 		
-      	
-      	if ($this->input->post("insert")) {
-
-	       	$this->form_validation->set_rules('first_name','First name','required');
-       	
-	       	$this->form_validation->set_rules('last_name','Last name','required');
-	       	
-	       	$this->form_validation->set_rules('email','Email','required');
-	       	
-	       	$this->form_validation->set_rules('role','Role','required');
-
-	       	$this->form_validation->set_message('required','%s không được bỏ trống');
-    
-	       	if ($this->form_validation->run()) {
-
-	       		if ($_FILES['userfile']['name'] == '') {
-
-	       			$list_update = array(
-
-						"first_name" => $this->input->post("first_name"),
-						
-						"last_name" => $this->input->post("last_name"),
-						
-						"email" => $this->input->post("email"),
-
-						"avatar" => $this->input->post("img_name"),
-						
-						"role" => $this->input->post("role"),
-					
-					);
-	       			
-	       		} else {
-
-	       			$list_update = array(
-
-						"first_name" => $this->input->post("first_name"),
-						
-						"last_name" => $this->input->post("last_name"),
-						
-						"email" => $this->input->post("email"),
-						
-						"avatar" => $_FILES['userfile']['name'],
-						
-						"role" => $this->input->post("role"),
-					
-					);
-
-	       		} 
-
-       			$config['max_size'] = 20480;
-
-				$config['upload_path'] = './asset/images/student/';
-
-				$config['allowed_types'] = 'gif|jpg|png';
-
-				$this->load->library('upload', $config);	
-
-				if (!$this->upload->do_upload()) {
-
-					$error = array('error' => $this->upload->display_errors());
-
-					$this->load->view('sinhvien/insert', $error);
-
-				} else {
-
-					$file_data =  $this->upload->data();
-						
-					$data['img'] = base_url().'/images'.$file_data['file_name'];
+				redirect('sinhvien/show');  
 
 				}
 
-				$this->Msinhvien->update($id,$list_update);
+	   		$this->load->view("sinhvien/update",$data);
 
-				redirect('sinhvien/show');
-			
+	    } else {
+
+	    	return false;
+
+	    }
+	}
+
+    public function update($id) {
+
+    	if (isset($id) && count($id) > 0) {
+
+	    	if ($this->data['first_login'] == null) {
+					
+				redirect('sinhvien/changepass/'.$this->data['id']);
+
 			}
-	         
-       	} else if ($this->input->post("back")) {
 
-       		redirect('sinhvien/show');   
-       			    
-       	}
-      
-   		$this->load->view("sinhvien/update",$data);
+			if ($this->data['role'] == 'User') {
+	            
+	            redirect('home/index');
 
-    }
+	        }
+	        
+	    	if ($this->input->post("change_password")) {
+
+	       		header('Location:'.base_url("/sinhvien/changepass/$id"));   
+	       	
+	       	}
+
+	       	$this->load->model('Msinhvien');
+
+	      	$this->data['student'] = $this->Msinhvien->get_id_sinhvien($id); 
+	      	
+	      	if ($this->input->post("insert")) {
+
+		       	$this->form_validation->set_rules('first_name','First name','required');
+	       	
+		       	$this->form_validation->set_rules('last_name','Last name','required');
+		       	
+		       	$this->form_validation->set_rules('email','Email','required');
+		       	
+		       	$this->form_validation->set_rules('role','Role','required');
+
+		       	$this->form_validation->set_message('required','%s không được bỏ trống');
+	    
+		       	if ($this->form_validation->run()) {
+
+		       		if ($_FILES['userfile']['name'] == '') {
+
+		       			$list_update = array(
+
+							"first_name" => $this->input->post("first_name"),
+							
+							"last_name" => $this->input->post("last_name"),
+
+							"avatar" => $this->input->post("img_name"),
+							
+							"role" => $this->input->post("role"),
+						
+						);
+		       			
+		       		} else {
+
+		       			$list_update = array(
+
+							"first_name" => $this->input->post("first_name"),
+							
+							"last_name" => $this->input->post("last_name"),
+							
+							"avatar" => $_FILES['userfile']['name'],
+							
+							"role" => $this->input->post("role"),
+						
+						);
+
+		       		} 
+
+	       			$config['max_size'] = 20480;
+
+					$config['upload_path'] = './asset/images/student/';
+
+					$config['allowed_types'] = 'gif|jpg|png';
+
+					$this->load->library('upload', $config);	
+
+					if (!$this->upload->do_upload()) {
+
+						$error = array('error' => $this->upload->display_errors());
+
+						$this->Msinhvien->update($id,$list_update);
+
+						redirect('sinhvien/show/'); 
+
+					} else {
+
+						if (file_exists("asset/images/student/".$this->data['student']['avatar']) && $this->data['student']['avatar'] != "doanthi.jpg" ) {
+						        
+					        if (unlink("asset/images/student/".$this->data['student']['avatar'])) {
+
+
+					        	if ( $this->Msinhvien->update($id,$list_update)) {
+
+					        		if ($this->upload->data()) {
+
+										$data['img'] = base_url().'/images'.$file_data['file_name'];
+
+										redirect('sinhvien/update/'.$id); 
+					            
+					            	}
+
+					        	}				            
+
+					        } 
+			     			
+			 			} else if (file_exists("asset/images/student/".$this->data['student']['avatar']) && $this->data['student']['avatar'] == "doanthi.jpg" ) {
+
+			 			 	$this->Msinhvien->update($id,$list_update);
+							
+							redirect('sinhvien/update/'.$id); 
+
+			 			}
+
+					}
+				
+				}
+		         
+	       	} else if ($this->input->post("back")) {
+
+	       		redirect('sinhvien/show');   
+	       			    
+	       	}
+	      
+	   		$this->load->view("sinhvien/update",$this->data);
+
+	   	} else {
+
+	    	return false;
+
+    	}
+
+	}
 
     public function changepass($id) {
 
-    	$this->load->library('form_validation');
-       
-       	$this->load->helper('form');
+    	if (isset($id) && count($id) > 0 ) {
 
-      	$data = $this->Msinhvien->get_sinhvien($id);
+    		$this->load->model('Msinhvien');
 
-     	$password2 = $data['password'];
+	      	$data = $this->Msinhvien->get_id_sinhvien($id);
 
-      	if ($this->input->post("change")) {
+	     	$password2 = $data['password'];
 
-	    	$this->form_validation->set_rules('old_password','Current password ','required');
-	       	
-	       	$this->form_validation->set_rules('new_password','New password','required');
-	       	
-	       	$this->form_validation->set_rules('new_password_confirm','Confirm password ','required|matches[new_password]');
+	      	if ($this->input->post("change")) {
 
-	       	$this->form_validation->set_message('required','%s không được bỏ trống');
-	       	
-	       	$this->form_validation->set_message('matches','%s không đúng');
-    
-	       	if ($this->form_validation->run()) {
+		    	$this->form_validation->set_rules('old_password','Current password ','required');
+		       	
+		       	$this->form_validation->set_rules('new_password','New password','required');
+		       	
+		       	$this->form_validation->set_rules('new_password_confirm','Confirm password ','required|matches[new_password]');
 
-	       		if ($data['password'] == $this->input->post("old_password")) {
-	       		
-	       			$change = array(
-	       			
-	       				'password' => $this->input->post("new_password"),
+		       	$this->form_validation->set_message('required','%s not be empty');
+		       	
+		       	$this->form_validation->set_message('matches','%s Incorrect');
+	    
+		       	if ($this->form_validation->run()) {
 
-	       				'first_login' => 1,
-	       			
-	       			);
-	       			
-	       			$this->Msinhvien->changepass($id,$change );	
+		       		if ($data['password'] == $this->input->post("old_password")) {
+		       		
+		       			$change = array(
+		       			
+		       				'password' => $this->input->post("new_password"),
 
-					redirect('home'); 
-	       		
-	       		} else echo "mật khẩu sai nhập lại";	
-	
-			} 
-	         
-       	} else if ($this->input->post("back")) {
+		       				'first_login' => 1,
+		       			
+		       			);
+		       			
+		       			if ($this->Msinhvien->changepass_sinhvien($id,$change)) {
+		       					
+		       				$change_succes = "Change password succes";
 
-       		redirect('sinhvien/show');  
-       			    
-       	}
+		       				$this->data['change_succes'] = $change_succes;
 
-   		$this->load->view("sinhvien/changepass",$data);
+		       			} else {
+
+		       				$change_succes = "Change password fail";
+
+		       				$this->data['change_succes'] = $change_succes;
+
+		       			}
+		       		
+		       		} else {
+
+	       				$change_succes = "Incorrect password";
+
+	       				$this->data['change_succes'] = $change_succes;
+
+		       		}	
+		
+				} 
+		         
+	       	}
+
+   	   	$this->load->view("sinhvien/changepass",$this->data);
+    	
+    	} else {
+
+    		return false;
+    	}
  
     }	
 
@@ -421,6 +470,8 @@ class Sinhvien extends MY_Controller {
 
 		}
 
+		$this->load->model('Msinhvien');
+
 		$dataId = $this->input->post('id');
 
 		$stack = array();
@@ -429,7 +480,7 @@ class Sinhvien extends MY_Controller {
 
 			if ($val != "0") {
 
-				$data = $this->Msinhvien->get_sinhvien($val);
+				$data = $this->Msinhvien->get_id_sinhvien($val);
 
 				if($data['role'] == "User") {
 
@@ -445,7 +496,7 @@ class Sinhvien extends MY_Controller {
 
 			foreach ($stack as $key => $value) {
 
-				$data = $this->Msinhvien->get_sinhvien($value);
+				$data = $this->Msinhvien->get_id_sinhvien($value);
 
 				$list_update = array(	
 		

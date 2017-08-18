@@ -1,3 +1,5 @@
+
+<?php var_dump($student['image']); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -141,10 +143,12 @@
                                                     ?>
 
                                                         <option value="<?php echo $val['id']; ?>"  <?php if ($student["categories"] == $val['id'] ) {
+
                                                             echo "selected";
                                                             
                                                             } 
                                                         ?>>
+                                                        
                                                          <?php echo $val['name']; ?>
 
                                                         </option>
@@ -182,9 +186,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center">
-                © 2017 Monster Admin by wrappixel.com
-            </footer>
+
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->

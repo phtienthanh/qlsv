@@ -172,6 +172,9 @@ body{
 }
 .content1{
     height: 100px;
+    text-overflow: ellipsis;
+
+    white-space: inherit;
 }
 .back{
     margin-top: 10px;
@@ -260,4 +263,12 @@ body{
 }
 .modal-footer{
     margin-top: 0px !important;
+}
+.col-role{
+    padding-left: 0;
+}
+.boxDoi-c{
+    width: 60%; 
+    display: inline-block;
+    margin-left:190px;
 }

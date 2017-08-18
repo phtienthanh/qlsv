@@ -41,9 +41,11 @@ if(isset($article) && count($article)) {
                     <?php echo $val['title']; ?>
                 </p>
         <pre class="content1">
-            <?php echo substr( htmlentities($val['content']),0,100); ?>
+            <?php echo substr( htmlentities($val['content']),0,100);
+            echo "..."; ?>
         </pre>
                 <div>
+
                     <p class="col-md-6"><b>Categories:</b> <?php echo $newArray[$val['categories']] ?>
                         <!-- <?php 
                          foreach ($categories as $keycate => $categories) {
@@ -148,7 +150,7 @@ if(isset($article) && count($article)) {
                     <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
-                    <p>Delete !!!</p>
+                    <p>Successfully deleted !!!</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

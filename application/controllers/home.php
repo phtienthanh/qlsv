@@ -90,118 +90,152 @@ class Home extends MY_Controller {
 
 	public function profile($id) {
 
-    	$this->load->library('form_validation');
+		if (isset($id) && count($id) >0 ) {
+				
+	    	$this->load->library('form_validation');
 
-		if ($this->data['first_login'] == null) {
-					
-			redirect('sinhvien/changepass/'.$this->data['id']);
+			if ($this->data['first_login'] == null) {
+						
+				redirect('sinhvien/changepass/'.$this->data['id']);
+
+			}
+
+			if (!$this->ion_auth->logged_in()) {
+				
+				redirect('home/index');
+
+			}
+
+	   		$this->load->model('Msinhvien');
+
+	      	$this->data['student'] = $this->Msinhvien->get_id_sinhvien($id); 
+	      
+	      	if ($this->input->post("submit")) {
+	      		
+	      		$this->form_validation->set_rules('first_name','First name','required');
+	       	
+		       	$this->form_validation->set_rules('last_name','Last name','required');
+
+		       	$this->form_validation->set_message('required','%snot be empty');
+	      		
+	      		if ($this->form_validation->run()) {
+
+		      		$list_update = array(
+
+						"first_name" => $this->input->post("first_name"),
+						
+						"last_name" => $this->input->post("last_name"),
+						
+					);	
+
+					if ($this->Msinhvien->update($id,$list_update)) {
+
+						$notification = "Update success";
+
+						$this->data['notification'] = $notification;
+
+						// redirect('home/profile/'.$id);
+						
+					}
+
+			    }
+
+	    	} 
+
+			$this->load->view("home/profile",$this->data);
+
+		} else {
+
+			return flase;
 
 		}
-
-		if (!$this->ion_auth->logged_in()) {
-			
-			redirect('home/index');
-
-		}
-
-   		$this->load->model('Msinhvien');
-
-      	$data['student'] = $this->Msinhvien->get_sinhvien($id); 
-      
-      	if ($this->input->post("submit")) {
-      		
-      		$this->form_validation->set_rules('first_name','first_name','required');
-       	
-	       	$this->form_validation->set_rules('last_name','Last name','required');
-
-	       	$this->form_validation->set_message('required','%s không được bỏ trống');
-      		
-      		if ($this->form_validation->run()) {
-
-	      		$list_update = array(
-
-					"first_name" => $this->input->post("first_name"),
-					
-					"last_name" => $this->input->post("last_name"),
-					
-				);	
-
-				$this->Msinhvien->update($id,$list_update);
-
-	       		redirect('home/profile/'.$id);
-
-		    }
-
-    	} 
-	    	
-		$this->load->view("home/profile",$data);
     
 	}
 
-    public function upload($id) {
+	public function upload($id) {
 
-   		$this->load->model('Msinhvien');
+		if (isset($id) && count($id) > 0 ) {
 
-      	$data['student'] = $this->Msinhvien->get_sinhvien($id); 		
-	       		
-   		if ($_FILES['userfile']['name'] == '') {
+	   		$this->load->model('Msinhvien');
 
-   			$list_update = array(
+	      	$data = $this->Msinhvien->get_id_sinhvien($id); 		
+		       		
+	   		if ($_FILES['userfile']['name'] == '') {
 
-				"avatar" => $this->input->post("img_name"),
+	   			$list_update = array(
 
-			);
-   			
-   		} else {
+					"avatar" => $this->input->post("img_name"),
+				);
+	   			
+	   		} else {
 
-   			$list_update = array(
+	   			$list_update = array(
 
-				"avatar" => $_FILES['userfile']['name'],
-			
-			);
-
-   		}
+					"avatar" => $_FILES['userfile']['name'],
 				
-		$this->Msinhvien->update($id,$list_update);
+				);
 
-		$config['max_size'] = 20480;
+	   		}
+				
+			$config['max_size'] = 20480;
 
-		$config['upload_path'] = './asset/images/student/';
+			$config['upload_path'] = './asset/images/student/';
 
-		$config['allowed_types'] = 'gif|jpg|png';
+			$config['allowed_types'] = 'gif|jpg|png';
 
-		$this->load->library('upload', $config);				
+			$this->load->library('upload', $config);
 
-		if (!$this->upload->do_upload()) {
+			if (!$this->upload->do_upload()) {
 
-			$error = array('error' => $this->upload->display_errors());
+				$error = array('error' => $this->upload->display_errors());
+			
+				$this->load->view('home/profile', $error);
 
-		
-			$this->load->view('sinhvien/insert', $error);
+			} else {
+
+				if (file_exists("asset/images/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg" ) {
+				        
+			        if (unlink("asset/images/student/".$data['avatar'])) {
+
+			            $this->Msinhvien->update($id,$list_update);
+
+			            $file_data =  $this->upload->data();
+				
+						$data['img'] = base_url().'/images'.$file_data['file_name'];
+
+						redirect('home/profile/'.$id); 
+			        
+			        } 
+	     			
+	 			} else if (file_exists("asset/images/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg" ) {
+
+	 				 $this->Msinhvien->update($id,$list_update);  
+
+					redirect('home/profile/'.$id); 
+
+	 			}
+			
+			}
 
 		} else {
-			
-			$file_data =  $this->upload->data();
-			
-			$data['img'] = base_url().'/images'.$file_data['file_name'];
+
+			return flase;
 
 		}
 
-		redirect('sinhvien/show');
-
-    }
+	}
 
     public function register() {
 
     	if ($this->ion_auth->logged_in()) {
-            
+       
             redirect('home');
 
         }	
 
     	$this->load->model('Msinhvien');
 		
-		$data = $this->Msinhvien->forget($this->input->post('email'));
+		$data = $this->Msinhvien->forget_password($this->input->post('email'));
        
        	if ($this->input->post("submit")) {
 
@@ -243,7 +277,7 @@ class Home extends MY_Controller {
 						
 						"password" => $this->input->post("password"),
 						
-						"avatar" => "doanthi",
+						"avatar" => "doanthi.jpg",
 						
 						"role" => 'User',
 
@@ -343,6 +377,8 @@ class Home extends MY_Controller {
 
         $message = "Contact form\n\n";
 
+        $message = "Please visit the link below forgot password:\n";
+
 		$message .= "Password: ". base_url('home/change/').'/'.$token . "\n";
 
         $this->email->message($message); 
@@ -357,11 +393,11 @@ class Home extends MY_Controller {
 
         		$this->load->model('Msinhvien');
 
-        		$user = $this->Msinhvien->forget($this->input->post('email'));
+        		$user = $this->Msinhvien->forget_password($this->input->post('email'));
 
         		if ($user > 0){
 
-        			$id = $user["0"]->id;
+        			$id = $user["0"]['id'];
 
         			$list_update = array(	
 			
@@ -371,12 +407,20 @@ class Home extends MY_Controller {
 
 					if ($this->Msinhvien->update_forget($id,$list_update)) {
 
-						$this->email->send();
+						if ($this->email->send()) {
+							
+							$checkmail = "Please check your mail again";
 
-						$checkmail = "Please check your mail again";
+	        				$this->data['checkmail'] = $checkmail;
 
-        				$this->data['checkmail'] = $checkmail;
-						
+						} else {
+
+							$checkmail = "Send mail fail";
+
+	        				$this->data['checkmail'] = $checkmail;
+
+						}
+	
 					}
 
         		} else {
@@ -397,49 +441,57 @@ class Home extends MY_Controller {
 
 	public function change($token) {
 
-		  if ($this->input->post("submit")) {
-
-        	$this->form_validation->set_rules('new_password','Password','required|matches[new_password_confirm]');
-
-	       	$this->form_validation->set_rules('new_password_confirm','Confirm password','required');
-	       	
-        	if($this->form_validation->run()) {
-
-        		$this->load->model('Msinhvien');
-
-        		$user = $this->Msinhvien->forget_tk($token);
-
-        		$id = $user["0"]->id;
-
-    			$list_update = array(	
-		
-					"password" => $this->input->post('new_password'),
-		
-				);
-
-				if ($this->Msinhvien->update_forget($id,$list_update)) {
-				
-					$token = rand(1000,9999);
-
-        			$list_update = array(	
+		if (isset($token) && count($token) > 0) {
 			
-						"token" => $token,
+		  	if ($this->input->post("submit")) {
+
+	        	$this->form_validation->set_rules('new_password','Password','required|matches[new_password_confirm]');
+
+		       	$this->form_validation->set_rules('new_password_confirm','Confirm password','required');
+		       	
+	        	if($this->form_validation->run()) {
+
+	        		$this->load->model('Msinhvien');
+
+	        		$user = $this->Msinhvien->forget_tk($token);
+
+	        		$id = $user["0"]->id;
+
+	    			$list_update = array(	
+			
+						"password" => $this->input->post('new_password'),
 			
 					);
 
-					$this->Msinhvien->update_forget($id,$list_update);
+					if ($this->Msinhvien->update_forget($id,$list_update)) {
+					
+						$token = rand(1000,9999);
 
-					redirect('home/changesuccess');
-
-				}
+	        			$list_update = array(	
 				
-	    	}
+							"token" => $token,
+				
+						);
 
-   		} 
+						$this->Msinhvien->update_forget($id,$list_update);
+
+						redirect('home/changesuccess');
+
+					}
+					
+		    	}
+
+	   		} 
 
 		$this->load->view('home/changepass');
 
+	} else {
+
+		return flase;
+
 	}
+
+}
 
 	public function success() {
 
@@ -455,17 +507,26 @@ class Home extends MY_Controller {
 
 	public function active($id) {
 
-		$list_update = array(	
+		if (isset($id) && count($id) > 0 ) {
 
-			"active" => 1,
+			$list_update = array(	
 
-		);
+				"active" => 1,
 
-		$this->load->model('Msinhvien');
+			);
 
-		$this->Msinhvien->update($id,$list_update);
+			$this->load->model('Msinhvien');
 
-		$this->load->view('home/active');
+			$this->Msinhvien->update($id,$list_update);
+
+			$this->load->view('home/active');
+
+
+		} else {
+
+			return false;
+
+		}
 
 	}
 

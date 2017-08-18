@@ -4,7 +4,9 @@ class Msinhvien extends CI_Model {
  
     protected $table = 'student';
 
-    public function get_all() {
+    public function get_all_sinhvien() {
+
+        $this->db->order_by('id','desc');
     
         $query = $this->db->get('student');
     
@@ -16,108 +18,137 @@ class Msinhvien extends CI_Model {
 
     public function insert($data) {
 
-    	$this->load->database();
+        if (isset($data) && count($data) > 0) {
 
-        if ($this->db->insert($this->table, $data)) {
+        	$this->load->database();
 
-            return true;
-        
+            if ($this->db->insert($this->table, $data)) {
+
+                return true;
+            
+            } else {
+
+                return false;
+            
+            }
+
         } else {
 
-            return false;
-        
+                return false;
+            
         }
     
     }
-     
-    public function delete($id) {
-     	
-     	$this->load->database();
-     	
-        $this->db->where("id",$id);
-    
-    	$this->db->delete($this->table);
-
-    }
 
     public function update($id,$data) {
-       
-        $this->load->database();
-        
-        $this->db->where("id",$id);
-         
-        $this->db->update($this->table, $data);
+
+        if (isset($id) && count($id) > 0) {
+           
+            $this->load->database();
+            
+            $this->db->where("id",$id);
+             
+            if ($this->db->update($this->table, $data)) {
+
+               return true;
+
+            } else {
+
+                return flase;
+
+            }
+
+        } else {
+
+            return false;
+            
+        }
 
     }
     
-    public function get_sinhvien($id) {
+    public function get_id_sinhvien($id) {
+
+        if (isset($id) && count($id) > 0) {
         
-        $this->load->database();
+            $this->load->database();
 
-        $this->db->where("id",$id);
+            $this->db->where("id",$id);
 
-        return $this->db->get($this->table)->row_array();
+            return $this->db->get($this->table)->row_array();
+
+        } else {
+
+            return false;
+            
+        }
 
     }
 
-    public function changepass($id,$data) {
+    public function changepass_sinhvien($id,$data) {
 
-        $this->load->database();
-        
-        $this->db->where("id",$id);
-         
-        $this->db->update($this->table, $data);
+        if (isset($id) && count($id) > 0) {
+
+            $this->load->database();
+            
+            $this->db->where("id",$id);
+             
+            if ($this->db->update($this->table, $data)) {
+       
+                return true;
+
+            } else {
+
+                return false;
+            }
+
+        } else {
+
+            return false;
+
+        }
       
     }
 
-    public function login($email,$password) {
-            
-        $this->load->database();
+    public function delete_checkbox($id,$data) {
 
-        $this->db->select();
+        if (isset($id) && count($id) > 0) {
         
-        $this->db->where('email',$email);
-        
-        $this->db->where('password',$password);
-       
-        $query = $this->db->get($this->table);           
-        
-        if ($query->num_rows() == 1) {
-             
-            return $query->result();
+            $this->load->database();
             
+            $this->db->where("id",$id);
+
+            $this->db->update($this->table,$data);
+
         } else {
                  
             return false;
                 
         }
     
-    }  
-
-    public function delete_checkbox($id,$data) {
-        
-        $this->load->database();
-        
-        $this->db->where("id",$id);
-
-        $this->db->update($this->table,$data);
-    
     }
     
-    public function forget($email) {
+    public function forget_password($email) {
 
-        $this->load->database();
-        
-        $this->db->where("delete_is",0);
+        if (isset($email) && count($email) > 0) {
 
-        $this->db->where("email",$email);
-
-        $query = $this->db->get($this->table);           
-        
-        if ($query->num_rows() == 1) {
-             
-            return true;
+            $this->load->database();
             
+            $this->db->where("delete_is",0);
+
+            $this->db->where("email",$email);
+
+            $query = $this->db->get($this->table);           
+            
+            if ($query->num_rows() == 1) {
+                 
+                return $query->result_array();
+                
+            } else {
+                     
+                return false;
+                    
+            }
+
         } else {
                  
             return false;
@@ -127,16 +158,24 @@ class Msinhvien extends CI_Model {
     }
 
     public function update_forget($id,$data) {
+
+        if (isset($id) && count($id) > 0) {
        
-        $this->load->database();
-        
-        $this->db->where("id",$id);
-         
-        $forget = $this->db->update($this->table, $data);
+            $this->load->database();
+            
+            $this->db->where("id",$id);
+             
+            $forget = $this->db->update($this->table, $data);
 
-        if ($forget) {
+            if ($forget) {
 
-            return true;
+                return true;
+
+            } else {
+
+                return flase;
+            
+            }
 
         } else {
 
@@ -148,16 +187,24 @@ class Msinhvien extends CI_Model {
 
     public function forget_tk($token) {
 
-        $this->load->database();
+        if (isset($token) && count($token) > 0) {
 
-        $this->db->where("token",$token);
+            $this->load->database();
 
-        $query = $this->db->get($this->table);         
-    
-        if ($query->num_rows() == 1) {
-         
-            return $query->result();
+            $this->db->where("token",$token);
+
+            $query = $this->db->get($this->table);         
         
+            if ($query->num_rows() == 1) {
+             
+                return $query->result();
+            
+            } else {
+                     
+                return false;
+                    
+            }
+
         } else {
                  
             return false;
