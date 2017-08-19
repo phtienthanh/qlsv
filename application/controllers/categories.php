@@ -26,6 +26,10 @@ class Categories extends MY_Controller {
             redirect('home/index');
 
         }
+
+         $this->load->library('form_validation');
+       
+        $this->load->helper('form');
         
     }
 
@@ -46,10 +50,6 @@ class Categories extends MY_Controller {
     public function add() {
 
         $this->load->model('Mcategories');
-
-        $this->load->library('form_validation');
-       
-        $this->load->helper('form');
 
         if ($this->input->post('submit')) {
           
@@ -90,13 +90,9 @@ class Categories extends MY_Controller {
 
         if (isset($id) && count($id) > 0 ) {
 
-            $this->load->library('form_validation');
-           
-            $this->load->helper('form');
-
             $this->load->model('Mcategories');
 
-            $data['student'] = $this->Mcategories->get_categories($id);      
+            $data['student'] = $this->Mcategories->get_id_categories($id);      
             
             if ($this->input->post("change")) {
               

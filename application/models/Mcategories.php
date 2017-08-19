@@ -14,7 +14,7 @@ class Mcategories extends CI_Model {
 
     }
 
-    public function get_categories($id) {
+    public function get_id_categories($id) {
 
         if (isset($id) && count($id) > 0) {
            

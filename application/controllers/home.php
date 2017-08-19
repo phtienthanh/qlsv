@@ -133,8 +133,6 @@ class Home extends MY_Controller {
 						$notification = "Update success";
 
 						$this->data['notification'] = $notification;
-
-						// redirect('home/profile/'.$id);
 						
 					}
 
@@ -201,7 +199,7 @@ class Home extends MY_Controller {
 
 			            $file_data =  $this->upload->data();
 				
-						$data['img'] = base_url().'/images'.$file_data['file_name'];
+						$data['img'] = base_url().'images/student/'.$file_data['file_name'];
 
 						redirect('home/profile/'.$id); 
 			        
@@ -395,7 +393,7 @@ class Home extends MY_Controller {
 
         		$user = $this->Msinhvien->forget_password($this->input->post('email'));
 
-        		if ($user > 0){
+        		if (count($user) > 0){
 
         			$id = $user["0"]['id'];
 
@@ -472,8 +470,6 @@ class Home extends MY_Controller {
 							"token" => $token,
 				
 						);
-
-						$this->Msinhvien->update_forget($id,$list_update);
 
 						redirect('home/changesuccess');
 

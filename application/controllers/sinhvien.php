@@ -211,52 +211,52 @@ class Sinhvien extends MY_Controller {
    
     }
 
-   	public function delete($id) {
+ //   	public function delete($id) {
 
-   		if (isset($id) && count($id) > 0) {
+ //   		if (isset($id) && count($id) > 0) {
 
-	   		if ($this->data['first_login'] == null) {
+	//    		if ($this->data['first_login'] == null) {
 					
-				redirect('sinhvien/changepass/'.$this->data['id']);
+	// 			redirect('sinhvien/changepass/'.$this->data['id']);
 
-			}
+	// 		}
 
-			if ($this->data['role'] == 'User') {
+	// 		if ($this->data['role'] == 'User') {
 	            
-	            redirect('home/index');
+	//             redirect('home/index');
 
-	        }
+	//         }
 
-	        $this->load->model('Msinhvien');
+	//         $this->load->model('Msinhvien');
 	        
-	   		$data['student'] = $this->Msinhvien->get_sinhvien($id); 
+	//    		$data['student'] = $this->Msinhvien->get_sinhvien($id); 
 
-	   		if ($data['student']['role'] == Admin) {
+	//    		if ($data['student']['role'] == Admin) {
 
-	   			echo "No deleted";
+	//    			echo "No deleted";
 	   		
-	   		} else {
+	//    		} else {
 
-				$list_update = array(	
+	// 			$list_update = array(	
 				
-					"delete_is" => 1,
+	// 				"delete_is" => 1,
 				
-				);	
+	// 			);	
 		       					
-				$this->Msinhvien->update($id,$list_update);	
+	// 			$this->Msinhvien->update($id,$list_update);	
 
-				redirect('sinhvien/show');  
+	// 			redirect('sinhvien/show');  
 
-				}
+	// 			}
 
-	   		$this->load->view("sinhvien/update",$data);
+	//    		$this->load->view("sinhvien/update",$data);
 
-	    } else {
+	//     } else {
 
-	    	return false;
+	//     	return false;
 
-	    }
-	}
+	//     }
+	// }
 
     public function update($id) {
 
@@ -512,7 +512,7 @@ class Sinhvien extends MY_Controller {
 			        
 			        } 
      			
-     			} else {
+     			} else if (file_exists("asset/images/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg" ) {
 
      				$this->Msinhvien->delete_checkbox($value,$list_update, $data);    
 
