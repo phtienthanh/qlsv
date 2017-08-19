@@ -1,5 +1,3 @@
-
-<?php var_dump($student['image']); ?>
 <!DOCTYPE html>
 <html lang="en">
 

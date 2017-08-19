@@ -232,52 +232,6 @@ class article extends MY_Controller {
 					
 					$this->Marticle->update_slug_article($slug,$list_update);
 
-					$config['max_size'] = 20480;
-
-					$config['upload_path'] = './asset/images/article/';
-
-					$config['allowed_types'] = 'gif|jpg|png';
-
-					$this->load->library('upload', $config);			
-
-					if (!$this->upload->do_upload()) {
-
-						$error = array('error' => $this->upload->display_errors());
-						
-					} else {
-
-						if (file_exists("asset/images/article/".$this->data['student']['avatar']) && $this->data['student']['avatar'] != "doanthi.jpg" ) {
-						        
-					        if (unlink("asset/images/article/".$this->data['student']['avatar'])) {
-
-					        	if ( $this->Msinhvien->update($id,$list_update)) {
-
-					        		if ($this->upload->data()) {
-
-										$data['img'] = base_url().'/images'.$file_data['file_name'];
-
-										redirect('sinhvien/update/'.$id); 
-					            
-					            	}
-
-					        	}				            
-
-					        } 
-			     			
-			 			} else if (file_exists("asset/images/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg" ) {
-
-			 			 	$this->Msinhvien->update($id,$list_update);
-							
-							redirect('sinhvien/update/'.$id); 
-
-			 			}
-						
-						$file_data =  $this->upload->data();
-						
-						$data['img'] = base_url().'/images/article'.$file_data['file_name'];
-
-					}
-
 					redirect('article/home');	   
 
 				}
@@ -315,15 +269,15 @@ class article extends MY_Controller {
 
     }
 
-    public function show() {
+  //   public function show() {
 
-    	$this->load->model('Marticle');
+  //   	$this->load->model('Marticle');
 		
-		$this->data['student'] = $this->Marticle->get_all_article();
+		// $this->data['student'] = $this->Marticle->get_all_article();
 
-    	$this->load->view('article/show');
+  //   	$this->load->view('article/show');
 
-    }
+  //   }
 
      public function upload($id) {
 
@@ -416,10 +370,35 @@ class article extends MY_Controller {
     	if (isset($slug) && count($slug) > 0) {
 	    		
 	    	$this->load->model('Marticle');
+	    	
+	    	$this->load->model('Mcategories');
 
-	      	$data['student'] = $this->Marticle->get_slug_article($slug); 	
+	      	$this->data['student'] = $this->Marticle->get_slug_article($slug); 	
 
-	    	$this->load->view("article/preview",$data);
+	      	$listCg = $this->Mcategories->get_all_categories();
+
+        $newArray = [];
+        
+        foreach ($listCg as $listCgKey => $listCgValue) {
+
+        	if ($listCgValue['delete_is'] == 0) {
+
+        		$newArray[$listCgValue['id']] = $listCgValue['name'];
+        		
+        	}  else {
+
+        		$newArray[$listCgValue['id']] = "Default";
+        	}
+
+        }
+
+        $this->data['newArray'] = $newArray;
+
+		$this->data['categories'] =  $listCg;
+
+		$this->data['article'] = $this->Marticle->get_all_article();
+
+    	$this->load->view("article/preview",$this->data);
 
     	} else {
 

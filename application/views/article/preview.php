@@ -97,7 +97,7 @@
                                         </div>
                                         <label class="col-md-3"><b>Categories :</b></label>
                                         <div class="col-md-3">
-                                        <p><?php echo $student["categories"]; ?> </p>
+                                        <p><?php echo $newArray[$student['categories']] ?> </p>
                                             
                                         </div>
                                     </div>
