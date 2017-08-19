@@ -17,9 +17,9 @@ class Sinhvien extends MY_Controller {
 
 		$this->load->helper(array('form', 'url'));
 
-		$this->load->view('home/header',$this->data);
-
 		$this->load->library('form_validation');
+
+		$this->load->view('home/header',$this->data);
 
     }
 
@@ -75,9 +75,9 @@ class Sinhvien extends MY_Controller {
         
         $config['newline']    = "\r\n";
         
-        $config['mailtype'] = 'text'; // or html
+        $config['mailtype'] = 'text'; 
         
-        $config['validation'] = TRUE; // bool whether to validate email or not      
+        $config['validation'] = TRUE;   
 
         $this->email->initialize($config);
 
@@ -210,53 +210,6 @@ class Sinhvien extends MY_Controller {
         $this->load->view('sinhvien/insert',array('error' => ' '));
    
     }
-
- //   	public function delete($id) {
-
- //   		if (isset($id) && count($id) > 0) {
-
-	//    		if ($this->data['first_login'] == null) {
-					
-	// 			redirect('sinhvien/changepass/'.$this->data['id']);
-
-	// 		}
-
-	// 		if ($this->data['role'] == 'User') {
-	            
-	//             redirect('home/index');
-
-	//         }
-
-	//         $this->load->model('Msinhvien');
-	        
-	//    		$data['student'] = $this->Msinhvien->get_sinhvien($id); 
-
-	//    		if ($data['student']['role'] == Admin) {
-
-	//    			echo "No deleted";
-	   		
-	//    		} else {
-
-	// 			$list_update = array(	
-				
-	// 				"delete_is" => 1,
-				
-	// 			);	
-		       					
-	// 			$this->Msinhvien->update($id,$list_update);	
-
-	// 			redirect('sinhvien/show');  
-
-	// 			}
-
-	//    		$this->load->view("sinhvien/update",$data);
-
-	//     } else {
-
-	//     	return false;
-
-	//     }
-	// }
 
     public function update($id) {
 
@@ -400,8 +353,6 @@ class Sinhvien extends MY_Controller {
     		$this->load->model('Msinhvien');
 
 	      	$data = $this->Msinhvien->get_id_sinhvien($id);
-
-	     	$password2 = $data['password'];
 
 	      	if ($this->input->post("change")) {
 

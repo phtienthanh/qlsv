@@ -9,6 +9,10 @@ class article extends MY_Controller {
 	        
 	        parent::__construct();
 
+	        $this->load->helper("slug" , "form" );
+
+	        $this->load->library('form_validation');
+
 	        if (!$this->ion_auth->logged_in()) {
 	            
 	            redirect('home/login');
@@ -28,10 +32,6 @@ class article extends MY_Controller {
 			}			
 
 	        $this->load->view('home/header',$this->data);
-
-	        $this->load->helper("slug" , "form" );
-
-	        $this->load->library('form_validation');
 
 	    }
 
@@ -75,10 +75,6 @@ class article extends MY_Controller {
 		$this->load->model('Marticle');
 
        	$data = $this->Marticle->get_all_article();
-
-       	$data2 = '';
-
-		$this->data['slug'] = $data2;
 
        	$this->load->model('Mcategories');
 

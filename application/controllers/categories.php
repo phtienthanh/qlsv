@@ -9,6 +9,10 @@ class Categories extends MY_Controller {
         
         parent::__construct();
 
+        $this->load->library('form_validation');
+       
+        $this->load->helper('form');
+
         if (!$this->ion_auth->logged_in()) {
             
             redirect('home/login');
@@ -26,10 +30,6 @@ class Categories extends MY_Controller {
             redirect('home/index');
 
         }
-
-         $this->load->library('form_validation');
-       
-        $this->load->helper('form');
         
     }
 

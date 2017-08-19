@@ -8,10 +8,10 @@ class Home extends MY_Controller {
 	    
 	    parent::__construct();	
 
-	    $this->load->library(array('ion_auth','form_validation'));
-       
        	$this->load->helper('form');
 
+	    $this->load->library(array('ion_auth','form_validation'));
+ 
 		$this->load->model('ion_auth_model');
 
 		$this->load->view('home/header',$this->data);
@@ -516,7 +516,6 @@ class Home extends MY_Controller {
 			$this->Msinhvien->update($id,$list_update);
 
 			$this->load->view('home/active');
-
 
 		} else {
 

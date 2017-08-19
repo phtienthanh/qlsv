@@ -12,7 +12,9 @@
 <body>
     <div class="insert">
         <h1>Add new article</h1>
-        <h4><?php echo $slug; ?></h4>
+        <h4><?php if (isset($slug) && count($slug) > 0) {
+            echo  $slug;
+        } ?></h4>
 
         <form class="Form_insert" action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <input type="submit" name="back" value="Back" class="btn btn-warning btn-block btn-large btn-insert">
