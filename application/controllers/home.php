@@ -130,10 +130,8 @@ class Home extends MY_Controller {
 
 					if ($this->Msinhvien->update($id,$list_update)) {
 
-						$notification = "Update success";
+						redirect('home/profile/'.$id);
 
-						$this->data['notification'] = $notification;
-						
 					}
 
 			    }
