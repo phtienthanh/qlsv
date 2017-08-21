@@ -44,7 +44,7 @@
             <?php echo form_error("confirm_password"); ?>
             <br>
             <h3 for="">Avatar</h3>
-            <?php echo $error;?>
+        
             <br>
             <input type="file" name="userfile">
             <br>

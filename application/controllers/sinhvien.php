@@ -100,18 +100,8 @@ class Sinhvien extends MY_Controller {
         $this->load->model('Msinhvien'); 
 		
 		$data = $this->Msinhvien->get_all_sinhvien();
-       
-       	if ($this->input->post("submit")) {
 
-       		foreach ($data as $key => $value) {
-       			
-       			if ($this->input->post('email') == $value['email'] && $value['delete_is'] == 0 )  {
-
-       				$this->form_validation->set_rules('email','Email','required|valid_email|is_unique[student.email]');
-       			
-       			}
-       		
-       		}
+       		$this->form_validation->set_rules('email','Email','required');
 
 	       	$this->form_validation->set_rules('first_name','First name','required');
 
@@ -130,6 +120,18 @@ class Sinhvien extends MY_Controller {
 	       	$this->form_validation->set_rules('confirm_password','Confirm password','required');
 	       	
 	       	$this->form_validation->set_rules('role','Role','required');
+
+	       	if ($this->input->post("submit")) {
+
+       		foreach ($data as $key => $value) {
+       			
+       			if ($this->input->post('email') == $value['email'] && $value['delete_is'] == 0 )  {
+
+       				$this->form_validation->set_rules('email','Email','required|valid_email|is_unique[student.email]');
+       			
+       			}
+       		
+       		}
 
 	       	if ($this->input->post("role") == 'Admin' || $this->input->post("role") == 'User' ) {
     		
@@ -154,12 +156,6 @@ class Sinhvien extends MY_Controller {
 						"active" => 1,
 
 					);
-					
-					if ($list['avatar'] == '') {
-
-						$list['avatar'] = 'doanthi.jpg';
-	    			
-	    			} 
 
 					$config['max_size'] = 20480;
 
@@ -168,12 +164,10 @@ class Sinhvien extends MY_Controller {
 					$config['allowed_types'] = 'gif|jpg|png';
 
 					$this->load->library('upload', $config);
+					
+					if ($list['avatar'] == '') {
 
-					if (!$this->upload->do_upload()) {
-
-						$error = array('error' => $this->upload->display_errors());
-
-					} else {
+						$list['avatar'] = 'doanthi.jpg';
 
 						if ($this->Msinhvien->insert($list)) {
 
@@ -183,15 +177,41 @@ class Sinhvien extends MY_Controller {
 
 							$this->email->send();
 
-							redirect('sinhvien/show');	
+							$error = 'Add new success';
+
+							$this->data['error'] = 	$error;
 					
+						}
+	    			
+	    			} else {
+
+						if (!$this->upload->do_upload()) {
+
+							$error = array('error' => $this->upload->display_errors());
+
 						} else {
 
-							$error =  array('error' => "add fail");
+							if ($this->Msinhvien->insert($list)) {
 
-						} 
-				
-					}
+								$file_data =  $this->upload->data();
+								
+								$data['img'] = base_url().'isset/images'.$file_data['file_name'];	
+
+								$this->email->send();
+
+								$error = 'Add new success';
+
+								$this->data['error'] = 	$error;
+						
+							} else {
+
+								$this->data['error'] =  array('error' => "add fail");
+
+							} 
+					
+						}
+
+	    			}
 	
 				}
 
@@ -207,7 +227,7 @@ class Sinhvien extends MY_Controller {
        			    	
        	}
 	
-        $this->load->view('sinhvien/insert',array('error' => ' '));
+        $this->load->view('sinhvien/insert',$this->data);
    
     }
 
@@ -262,6 +282,12 @@ class Sinhvien extends MY_Controller {
 							"role" => $this->input->post("role"),
 						
 						);
+
+						if ($this->Msinhvien->update($id,$list_update)) {
+							
+							redirect('sinhvien/update/'.$id); 
+
+						}
 		       			
 		       		} else {
 	
@@ -276,69 +302,65 @@ class Sinhvien extends MY_Controller {
 							"role" => $this->input->post("role"),
 						
 						);
+
+						$config['max_size'] = 20480;
 	
-		       		} 
+						$config['upload_path'] = './asset/images/student/';
 	
-	       			$config['max_size'] = 20480;
+						$config['allowed_types'] = 'gif|jpg|png';
 	
-					$config['upload_path'] = './asset/images/student/';
+						$this->load->library('upload', $config);
+
+						if (!$this->upload->do_upload()) {
 	
-					$config['allowed_types'] = 'gif|jpg|png';
+							$this->data['upload'] = array('error' => $this->upload->display_errors());
 	
-					$this->load->library('upload', $config);	
-	
-					if (!$this->upload->do_upload()) {
-	
-						$error = array('error' => $this->upload->display_errors());
-	
-						$this->Msinhvien->update($id,$list_update);
-	
-						redirect('sinhvien/show/'); 
-	
-					} else {
-	
-						if (file_exists("asset/images/student/".$this->data['student']['avatar']) && $this->data['student']['avatar'] != "doanthi.jpg" ) {
+						} else { 
+
+							if (file_exists("asset/images/student/".$this->data['student']['avatar']) && $this->data['student']['avatar'] != "doanthi.jpg" ) {
 						        
-					        if (unlink("asset/images/student/".$this->data['student']['avatar'])) {
-	
-					        	if ( $this->Msinhvien->update($id,$list_update)) {
-	
-					        		if ($this->upload->data()) {
-	
-										$data['img'] = base_url().'/images'.$file_data['file_name'];
-	
-										redirect('sinhvien/update/'.$id); 
-					            
-					            	}
-	
-					        	}				            
-	
-					        } 
+						        if (unlink("asset/images/student/".$this->data['student']['avatar'])) {
+		
+						        	if ( $this->Msinhvien->update($id,$list_update)) {
+		
+						        		if ($this->upload->data()) {
+		
+											$data['img'] = base_url().'/images'.$file_data['file_name'];
+		
+											redirect('sinhvien/update/'.$id); 
+						            
+						            	}
+		
+						        	}				            
+		
+						        } 
 			     			
-			 			} else if (file_exists("asset/images/student/".$this->data['student']['avatar']) && $this->data['student']['avatar'] == "doanthi.jpg" ) {
+				 			} else if (file_exists("asset/images/student/".$this->data['student']['avatar']) && $this->data['student']['avatar'] == "doanthi.jpg" ) {
+		
+				 			 	$this->Msinhvien->update($id,$list_update);
+								
+								redirect('sinhvien/update/'.$id); 
+		
+				 			} else {
+
+				 				$upload_fail = "Update fail";
 	
-			 			 	$this->Msinhvien->update($id,$list_update);
-							
-							redirect('sinhvien/update/'.$id); 
+			 					$this->data['upload_fail'] = $upload_fail;
+
+				 			}
+
+						} 
+		       	
+		       		}
 	
-			 			} else {
+		       	} 
 	
-			 				$upload_fail = "Update fail";
-	
-			 				$this->data['upload_fail'] = $upload_fail;
-	
-			 			}
-	
-					}
-				
-				}
-		         
-	       	} else if ($this->input->post("back")) {
-	
-	       		redirect('sinhvien/show');   
-	       			    
-	       	}
-	      
+			} else if ($this->input->post("back")) {
+		
+		       	redirect('sinhvien/show');   
+		       			    
+			}
+	   		
 	   		$this->load->view("sinhvien/update",$this->data);
 	
 	   	} else {
@@ -346,7 +368,7 @@ class Sinhvien extends MY_Controller {
 	    	return false;
     	
     	}
-	
+
 	}
 
     public function changepass($id) {

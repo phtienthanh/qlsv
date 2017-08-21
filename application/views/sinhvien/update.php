@@ -11,12 +11,19 @@
 </head>
 
 <body>
-<h1 class="title">Update student</h1>
+<h1 class="title">Update student
+<p class="title"> <?php  if (isset($upload['error']) && count($upload['error'])) {
+
+    echo $upload['error'];
+   
+} ?></p></h1>
+
 <p class="title"> <?php  if (isset($upload_fail) && count($upload_fail)) {
 
     echo $upload_fail;
    
 } ?></p>
+
     <div class="insert">
         <form action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
         <input type="submit" name="back" value="Back" class="btn btn-danger btn-block btn-insert" >
