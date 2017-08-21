@@ -181,17 +181,17 @@ class Home extends MY_Controller {
 
 			$this->load->library('upload', $config);
 
-			if (!$this->upload->do_upload()) {
+			if (file_exists("asset/images/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg" ) {
+			        
+		        if (unlink("asset/images/student/".$data['avatar'])) {
 
-				$error = array('error' => $this->upload->display_errors());
-			
-				$this->load->view('home/profile', $error);
+		        	if (!$this->upload->do_upload()) {
 
-			} else {
+						$error = array('error' => $this->upload->display_errors());
+					
+						$this->load->view('home/profile', $error);
 
-				if (file_exists("asset/images/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg" ) {
-				        
-			        if (unlink("asset/images/student/".$data['avatar'])) {
+					} else {
 
 			            $this->Msinhvien->update($id,$list_update);
 
@@ -201,17 +201,17 @@ class Home extends MY_Controller {
 
 						redirect('home/profile/'.$id); 
 			        
-			        } 
-	     			
-	 			} else if (file_exists("asset/images/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg" ) {
+		        	} 
 
-	 				$this->Msinhvien->update($id,$list_update);  
+		    	}
+     			
+ 			} else if (file_exists("asset/images/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg" ) {
 
-					redirect('home/profile/'.$id); 
+ 				$this->Msinhvien->update($id,$list_update);  
 
-	 			}
-			
-			}
+				redirect('home/profile/'.$id); 
+
+ 			}
 
 		} else {
 

@@ -53,7 +53,7 @@ class article extends MY_Controller {
         		
         	}  else {
 
-        		$newArray[$listCgValue['id']] = "Default";
+        		$newArray[$listCgValue['id']] = "All";
         	}
 
         }
@@ -321,17 +321,17 @@ class article extends MY_Controller {
 
 			$this->load->library('upload', $config);				
 
-			if (!$this->upload->do_upload()) {
+			if (file_exists("asset/images/article/".$this->data['student']['image']) && $this->data['student']['image'] != "doanthi.jpg" ) {
+				        
+		        if (unlink("asset/images/article/".$this->data['student']['image'])) {
 
-				$error = array('error' => $this->upload->display_errors());
+					if (!$this->upload->do_upload()) {
 
-				$this->load->view('sinhvien/insert', $error);
+						$error = array('error' => $this->upload->display_errors());
 
-			} else {
+						redirect('article/update/'.$this->data['student']['slug']); 
 
-				if (file_exists("asset/images/article/".$this->data['student']['image']) && $this->data['student']['image'] != "doanthi.jpg" ) {
-					        
-			        if (unlink("asset/images/article/".$this->data['student']['image'])) {
+					} else {
 
 			        	if ( $this->Marticle->update($id,$list_update)) {
 
@@ -345,17 +345,17 @@ class article extends MY_Controller {
 
 			        	}				            
 
-			        } 
-		     			
-	 			} else if (file_exists("asset/images/student/".$this->data['student']['image']) && $this->data['student']['img'] == "doanthi.jpg" ) {
+		        	} 
 
-	 			 	$this->Msinhvien->update($id,$list_update);
-					
-					redirect('article/update/'.$this->data['student']['slug']); 
+		   	 	}
+	     			
+ 			} else if (file_exists("asset/images/student/".$this->data['student']['image']) && $this->data['student']['img'] == "doanthi.jpg" ) {
 
-	 			}
-					
-			}
+ 			 	$this->Msinhvien->update($id,$list_update);
+				
+				redirect('article/update/'.$this->data['student']['slug']); 
+
+ 			}
 
 		} else {
 
@@ -387,7 +387,7 @@ class article extends MY_Controller {
         		
         	}  else {
 
-        		$newArray[$listCgValue['id']] = "Default";
+        		$newArray[$listCgValue['id']] = "All";
         	}
 
         }

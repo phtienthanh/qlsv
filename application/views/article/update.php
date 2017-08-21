@@ -115,20 +115,10 @@
                                             <textarea rows="4"  cols="85"  class="form-control form-control-line" name="content" > <?php echo  $student["content"]; ?></textarea>
                                         </div>
                                     </div>
-                                    <!--  <div class="form-group">
-                                        <label class="col-md-12">Password</label>
-                                        <div class="col-md-12">
-                                            <input type="password" name="password" value="<?php echo $password; ?>" class="form-control form-control-line">
-                                        </div>
-                                    </div> -->
                                     <div class="form-group">
                                         <label class="col-md-12">Categories</label>
                                         <div class="col-md-12">
                                             <select name="categories" class="form-control form-control-line cate" >
-
-                                            <option value="1" selected>
-                                               --- Select categories ---
-                                            </option>
 
                                             <?php 
                                                     

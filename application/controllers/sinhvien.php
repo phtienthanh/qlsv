@@ -212,33 +212,31 @@ class Sinhvien extends MY_Controller {
     }
 
     public function update($id) {
-
+    	
     	if (isset($id) && count($id) > 0) {
-
+	    
 	    	if ($this->data['first_login'] == null) {
 					
 				redirect('sinhvien/changepass/'.$this->data['id']);
-
 			}
-
+		
 			if ($this->data['role'] == 'User') {
 	            
 	            redirect('home/index');
-
 	        }
 	        
 	    	if ($this->input->post("change_password")) {
-
+	    
 	       		header('Location:'.base_url("/sinhvien/changepass/$id"));   
 	       	
 	       	}
-
+	    
 	       	$this->load->model('Msinhvien');
-
+	    
 	      	$this->data['student'] = $this->Msinhvien->get_id_sinhvien($id); 
 	      	
 	      	if ($this->input->post("insert")) {
-
+		
 		       	$this->form_validation->set_rules('first_name','First name','required');
 	       	
 		       	$this->form_validation->set_rules('last_name','Last name','required');
@@ -246,19 +244,19 @@ class Sinhvien extends MY_Controller {
 		       	$this->form_validation->set_rules('email','Email','required');
 		       	
 		       	$this->form_validation->set_rules('role','Role','required');
-
+	
 		       	$this->form_validation->set_message('required','%s không được bỏ trống');
 	    
 		       	if ($this->form_validation->run()) {
-
+	
 		       		if ($_FILES['userfile']['name'] == '') {
-
+	
 		       			$list_update = array(
-
+	
 							"first_name" => $this->input->post("first_name"),
 							
 							"last_name" => $this->input->post("last_name"),
-
+	
 							"avatar" => $this->input->post("img_name"),
 							
 							"role" => $this->input->post("role"),
@@ -266,9 +264,9 @@ class Sinhvien extends MY_Controller {
 						);
 		       			
 		       		} else {
-
+	
 		       			$list_update = array(
-
+	
 							"first_name" => $this->input->post("first_name"),
 							
 							"last_name" => $this->input->post("last_name"),
@@ -278,78 +276,77 @@ class Sinhvien extends MY_Controller {
 							"role" => $this->input->post("role"),
 						
 						);
-
+	
 		       		} 
-
+	
 	       			$config['max_size'] = 20480;
-
+	
 					$config['upload_path'] = './asset/images/student/';
-
+	
 					$config['allowed_types'] = 'gif|jpg|png';
-
+	
 					$this->load->library('upload', $config);	
-
+	
 					if (!$this->upload->do_upload()) {
-
+	
 						$error = array('error' => $this->upload->display_errors());
-
+	
 						$this->Msinhvien->update($id,$list_update);
-
+	
 						redirect('sinhvien/show/'); 
-
+	
 					} else {
-
+	
 						if (file_exists("asset/images/student/".$this->data['student']['avatar']) && $this->data['student']['avatar'] != "doanthi.jpg" ) {
 						        
 					        if (unlink("asset/images/student/".$this->data['student']['avatar'])) {
-
-
+	
 					        	if ( $this->Msinhvien->update($id,$list_update)) {
-
+	
 					        		if ($this->upload->data()) {
-
+	
 										$data['img'] = base_url().'/images'.$file_data['file_name'];
-
+	
 										redirect('sinhvien/update/'.$id); 
 					            
 					            	}
-
+	
 					        	}				            
-
+	
 					        } 
 			     			
 			 			} else if (file_exists("asset/images/student/".$this->data['student']['avatar']) && $this->data['student']['avatar'] == "doanthi.jpg" ) {
-
+	
 			 			 	$this->Msinhvien->update($id,$list_update);
 							
 							redirect('sinhvien/update/'.$id); 
-
+	
 			 			} else {
-
+	
 			 				$upload_fail = "Update fail";
-
+	
 			 				$this->data['upload_fail'] = $upload_fail;
-
+	
 			 			}
-
+	
 					}
 				
 				}
 		         
 	       	} else if ($this->input->post("back")) {
-
+	
 	       		redirect('sinhvien/show');   
 	       			    
 	       	}
 	      
 	   		$this->load->view("sinhvien/update",$this->data);
-
+	
 	   	} else {
 
 	    	return false;
-
+    	
     	}
-
+	
 	}
 
     public function changepass($id) {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2017 at 02:10 AM
+-- Generation Time: Aug 21, 2017 at 08:25 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -50,6 +50,13 @@ CREATE TABLE `categories` (
   `role` varchar(155) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `delete_is`, `role`) VALUES
+(1, 'All', 0, '0');
+
 -- --------------------------------------------------------
 
 --
@@ -75,7 +82,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `first_name`, `last_name`, `email`, `password`, `avatar`, `role`, `delete_is`, `token`, `active`, `first_login`) VALUES
-(247, 'daon1123212121', 'thi2123123', '123123@gmail.com   ', '1231234', 'doanthi.jpg', 'Admin', 0, 6500, 1, 1);
+(247, 'daon1123212121', 'thi212312312', '123123@gmail.com   ', '1231234', 'doanthi.jpg', 'Admin', 0, 6500, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -107,17 +114,17 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT for table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=295;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=300;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

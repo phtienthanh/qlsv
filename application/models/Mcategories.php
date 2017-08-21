@@ -31,6 +31,26 @@ class Mcategories extends CI_Model {
         }
         
     }
+
+    public function get_exist_categories($name) {
+
+        if (isset($name) && count($name) > 0) {
+           
+        $this->load->database();
+
+        $this->db->where("name",$name);
+
+        $this->db->where("delete_is",0);
+
+        return $this->db->get($this->table)->row_array();
+
+        } else {
+
+            return false;
+
+        }
+        
+    }
     
     public function insert($data) {
 

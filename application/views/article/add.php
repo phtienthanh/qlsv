@@ -41,9 +41,6 @@
             <br>
             <h3 for="">Categories</h3>
             <select name="categories" class="form-control form-control-line cate">
-             <option selected>
-                   --- Select categories ---
-                </option>
 
                 <?php 
                 

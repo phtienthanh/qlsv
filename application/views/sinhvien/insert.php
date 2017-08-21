@@ -12,7 +12,9 @@
 <body>
     <div class="insert">
         <h1>Add new student</h1>
-        
+        <h3><?php if (isset($error) && count($error) > 0 ) {
+            echo $error;
+        } ?></h3>
         <form action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <input type="submit" name="back" value="Back" class="btn btn-danger btn-block  btn-insert">
             <br>
