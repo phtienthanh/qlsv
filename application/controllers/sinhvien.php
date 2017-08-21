@@ -175,24 +175,24 @@ class Sinhvien extends MY_Controller {
 
 					} else {
 
-						$file_data =  $this->upload->data();
-						
-						$data['img'] = base_url().'isset/images'.$file_data['file_name'];	
+						if ($this->Msinhvien->insert($list)) {
+
+							$file_data =  $this->upload->data();
+							
+							$data['img'] = base_url().'isset/images'.$file_data['file_name'];	
+
+							$this->email->send();
+
+							redirect('sinhvien/show');	
+					
+						} else {
+
+							$error =  array('error' => "add fail");
+
+						} 
 				
 					}
-
-					if ($this->Msinhvien->insert($list)) {
-
-						$this->email->send();
-
-						redirect('sinhvien/show');	
-				
-					} else {
-
-						echo "Thêm thất bại";
-
-					}	
-
+	
 				}
 
 			} else {
@@ -323,6 +323,12 @@ class Sinhvien extends MY_Controller {
 			 			 	$this->Msinhvien->update($id,$list_update);
 							
 							redirect('sinhvien/update/'.$id); 
+
+			 			} else {
+
+			 				$upload_fail = "Update fail";
+
+			 				$this->data['upload_fail'] = $upload_fail;
 
 			 			}
 
