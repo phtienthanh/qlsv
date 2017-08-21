@@ -205,7 +205,7 @@ class Home extends MY_Controller {
 	     			
 	 			} else if (file_exists("asset/images/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg" ) {
 
-	 				 $this->Msinhvien->update($id,$list_update);  
+	 				$this->Msinhvien->update($id,$list_update);  
 
 					redirect('home/profile/'.$id); 
 
