@@ -161,6 +161,7 @@ class Home extends MY_Controller {
 	   			$list_update = array(
 
 					"avatar" => $this->input->post("img_name"),
+					
 				);
 
 				redirect('home/profile/'.$id); 
