@@ -15,7 +15,12 @@
         <h4><?php if (isset($slug) && count($slug) > 0) {
             echo  $slug;
         } ?></h4>
-
+         <h4><?php if (isset($success) && count($success) > 0) {
+            echo  $success;
+        } ?></h4>
+        <h4><?php if (isset($error['error']) && count($error['error']) > 0) {
+            echo  $error['error'];
+        } ?></h4>
         <form class="Form_insert" action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <input type="submit" name="back" value="Back" class="btn btn-warning btn-block btn-large btn-insert">
             <br>

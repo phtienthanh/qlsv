@@ -285,7 +285,7 @@ class Sinhvien extends MY_Controller {
 
 						if ($this->Msinhvien->update($id,$list_update)) {
 							
-							redirect('sinhvien/update/'.$id); 
+							redirect('sinhvien/show'); 
 
 						}
 		       			
@@ -327,7 +327,7 @@ class Sinhvien extends MY_Controller {
 		
 											$data['img'] = base_url().'/images'.$file_data['file_name'];
 		
-											redirect('sinhvien/update/'.$id); 
+											redirect('sinhvien/show'); 
 						            
 						            	}
 		
@@ -339,7 +339,7 @@ class Sinhvien extends MY_Controller {
 		
 				 			 	$this->Msinhvien->update($id,$list_update);
 								
-								redirect('sinhvien/update/'.$id); 
+								redirect('sinhvien/show'); 
 		
 				 			} else {
 

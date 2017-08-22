@@ -144,8 +144,6 @@ class article extends MY_Controller {
 	    			
 	    			} 
 
-	    			$this->Marticle->insert($list);
-
 	    			$config['max_size'] = 20480;
 
 					$config['upload_path'] = './asset/images/article/';
@@ -156,17 +154,29 @@ class article extends MY_Controller {
 
 					if (!$this->upload->do_upload()) {
 
-						$error = array('error' => $this->upload->display_errors());
+						$this->data['error'] = array('error' => $this->upload->display_errors());
 
 					} else {
 
-						$file_data =  $this->upload->data();
+						if ($this->Marticle->insert($list)) {
+							
+							$file_data =  $this->upload->data();
 						
-						$data['img'] = base_url().'/images/article'.$file_data['file_name'];
+							$data['img'] = base_url().'/images/article'.$file_data['file_name'];
+
+							$success = 'Add new success';
+
+							$this->data['success'] = $success;
+
+						} else {
+
+							$add_fail = 'Add new success';
+
+							$this->data['success'] = $add_fail;
+
+						}
 
 					}
-
-				redirect('article/home');
 
 	    		}
 
@@ -312,27 +322,25 @@ class article extends MY_Controller {
 				);
 
 	   		}
-					
-			$this->Marticle->update($id,$list_update);
 
 			$config['upload_path'] = './asset/images/article/';
 
 			$config['allowed_types'] = 'gif|jpg|png';
 
-			$this->load->library('upload', $config);				
+			$this->load->library('upload', $config);	
 
-			if (file_exists("asset/images/article/".$this->data['student']['image']) && $this->data['student']['image'] != "doanthi.jpg" ) {
-				        
-		        if (unlink("asset/images/article/".$this->data['student']['image'])) {
+			if (!$this->upload->do_upload()) {
 
-					if (!$this->upload->do_upload()) {
+				$error = array('error' => $this->upload->display_errors());
 
-						$error = array('error' => $this->upload->display_errors());
+				redirect('article/upload_fail'); 
 
-						redirect('article/update/'.$this->data['student']['slug']); 
+			} else {			
 
-					} else {
-
+				if (file_exists("asset/images/article/".$this->data['student']['image']) && $this->data['student']['image'] != "doanthi.jpg" ) {
+					        
+			        if (unlink("asset/images/article/".$this->data['student']['image'])) {
+					
 			        	if ( $this->Marticle->update($id,$list_update)) {
 
 			        		if ($this->upload->data()) {
@@ -347,7 +355,8 @@ class article extends MY_Controller {
 
 		        	} 
 
-		   	 	}
+		   	 	
+
 	     			
  			} else if (file_exists("asset/images/student/".$this->data['student']['image']) && $this->data['student']['img'] == "doanthi.jpg" ) {
 
@@ -356,6 +365,7 @@ class article extends MY_Controller {
 				redirect('article/update/'.$this->data['student']['slug']); 
 
  			}
+ 		}
 
 		} else {
 
@@ -377,28 +387,28 @@ class article extends MY_Controller {
 
 	      	$listCg = $this->Mcategories->get_all_categories();
 
-        $newArray = [];
-        
-        foreach ($listCg as $listCgKey => $listCgValue) {
+        	$newArray = [];
+	        
+	        foreach ($listCg as $listCgKey => $listCgValue) {
 
-        	if ($listCgValue['delete_is'] == 0) {
+	        	if ($listCgValue['delete_is'] == 0) {
 
-        		$newArray[$listCgValue['id']] = $listCgValue['name'];
-        		
-        	}  else {
+	        		$newArray[$listCgValue['id']] = $listCgValue['name'];
+	        		
+	        	}  else {
 
-        		$newArray[$listCgValue['id']] = "All";
-        	}
+	        		$newArray[$listCgValue['id']] = "All";
+	        	}
 
-        }
+	        }
 
-        $this->data['newArray'] = $newArray;
+	        $this->data['newArray'] = $newArray;
 
-		$this->data['categories'] =  $listCg;
+			$this->data['categories'] =  $listCg;
 
-		$this->data['article'] = $this->Marticle->get_all_article();
+			$this->data['article'] = $this->Marticle->get_all_article();
 
-    	$this->load->view("article/preview",$this->data);
+	    	$this->load->view("article/preview",$this->data);
 
     	} else {
 
@@ -439,6 +449,12 @@ class article extends MY_Controller {
      		}
 	
 		}		
+
+    }
+
+    public function upload_fail(){
+
+    	$this->load->view('article/upload_fail');
 
     }	
    
