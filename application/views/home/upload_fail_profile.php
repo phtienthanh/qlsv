@@ -14,7 +14,7 @@
 
         <h3 >Please click on the button to upload again</h3>
 
-         <span> <a class="btn btn-default btn-register" href="<?php echo base_url();?>article/home/<?php echo $slug; ?>" title="">Upload again</a></span>
+         <span> <a class="btn btn-default btn-register" href="<?php echo base_url();?>home/profile/<?php echo $id; ?>" title="">Upload again</a></span>
 
     <script src="<?php echo base_url();?>asset/js/index.js"></script>
     <script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>

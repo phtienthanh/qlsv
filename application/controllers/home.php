@@ -162,16 +162,10 @@ class Home extends MY_Controller {
 
 					"avatar" => $this->input->post("img_name"),
 				);
+
+				redirect('home/profile/'.$id); 
 	   			
-	   		} else {
-
-	   			$list_update = array(
-
-					"avatar" => $_FILES['userfile']['name'],
-				
-				);
-
-	   		}
+	   		} 
 				
 			$config['max_size'] = 20480;
 
@@ -187,11 +181,23 @@ class Home extends MY_Controller {
 
 		        	if (!$this->upload->do_upload()) {
 
-						$error = array('error' => $this->upload->display_errors());
+						$list_update = array(
+
+							"avatar" => 'doanthi.jpg',
+
+						);
+
+						$this->Msinhvien->update($id,$list_update);
 					
-						$this->load->view('home/profile', $error);
+						redirect('home/upload_fail/'.$id);
 
 					} else {
+
+						$list_update = array(
+
+							"avatar" => $_FILES['userfile']['name'],
+				
+						);
 
 			            $this->Msinhvien->update($id,$list_update);
 
@@ -207,10 +213,20 @@ class Home extends MY_Controller {
      			
  			} else if (file_exists("asset/images/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg" ) {
 
+ 				$list_update = array(
+
+					"avatar" => $_FILES['userfile']['name'],
+
+				);
+
  				$this->Msinhvien->update($id,$list_update);  
 
 				redirect('home/profile/'.$id); 
 
+ 			} else {
+				
+				redirect('home/upload_fail/'.$id); 
+ 			
  			}
 
 		} else {
@@ -490,6 +506,12 @@ class Home extends MY_Controller {
 	public function success() {
 
 		$this->load->view('home/success');
+	
+	}
+
+	public function upload_fail($id) {
+
+		$this->load->view('home/upload_fail_profile',$id);
 	
 	}
 

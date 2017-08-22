@@ -355,9 +355,7 @@ class article extends MY_Controller {
 
 		        	} 
 
-		   	 	
-
-	     			
+		     			
  			} else if (file_exists("asset/images/student/".$this->data['student']['image']) && $this->data['student']['img'] == "doanthi.jpg" ) {
 
  			 	$this->Msinhvien->update($id,$list_update);
