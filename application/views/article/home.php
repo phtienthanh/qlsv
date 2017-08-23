@@ -35,7 +35,7 @@ if(isset($article) && count($article)) {
             <div class="col-md-1 checkbox">
                 <input type="checkbox" name="checkboxlist[]" value="<?php echo $val['id'];?>">
             </div>
-            <div class="col-md-3"> <img class="avarta_1" src="<?php echo base_url();?>asset/images/article/<?php echo $val['image']; ?>" width="90%"></div>
+            <div class="col-md-3"> <img class="avarta_1" src="<?php echo base_url();?>image_upload/article/<?php echo $val['image']; ?>" width="90%"></div>
             <div class="col-md-5">
                 <p class="title">
                     <?php echo $val['title']; ?>

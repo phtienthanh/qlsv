@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css">
 </head>
 
+<?php var_dump($id); ?>
 <body class="title">
         <h1 >Upload fail</h1>
 
         <h3 >Please click on the button to upload again</h3>
 
-         <span> <a class="btn btn-default btn-register" href="<?php echo base_url();?>article/home" title="">Upload again</a></span>
+         <span> <a class="btn btn-default btn-register" href="<?php echo base_url();?>article/update/<?php echo $slug; ?>" title="">Upload again</a></span>
 
     <script src="<?php echo base_url();?>asset/js/index.js"></script>
     <script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>

@@ -213,6 +213,36 @@ class Msinhvien extends CI_Model {
 
     }
 
+    public function get_exist_email($email) {
+
+        if (isset($email) && count($email) > 0) {
+
+            $this->load->database();
+
+            $this->db->where("email",$email);
+
+            $this->db->where("delete_is",0);
+
+            $query = $this->db->get($this->table);         
+        
+            if ($query) {
+             
+              return true;
+            
+            } else {
+                     
+                return false;
+                    
+            }
+
+        } else {
+                 
+            return false;
+                
+        }
+
+    }
+
 }
 
 ?>

@@ -15,6 +15,10 @@
         <h3><?php if (isset($error) && count($error) > 0 ) {
             echo $error;
         } ?></h3>
+
+        <h3><?php if (isset($succes) && count($succes) > 0 ) {
+            echo $succes;
+        } ?></h3>
         <form action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <input type="submit" name="back" value="Back" class="btn btn-danger btn-block  btn-insert">
             <br>

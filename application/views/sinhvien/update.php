@@ -44,7 +44,7 @@
         <br>
         <label for="">Avatar</label>
         <br>
-        <img src="<?php echo base_url();?>asset/images/student/<?php echo $student["avatar"];?>" width="150">
+        <img src="<?php echo base_url();?>image_upload/student/<?php echo $student["avatar"];?>" width="150">
         <input type="text" name="img_name" class="form-control hinden"  value="<?php echo $student["avatar"]; ?>"/>
         <input type="file" name="userfile"  value="<?php echo $student["avatar"]; ?>"/>
         <br>

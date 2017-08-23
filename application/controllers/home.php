@@ -161,7 +161,7 @@ class Home extends MY_Controller {
 	   			$list_update = array(
 
 					"avatar" => $this->input->post("img_name"),
-					
+
 				);
 
 				redirect('home/profile/'.$id); 
@@ -170,15 +170,15 @@ class Home extends MY_Controller {
 				
 			$config['max_size'] = 20480;
 
-			$config['upload_path'] = './asset/images/student/';
+			$config['upload_path'] = './image_upload/student/';
 
 			$config['allowed_types'] = 'gif|jpg|png';
 
 			$this->load->library('upload', $config);
 
-			if (file_exists("asset/images/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg" ) {
+			if (file_exists("image_upload/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg" ) {
 			        
-		        if (unlink("asset/images/student/".$data['avatar'])) {
+		        if (unlink("image_upload/student/".$data['avatar'])) {
 
 		        	if (!$this->upload->do_upload()) {
 
@@ -204,7 +204,7 @@ class Home extends MY_Controller {
 
 			            $file_data =  $this->upload->data();
 				
-						$data['img'] = base_url().'images/student/'.$file_data['file_name'];
+						$data['img'] = base_url().'image_upload/student/'.$file_data['file_name'];
 
 						redirect('home/profile/'.$id); 
 			        
@@ -212,7 +212,7 @@ class Home extends MY_Controller {
 
 		    	}
      			
- 			} else if (file_exists("asset/images/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg" ) {
+ 			} else if (file_exists("image_upload/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg" ) {
 
  				$list_update = array(
 

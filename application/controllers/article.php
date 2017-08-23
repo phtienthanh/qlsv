@@ -146,7 +146,7 @@ class article extends MY_Controller {
 
 	    			$config['max_size'] = 20480;
 
-					$config['upload_path'] = './asset/images/article/';
+					$config['upload_path'] = './image_upload/article/';
 
 					$config['allowed_types'] = 'gif|jpg|png';
 
@@ -162,7 +162,7 @@ class article extends MY_Controller {
 							
 							$file_data =  $this->upload->data();
 						
-							$data['img'] = base_url().'/images/article'.$file_data['file_name'];
+							$data['img'] = base_url().'/image_upload/article'.$file_data['file_name'];
 
 							$success = 'Add new success';
 
@@ -296,76 +296,83 @@ class article extends MY_Controller {
 
 	     	$this->load->model('Marticle');
 
-	      	$this->data['student'] = $this->Marticle->get_article($id); 		
-		       		
-	   		if ($_FILES['userfile']['name'] == '' && $this->input->post("img_name") == 'doanthi.jpg' ) {
+	      	$this->data['student'] = $this->Marticle->get_article($id);
 
-	   			$list_update = array(
-
-					"image" => $this->input->post("img_name"),
-
-				);
-	   			
-	   		} else if ($_FILES['userfile']['name'] == '' && $this->input->post("img_name") != 'doanthi.jpg' ) {
-
-	   			$list_update = array(
-
-					"image" => $this->input->post("img_name"),
-
-				);
-
-	   		} else {
-
-	   			$list_update = array(
-
-					"image" => $_FILES['userfile']['name'],
-				
-				);
-
-	   		}
-
-			$config['upload_path'] = './asset/images/article/';
-
-			$config['allowed_types'] = 'gif|jpg|png';
-
-			$this->load->library('upload', $config);	
-
-			if (!$this->upload->do_upload()) {
-
-				$error = array('error' => $this->upload->display_errors());
-
-				redirect('article/upload_fail'); 
-
-			} else {			
-
-				if (file_exists("asset/images/article/".$this->data['student']['image']) && $this->data['student']['image'] != "doanthi.jpg" ) {
-					        
-			        if (unlink("asset/images/article/".$this->data['student']['image'])) {
-					
-			        	if ( $this->Marticle->update($id,$list_update)) {
-
-			        		if ($this->upload->data()) {
-
-								$data['img'] = base_url().'/images'.$file_data['file_name'];
-
-								redirect('article/update/'.$this->data['student']['slug']); 
-			            
-			            	}
-
-			        	}				            
-
-		        	} 
-
-		     			
-	 			} else if (file_exists("asset/images/student/".$this->data['student']['image']) && $this->data['student']['img'] == "doanthi.jpg" ) {
-
-	 			 	$this->Msinhvien->update($id,$list_update);
+	      	if ($_FILES['userfile']['name'] == '') {
 					
 					redirect('article/update/'.$this->data['student']['slug']); 
 
-	 			}
+			}	
 
- 			}
+			$config['upload_path'] = './image_upload/article/';
+
+			$config['allowed_types'] = 'gif|jpg|png';
+
+			$this->load->library('upload', $config);
+
+			if (file_exists("image_upload/article/".$this->data['student']['image'])) {
+				
+				if ($this->data['student']['image'] != "doanthi.jpg" ) {
+
+					unlink("image_upload/article/".$this->data['student']['image']);
+
+				}
+
+				if (!$this->upload->do_upload()) {
+
+					$list_update = array(
+
+						"image" =>'doanthi.jpg',
+
+					);
+
+					$this->Marticle->update($id,$list_update);
+
+					redirect('article/upload_fail/'.$this->data['student']['slug']); 
+
+				} else {	
+
+		   			$list_update = array(
+
+						"image" =>  $_FILES['userfile']['name'],
+
+					);
+
+					$this->Marticle->update($id,$list_update);
+
+					redirect('article/update/'.$this->data['student']['slug']); 
+
+					}
+
+			} else {
+
+				if (!$this->upload->do_upload()) {
+
+					$list_update = array(
+
+						"image" =>'doanthi.jpg',
+
+					);
+
+					$this->Marticle->update($id,$list_update);
+
+					redirect('article/upload_fail/'.$this->data['student']['slug']); 
+
+				} else {
+
+					$list_update = array(
+
+						"image" =>  $_FILES['userfile']['name'],
+
+					);
+
+					$this->Marticle->update($id,$list_update);
+
+					redirect('article/update/'.$this->data['student']['slug']); 
+
+				}
+
+			}
 
 		} else {
 
@@ -434,15 +441,15 @@ class article extends MY_Controller {
 				
 			);	
 
-			if (file_exists("asset/images/article/".$data['image']) && $data['image'] != "doanthi.jpg" ) {
+			if (file_exists("image_upload/article/".$data['image']) && $data['image'] != "doanthi.jpg" ) {
 			        
-		        if(unlink("asset/images/article/".$data['image'])) {
+		        if(unlink("image_upload/article/".$data['image'])) {
 
 		            $this->Marticle->delete_checkbox($value,$list_update);  
 		        
 		        }
      			
-     		} else if (file_exists("asset/images/article/".$data['image']) && $data['image'] == "doanthi.jpg" ){
+     		} else if (file_exists("image_upload/article/".$data['image']) && $data['image'] == "doanthi.jpg" ){
 
      			$this->Marticle->delete_checkbox($value,$list_update);  
 
@@ -452,9 +459,10 @@ class article extends MY_Controller {
 
     }
 
-    public function upload_fail(){
+    public function upload_fail($slug){
 
-    	$this->load->view('article/upload_fail');
+    	$this->data['slug'] = $slug;
+    	$this->load->view('article/upload_fail',$this->data);
 
     }	
    

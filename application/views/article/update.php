@@ -75,7 +75,7 @@
                         <div class="card">
                             <div class="card-block">
                                 <form action="<?php echo base_url();?>article/upload/<?php echo  $student["id"]; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-                                    <center class="m-t-30"> <img src="<?php echo base_url();?>asset/images/article/<?php echo $student["image"]; ?>"  width="150" />
+                                    <center class="m-t-30"> <img src="<?php echo base_url();?>image_upload/article/<?php echo $student["image"]; ?>"  width="150" />
                                         <input type="file" name="userfile" class="btn">
                                         <input type="text" class="hinden" name="img_name" value="<?php echo $student["image"]; ?>">
                                         <input type="submit" name="submit" value="upload" class="btn btn-success">
@@ -111,8 +111,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="example-email" class="col-md-12">Content</label>
-                                        <div class="col-md-12">
-                                            <textarea rows="4"  cols="85"  class="form-control form-control-line" name="content" > <?php echo  $student["content"]; ?></textarea>
+                                        <div class="col-md-12"><textarea rows="4" cols="85" class="form-control form-control-line" name="content"><?php echo $student["content"];?></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">

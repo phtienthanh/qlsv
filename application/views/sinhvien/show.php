@@ -60,7 +60,7 @@
                     <?php echo $val['email']; ?>
                 </td>
                 <td>
-                    <img src="<?php echo base_url();?>asset/images/student/<?php echo $val['avatar']; ?>" height="75px">
+                    <img src="<?php echo base_url();?>image_upload/student/<?php echo $val['avatar']; ?>" height="75px">
                 </td>
                 <td>
                     <?php echo $val['role']; ?>

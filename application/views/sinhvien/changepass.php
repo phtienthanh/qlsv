@@ -25,7 +25,7 @@
 } ?></h3>
     <div class="insert">
         <form class="login wrapper" action="" method="POST">
-            <input type="submit"   class="btn btn-warning" name="back" value="Back" class="color_input">
+            <span > <a href="<?php echo base_url('sinhvien/show') ?>" title="" class="btn btn-primary">Back</a></span>
             <br>
             <label for="">Current password</label>
             <br>
