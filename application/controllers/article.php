@@ -310,39 +310,9 @@ class article extends MY_Controller {
 
 			$this->load->library('upload', $config);
 
-			if (file_exists("image_upload/article/".$this->data['student']['image'])) {
-				
-				if ($this->data['student']['image'] != "doanthi.jpg" ) {
+			if ( $_FILES['userfile']['name'] == $this->input->post('img_name')){
 
-					unlink("image_upload/article/".$this->data['student']['image']);
-
-				}
-
-				if (!$this->upload->do_upload()) {
-
-					$list_update = array(
-
-						"image" =>'doanthi.jpg',
-
-					);
-
-					$this->Marticle->update($id,$list_update);
-
-					redirect('article/upload_fail/'.$this->data['student']['slug']); 
-
-				} else {	
-
-		   			$list_update = array(
-
-						"image" =>  $_FILES['userfile']['name'],
-
-					);
-
-					$this->Marticle->update($id,$list_update);
-
-					redirect('article/update/'.$this->data['student']['slug']); 
-
-					}
+				redirect('article/update/'.$this->data['student']['slug']); 
 
 			} else {
 
@@ -350,7 +320,7 @@ class article extends MY_Controller {
 
 					$list_update = array(
 
-						"image" =>'doanthi.jpg',
+						"image" =>$this->input->post('img_name'),
 
 					);
 
@@ -360,6 +330,18 @@ class article extends MY_Controller {
 
 				} else {
 
+
+
+					if (file_exists("image_upload/article/".$this->data['student']['image'])) {
+				
+						if ($this->data['student']['image'] != "doanthi.jpg" ) {
+
+							unlink("image_upload/article/".$this->data['student']['image']);
+
+						}	
+
+					}
+
 					$list_update = array(
 
 						"image" =>  $_FILES['userfile']['name'],
@@ -371,7 +353,6 @@ class article extends MY_Controller {
 					redirect('article/update/'.$this->data['student']['slug']); 
 
 				}
-
 			}
 
 		} else {

@@ -134,7 +134,7 @@
                                             <input type="submit" name="submit" class="btn btn-success" value="Update" >
                                         </div>
                                         <div class="col-sm-3 btn-form">
-                                            <span><a class="btn btn-success" href="<?php echo base_url();?>sinhvien/changepass/<?php echo $student["id"];?>" title=""> Change password</a></span> 
+                                            <span><a class="btn btn-success" href="<?php echo base_url();?>home/changepass_profile/<?php echo $student["id"];?>" title=""> Change password</a></span> 
 
                                         </div>
                                     </div>

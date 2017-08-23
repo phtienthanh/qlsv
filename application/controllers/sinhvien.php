@@ -195,7 +195,7 @@ class Sinhvien extends MY_Controller {
 							
 							"password" => $this->input->post("password"),
 							
-							"avatar" =>	'doanthi.jpg',
+							"avatar" =>	$_FILES['userfile']['name'],
 							
 							"role" => $this->input->post("role"),
 
@@ -310,14 +310,12 @@ class Sinhvien extends MY_Controller {
 					$config['allowed_types'] = 'gif|jpg|png';
 
 					$this->load->library('upload', $config);
-		       			
-					if (file_exists("image_upload/student/".$this->data['student']['avatar'])) {
 
-						if ($this->data['student']['avatar'] != "doanthi.jpg") {
-							
-							unlink("image_upload/student/".$this->data['student']['avatar']);
+					if ( $_FILES['userfile']['name'] == $this->input->post('img_name')){
 
-						}
+						redirect('sinhvien/update/'.$id);
+
+					} else {
 
 						if (!$this->upload->do_upload()) {
 
@@ -327,7 +325,7 @@ class Sinhvien extends MY_Controller {
 								
 								"last_name" => $this->input->post("last_name"),
 		
-								"avatar" => 'doanthi.jpg',
+								"avatar" => $this->input->post("img_name"),
 								
 								"role" => $this->input->post("role"),
 							
@@ -338,6 +336,16 @@ class Sinhvien extends MY_Controller {
 							redirect('sinhvien/upload_fail/'.$id);
 
 						} else { 
+		       			
+							if (file_exists("image_upload/student/".$this->data['student']['avatar'])) {
+
+								if ($this->data['student']['avatar'] != "doanthi.jpg") {
+									
+									unlink("image_upload/student/".$this->data['student']['avatar']);
+
+								}
+
+							}
 
 							$list_update = array(
 		
@@ -365,25 +373,7 @@ class Sinhvien extends MY_Controller {
 
 			       		}
 
-		 			} else {
-
-		 				$list_update = array(
-			
-							"first_name" => $this->input->post("first_name"),
-							
-							"last_name" => $this->input->post("last_name"),
-							
-							"avatar" => 'doanthi.jpg',
-							
-							"role" => $this->input->post("role"),
-						
-						);
-
-		 			 	$this->Msinhvien->update($id,$list_update);
-
-						redirect('sinhvien/upload_fail/'.$id);
-
-		 			}
+			       	}
 
 				} 
 	
@@ -402,6 +392,7 @@ class Sinhvien extends MY_Controller {
     	}
 
 	}
+
 
 
 

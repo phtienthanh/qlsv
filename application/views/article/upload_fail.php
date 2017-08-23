@@ -8,8 +8,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css">
 </head>
-
-<?php var_dump($id); ?>
 <body class="title">
         <h1 >Upload fail</h1>
 

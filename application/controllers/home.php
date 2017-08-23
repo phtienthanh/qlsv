@@ -176,59 +176,46 @@ class Home extends MY_Controller {
 
 			$this->load->library('upload', $config);
 
-			if (file_exists("image_upload/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg" ) {
-			        
-		        if (unlink("image_upload/student/".$data['avatar'])) {
 
-		        	if (!$this->upload->do_upload()) {
+			if ( $_FILES['userfile']['name'] == $this->input->post('img_name')){
 
-						$list_update = array(
+				redirect('home/profile/'.$id);
 
-							"avatar" => 'doanthi.jpg',
+			} else {
 
-						);
-
-						$this->Msinhvien->update($id,$list_update);
-					
-						redirect('home/upload_fail/'.$id);
-
-					} else {
-
-						$list_update = array(
-
-							"avatar" => $_FILES['userfile']['name'],
+				if (!$this->upload->do_upload()) {
 				
-						);
+					redirect('home/upload_fail/'.$id);
 
-			            $this->Msinhvien->update($id,$list_update);
+				} else {
 
-			            $file_data =  $this->upload->data();
-				
-						$data['img'] = base_url().'image_upload/student/'.$file_data['file_name'];
+					if (file_exists("image_upload/student/".$data['avatar'])) {
 
-						redirect('home/profile/'.$id); 
-			        
-		        	} 
+						if ( $data['avatar'] != "doanthi.jpg") {
 
-		    	}
-     			
- 			} else if (file_exists("image_upload/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg" ) {
+							unlink("image_upload/student/".$data['avatar']);
+						
+						}
 
- 				$list_update = array(
+					}
+				        
+			       $list_update = array(
 
-					"avatar" => $_FILES['userfile']['name'],
+						"avatar" => $_FILES['userfile']['name'],
+			
+					);
 
-				);
+		            $this->Msinhvien->update($id,$list_update);
 
- 				$this->Msinhvien->update($id,$list_update);  
+		            $file_data =  $this->upload->data();
+			
+					$data['img'] = base_url().'image_upload/student/'.$file_data['file_name'];
 
-				redirect('home/profile/'.$id); 
+					redirect('home/profile/'.$id); 
+	     			
+	 			} 
 
- 			} else {
-				
-				redirect('home/upload_fail/'.$id); 
- 			
- 			}
+	 		}
 
 		} else {
 
@@ -545,6 +532,73 @@ class Home extends MY_Controller {
 		}
 
 	}
+
+	public function changepass_profile($id) {
+
+    	if (isset($id) && count($id) > 0 ) {
+
+    		$this->load->model('Msinhvien');
+
+	      	$data = $this->Msinhvien->get_id_sinhvien($id);
+
+	      	if ($this->input->post("change")) {
+
+		    	$this->form_validation->set_rules('old_password','Current password ','required');
+		       	
+		       	$this->form_validation->set_rules('new_password','New password','required');
+		       	
+		       	$this->form_validation->set_rules('new_password_confirm','Confirm password ','required|matches[new_password]');
+
+		       	$this->form_validation->set_message('required','%s not be empty');
+		       	
+		       	$this->form_validation->set_message('matches','%s Incorrect');
+	    
+		       	if ($this->form_validation->run()) {
+
+		       		if ($data['password'] == $this->input->post("old_password")) {
+		       		
+		       			$change = array(
+		       			
+		       				'password' => $this->input->post("new_password"),
+
+		       				'first_login' => 1,
+		       			
+		       			);
+		       			
+		       			if ($this->Msinhvien->changepass_sinhvien($id,$change)) {
+		       					
+		       				$change_succes = "Change password succes";
+
+		       				$this->data['change_succes'] = $change_succes;
+
+		       			} else {
+
+		       				$change_succes = "Change password fail";
+
+		       				$this->data['change_succes'] = $change_succes;
+
+		       			}
+		       		
+		       		} else {
+
+	       				$change_succes = "Incorrect password";
+
+	       				$this->data['change_succes'] = $change_succes;
+
+		       		}	
+		
+				} 
+		         
+	       	}
+
+   	   	$this->load->view("home/changepassword_profile",$this->data);
+    	
+    	} else {
+
+    		return false;
+    	}
+ 
+    }	
 
 }
 	
