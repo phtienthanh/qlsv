@@ -143,7 +143,9 @@ class Sinhvien extends MY_Controller {
     		
 	    		if ($this->form_validation->run()) {
 
-    				if (!$this->upload->do_upload()) {
+	    			$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], 0, 1000);
+
+    				if (!$this->upload->do_upload()) { 
 
 		    			$list = array(
 
@@ -317,6 +319,8 @@ class Sinhvien extends MY_Controller {
 
 					} else {
 
+						$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], 0, 1000);
+						
 						if (!$this->upload->do_upload()) {
 
 			        		$list_update = array(

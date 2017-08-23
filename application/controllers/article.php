@@ -112,6 +112,8 @@ class article extends MY_Controller {
 
     		if ($this->form_validation->run()) {
 
+    			$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], 0, 1000);
+
     			if( count($values) > 0){
 
     				$data = "Slug exists";
@@ -151,6 +153,8 @@ class article extends MY_Controller {
 					$config['allowed_types'] = 'gif|jpg|png';
 
 					$this->load->library('upload', $config);
+
+
 
 					if (!$this->upload->do_upload()) {
 
@@ -280,17 +284,7 @@ class article extends MY_Controller {
 
     }
 
-  //   public function show() {
-
-  //   	$this->load->model('Marticle');
-		
-		// $this->data['student'] = $this->Marticle->get_all_article();
-
-  //   	$this->load->view('article/show');
-
-  //   }
-
-     public function upload($id) {
+    public function upload($id) {
 
      	if (isset($id) && count($id) > 0) {
 
@@ -300,7 +294,7 @@ class article extends MY_Controller {
 
 	      	if ($_FILES['userfile']['name'] == '') {
 					
-					redirect('article/update/'.$this->data['student']['slug']); 
+				redirect('article/update/'.$this->data['student']['slug']); 
 
 			}	
 
@@ -316,6 +310,9 @@ class article extends MY_Controller {
 
 			} else {
 
+				
+				$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], 0, 1000);
+
 				if (!$this->upload->do_upload()) {
 
 					$list_update = array(
@@ -329,8 +326,6 @@ class article extends MY_Controller {
 					redirect('article/upload_fail/'.$this->data['student']['slug']); 
 
 				} else {
-
-
 
 					if (file_exists("image_upload/article/".$this->data['student']['image'])) {
 				

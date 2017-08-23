@@ -55,9 +55,22 @@
                 <td>
                     <?php echo $val['name']; ?>
                 </td>
-                
+                <?php if ( $val['id'] != 1) {
+                    
+                 ?>
                 <td class="center"><a class="btn btn-success" href="<?php echo base_url();?>categories/update/<?php echo $val['id']; ?>" title="">Update</a></td>
                 <td>
+               
+                <?php
+                } else {
+                    ?>
+                    <td>    </td>
+              <?php
+                } 
+                ?>
+                
+
+
                 <div class="modal fade" id="<?php echo $val['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">

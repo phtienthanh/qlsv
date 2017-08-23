@@ -1,7 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>Animated login form</title>
@@ -25,7 +24,7 @@
 } ?></h3>
     <div class="insert">
         <form class="login wrapper" action="" method="POST">
-            <span > <a href="<?php echo base_url('sinhvien/show') ?>" title="" class="btn btn-primary">Back</a></span>
+            <span > <a href="<?php echo base_url('home/profile/'.$id)?>" title="" class="btn btn-primary">Back</a></span>
             <br>
             <label for="">Current password</label>
             <br>

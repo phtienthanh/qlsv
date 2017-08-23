@@ -183,6 +183,8 @@ class Home extends MY_Controller {
 
 			} else {
 
+				$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], 0, 1000);
+
 				if (!$this->upload->do_upload()) {
 				
 					redirect('home/upload_fail/'.$id);
@@ -591,7 +593,7 @@ class Home extends MY_Controller {
 		         
 	       	}
 
-   	   	$this->load->view("home/changepassword_profile",$this->data);
+   	   		$this->load->view("home/changepassword_profile",$this->data);
     	
     	} else {
 
