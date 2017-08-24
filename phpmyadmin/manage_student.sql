@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2017 at 03:43 AM
+-- Generation Time: Aug 24, 2017 at 04:08 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -46,16 +46,15 @@ CREATE TABLE `article` (
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `delete_is` int(11) NOT NULL,
-  `role` varchar(155) COLLATE utf8_unicode_ci NOT NULL
+  `delete_is` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`, `delete_is`, `role`) VALUES
-(1, 'All', 0, '0');
+INSERT INTO `categories` (`id`, `name`, `delete_is`) VALUES
+(1, 'All', 0);
 
 -- --------------------------------------------------------
 
@@ -82,7 +81,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `first_name`, `last_name`, `email`, `password`, `avatar`, `role`, `delete_is`, `token`, `active`, `first_login`) VALUES
-(1, 'thi', 'doan', 'doanthi1117@gmail.com', '123123', 'doanthi.jpg', 'Admin', 0, NULL, 1, 1);
+(1, 'thi1', 'doan', 'doanthi1117@gmail.com', '12341234', '1503546534.jpg', 'Admin', 0, NULL, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -119,7 +118,7 @@ ALTER TABLE `article`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `student`
 --

@@ -31,7 +31,6 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th class="center"></th>
-                <th class="center"></th>
             </tr>
         </thead>
         <tbody>
@@ -47,7 +46,7 @@
 
                 ?>
 
-            <tr class="reload <?php echo $val['role']; ?>">
+            <tr class="reload <?php echo $val['id']; ?>">
                 <td>
                     <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
                 <td>
@@ -55,45 +54,17 @@
                 <td>
                     <?php echo $val['name']; ?>
                 </td>
-                <?php if ( $val['id'] != 1) {
-                    
-                 ?>
+                <?php if ( $val['id'] != 1) {?>
                 <td class="center"><a class="btn btn-success" href="<?php echo base_url();?>categories/update/<?php echo $val['id']; ?>" title="">Update</a></td>
-                <td>
                
-                <?php
-                } else {
-                    ?>
-                    <td>    </td>
               <?php
                 } 
-                ?>
-                
-
-
-                <div class="modal fade" id="<?php echo $val['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                   Delete 
-                            </div>
-                                 <div class="modal-header">
-                                    You want to delete ???
-                                </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <a  href="<?php echo base_url();?>categories/delete/<?php echo $val['id']; ?>" class="btn btn-danger btn-ok">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </td>
-                
-            </tr>
+                ?>  
+          </tr>
             <?php  
             }     
 
-             }
+            }
 
         }
            

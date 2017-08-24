@@ -180,7 +180,7 @@ class Home extends MY_Controller {
 
 			} else {
 
-				$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], 0, 1000);
+				$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'],-4);
 
 				if (!$this->upload->do_upload()) {
 				

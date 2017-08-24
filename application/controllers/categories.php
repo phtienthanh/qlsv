@@ -77,7 +77,6 @@ class Categories extends MY_Controller {
 
                     "delete_is" => 0,
                     
-                    "role" => 1,
                 );
           
                 $this->load->model('Mcategories');

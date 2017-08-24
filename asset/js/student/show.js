@@ -39,7 +39,7 @@
 
                         if( data.status == 0 ) {
 
-                             $(".nodelete").click();
+                            $(".nodelete").click();
 
                         } else {
 
