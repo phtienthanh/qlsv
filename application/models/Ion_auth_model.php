@@ -1342,6 +1342,7 @@ class Ion_auth_model extends CI_Model
 		$this->trigger_events('order_by');
 
 		$this->_ion_order_by = $by;
+		
 		$this->_ion_order    = $order;
 
 		return $this;

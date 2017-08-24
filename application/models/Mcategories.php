@@ -36,13 +36,13 @@ class Mcategories extends CI_Model {
 
         if (isset($name) && count($name) > 0) {
            
-        $this->load->database();
+            $this->load->database();
 
-        $this->db->where("name",$name);
+            $this->db->where("name",$name);
 
-        $this->db->where("delete_is",0);
+            $this->db->where("delete_is",0);
 
-        return $this->db->get($this->table)->row_array();
+            return $this->db->get($this->table)->row_array();
 
         } else {
 

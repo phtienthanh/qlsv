@@ -90,9 +90,7 @@ class Home extends MY_Controller {
 
 	public function profile($id) {
 
-		if (isset($id) && count($id) >0 ) {
-				
-	    	$this->load->library('form_validation');
+		if (isset($id) && count($id) > 0) {
 
 			if ($this->data['first_login'] == null) {
 						
@@ -150,7 +148,7 @@ class Home extends MY_Controller {
 
 	public function upload($id) {
 
-		if (isset($id) && count($id) > 0 ) {
+		if (isset($id) && count($id) > 0) {
 
 	   		$this->load->model('Msinhvien');
 
@@ -176,8 +174,7 @@ class Home extends MY_Controller {
 
 			$this->load->library('upload', $config);
 
-
-			if ( $_FILES['userfile']['name'] == $this->input->post('img_name')){
+			if ($_FILES['userfile']['name'] == $this->input->post('img_name')) {
 
 				redirect('home/profile/'.$id);
 
@@ -193,7 +190,7 @@ class Home extends MY_Controller {
 
 					if (file_exists("image_upload/student/".$data['avatar'])) {
 
-						if ( $data['avatar'] != "doanthi.jpg") {
+						if ($data['avatar'] != "doanthi.jpg") {
 
 							unlink("image_upload/student/".$data['avatar']);
 						
@@ -201,7 +198,7 @@ class Home extends MY_Controller {
 
 					}
 				        
-			       $list_update = array(
+			       	$list_update = array(
 
 						"avatar" => $_FILES['userfile']['name'],
 			
@@ -210,8 +207,6 @@ class Home extends MY_Controller {
 		            $this->Msinhvien->update($id,$list_update);
 
 		            $file_data =  $this->upload->data();
-			
-					$data['img'] = base_url().'image_upload/student/'.$file_data['file_name'];
 
 					redirect('home/profile/'.$id); 
 	     			
@@ -221,7 +216,7 @@ class Home extends MY_Controller {
 
 		} else {
 
-			return flase;
+			redirect('home'); 
 
 		}
 
@@ -391,13 +386,13 @@ class Home extends MY_Controller {
 
         	$this->form_validation->set_message('required','%s not be empty');
 
-        	if($this->form_validation->run()) {
+        	if ($this->form_validation->run()) {
 
         		$this->load->model('Msinhvien');
 
         		$user = $this->Msinhvien->forget_password($this->input->post('email'));
 
-        		if (count($user) > 0){
+        		if (count($user) > 0) {
 
         			$id = $user["0"]['id'];
 
@@ -413,16 +408,20 @@ class Home extends MY_Controller {
 							
 							$checkmail = "Please check your mail again";
 
-	        				$this->data['checkmail'] = $checkmail;
-
 						} else {
 
 							$checkmail = "Send mail fail";
 
-	        				$this->data['checkmail'] = $checkmail;
-
 						}
+
+						$this->data['checkmail'] = $checkmail;
 	
+					} else {
+
+						$checkmail = "Update fail";
+
+        				$this->data['checkmail'] = $checkmail;
+
 					}
 
         		} else {
@@ -451,13 +450,13 @@ class Home extends MY_Controller {
 
 		       	$this->form_validation->set_rules('new_password_confirm','Confirm password','required');
 		       	
-	        	if($this->form_validation->run()) {
+	        	if ($this->form_validation->run()) {
 
 	        		$this->load->model('Msinhvien');
 
 	        		$user = $this->Msinhvien->forget_tk($token);
 
-	        		$id = $user["0"]->id;
+	        		$id = $user["0"]["id"];
 
 	    			$list_update = array(	
 			
@@ -478,20 +477,20 @@ class Home extends MY_Controller {
 						redirect('home/changesuccess');
 
 					}
-					
+				
 		    	}
 
 	   		} 
 
-		$this->load->view('home/changepass');
+			$this->load->view('home/changepass');
 
-	} else {
+		} else {
 
-		return flase;
+			redirect('home');
+
+		}
 
 	}
-
-}
 
 	public function success() {
 
@@ -513,7 +512,7 @@ class Home extends MY_Controller {
 
 	public function active($id) {
 
-		if (isset($id) && count($id) > 0 ) {
+		if (isset($id) && count($id) > 0) {
 
 			$list_update = array(	
 
@@ -529,7 +528,7 @@ class Home extends MY_Controller {
 
 		} else {
 
-			return false;
+			redirect('home');
 
 		}
 
@@ -537,7 +536,7 @@ class Home extends MY_Controller {
 
 	public function changepass_profile($id) {
 
-    	if (isset($id) && count($id) > 0 ) {
+    	if (isset($id) && count($id) > 0) {
 
     		$this->load->model('Msinhvien');
 
@@ -571,15 +570,13 @@ class Home extends MY_Controller {
 		       					
 		       				$change_succes = "Change password succes";
 
-		       				$this->data['change_succes'] = $change_succes;
-
 		       			} else {
 
 		       				$change_succes = "Change password fail";
 
-		       				$this->data['change_succes'] = $change_succes;
-
 		       			}
+
+		       			$this->data['change_succes'] = $change_succes;
 		       		
 		       		} else {
 

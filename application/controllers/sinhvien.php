@@ -143,11 +143,9 @@ class Sinhvien extends MY_Controller {
     		
 	    		if ($this->form_validation->run()) {
 
-	    			$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], 0, 1000);
+	    			if ($_FILES['userfile']['name'] == '') {
 
-    				if (!$this->upload->do_upload()) { 
-
-		    			$list = array(
+	    				$list = array(
 
 							"first_name" => $this->input->post("first_name"),
 							
@@ -170,8 +168,6 @@ class Sinhvien extends MY_Controller {
 						if ($this->Msinhvien->insert($list)) {
 
 							$file_data =  $this->upload->data();
-							
-							$data['img'] = base_url().'isset/images'.$file_data['file_name'];	
 
 							$this->email->send();
 
@@ -185,47 +181,57 @@ class Sinhvien extends MY_Controller {
 
 						} 
 
-					} else {
+	    			} else {
 
-						$list = array(
+		    			$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], -4);
 
-							"first_name" => $this->input->post("first_name"),
-							
-							"last_name" => $this->input->post("last_name"),
-							
-							"email" => $this->input->post("email"),
-							
-							"password" => $this->input->post("password"),
-							
-							"avatar" =>	$_FILES['userfile']['name'],
-							
-							"role" => $this->input->post("role"),
+	    				if (!$this->upload->do_upload()) { 
 
-							"delete_is" => 0,
+	    					$success = 'Add new student fail';
 
-							"active" => 1,
-
-						);
-
-						if ($this->Msinhvien->insert($list)) {
-
-							$file_data =  $this->upload->data();
-							
-							$data['img'] = base_url().'isset/images'.$file_data['file_name'];	
-
-							$this->email->send();
-
-							$success = 'Add new student success';
-
-							$this->data['succes']= $success;
+							$this->data['succes'] = $success;
 
 						} else {
 
-							$this->data['error'] =  array('error' => "add fail");
+							$list = array(
 
-						} 
-				
-					}
+								"first_name" => $this->input->post("first_name"),
+								
+								"last_name" => $this->input->post("last_name"),
+								
+								"email" => $this->input->post("email"),
+								
+								"password" => $this->input->post("password"),
+								
+								"avatar" =>	$_FILES['userfile']['name'],
+								
+								"role" => $this->input->post("role"),
+
+								"delete_is" => 0,
+
+								"active" => 1,
+
+							);
+
+							if ($this->Msinhvien->insert($list)) {
+
+								$file_data =  $this->upload->data();
+
+								$this->email->send();
+
+								$success = 'Add new student success';
+
+								$this->data['succes'] = $success;
+
+							} else {
+
+								$this->data['error'] = array('error' => "add fail");
+
+							} 
+					
+						}
+
+		    		}
 
 				}
 
@@ -260,8 +266,8 @@ class Sinhvien extends MY_Controller {
 	        }
 	        
 	    	if ($this->input->post("change_password")) {
-	    
-	       		header('Location:'.base_url("/sinhvien/changepass/$id"));   
+
+	    		redirect('sinhvien/changepass/'.$id);  
 	       	
 	       	}
 	    
@@ -313,13 +319,13 @@ class Sinhvien extends MY_Controller {
 
 					$this->load->library('upload', $config);
 
-					if ( $_FILES['userfile']['name'] == $this->input->post('img_name')){
+					if ($_FILES['userfile']['name'] == $this->input->post('img_name')) {
 
 						redirect('sinhvien/update/'.$id);
 
 					} else {
 
-						$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], 0, 1000);
+						$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], -4);
 						
 						if (!$this->upload->do_upload()) {
 
@@ -363,7 +369,7 @@ class Sinhvien extends MY_Controller {
 							
 							);
 
-				        	if ( $this->Msinhvien->update($id,$list_update)) {
+				        	if ($this->Msinhvien->update($id,$list_update)) {
 
 				        		if ($this->upload->data()) {
 
@@ -391,18 +397,15 @@ class Sinhvien extends MY_Controller {
 	
 	   	} else {
 
-	    	return false;
+	    	redirect('sinhvien/show');   
     	
     	}
 
 	}
 
-
-
-
     public function changepass($id) {
 
-    	if (isset($id) && count($id) > 0 ) {
+    	if (isset($id) && count($id) > 0) {
 
     		$this->load->model('Msinhvien');
 
@@ -436,15 +439,13 @@ class Sinhvien extends MY_Controller {
 		       					
 		       				$change_succes = "Change password succes";
 
-		       				$this->data['change_succes'] = $change_succes;
-
 		       			} else {
 
 		       				$change_succes = "Change password fail";
 
-		       				$this->data['change_succes'] = $change_succes;
-
 		       			}
+
+		       			$this->data['change_succes'] = $change_succes;
 		       		
 		       		} else {
 
@@ -458,11 +459,12 @@ class Sinhvien extends MY_Controller {
 		         
 	       	}
 
-   	   	$this->load->view("sinhvien/changepass",$this->data);
+   	   		$this->load->view("sinhvien/changepass",$this->data);
     	
     	} else {
 
-    		return false;
+    		redirect('sinhvien/show');   
+
     	}
  
     }	
@@ -487,7 +489,7 @@ class Sinhvien extends MY_Controller {
 
 				$data = $this->Msinhvien->get_id_sinhvien($val);
 
-				if($data['role'] == "User") {
+				if ($data['role'] == "User") {
 
 					array_push($stack, $data['id']);
 
@@ -509,7 +511,7 @@ class Sinhvien extends MY_Controller {
 				
 				);
 
-				if (file_exists("image_upload/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg" ) {
+				if (file_exists("image_upload/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg") {
 			        
 			        if (unlink("image_upload/student/".$data['avatar'])) {
 
@@ -517,7 +519,7 @@ class Sinhvien extends MY_Controller {
 			        
 			        } 
      			
-     			} else if (file_exists("image_upload/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg" ) {
+     			} else if (file_exists("image_upload/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg") {
 
      				$this->Msinhvien->delete_checkbox($value,$list_update, $data);    
 
@@ -557,9 +559,17 @@ class Sinhvien extends MY_Controller {
 
     public function upload_fail($id) {
 
- 		$this->data['id'] = $id;
- 		
-    	$this->load->view('sinhvien/upload_fail_update',$this->data);
+    	if (isset($id) && count($id) > 0) {
+
+	 		$this->data['id'] = $id;
+	 		
+	    	$this->load->view('sinhvien/upload_fail_update',$this->data);
+	    	
+	    } else {
+
+	    	redirect('sinhvien/show');   
+
+	    }
 
     } 
    

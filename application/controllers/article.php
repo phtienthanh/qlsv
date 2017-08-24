@@ -7,33 +7,33 @@ class article extends MY_Controller {
 
 	public function __construct() {
 	        
-	        parent::__construct();
+        parent::__construct();
 
-	        $this->load->helper("slug" , "form" );
+        $this->load->helper("slug" , "form" );
 
-	        $this->load->library('form_validation');
+        $this->load->library('form_validation');
 
-	        if (!$this->ion_auth->logged_in()) {
-	            
-	            redirect('home/login');
+        if (!$this->ion_auth->logged_in()) {
+            
+            redirect('home/login');
 
-	        }	
+        }	
 
-	        if ($this->data['first_login'] == null) {
-					
-				redirect('sinhvien/changepass/'.$this->data['id']);
+        if ($this->data['first_login'] == null) {
+				
+			redirect('sinhvien/changepass/'.$this->data['id']);
 
-			}
+		}
 
-	        if ($this->data['role'] == 'User') {
-			
-				redirect('home/index');
+        if ($this->data['role'] == 'User') {
+		
+			redirect('home/index');
 
-			}			
+		}			
 
-	        $this->load->view('home/header',$this->data);
+        $this->load->view('home/header',$this->data);
 
-	    }
+    }
 
 	public function home() {
 
@@ -44,17 +44,21 @@ class article extends MY_Controller {
 		$listCg = $this->Mcategories->get_all_categories();
 
         $newArray = [];
-        
-        foreach ($listCg as $listCgKey => $listCgValue) {
 
-        	if ($listCgValue['delete_is'] == 0) {
+        if (isset($listCg) && count($listCg) > 0) {
 
-        		$newArray[$listCgValue['id']] = $listCgValue['name'];
-        		
-        	}  else {
+        	foreach ($listCg as $listCgKey => $listCgValue) {
 
-        		$newArray[$listCgValue['id']] = "All";
-        	}
+	        	if ($listCgValue['delete_is'] == 0) {
+
+	        		$newArray[$listCgValue['id']] = $listCgValue['name'];
+	        		
+	        	}  else {
+
+	        		$newArray[$listCgValue['id']] = "All";
+	        	}
+
+	        }
 
         }
 
@@ -70,8 +74,6 @@ class article extends MY_Controller {
 
 	public function add() {
 
-		$this->data = null;
-
 		$this->load->model('Marticle');
 
        	$data = $this->Marticle->get_all_article();
@@ -86,15 +88,19 @@ class article extends MY_Controller {
 
        	if ($this->input->post("submit")) {
 
-       		foreach ($data as $key => $value) {
+       		if (isset($data) && count($data) > 0) {
 
-       			if ($this->input->post('title') == $value['title'] && $value['delete_is'] == "0" )  {
+       			foreach ($data as $key => $value) {
 
-       				$this->form_validation->set_rules('title','title','|is_unique[article.title]');
-       			
-       			}
-   		
-   			}
+	       			if ($this->input->post('title') == $value['title'] && $value['delete_is'] == "0" )  {
+
+	       				$this->form_validation->set_rules('title','title','|is_unique[article.title]');
+	       			
+	       			}
+	   		
+	   			}
+
+       		}
 
         	$this->form_validation->set_rules('slug','slug','|is_unique[article.slug]');
    			
@@ -112,9 +118,9 @@ class article extends MY_Controller {
 
     		if ($this->form_validation->run()) {
 
-    			$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], 0, 1000);
+    			$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], -4);
 
-    			if( count($values) > 0){
+    			if (count($values) > 0) {
 
     				$data = "Slug exists";
 
@@ -134,13 +140,13 @@ class article extends MY_Controller {
 
 						"categories" => $this->input->post("categories"),
 
-						"delete_is" =>0,
+						"delete_is" => 0,
 
 						"slug" => $slug,
 					
 					);
 
-					if($list['image'] == '') {
+					if ($list['image'] == '') {
 
 						$list['image'] = 'doanthi.jpg';
 	    			
@@ -153,8 +159,6 @@ class article extends MY_Controller {
 					$config['allowed_types'] = 'gif|jpg|png';
 
 					$this->load->library('upload', $config);
-
-
 
 					if (!$this->upload->do_upload()) {
 
@@ -206,7 +210,7 @@ class article extends MY_Controller {
 
 			$data['categoriess'] = $this->Mcategories->get_all_categories();
 
-			$slug1 = create_slug($this->input->post('slug'));
+			$checkSlug = create_slug($this->input->post('slug'));
 
 	      	$data['student'] = $this->Marticle->get_slug_article($slug); 
 	      	
@@ -238,7 +242,7 @@ class article extends MY_Controller {
 
 							"categories" => $this->input->post("categories"),
 
-							"slug" =>$slug1.'.html',
+							"slug" => $checkSlug.'.html',
 						
 						);
 		       			
@@ -260,27 +264,9 @@ class article extends MY_Controller {
 
 	   	} else {
 
-	   		return false;
+	   		redirect('article/home');
 	   		
 	   	}
-
-    }
-
-    public function delete_multiple() {
-
-    	$this->load->model('Marticle');
-
-		$dataId = $this->input->post('id');
-
-		foreach ($dataId as $key => $value) {
-
-			if ($value != 'on') {
-
-				$check = $this->Marticle->delete_multiple($value);
-				
-			}
-
-		} 
 
     }
 
@@ -304,14 +290,13 @@ class article extends MY_Controller {
 
 			$this->load->library('upload', $config);
 
-			if ( $_FILES['userfile']['name'] == $this->input->post('img_name')){
+			if ($_FILES['userfile']['name'] == $this->input->post('img_name')) {
 
 				redirect('article/update/'.$this->data['student']['slug']); 
 
 			} else {
-
 				
-				$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], 0, 1000);
+				$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], -4);
 
 				if (!$this->upload->do_upload()) {
 
@@ -352,7 +337,7 @@ class article extends MY_Controller {
 
 		} else {
 
-    		return false;
+    		redirect('article/home');
 
     	}
 
@@ -371,19 +356,23 @@ class article extends MY_Controller {
 	      	$listCg = $this->Mcategories->get_all_categories();
 
         	$newArray = [];
-	        
-	        foreach ($listCg as $listCgKey => $listCgValue) {
 
-	        	if ($listCgValue['delete_is'] == 0) {
+        	if (isset($listCg) && count($listCg) > 0) {
 
-	        		$newArray[$listCgValue['id']] = $listCgValue['name'];
-	        		
-	        	}  else {
+        		foreach ($listCg as $listCgKey => $listCgValue) {
 
-	        		$newArray[$listCgValue['id']] = "All";
-	        	}
+		        	if ($listCgValue['delete_is'] == 0) {
 
-	        }
+		        		$newArray[$listCgValue['id']] = $listCgValue['name'];
+		        		
+		        	}  else {
+
+		        		$newArray[$listCgValue['id']] = "All";
+		        	}
+
+		        }
+
+        	}
 
 	        $this->data['newArray'] = $newArray;
 
@@ -395,7 +384,7 @@ class article extends MY_Controller {
 
     	} else {
 
-    		return false;
+    		redirect('article/home');
 
     	}
 
@@ -417,15 +406,15 @@ class article extends MY_Controller {
 				
 			);	
 
-			if (file_exists("image_upload/article/".$data['image']) && $data['image'] != "doanthi.jpg" ) {
+			if (file_exists("image_upload/article/".$data['image']) && $data['image'] != "doanthi.jpg") {
 			        
-		        if(unlink("image_upload/article/".$data['image'])) {
+		        if (unlink("image_upload/article/".$data['image'])) {
 
 		            $this->Marticle->delete_checkbox($value,$list_update);  
 		        
 		        }
      			
-     		} else if (file_exists("image_upload/article/".$data['image']) && $data['image'] == "doanthi.jpg" ){
+     		} else if (file_exists("image_upload/article/".$data['image']) && $data['image'] == "doanthi.jpg"){
 
      			$this->Marticle->delete_checkbox($value,$list_update);  
 
@@ -435,10 +424,19 @@ class article extends MY_Controller {
 
     }
 
-    public function upload_fail($slug){
+    public function upload_fail($slug) {
 
-    	$this->data['slug'] = $slug;
-    	$this->load->view('article/upload_fail',$this->data);
+    	if (isset($slug) && count($slug) > 0) {
+    		
+    		$this->data['slug'] = $slug;
+
+    		$this->load->view('article/upload_fail',$this->data);
+
+    	} else {
+
+			redirect('article/home');
+
+    	}
 
     }	
    

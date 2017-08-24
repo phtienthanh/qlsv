@@ -34,7 +34,7 @@ class Msinhvien extends CI_Model {
 
         } else {
 
-                return false;
+            return false;
             
         }
     
@@ -197,7 +197,7 @@ class Msinhvien extends CI_Model {
         
             if ($query->num_rows() == 1) {
              
-                return $query->result();
+                return $query->result_array();
             
             } else {
                      
@@ -227,7 +227,7 @@ class Msinhvien extends CI_Model {
         
             if ($query) {
              
-              return true;
+                return true;
             
             } else {
                      

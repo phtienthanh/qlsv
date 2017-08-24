@@ -30,18 +30,18 @@ class Categories extends MY_Controller {
             redirect('home/index');
 
         }
+
+        $this->load->view('home/header',$this->data);
         
     }
 
-    public function home(){
+    public function home() {
 
         $this->load->model('Mcategories');
 
         $this->db->order_by("id","desc");
         
         $this->data['categories'] = $this->Mcategories->get_all_categories();
-
-        $this->load->view('home/header',$this->data);
 
         $this->load->view('categories/show',$this->data);
 
@@ -53,11 +53,13 @@ class Categories extends MY_Controller {
 
         if ($this->input->post('submit')) {
 
-                $this->form_validation->set_rules('input_text','Name','required');
+            $this->form_validation->set_rules('input_text','Name','required');
 
-                $this->form_validation->set_message('required','%s không được bỏ trống');
+            $this->form_validation->set_message('required','%s không được bỏ trống');
 
-            if (count($this->Mcategories->get_exist_categories($this->input->post('input_text'))) > 0) {
+            $check_exist = $this->Mcategories->get_exist_categories($this->input->post('input_text'));
+
+            if (count($check_exist) > 0) {
               
                 $this->form_validation->set_rules('input_text','Name','required|is_unique[categories.name]');
 
@@ -78,25 +80,23 @@ class Categories extends MY_Controller {
                     "role" => 1,
                 );
           
-            $this->load->model('Mcategories');
+                $this->load->model('Mcategories');
 
-            $this->Mcategories->insert($list);    
+                $this->Mcategories->insert($list);    
 
-            redirect('categories/home');    
+                redirect('categories/home');    
 
             }
 
         }
         
-        $this->load->view('home/header',$this->data);
-
         $this->load->view('categories/add',$this->data);
 
     }
 
     public function update($id) {
 
-        if (isset($id) && count($id) > 0 ) {
+        if (isset($id) && count($id) > 0) {
 
             $this->load->model('Mcategories');
 
@@ -123,14 +123,12 @@ class Categories extends MY_Controller {
                 }
                  
             } 
-            
-            $this->load->view('home/header',$this->data);
 
             $this->load->view("categories/update",$data);
 
         } else {
 
-            return false;
+            redirect('categories/home');
 
         } 
 

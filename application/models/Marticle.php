@@ -62,11 +62,11 @@ class Marticle extends CI_Model {
 
         if (isset($slug) && count($slug) > 0) {
         
-        $this->load->database();
+            $this->load->database();
 
-        $this->db->where("slug",$slug);
+            $this->db->where("slug",$slug);
 
-        return $this->db->get($this->table)->row_array();
+            return $this->db->get($this->table)->row_array();
 
         } else {
 
@@ -80,13 +80,13 @@ class Marticle extends CI_Model {
 
         if (isset($slug) && count($slug) > 0) {
         
-        $this->load->database();
+            $this->load->database();
 
-        $this->db->where("slug",$slug);
+            $this->db->where("slug",$slug);
 
-        $this->db->where("delete_is",0);
+            $this->db->where("delete_is",0);
 
-        return $this->db->get($this->table)->row_array();
+            return $this->db->get($this->table)->row_array();
 
         } else {
 
@@ -148,27 +148,7 @@ class Marticle extends CI_Model {
 
     }
 
-    public function delete_multiple($id) {
-
-        if (isset($slug) && count($slug) > 0) {
-            
-            $this->load->database();
-            
-            $this->db->where("id",$id);
-
-            $db = $this->db->update($this->table);
-
-            return $db;
-
-        } else {
-
-            return false;
-
-        }
-
-    }
-
-     public function delete_checkbox($id,$data) {
+    public function delete_checkbox($id,$data) {
 
         if (isset($id) && count($id) > 0) {
         
