@@ -18,12 +18,6 @@ class Categories extends MY_Controller {
             redirect('home/login');
 
         }
-
-        if ($this->data['first_login'] == null) {
-                
-            redirect('sinhvien/changepass/'.$this->data['id']);
-
-        }
         
         if ($this->data['role'] == 'User') {
             
@@ -75,7 +69,7 @@ class Categories extends MY_Controller {
 
                     "name" => $this->input->post("input_text"),
 
-                    "delete_is" => 0,
+                    "is_delete" => 0,
                     
                 );
           
@@ -145,7 +139,7 @@ class Categories extends MY_Controller {
                 
                 $list_update = array(   
         
-                    "delete_is" => 0,
+                    "is_delete" => 0,
                 
                 );
 
@@ -155,7 +149,7 @@ class Categories extends MY_Controller {
 
                 $list_update = array(   
         
-                    "delete_is" => 1,
+                    "is_delete" => 1,
                 
                 );
 

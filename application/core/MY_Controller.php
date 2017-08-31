@@ -29,8 +29,6 @@ class MY_Controller extends CI_Controller {
             $password = $userInfo->password;
 
 			      $avatar = $userInfo->avatar;
-
-            $first_login = $userInfo->first_login;
             
             $this->data['id']=$id;
   			
@@ -45,8 +43,6 @@ class MY_Controller extends CI_Controller {
             $this->data['password']=$password;
   			
             $this->data['avatar']=$avatar; 
-
-            $this->data['first_login']=$first_login; 
             
 		}
 	

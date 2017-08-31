@@ -248,8 +248,10 @@ body{
 }
 
 .error{
+    
     color: red;
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: 100;
 }
 
 .content-form{
@@ -271,4 +273,34 @@ body{
     width: 60%; 
     display: inline-block;
     margin-left:190px;
+}
+
+.btn-add-js{
+    width: 20% !important;
+}
+.date-time{
+
+    color: #798FBB;
+}
+.color_hr{
+    margin: 50px 0;
+    border-top: 1px solid blue;
+}
+.img_show{
+    height: 400px;
+    overflow: hidden;
+}
+.content_ct{
+    padding: 20px 0;
+}
+.input_search{
+    width: 85%;
+    display: inline-block;
+}
+.form_search{
+    margin: 30px 0;
+}
+.col-md-12 .error{
+
+    color: #fff;
 }

@@ -1,14 +1,5 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css">
-</head>
-
 <body>
     <div class="insert">
         <h1>Register student</h1>
@@ -43,16 +34,16 @@
             <br>
             <h3 for="">Confirm Password</h3>
             <br>
-            <input type="password" name="confirm_password" placeholder="Confirm password" class="form-control" value="<?php echo set_value(" confirm_password ");?>">
+            <input type="password" name="confirm_password" placeholder="Confirm password" class="form-control cf_password" value="<?php echo set_value(" confirm_password ");?>">
             <?php echo form_error("confirm_password"); ?>
             <br>
-            
             <input type="submit" name="submit" value="Register" class="btn btn-primary btn-block btn-large btn-insert">
         </form>
     </div>
-
-    <script src="<?php echo base_url();?>asset/js/index.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+    <script src="{{url(js/validate.js)}}"></script>
     <script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url();?>asset/js/home/register_fail.js"></script>
 </body>
 
 </html>

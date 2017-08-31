@@ -40,7 +40,7 @@ class Mcategories extends CI_Model {
 
             $this->db->where("name",$name);
 
-            $this->db->where("delete_is",0);
+            $this->db->where("is_delete",0);
 
             return $this->db->get($this->table)->row_array();
 

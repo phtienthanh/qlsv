@@ -44,21 +44,13 @@ class Home extends MY_Controller {
 
 			if ($user) {
 
-				if ($user->first_login == null) {
-				
-					redirect('sinhvien/changepass/'.$user->id);
+				$this->session->set_flashdata('message', $this->ion_auth->messages());
 
-				} else {
+				$data = $user->role; 
 
-					$this->session->set_flashdata('message', $this->ion_auth->messages());
+				$this->data['role'] = $data;
 
-					$data = $user->role; 
-
-					$this->data['role'] = $data;
-
-					redirect('home', 'refresh');	
-
-				}
+				redirect('home', 'refresh');	
 				
 			} else {
 
@@ -91,12 +83,6 @@ class Home extends MY_Controller {
 	public function profile($id) {
 
 		if (isset($id) && count($id) > 0) {
-
-			if ($this->data['first_login'] == null) {
-						
-				redirect('sinhvien/changepass/'.$this->data['id']);
-
-			}
 
 			if (!$this->ion_auth->logged_in()) {
 				
@@ -168,7 +154,7 @@ class Home extends MY_Controller {
 				
 			$config['max_size'] = 20480;
 
-			$config['upload_path'] = './image_upload/student/';
+			$config['upload_path'] = './medias/student/';
 
 			$config['allowed_types'] = 'gif|jpg|png';
 
@@ -188,11 +174,11 @@ class Home extends MY_Controller {
 
 				} else {
 
-					if (file_exists("image_upload/student/".$data['avatar'])) {
+					if (file_exists("medias/student/".$data['avatar'])) {
 
 						if ($data['avatar'] != "doanthi.jpg") {
 
-							unlink("image_upload/student/".$data['avatar']);
+							unlink("medias/student/".$data['avatar']);
 						
 						}
 
@@ -278,7 +264,7 @@ class Home extends MY_Controller {
 						
 						"role" => 'User',
 
-						"delete_is" => 0,
+						"is_delete" => 0,
 
 						"active" => 0,
 
@@ -561,8 +547,6 @@ class Home extends MY_Controller {
 		       			$change = array(
 		       			
 		       				'password' => $this->input->post("new_password"),
-
-		       				'first_login' => 1,
 		       			
 		       			);
 		       			
@@ -595,9 +579,142 @@ class Home extends MY_Controller {
     	} else {
 
     		return false;
+
     	}
  
+    }
+
+    public function show_article() {
+
+    	$this->load->library('pagination');
+
+    	$this->load->model('Marticle');
+
+    	$this->load->model('Mcategories');
+
+    	$listCg = $this->Mcategories->get_all_categories();
+
+        $newArray = [];
+
+        if (isset($listCg) && count($listCg) > 0) {
+
+        	foreach ($listCg as $listCgKey => $listCgValue) {
+
+	        	if ($listCgValue['is_delete'] == 0) {
+
+	        		$newArray[$listCgValue['id']] = $listCgValue['name'];
+	        		
+	        	}  else {
+
+	        		$newArray[$listCgValue['id']] = "All";
+	        	}
+
+	        }
+
+        }
+
+        $this->data['newArray'] = $newArray;
+
+		$this->data['categories'] =  $listCg;
+
+    	$offset = $this->uri->segment(3);
+
+    	$perpage = 10;
+        
+       	$config = array();
+
+  //      	$config['enable_query_strings'] = TRUE;
+
+		// $config['use_page_numbers'] = TRUE;
+		
+		// $config['query_string_segment'] = 'page';
+		
+		// $config['page_query_string'] = TRUE;
+
+       	$keyword = trim($this->input->get('keyword', TRUE));
+		
+		$config['base_url'] = base_url('home/show_article');
+
+		if ($this->input->get('keyword') == "")  {
+
+			$this->data['query'] =  $this->Marticle->show_all_article($perpage, $offset);
+
+			$config['total_rows'] = $this->Marticle->show_number_article();
+
+		} else {
+
+			$config['total_rows'] = $this->Marticle->show_number_title_article($keyword);
+
+			$this->data['query'] = $this->Marticle->show_article($perpage, $offset,$keyword);
+		
+		}	
+		
+		$config['per_page'] = $perpage;
+		
+		$config['uri_segment'] = 3;
+
+		$config['num_links'] = 3;
+		
+		$config['next_link'] = "Trang ke tiep";
+		
+		$config['prev_link'] = "Trang truoc";
+
+		$this->pagination->initialize($config);
+
+		$this->data['paginator'] =  $this->pagination->create_links();
+
+		$this->data['search'] = $keyword;
+
+		$this->load->view('home/show_article',$this->data);
+
     }	
+
+    public function preview($slug) {
+
+    	if (isset($slug) && count($slug) > 0) {
+	    		
+	    	$this->load->model('Marticle');
+	    	
+	    	$this->load->model('Mcategories');
+
+	      	$this->data['student'] = $this->Marticle->get_slug_article($slug); 	
+
+	      	$listCg = $this->Mcategories->get_all_categories();
+
+        	$newArray = [];
+
+        	if (isset($listCg) && count($listCg) > 0) {
+
+        		foreach ($listCg as $listCgKey => $listCgValue) {
+
+		        	if ($listCgValue['is_delete'] == 0) {
+
+		        		$newArray[$listCgValue['id']] = $listCgValue['name'];
+		        		
+		        	}  else {
+
+		        		$newArray[$listCgValue['id']] = "All";
+		        	}
+
+		        }
+
+        	}
+
+	        $this->data['newArray'] = $newArray;
+
+			$this->data['categories'] =  $listCg;
+
+			$this->data['article'] = $this->Marticle->get_all_article();
+
+	    	$this->load->view("article/preview",$this->data);
+
+    	} else {
+
+    		redirect('article/home');
+
+    	}
+
+    }
 
 }
 	

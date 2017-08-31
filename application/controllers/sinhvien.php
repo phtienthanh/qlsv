@@ -25,12 +25,6 @@ class Sinhvien extends MY_Controller {
 
     public function show() {
 
-		if ($this->data['first_login'] == null) {
-				
-			redirect('sinhvien/changepass/'.$this->data['id']);
-
-		}
-
 		if ($this->data['role'] == 'User') {
             
             redirect('home/index');
@@ -46,12 +40,6 @@ class Sinhvien extends MY_Controller {
 	}
    
     public function insert() {
-
-        if ($this->data['first_login'] == null) {
-					
-			redirect('sinhvien/changepass/'.$this->data['id']);
-
-		}
 
 		if ($this->data['role'] == 'User') {
             
@@ -101,7 +89,7 @@ class Sinhvien extends MY_Controller {
 
 		$config['max_size'] = 20480;
 
-		$config['upload_path'] = './image_upload/student/';
+		$config['upload_path'] = './medias/student/';
 
 		$config['allowed_types'] = 'gif|jpg|png';
 
@@ -159,7 +147,7 @@ class Sinhvien extends MY_Controller {
 							
 							"role" => $this->input->post("role"),
 
-							"delete_is" => 0,
+							"is_delete" => 0,
 
 							"active" => 1,
 
@@ -207,7 +195,7 @@ class Sinhvien extends MY_Controller {
 								
 								"role" => $this->input->post("role"),
 
-								"delete_is" => 0,
+								"is_delete" => 0,
 
 								"active" => 1,
 
@@ -254,11 +242,6 @@ class Sinhvien extends MY_Controller {
     public function update($id) {
     	
     	if (isset($id) && count($id) > 0) {
-	    
-	    	if ($this->data['first_login'] == null) {
-					
-				redirect('sinhvien/changepass/'.$this->data['id']);
-			}
 		
 			if ($this->data['role'] == 'User') {
 	            
@@ -313,7 +296,7 @@ class Sinhvien extends MY_Controller {
 
 					$config['max_size'] = 20480;
 			
-					$config['upload_path'] = './image_upload/student/';
+					$config['upload_path'] = './medias/student/';
 
 					$config['allowed_types'] = 'gif|jpg|png';
 
@@ -347,11 +330,11 @@ class Sinhvien extends MY_Controller {
 
 						} else { 
 		       			
-							if (file_exists("image_upload/student/".$this->data['student']['avatar'])) {
+							if (file_exists("medias/student/".$this->data['student']['avatar'])) {
 
 								if ($this->data['student']['avatar'] != "doanthi.jpg") {
 									
-									unlink("image_upload/student/".$this->data['student']['avatar']);
+									unlink("medias/student/".$this->data['student']['avatar']);
 
 								}
 
@@ -430,8 +413,6 @@ class Sinhvien extends MY_Controller {
 		       			$change = array(
 		       			
 		       				'password' => $this->input->post("new_password"),
-
-		       				'first_login' => 1,
 		       			
 		       			);
 		       			
@@ -471,12 +452,6 @@ class Sinhvien extends MY_Controller {
 
     public function delete_checkbox() {
 
-    	if ($this->data['first_login'] == null) {
-				
-			redirect('sinhvien/changepass/'.$this->data['id']);
-
-		}
-
 		$this->load->model('Msinhvien');
 
 		$dataId = $this->input->post('id');
@@ -507,19 +482,19 @@ class Sinhvien extends MY_Controller {
 
 				$list_update = array(	
 		
-					"delete_is" => 1,
+					"is_delete" => 1,
 				
 				);
 
-				if (file_exists("image_upload/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg") {
+				if (file_exists("medias/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg") {
 			        
-			        if (unlink("image_upload/student/".$data['avatar'])) {
+			        if (unlink("medias/student/".$data['avatar'])) {
 
 			            $this->Msinhvien->delete_checkbox($value,$list_update);    
 			        
 			        } 
      			
-     			} else if (file_exists("image_upload/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg") {
+     			} else if (file_exists("medias/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg") {
 
      				$this->Msinhvien->delete_checkbox($value,$list_update, $data);    
 

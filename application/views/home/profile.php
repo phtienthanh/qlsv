@@ -2,78 +2,21 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url();?>asset/profile/images/favicon.png">
-    <title>Monster Admin Template - The Most Complete & Trusted Bootstrap 4 Admin Template</title>
-    <!-- Bootstrap Core CSS -->
-    
-    <!-- Custom CSS -->
-    
-    <!-- You can change the theme colors from here -->
-    <link href="<?php echo base_url();?>asset/profile/css/profile.css" id="theme" rel="stylesheet">
-    <link href="<?php echo base_url();?>asset/css/table.css" id="theme" rel="stylesheet"
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+<head>   
 </head>
-
 <body class="fix-header card-no-border body-profile">
 <h1 class="title">Manage profile</h1>
 
 <h3 class="title"><?php if (isset($notification) && count($notification) > 0) {
    echo $notification;
 } ?></h3>
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
-   
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
+
     <div id="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
+
         <div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
+ 
             <div class="container-fluid container-f">
-                <!-- ============================================================== -->
-                <!-- Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                
-                <!-- ============================================================== -->
-                <!-- End Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <!-- Row -->
+
                 <div class="row row_av">
                     <!-- Column -->
                     <div class="col-lg-4 col-xlg-3 col-md-5">
@@ -81,7 +24,7 @@
                             <div class="card-block">
                             <form action="<?php echo base_url();?>home/upload/<?php echo  $student["id"]; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
-                            <center class="m-t-30"> <img src="<?php echo base_url();?>image_upload/student/<?php echo $student["avatar"]; ?>"  width="150" />
+                            <center class="m-t-30"> <img src="<?php echo base_url();?>medias/student/<?php echo $student["avatar"]; ?>"  width="150" />
 
                             <input type="file" name="userfile" class="btn">
                             <input type="text" class="hinden" name="img_name" value="<?php echo $student["avatar"]; ?>">
@@ -95,8 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Column -->
-                    <!-- Column -->
+        
                     <div class="col-lg-8 col-xlg-9 col-md-7 Content-right">
                         <div class="card">
                             <div class="card-block">
@@ -142,33 +84,15 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Column -->
+                    
                 </div>
-                <!-- Row -->
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
+
             </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
 
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
+        
     </div>
-    
-    <script src="<?php echo base_url();?>asset/profile/js/custom.min.js"></script>
     <script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
-
-    
 </body>
 
 </html>

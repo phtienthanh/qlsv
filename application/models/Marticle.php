@@ -16,6 +16,78 @@ class Marticle extends CI_Model {
 
     }
 
+    public function show_article($perpage, $offset,$title) {
+
+        if (isset($perpage) && count($perpage) > 0) {
+
+            $this->db->order_by("id","desc");
+
+            $this->db->limit($perpage, $offset);
+
+            $this->db->where('title LIKE', "%".$title."%");
+        
+            $query = $this->db->get('article');
+          
+            $ar = $query->result_array();
+
+            return $ar;
+
+        } else {
+
+            return false;
+
+        } 
+
+    }
+
+    public function show_all_article($perpage, $offset) {
+
+        if (isset($perpage) && count($perpage) > 0) {
+
+            $this->db->order_by("id","desc");
+
+            $this->db->limit($perpage, $offset);
+        
+            $query = $this->db->get('article');
+          
+            $ar = $query->result_array();
+
+            return $ar;
+
+        } else {
+
+            return false;
+
+        } 
+
+    }
+
+    public function show_number_title_article($title) {
+
+        if (isset($title) && count($title) > 0) {
+
+            $this->db->where('title LIKE',"%".$title."%");
+        
+            $query = $this->db->get('article');
+        
+            return  $query->num_rows();
+
+        } else {
+
+            return false;
+
+        } 
+
+    }
+
+    public function show_number_article() {
+    
+        $query = $this->db->get('article');
+    
+        return  $query->num_rows();
+
+    }
+
     public function insert($data) {
 
         if (isset($data) && count($data) > 0) {
@@ -84,7 +156,7 @@ class Marticle extends CI_Model {
 
             $this->db->where("slug",$slug);
 
-            $this->db->where("delete_is",0);
+            $this->db->where("is_delete",0);
 
             return $this->db->get($this->table)->row_array();
 

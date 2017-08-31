@@ -21,7 +21,6 @@
         <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/bootstrap.css" rel="stylesheet">
         <!-- Template CSS -->
         <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/animate.css" rel="stylesheet">
-        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/nexus.css" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/responsive.css" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/custom.css" rel="stylesheet">

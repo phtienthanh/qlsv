@@ -11,6 +11,8 @@ class article extends MY_Controller {
 
         $this->load->helper("slug" , "form" );
 
+        $this->load->helper('date');
+
         $this->load->library('form_validation');
 
         if (!$this->ion_auth->logged_in()) {
@@ -19,12 +21,6 @@ class article extends MY_Controller {
 
         }	
 
-        if ($this->data['first_login'] == null) {
-				
-			redirect('sinhvien/changepass/'.$this->data['id']);
-
-		}
-
         if ($this->data['role'] == 'User') {
 		
 			redirect('home/index');
@@ -32,6 +28,8 @@ class article extends MY_Controller {
 		}			
 
         $this->load->view('home/header',$this->data);
+
+
 
     }
 
@@ -49,7 +47,7 @@ class article extends MY_Controller {
 
         	foreach ($listCg as $listCgKey => $listCgValue) {
 
-	        	if ($listCgValue['delete_is'] == 0) {
+	        	if ($listCgValue['is_delete'] == 0) {
 
 	        		$newArray[$listCgValue['id']] = $listCgValue['name'];
 	        		
@@ -86,13 +84,17 @@ class article extends MY_Controller {
 
        	$values = $this->Marticle->get_delete_article($slug);
 
+       	$format = 'DATE_RFC822';
+        
+		$time = time(); 
+
        	if ($this->input->post("submit")) {
 
        		if (isset($data) && count($data) > 0) {
 
        			foreach ($data as $key => $value) {
 
-	       			if ($this->input->post('title') == $value['title'] && $value['delete_is'] == "0" )  {
+	       			if ($this->input->post('title') == $value['title'] && $value['is_delete'] == "0" )  {
 
 	       				$this->form_validation->set_rules('title','title','|is_unique[article.title]');
 	       			
@@ -140,9 +142,11 @@ class article extends MY_Controller {
 
 						"categories" => $this->input->post("categories"),
 
-						"delete_is" => 0,
+						"is_delete" => 0,
 
 						"slug" => $slug,
+
+						"date" => standard_date($format, $time),
 					
 					);
 
@@ -154,7 +158,7 @@ class article extends MY_Controller {
 
 	    			$config['max_size'] = 20480;
 
-					$config['upload_path'] = './image_upload/article/';
+					$config['upload_path'] = './medias/article/';
 
 					$config['allowed_types'] = 'gif|jpg|png';
 
@@ -170,7 +174,7 @@ class article extends MY_Controller {
 							
 							$file_data =  $this->upload->data();
 						
-							$data['img'] = base_url().'/image_upload/article'.$file_data['file_name'];
+							$data['img'] = base_url().'/medias/article'.$file_data['file_name'];
 
 							$success = 'Add new success';
 
@@ -260,6 +264,8 @@ class article extends MY_Controller {
 	       			    
 	       	}
 	       	
+	       
+	       	
 	   		$this->load->view("article/update",$data);
 
 	   	} else {
@@ -284,7 +290,7 @@ class article extends MY_Controller {
 
 			}	
 
-			$config['upload_path'] = './image_upload/article/';
+			$config['upload_path'] = './medias/article/';
 
 			$config['allowed_types'] = 'gif|jpg|png';
 
@@ -312,11 +318,11 @@ class article extends MY_Controller {
 
 				} else {
 
-					if (file_exists("image_upload/article/".$this->data['student']['image'])) {
+					if (file_exists("medias/article/".$this->data['student']['image'])) {
 				
 						if ($this->data['student']['image'] != "doanthi.jpg" ) {
 
-							unlink("image_upload/article/".$this->data['student']['image']);
+							unlink("medias/article/".$this->data['student']['image']);
 
 						}	
 
@@ -361,7 +367,7 @@ class article extends MY_Controller {
 
         		foreach ($listCg as $listCgKey => $listCgValue) {
 
-		        	if ($listCgValue['delete_is'] == 0) {
+		        	if ($listCgValue['is_delete'] == 0) {
 
 		        		$newArray[$listCgValue['id']] = $listCgValue['name'];
 		        		
@@ -402,19 +408,19 @@ class article extends MY_Controller {
 
 			$list_update = array(	
 		
-				"delete_is" => 1,
+				"is_delete" => 1,
 				
 			);	
 
-			if (file_exists("image_upload/article/".$data['image']) && $data['image'] != "doanthi.jpg") {
+			if (file_exists("medias/article/".$data['image']) && $data['image'] != "doanthi.jpg") {
 			        
-		        if (unlink("image_upload/article/".$data['image'])) {
+		        if (unlink("medias/article/".$data['image'])) {
 
 		            $this->Marticle->delete_checkbox($value,$list_update);  
 		        
 		        }
      			
-     		} else if (file_exists("image_upload/article/".$data['image']) && $data['image'] == "doanthi.jpg"){
+     		} else if (file_exists("medias/article/".$data['image']) && $data['image'] == "doanthi.jpg"){
 
      			$this->Marticle->delete_checkbox($value,$list_update);  
 

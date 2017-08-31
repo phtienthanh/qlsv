@@ -1,20 +1,6 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> </title>
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-     <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-  
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css" rel="stylesheet">
-</head>
-
 <body>
-  
     <h1 class="title">Manage student</h1>
     <form action="<?php echo base_url('sinhvien/insert')  ?> " method="get" accept-charset="utf-8" id="dataTable">
         <input type="submit" value="Add new student" class="btn btn-primary">
@@ -40,7 +26,7 @@
 
             foreach ($student as $key => $val) { 
                 
-                if ( $val['delete_is'] == 0) {
+                if ( $val['is_delete'] == 0) {
                 
         ?>
             <tr class="reload">
@@ -60,7 +46,7 @@
                     <?php echo $val['email']; ?>
                 </td>
                 <td>
-                    <img src="<?php echo base_url();?>image_upload/student/<?php echo $val['avatar']; ?>" height="75px">
+                    <img src="<?php echo base_url();?>medias/student/<?php echo $val['avatar']; ?>" height="75px">
                 </td>
                 <td>
                     <?php echo $val['role']; ?>
@@ -139,7 +125,6 @@
 <button type="button" class="btn btn-info btn-lg hinden nodelete" data-toggle="modal" data-target="#nodelete">Open Modal</button>
     <div id="nodelete" class="modal fade" role="dialog">
         <div class="modal-dialog">
-    <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"></button>
@@ -154,8 +139,6 @@
             </div>
         </div>
     </div>
-
-
 </body>
 <script type="text/javascript"> 
   var baseURL = "<?php echo base_url(); ?>";

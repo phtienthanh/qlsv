@@ -1,4 +1,5 @@
-         var base_url = '<?php echo base_url(); ?>';
+var base_url = '<?php echo base_url(); ?>';
+
 $(document).ready(function() {
 
     $('.dellall').click(function() { 
@@ -56,10 +57,6 @@ $(document).ready(function() {
         }   
 
     });
-
-});
-
-$(document).ready(function() {
 
     $('.checkAll').on('click', function() {
 

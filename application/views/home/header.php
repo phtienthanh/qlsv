@@ -7,16 +7,13 @@
     <title></title>
     <link href="favicon.ico" rel="shortcut icon">
     <script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery-3.1.1.min.js"></script>
-   
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/header.css">
- 
+    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css">
 </head>
-
 <body>
     <style type="text/css" media="screen">
- 
     </style>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -34,6 +31,7 @@
                 <ul class="nav navbar-nav">
                     <li><a class="manage_student" href="<?php echo base_url();?>sinhvien/show">Manage student</a></li>
                     <li><a class="manage_student" href="<?php echo base_url();?>article/home">Manage article</a></li>
+                    <li><a class="" href="<?php echo base_url();?>home/show_article">Show article</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="manage_login1" href="<?php echo base_url();?>home/login">Login</a></li>

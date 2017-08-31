@@ -1,21 +1,7 @@
 
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> </title>
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!--  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
-     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/categories/show.css" rel="stylesheet">
-
 <body>
-   
     </style>
     <h1 class="title">Manage categories</h1>
 
@@ -40,12 +26,8 @@
 
             foreach ($categories as $key => $val) { 
 
-                if ($val['delete_is'] == 0 ) {
-                    
-                
-
+                if ($val['is_delete'] == 0 ) {
                 ?>
-
             <tr class="reload <?php echo $val['id']; ?>">
                 <td>
                     <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
@@ -58,7 +40,9 @@
                 <td class="center"><a class="btn btn-success" href="<?php echo base_url();?>categories/update/<?php echo $val['id']; ?>" title="">Update</a></td>
                
               <?php
-                } 
+
+                        } 
+              
                 ?>  
           </tr>
             <?php  
@@ -120,13 +104,10 @@
   </div>
 </div>
 </body>
-   
-</body>
-<script type="text/javascript">
-var baseURL = "<?php echo base_url();?>";
+<script type="text/javascript"> 
+  var baseURL = "<?php echo base_url(); ?>";
 </script>
-
-
+   
 <script type="text/javascript" src="<?php echo base_url();?>asset/js/categories/show.js"></script>
 <script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
 

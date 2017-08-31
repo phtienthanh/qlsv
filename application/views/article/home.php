@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> </title>
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css">
 </head>
 
 <body>
@@ -27,7 +22,7 @@ if(isset($article) && count($article)) {
 
     foreach ($article as $keyarticle => $val) { 
 
-        if ( $val['delete_is'] == 0) {
+        if ( $val['is_delete'] == 0) {
         ?>
     <tr>
     <td>
@@ -35,7 +30,7 @@ if(isset($article) && count($article)) {
             <div class="col-md-1 checkbox">
                 <input type="checkbox" name="checkboxlist[]" value="<?php echo $val['id'];?>">
             </div>
-            <div class="col-md-3"> <img class="avarta_1" src="<?php echo base_url();?>image_upload/article/<?php echo $val['image']; ?>" width="90%"></div>
+            <div class="col-md-3"> <img class="avarta_1" src="<?php echo base_url();?>medias/article/<?php echo $val['image']; ?>" width="90%"></div>
             <div class="col-md-5">
                 <p class="title">
                     <?php echo $val['title']; ?>
@@ -44,28 +39,19 @@ if(isset($article) && count($article)) {
             <?php echo substr( htmlentities($val['content']),0,100);
             echo "..."; ?>
         </pre>
-                <div>
-
-                    <p class="col-md-6"><b>Categories:</b> <?php echo $newArray[$val['categories']] ?>
-                        <!-- <?php 
-                         foreach ($categories as $keycate => $categories) {
-
-                            if ($val['categories'] == $categories['id'] && $categories['delete_is'] == 0) {
-
-                                echo $categories['name'];
-
-                            } else if ($val['categories'] == $categories['id'] && $categories['delete_is'] == 1) {
-                            
-                                echo "Default";
-                            
-                            }
-
-                        } ?> -->
-                    </p>
-                    <p class="col-md-6"><b>Author:</b>
-                        <?php echo $val['author']; ?>
-                    </p>
+          <div class="form-group">
+                <label class="col-md-3"><b>Author :</b></label>
+                <div class="col-md-3">
+                <p> <?php echo $val["author"]; ?></p>
+                    
                 </div>
+                <label class="col-md-3"><b>Categories :</b></label>
+                <div class="col-md-3">
+                <p><?php echo $newArray[$val['categories']] ?> </p>
+                    
+                </div>
+            </div>
+              
             </div>
             <div class="col-md-3 btn_control">
                 <span><a class="btn btn-success" href="<?php echo base_url();?>article/update/<?php echo $val['slug']; ?>" title="">Update</a></span>
@@ -85,8 +71,8 @@ if(isset($article) && count($article)) {
         </div>
     </div>
 </div>
-                <span><a class="btn btn-warning" href="<?php echo base_url();?>article/preview/<?php echo $val['slug']; ?>" title="">Preview</a></span>
-            </div>
+    <span><a class="btn btn-warning" href="<?php echo base_url();?>article/preview/<?php echo $val['slug']; ?>" title="">Preview</a></span>
+</div>
         </div></td>
         
     </tr>
@@ -165,6 +151,7 @@ if(isset($article) && count($article)) {
 <script type="text/javascript"> 
   var baseURL = "<?php echo base_url(); ?>";
 </script>
+
 <script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>asset/js/article/show.js"></script>

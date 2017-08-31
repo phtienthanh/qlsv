@@ -2,14 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>form login </title>
-	<!-- <link href="<? echo base_url();?>asset/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
 	<link rel="stylesheet" href="<?php echo base_url();?>asset/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/login.css">
-
-	
+    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/login.css">	
 </head>
 <body>
 <style type="text/css" media="screen">
