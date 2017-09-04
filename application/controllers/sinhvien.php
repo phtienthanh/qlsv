@@ -1,4 +1,3 @@
-
 <?php 
 
 if (!defined('BASEPATH')) exit ('No direct script access allowed');  
@@ -549,6 +548,3 @@ class Sinhvien extends MY_Controller {
     } 
    
 }
-
-//test uodate
-

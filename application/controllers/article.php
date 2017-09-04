@@ -29,8 +29,6 @@ class article extends MY_Controller {
 
         $this->load->view('home/header',$this->data);
 
-
-
     }
 
 	public function home() {
@@ -54,6 +52,7 @@ class article extends MY_Controller {
 	        	}  else {
 
 	        		$newArray[$listCgValue['id']] = "All";
+
 	        	}
 
 	        }
@@ -264,8 +263,6 @@ class article extends MY_Controller {
 	       			    
 	       	}
 	       	
-	       
-	       	
 	   		$this->load->view("article/update",$data);
 
 	   	} else {
@@ -447,4 +444,3 @@ class article extends MY_Controller {
     }	
    
 }
-

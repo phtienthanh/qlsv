@@ -623,7 +623,7 @@ class Home extends MY_Controller {
         
        	$config = array();
 
-  //      	$config['enable_query_strings'] = TRUE;
+  //    $config['enable_query_strings'] = TRUE;
 
 		// $config['use_page_numbers'] = TRUE;
 		
@@ -717,6 +717,5 @@ class Home extends MY_Controller {
     }
 
 }
-	
 
 ?>

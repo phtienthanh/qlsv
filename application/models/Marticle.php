@@ -250,8 +250,4 @@ class Marticle extends CI_Model {
 
 }
 
-//test
-
 ?>
-
-
