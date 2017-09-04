@@ -17,6 +17,10 @@
 	<form action="<?php echo base_url();?>home/login" method="POST" role="form">
 	
 		<div class="title"> Login</div>
+
+		<p class="title"><?php if (isset($login_fail) && count($login_fail) > 0) {
+   echo $login_fail;
+} ?></p>
 		
 		<div class="form-group form-gr">
 			<label for="">Email</label>

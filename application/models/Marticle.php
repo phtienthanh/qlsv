@@ -67,6 +67,8 @@ class Marticle extends CI_Model {
         if (isset($title) && count($title) > 0) {
 
             $this->db->where('title LIKE',"%".$title."%");
+
+            $this->db->where('is_delete',0);
         
             $query = $this->db->get('article');
         

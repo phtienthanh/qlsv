@@ -54,9 +54,9 @@ class Home extends MY_Controller {
 				
 			} else {
 
-				echo "<p class='error'>Email or password error</p>";
+				$this->data['login_fail'] = 'Email or password error';
 
-				$this->load->view('home/login');
+				$this->load->view('home/login',$this->data);
 	
 			}
 		
@@ -619,7 +619,7 @@ class Home extends MY_Controller {
 
     	$offset = $this->uri->segment(3);
 
-    	$perpage = 10;
+    	$perpage = 2;
         
        	$config = array();
 
