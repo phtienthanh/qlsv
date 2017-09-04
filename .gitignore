@@ -15,5 +15,8 @@ application/logs/*
 /medias/article/*.*
 !medias/article/doanthi.jpg
 !medias/student/avarta.png
-/application/config/database.php
-/application/config/config.php
+/image_upload/student/*.*
+
+/image_upload/article/*.*
+!image_upload/article/doanthi.jpg
+!image_upload/student/avarta.png

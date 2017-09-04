@@ -22,7 +22,7 @@ $(document).ready(function() {
 
             $.ajax({
 
-                url: baseURL+'sinhvien/delete_checkbox',
+                url: baseURL+'sinhvien/delete_checkbox/',
 
                 method: 'POST',
 
