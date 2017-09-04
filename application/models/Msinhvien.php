@@ -99,7 +99,7 @@ class Msinhvien extends CI_Model {
             } else {
 
                 return false;
-                
+
             }
 
         } else {
@@ -222,11 +222,13 @@ class Msinhvien extends CI_Model {
 
             $this->db->where("email",$email);
 
-            $this->db->where("is_delete",0);
+            $this->db->where("is_delete",'0');
 
-            $query = $this->db->get($this->table);         
+            $query = $this->db->get('student');    
+
+            var_dump($query->num_rows());
         
-            if ($query) {
+            if ($query->num_rows() > 1) {
              
                 return true;
             

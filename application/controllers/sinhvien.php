@@ -108,9 +108,9 @@ class Sinhvien extends MY_Controller {
 
 	       	$this->form_validation->set_message('valid_email','%s không  được định dạng');
 
-	       	$this->form_validation->set_message('is_unique','%s đã tồn tại');
+	       	$this->form_validation->set_message('matches','%s mật khẩu không đúng');
 
-	       	$this->form_validation->set_message('matches','%s không đ');
+	       	$this->form_validation->set_message('is_unique','%s đã tồn tại');
 
 	       	$this->form_validation->set_rules('password','Password','required|matches[confirm_password]');
 
