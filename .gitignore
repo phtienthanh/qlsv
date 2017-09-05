@@ -9,9 +9,3 @@ application/logs/*
 
 /application/config/config.php
 /application/config/database.php
-
-/medias/student/*.*
-/medias/article/*.*
-!medias/article/doanthi.jpg
-!medias/student/avarta.png
-
