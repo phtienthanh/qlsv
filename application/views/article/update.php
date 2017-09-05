@@ -24,10 +24,10 @@
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             <div class="card-block">
-                                <form action="<?php echo base_url();?>article/upload/<?php echo  $student[" id "]; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-                                    <center class="m-t-30"> <img src="<?php echo base_url();?>medias/article/<?php echo $student[" image "]; ?>" width="150" />
+                                <form action="<?php echo base_url();?>article/upload/<?php echo  $student["id"]; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                                    <center class="m-t-30"> <img src="<?php echo base_url();?>medias/article/<?php echo $student["image"]; ?>" width="150" />
                                         <input type="file" name="userfile" class="btn">
-                                        <input type="text" class="hinden" name="img_name" value="<?php echo $student[" image "]; ?>">
+                                        <input type="text" class="hinden" name="img_name" value="<?php echo $student["image"]; ?>">
                                         <input type="submit" name="submit" value="upload" class="btn btn-success">
                                 </form>
                                 <h4 class="card-title m-t-10"><?php echo  $student["title"]; ?></h4>
@@ -44,21 +44,21 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Title</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="title" placeholder="Title" class="form-control form-control-line" value="<?php echo $student[" title "]; ?>">
+                                            <input type="text" name="title" placeholder="Title" class="form-control form-control-line" value="<?php echo $student["title"]; ?>">
                                         </div>
                                         <?php echo form_error("title"); ?>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Slug</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="slug" placeholder="Slug" class="form-control form-control-line" value="<?php echo substr($student[" slug "],0,-5); ?>">
+                                            <input type="text" name="slug" placeholder="Slug" class="form-control form-control-line" value="<?php echo substr($student["slug"],0,-5); ?>">
                                         </div>
                                         <?php echo form_error("slug"); ?>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Author</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="author" placeholder="Author" class="form-control form-control-line" value="<?php echo $student[" author "]; ?>">
+                                            <input type="text" name="author" placeholder="Author" class="form-control form-control-line" value="<?php echo $student["author"]; ?>">
                                         </div>
                                         <?php echo form_error("author"); ?>
                                     </div>
@@ -84,7 +84,7 @@
                                                     if ( $val['is_delete'] == 0) {
 
                                                     ?>
-                                                <option value="<?php echo $val['id']; ?>" <?php if ($student[ "categories"]==$ val[ 'id'] ) { echo "selected"; } ?>>
+                                                <option value="<?php echo $val['id']; ?>" <?php if ($student["categories"]==$val[ 'id'] ) { echo "selected"; } ?>>
                                                     <?php echo $val['name']; ?>
                                                 </option>
                                                 <?php  
