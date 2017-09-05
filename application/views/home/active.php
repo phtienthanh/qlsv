@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-</head>
-
 <body class="title">
-
-        <h1 >Successful activation</h1>
-
-         <span> <a class="btn btn-default btn-register" href="<?php echo base_url();?>home/login" title="">Login now</a></span>
-
-    <script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
+    <h1>Successful activation</h1>
+    <span> <a class="btn btn-default btn-register" href="<?php echo base_url();?>home/login" title="">Login now</a></span>
 </body>
-
 </html>

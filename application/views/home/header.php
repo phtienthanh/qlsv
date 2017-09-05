@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
     <link href="favicon.ico" rel="shortcut icon">
     <script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/bootstrap.min.css">
@@ -12,9 +11,8 @@
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/header.css">
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css">
 </head>
+
 <body>
-    <style type="text/css" media="screen">
-    </style>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -69,31 +67,33 @@
         if(($role) == 'Admin') {
 
     ?>
-                <script type="text/javascript">
-                $('.manage_student').show();
-                </script>
-                <?php
+    
+        <script type="text/javascript">
+        $('.manage_student').show();
+        </script>
+        <?php
    
         } else  if(($role) == 'User') {
    
     ?>
-                    <script type="text/javascript">
-                    $('.manage_student').hide();
-                    </script>
-                    <?php
+        <script type="text/javascript">
+        $('.manage_student').hide();
+        </script>
+        <?php
 
         }
 
         ?>
-                        <script type="text/javascript">
-                        $('.manage_login1').hide();
 
-                        $('.manage_logout').show();
-                        </script>
-                        <?php
+        <script type="text/javascript">
+        $('.manage_login1').hide();
+
+        $('.manage_logout').show();
+        </script>
+        <?php
 
     }
     ?>
 </body>
-
+<script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
 </html>

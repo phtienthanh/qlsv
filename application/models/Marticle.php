@@ -16,13 +16,13 @@ class Marticle extends CI_Model {
 
     }
 
-    public function show_article($perpage, $offset,$title) {
+    public function show_article($offset,$perpage,$title) {
 
         if (isset($perpage) && count($perpage) > 0) {
 
             $this->db->order_by("id","desc");
 
-            $this->db->limit($perpage, $offset);
+            $this->db->limit($offset,$perpage);
 
             $this->db->where('title LIKE', "%".$title."%");
         
@@ -40,13 +40,15 @@ class Marticle extends CI_Model {
 
     }
 
-    public function show_all_article($perpage, $offset) {
+    public function show_all_article($offset,$perpage) {
 
         if (isset($perpage) && count($perpage) > 0) {
 
             $this->db->order_by("id","desc");
 
-            $this->db->limit($perpage, $offset);
+            $this->db->where('is_delete',"0");
+
+            $this->db->limit($offset,$perpage);
         
             $query = $this->db->get('article');
           
@@ -83,6 +85,8 @@ class Marticle extends CI_Model {
     }
 
     public function show_number_article() {
+
+        $this->db->where('is_delete', '0');
     
         $query = $this->db->get('article');
     

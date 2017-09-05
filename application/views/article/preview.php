@@ -1,24 +1,10 @@
-
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-</head>
 
 <body class="fix-header card-no-border">
-   
     <!-- ============================================================== -->
     <div id="main-wrapper">
-       
         <div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
             <div class="container-fluid page-wrapper">
-                <!-- ============================================================== -->
-                <!-- Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-6 col-8 align-self-center">
                         <h3 class="text-themecolor m-b-0 m-t-0">Preview</h3>
@@ -31,58 +17,42 @@
                         <a href="<?php echo base_url();?>home" class="btn pull-right hidden-sm-down btn-success"> Home</a>
                     </div>
                 </div>
-                
                 <div class="row">
-                    <!-- Column -->
-                  
-                    <!-- Column -->
-                    <!-- Column -->
                     <div class="col-lg-12 col-xlg-9 col-md-7 ">
                         <div class="card">
                             <div class="card-block ">
-                                <form action="<?php echo base_url();?>article/home" method="post" class="form-horizontal form-material" enctype="multipart/form-data" >
-                                
+                                <form action="<?php echo base_url();?>article/home" method="post" class="form-horizontal form-material" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label class="col-md-3"><b>Author :</b></label>
                                         <div class="col-md-3">
-                                        <p> <?php echo $student["author"]; ?></p>
-                                            
+                                            <p>
+                                                <?php echo $student["author"]; ?>
+                                            </p>
                                         </div>
                                         <label class="col-md-3"><b>Categories :</b></label>
                                         <div class="col-md-3">
-                                        <p><?php echo $newArray[$student['categories']] ?> </p>
-                                            
+                                            <p>
+                                                <?php echo $newArray[$student['categories']] ?> </p>
                                         </div>
                                     </div>
-                              
-                                    <div class="form-group" >
-                                     
-                                        <p> <?php echo nl2br( $student["content"], false); ?></p>
-                                     </div>
-
+                                    <div class="form-group">
+                                        <p>
+                                            <?php echo nl2br( $student["content"], false); ?>
+                                        </p>
+                                    </div>
                                     <div class="form-group">
                                         <div class="col-sm-6 btn-form">
-                                            <input type="submit" name="submit" class="btn btn-success" value="Back" >
+                                            <input type="submit" name="submit" class="btn btn-success" value="Back">
                                         </div>
-                                        
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <!-- Column -->
                 </div>
-              
             </div>
-           
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
     </div>
-
-    <script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
-   
 </body>
 
 </html>

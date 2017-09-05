@@ -619,25 +619,21 @@ class Home extends MY_Controller {
 
     	$offset = $this->uri->segment(3);
 
-    	$perpage = 2;
+    	var_dump($offset);
+
+    	$perpage = 10;
         
-       	$config = array();
-
-  //    $config['enable_query_strings'] = TRUE;
-
-		// $config['use_page_numbers'] = TRUE;
-		
-		// $config['query_string_segment'] = 'page';
-		
-		// $config['page_query_string'] = TRUE;
+       	$config = array();	
 
        	$keyword = trim($this->input->get('keyword', TRUE));
 		
 		$config['base_url'] = base_url('home/show_article');
 
-		if ($this->input->get('keyword') == "")  {
+		// $config['base_url'] = base_url('home/show_article')."?keyword=".$keyword;
 
-			$this->data['query'] =  $this->Marticle->show_all_article($perpage, $offset);
+		if ($keyword == "")  {
+
+			$this->data['query'] =  $this->Marticle->show_all_article($perpage,$offset);
 
 			$config['total_rows'] = $this->Marticle->show_number_article();
 
@@ -654,6 +650,8 @@ class Home extends MY_Controller {
 		$config['uri_segment'] = 3;
 
 		$config['num_links'] = 3;
+
+		// $config['page_query_string'] = TRUE;
 		
 		$config['next_link'] = "Trang ke tiep";
 		
