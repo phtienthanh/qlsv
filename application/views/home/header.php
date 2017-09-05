@@ -29,7 +29,7 @@
                 <ul class="nav navbar-nav">
                     <li><a class="manage_student" href="<?php echo base_url();?>sinhvien/show">Manage student</a></li>
                     <li><a class="manage_student" href="<?php echo base_url();?>article/home">Manage article</a></li>
-                    <li><a class="" href="<?php echo base_url();?>home/show_article">Show article</a></li>
+                    <li><a class="" href="<?php echo base_url();?>home/show_article?page=">Show article</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="manage_login1" href="<?php echo base_url();?>home/login">Login</a></li>
@@ -42,9 +42,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container-fluid -->
     </nav>
     <?php
 

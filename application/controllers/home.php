@@ -624,14 +624,18 @@ class Home extends MY_Controller {
        	$config = array();	
 
        	$keyword = trim($this->input->get('keyword', TRUE));
-		
-		// $config['base_url'] = base_url('home/show_article');
 
-		$config['base_url'] = base_url('home/show_article');
+       	if (isset($_GET['page'])== false) {
+
+       		$_GET['page'] = false;
+       	
+       	}
+
+		$config['base_url'] = base_url('/home/show_article?keyword='.$keyword);
 
 		if ($keyword == "")  {
 
-			$this->data['query'] =  $this->Marticle->show_all_article($perpage,$offset);
+			$this->data['query'] =  $this->Marticle->show_all_article($perpage,$_GET['page']);
 
 			$config['total_rows'] = $this->Marticle->show_number_article();
 
@@ -639,7 +643,7 @@ class Home extends MY_Controller {
 
 			$config['total_rows'] = $this->Marticle->show_number_title_article($keyword);
 
-			$this->data['query'] = $this->Marticle->show_article($perpage, $offset,$keyword);
+			$this->data['query'] = $this->Marticle->show_article($perpage, $_GET['page'],$keyword);
 		
 		}	
 		
@@ -649,7 +653,9 @@ class Home extends MY_Controller {
 
 		$config['num_links'] = 3;
 
-		// $config['page_query_string'] = TRUE;
+		$config['page_query_string'] = TRUE;
+
+		$config['query_string_segment'] = 'page';
 		
 		$config['next_link'] = "Trang ke tiep";
 		
@@ -690,6 +696,7 @@ class Home extends MY_Controller {
 		        	}  else {
 
 		        		$newArray[$listCgValue['id']] = "All";
+
 		        	}
 
 		        }
