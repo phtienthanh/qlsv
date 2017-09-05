@@ -1,5 +1,4 @@
 .DS_Store
-
 application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess
@@ -15,8 +14,4 @@ application/logs/*
 /medias/article/*.*
 !medias/article/doanthi.jpg
 !medias/student/avarta.png
-/image_upload/student/*.*
 
-/image_upload/article/*.*
-!image_upload/article/doanthi.jpg
-!image_upload/student/avarta.png

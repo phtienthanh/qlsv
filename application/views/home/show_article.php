@@ -23,7 +23,7 @@
             <?php echo substr( htmlentities($row['content']),0,100);
             echo "..."; ?> </p>
         <div class="title">
-            <a class="btn btn-primary" href="<?php echo base_url();?>home/preview/<?php echo $row['slug']; ?>" title="">Preview</a>
+            <a class="btn btn-primary" href="<?php echo base_url();?>home/preview/<?php echo $row['slug']; ?>" title="">Article detail</a>
         </div>
         <hr class="color_hr">
     </div>
@@ -33,6 +33,7 @@
     <div class="paging">
         <?php echo $paginator; ?>
     </div>
+    
 </body>
 
 </html>

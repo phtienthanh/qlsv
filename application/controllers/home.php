@@ -619,17 +619,15 @@ class Home extends MY_Controller {
 
     	$offset = $this->uri->segment(3);
 
-    	var_dump($offset);
-
     	$perpage = 10;
         
        	$config = array();	
 
        	$keyword = trim($this->input->get('keyword', TRUE));
 		
-		$config['base_url'] = base_url('home/show_article');
+		// $config['base_url'] = base_url('home/show_article');
 
-		// $config['base_url'] = base_url('home/show_article')."?keyword=".$keyword;
+		$config['base_url'] = base_url('home/show_article');
 
 		if ($keyword == "")  {
 
