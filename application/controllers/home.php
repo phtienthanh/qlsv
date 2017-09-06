@@ -264,7 +264,7 @@ class Home extends MY_Controller {
 						
 						"role" => 'User',
 
-						"is_delete" => 0,
+						"is_deleted" => 0,
 
 						"active" => 0,
 
@@ -600,7 +600,7 @@ class Home extends MY_Controller {
 
         	foreach ($listCg as $listCgKey => $listCgValue) {
 
-	        	if ($listCgValue['is_delete'] == 0) {
+	        	if ($listCgValue['is_deleted'] == 0) {
 
 	        		$newArray[$listCgValue['id']] = $listCgValue['name'];
 	        		
@@ -615,9 +615,7 @@ class Home extends MY_Controller {
 
         $this->data['newArray'] = $newArray;
 
-		$this->data['categories'] =  $listCg;
-
-    	$offset = $this->uri->segment(3);
+		$this->data['categories'] =  $listCg;	
 
     	$perpage = 10;
         
@@ -625,9 +623,9 @@ class Home extends MY_Controller {
 
        	$keyword = trim($this->input->get('keyword', TRUE));
 
-       	if (isset($_GET['page'])== false) {
+       	if (!isset($_GET['page'])) {
 
-       		$_GET['page'] = false;
+       		$_GET['page'] = 0;
        	
        	}
 
@@ -643,7 +641,7 @@ class Home extends MY_Controller {
 
 			$config['total_rows'] = $this->Marticle->show_number_title_article($keyword);
 
-			$this->data['query'] = $this->Marticle->show_article($perpage, $_GET['page'],$keyword);
+			$this->data['query'] = $this->Marticle->show_article($perpage, $_GET['page'], $keyword);
 		
 		}	
 		
@@ -667,7 +665,7 @@ class Home extends MY_Controller {
 
 		$this->data['search'] = $keyword;
 
-		$this->load->view('home/show_article',$this->data);
+		$this->load->view('home/show_article', $this->data);
 
     }	
 
@@ -689,7 +687,7 @@ class Home extends MY_Controller {
 
         		foreach ($listCg as $listCgKey => $listCgValue) {
 
-		        	if ($listCgValue['is_delete'] == 0) {
+		        	if ($listCgValue['is_deleted'] == 0) {
 
 		        		$newArray[$listCgValue['id']] = $listCgValue['name'];
 		        		
@@ -709,7 +707,7 @@ class Home extends MY_Controller {
 
 			$this->data['article'] = $this->Marticle->get_all_article();
 
-	    	$this->load->view("article/preview",$this->data);
+	    	$this->load->view("article/preview", $this->data);
 
     	} else {
 

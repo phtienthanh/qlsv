@@ -8,7 +8,7 @@
 </form>
     <?php foreach($query as $row):
 
-      if ($row['is_delete'] == 0 ) {
+      if ($row['is_deleted'] == 0 ) {
        ?>
     <div class="Form_insert">
         <h3 class="title"> <?php echo $row['title']; ?> </h3>

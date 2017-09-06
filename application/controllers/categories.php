@@ -68,7 +68,7 @@ class Categories extends MY_Controller {
 
                     "name" => $this->input->post("input_text"),
 
-                    "is_delete" => 0,
+                    "is_deleted" => 0,
                     
                 );
           
@@ -138,7 +138,7 @@ class Categories extends MY_Controller {
                 
                 $list_update = array(   
         
-                    "is_delete" => 0,
+                    "is_deleted" => 0,
                 
                 );
 
@@ -148,7 +148,7 @@ class Categories extends MY_Controller {
 
                 $list_update = array(   
         
-                    "is_delete" => 1,
+                    "is_deleted" => 1,
                 
                 );
 

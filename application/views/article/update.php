@@ -81,7 +81,7 @@
 
                                                 foreach ($categoriess as $key => $val) {
 
-                                                    if ( $val['is_delete'] == 0) {
+                                                    if ( $val['is_deleted'] == 0) {
 
                                                     ?>
                                                 <option value="<?php echo $val['id']; ?>" <?php if ($student["categories"]==$val[ 'id'] ) { echo "selected"; } ?>>

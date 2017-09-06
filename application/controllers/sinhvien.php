@@ -146,7 +146,7 @@ class Sinhvien extends MY_Controller {
 							
 							"role" => $this->input->post("role"),
 
-							"is_delete" => 0,
+							"is_deleted" => 0,
 
 							"active" => 1,
 
@@ -194,7 +194,7 @@ class Sinhvien extends MY_Controller {
 								
 								"role" => $this->input->post("role"),
 
-								"is_delete" => 0,
+								"is_deleted" => 0,
 
 								"active" => 1,
 
@@ -481,7 +481,7 @@ class Sinhvien extends MY_Controller {
 
 				$list_update = array(	
 		
-					"is_delete" => 1,
+					"is_deleted" => 1,
 				
 				);
 

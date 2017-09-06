@@ -43,7 +43,7 @@
 
             foreach ($categories as $key => $val) {
 
-                if ($val['is_delete'] == 0) {
+                if ($val['is_deleted'] == 0) {
                   
                  ?>
                     <option value="<?php echo $val['id']; ?>">

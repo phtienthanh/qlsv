@@ -134,7 +134,7 @@ class Msinhvien extends CI_Model {
 
             $this->load->database();
             
-            $this->db->where("is_delete",0);
+            $this->db->where("is_deleted",0);
 
             $this->db->where("email",$email);
 
@@ -222,11 +222,9 @@ class Msinhvien extends CI_Model {
 
             $this->db->where("email",$email);
 
-            $this->db->where("is_delete",'0');
+            $this->db->where("is_deleted",'0');
 
             $query = $this->db->get('student');    
-
-            var_dump($query->num_rows());
         
             if ($query->num_rows() > 1) {
              

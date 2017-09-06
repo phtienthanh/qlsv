@@ -23,7 +23,7 @@
 
             foreach ($categories as $key => $val) { 
 
-                if ($val['is_delete'] == 0 ) {
+                if ($val['is_deleted'] == 0 ) {
                 ?>
             <tr class="reload <?php echo $val['id']; ?>">
                 <td>

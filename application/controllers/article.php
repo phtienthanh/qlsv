@@ -45,7 +45,7 @@ class article extends MY_Controller {
 
         	foreach ($listCg as $listCgKey => $listCgValue) {
 
-	        	if ($listCgValue['is_delete'] == 0) {
+	        	if ($listCgValue['is_deleted'] == 0) {
 
 	        		$newArray[$listCgValue['id']] = $listCgValue['name'];
 	        		
@@ -93,7 +93,7 @@ class article extends MY_Controller {
 
        			foreach ($data as $key => $value) {
 
-	       			if ($this->input->post('title') == $value['title'] && $value['is_delete'] == "0" )  {
+	       			if ($this->input->post('title') == $value['title'] && $value['is_deleted'] == "0" )  {
 
 	       				$this->form_validation->set_rules('title','title','|is_unique[article.title]');
 	       			
@@ -141,7 +141,7 @@ class article extends MY_Controller {
 
 						"categories" => $this->input->post("categories"),
 
-						"is_delete" => 0,
+						"is_deleted" => 0,
 
 						"slug" => $slug,
 
@@ -364,7 +364,7 @@ class article extends MY_Controller {
 
         		foreach ($listCg as $listCgKey => $listCgValue) {
 
-		        	if ($listCgValue['is_delete'] == 0) {
+		        	if ($listCgValue['is_deleted'] == 0) {
 
 		        		$newArray[$listCgValue['id']] = $listCgValue['name'];
 		        		
@@ -405,7 +405,7 @@ class article extends MY_Controller {
 
 			$list_update = array(	
 		
-				"is_delete" => 1,
+				"is_deleted" => 1,
 				
 			);	
 
