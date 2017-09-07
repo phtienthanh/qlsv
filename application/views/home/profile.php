@@ -16,8 +16,11 @@
                     <!-- Column -->
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
-                            <div class="card-block">
+                            
                                 <form action="<?php echo base_url();?>home/upload/<?php echo  $student["id"]; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                                <div class="upload_img_p">
+                                    Upload image
+                                </div>
                                     <center class="m-t-30"> <img src="<?php echo base_url();?>medias/student/<?php echo $student["avatar"]; ?>" width="150" />
                                         <input type="file" name="userfile" class="btn">
                                         <input type="text" class="hinden" name="img_name" value="<?php echo $student["avatar"]; ?>">
@@ -25,12 +28,16 @@
                                 </form>
                                 <h4 class="card-title m-t-10"><?php echo  $student["last_name"]; ?></h4>
                                 </center>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="col-lg-8 col-xlg-9 col-md-7 Content-right">
                         <div class="card">
+                         <div class="upload_img_p">
+                                    User information
+                                </div>
                             <div class="card-block">
+
                                 <form action="" method="post" class="form-horizontal form-material">
                                     <div class="form-group">
                                         <label class="col-md-12">First Name</label>

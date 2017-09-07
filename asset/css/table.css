@@ -121,7 +121,7 @@ h1 span {
 }
 .container-f {
      margin: 100px 0 !important;
-    background-color: #eee;
+    background-color: #fff;
     margin-bottom: 50px;
 }
 
@@ -148,7 +148,7 @@ table {
     margin-top: 0;
 }
 .Form_insert, .wrapper{
-    width: 50%;
+    width: 500px;
     display: inline-block;
     text-align: left;
 }
@@ -166,6 +166,7 @@ body{
     display: none;
 }
 .row_xxx{
+    border: 1px solid rgba(0,0,0,.125);
     margin: 20px;
     padding:30px;
     background-color: #fff;
@@ -199,7 +200,7 @@ body{
 }
 .card-block{
  
-
+padding: 20px;
 }
 .row_ud{
 
@@ -219,7 +220,7 @@ body{
 }
 .row_av{
    padding: 40px 20px;
-    background-color: #818BB4;
+   
 
 }
 .form-g{
@@ -303,4 +304,90 @@ body{
 .col-md-12 .error{
 
     color: #fff;
+}
+.page{
+    width: 100%;
+}
+.image_post{
+    overflow: hidden;
+    width: 750px;
+    height: 400px;
+}
+.image_width{
+    width: 100%;
+}
+.mb-4{
+    
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    margin: 50px 0;
+    overflow: hidden;
+
+}
+.card-body{
+    padding: 20px;
+}
+.footer_post  {  padding: 10px 20px;
+    background-color: rgba(0,0,0,.03);
+    border-top: 1px solid rgba(0,0,0,.125);
+}
+.form_search_show{
+    width: 100%;
+    display: flex;
+}
+.card-header {
+    padding: .75rem 1.25rem;
+    margin: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.card {
+    overflow: hidden;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+.my-4 {
+    margin-top: 1.5rem!important;
+    margin-bottom: 1.5rem!important;
+}
+.post_body {
+  
+    padding: 1.25rem;
+}
+.post_8{
+    display: inline-block;
+}
+.color_menu{
+    color: #13204b !important;
+    font-size: 110%;
+    font-weight: bold;
+
+}
+.color_menu:hover{
+    background-color: #13204b !important;
+    color: #fff!important;
+}
+.title_article{
+    font-size: 26px;
+}
+.upload_img_p{
+    padding: 10px;
+    text-align: center;
+    background-color: #BAD7E5;
+    color: #8C6635;
+    font-size: 17px;
+    font-weight: bold;
+}
+.btn-insert{
+    margin-top: 20px;
 }

@@ -23,16 +23,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?php echo base_url();?>home">Home</a>
+                <a class="navbar-brand" href="<?php echo base_url();?>home"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a class="manage_student" href="<?php echo base_url();?>sinhvien/show">Manage student</a></li>
-                    <li><a class="manage_student" href="<?php echo base_url();?>article/home">Manage article</a></li>
-                    <li><a class="" href="<?php echo base_url();?>home/show_article?page=">Show article</a></li>
-                </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a class="manage_login1" href="<?php echo base_url();?>home/login">Login</a></li>
+                    <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url();?>sinhvien/show">Manage student</a></li>
+                    <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url();?>article/home">Manage article</a></li>
+                    <li class="li_menu"><a class="color_menu" href="<?php echo base_url();?>home/show_article?page=">Show article</a></li>
+                    <ul class="nav navbar-nav navbar-right">
+                    <li class="li_menu"><a class="manage_login1" href="<?php echo base_url();?>home/login">Login</a></li>
                     <li class="dropdown manage_logout">
                         <a href="#" class="dropdown-toggle fa fa-user " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
                         <ul class="dropdown-menu menu-header">
@@ -41,6 +40,8 @@
                         </ul>
                     </li>
                 </ul>
+                </ul>
+                
             </div>
         </div>
     </nav>

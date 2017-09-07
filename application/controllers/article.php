@@ -28,7 +28,7 @@ class article extends MY_Controller {
 		}			
 
         $this->load->view('home/header',$this->data);
-
+        
     }
 
 	public function home() {
@@ -82,10 +82,6 @@ class article extends MY_Controller {
        	$this->data['categories'] = $this->Mcategories->get_all_categories();
 
        	$values = $this->Marticle->get_delete_article($slug);
-
-       	$format = 'DATE_RFC822';
-        
-		$time = time(); 
 
        	if ($this->input->post("submit")) {
 
@@ -145,9 +141,12 @@ class article extends MY_Controller {
 
 						"slug" => $slug,
 
-						"date" => standard_date($format, $time),
+						"date" => date('d/m/Y'),
+
 					
 					);
+
+					
 
 					if ($list['image'] == '') {
 
