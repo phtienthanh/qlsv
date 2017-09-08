@@ -66,9 +66,7 @@
                                     <div class="form-group">
                                         <label for="example-email" class="col-md-12">Content</label>
                                         <div class="col-md-12">
-                                            <textarea rows="4" cols="85" class="form-control form-control-line" name="content">
-                                                <?php echo $student["content"];?>
-                                            </textarea>
+                                            <textarea rows="4" cols="85" class="form-control form-control-line" name="content"><?php echo $student["content"];?></textarea>
                                         </div>
                                         <?php echo form_error("content"); ?>
                                     </div>

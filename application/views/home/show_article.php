@@ -14,9 +14,12 @@
                     </div>
                     <div class="card-body">
                         <h2 class="card-title"><?php echo $row['title']; ?></h2>
-                        <p class="card-text">
-                            <?php echo nl2br(substr($row['content'], 0, 500), false); ?>
-                        </p>
+                        <div class="card-text">
+                        <div>
+                            <?php echo $row['content']; ?>
+                        </div>
+                            
+                        </div>
                         <a class="btn btn-primary" href="<?php echo base_url();?>home/preview/<?php echo $row['slug']; ?>" title="">Article detail</a>
                     </div>
                     <div class="card-footer footer_post">
