@@ -40,11 +40,7 @@
                                             <?php echo nl2br( $student["content"], false); ?>
                                         </p>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-6 btn-form">
-                                            <input type="submit" name="submit" class="btn btn-success" value="Back">
-                                        </div>
-                                    </div>
+                                   <span class="back"> <a href="<?php echo base_url('article/home') ?>" title="" class="btn btn-primary">Back</a></span>
                                 </form>
                             </div>
                         </div>
