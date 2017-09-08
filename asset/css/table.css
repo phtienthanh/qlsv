@@ -9,7 +9,7 @@ If you like this solution, you might also want to check out the 1.0 version:
 */
 
 .responstable {
-        margin:  50px;
+    margin: 50px;
     width: 93%;
     overflow: hidden;
     background: #FFF;
@@ -93,7 +93,7 @@ If you like this solution, you might also want to check out the 1.0 version:
 }
 
 body {
-    
+
     font-family: Arial, sans-serif;
     color: #024457;
     background: #f2f2f2;
@@ -110,17 +110,19 @@ h1 span {
     color: #167F92;
 }
 
-.container-fluid, .container-f {
-     margin: 100px 0;
+.container-fluid,
+.container-f {
+    margin: 100px 0;
     background-color: #eee;
     margin-bottom: 50px;
 }
 
-#dataTable{
+#dataTable {
     margin: 50px;
 }
+
 .container-f {
-     margin: 100px 0 !important;
+    margin: 100px 0 !important;
     background-color: #fff;
     margin-bottom: 50px;
 }
@@ -141,207 +143,249 @@ table {
 
 .dell-11 {
     display: none;
-    
 }
-.dellall{
+
+.dellall {
     margin: 50px;
     margin-top: 0;
 }
-.Form_insert, .wrapper{
+
+.Form_insert,
+.wrapper {
     width: 500px;
     display: inline-block;
     text-align: left;
 }
-.insert{
-        margin:50px;
+
+.insert {
+    margin: 50px;
     text-align: center;
 }
-body{
+
+body {
     padding-bottom: 50px;
 }
-.btn-insert{
+
+.btn-insert {
     width: 20% !important;
 }
-.hinden{
-    display: none;
+
+.hinden {
+    display: none !important;
 }
-.row_xxx{
-    border: 1px solid rgba(0,0,0,.125);
+
+.row_xxx {
+    border: 1px solid rgba(0, 0, 0, .125);
     margin: 20px;
-    padding:30px;
+    padding: 30px;
     background-color: #fff;
 }
-.content1{
+
+.content1 {
     height: 100px;
     text-overflow: ellipsis;
 
     white-space: inherit;
 }
-.back{
+
+.back {
     margin-top: 10px;
     margin-left: 20px;
 }
-.btn_control{
+
+.btn_control {
     margin-top: 50px;
 }
-.avarta_1{
+
+.avarta_1 {
     width: 60%;
 }
-.checkbox{
+
+.checkbox {
     margin-top: 54px;
 }
-.table_article{
+
+.table_article {
     width: 100%;
 }
-.page-wrapper{
-     padding:20px 100px;
+
+.page-wrapper {
+    padding: 20px 100px;
 
     background-color: #fff !important;
 }
-.card-block{
- 
-padding: 20px;
+
+.card-block {
+
+    padding: 20px;
 }
-.row_ud{
+
+.row_ud {
 
     padding: 40px 20px;
-    background-color: #818BB4;
    
 }
-.m-t-30{
+
+.m-t-30 {
     padding: 20px;
     background-color: #DCF3F4;
 }
-.align-self-center{
+
+.align-self-center {
     padding: 0;
 }
-.body-profile{
+
+.body-profile {
     background-color: #fff;
 }
-.row_av{
-   padding: 40px 20px;
-   
 
+.row_av {
+    padding: 40px 20px;
 }
-.form-g{
+
+.form-g {
     padding: 0 15px;
-
 }
-.add-cate{
+
+.add-cate {
     margin-top: 10px;
 }
-.checkxxx{
+
+.checkxxx {
     display: none;
 }
-.delete{
+
+.delete {
     margin-left: 20px;
 }
-.delete_std{
+
+.delete_std {
     margin-left: 50px;
 }
-.addcate{
+
+.addcate {
     margin-left: 50px !important;
 }
-.btn-addct{
-  
-  margin-top: 20px !important;
 
+.btn-addct {
+
+    margin-top: 20px !important;
 }
 
-.error{
-    
+.error {
+
     color: red;
     font-size: 16px;
     font-weight: 100;
 }
 
-.content-form{
+.content-form {
 
     word-break: break-all;
 
     height: 100px !important;
 }
-.update-btn{
+
+.update-btn {
     margin-top: 20px;
 }
-.modal-footer{
+
+.modal-footer {
     margin-top: 0px !important;
 }
-.col-role{
+
+.col-role {
     padding-left: 0;
 }
-.boxDoi-c{
-    width: 60%; 
+
+.boxDoi-c {
+    width: 60%;
     display: inline-block;
-    margin-left:190px;
+    margin-left: 190px;
 }
 
-.btn-add-js{
+.btn-add-js {
     width: 20% !important;
 }
-.date-time{
+
+.date-time {
 
     color: #798FBB;
 }
-.color_hr{
+
+.color_hr {
     margin: 50px 0;
     border-top: 1px solid blue;
 }
-.img_show{
+
+.img_show {
     height: 400px;
     overflow: hidden;
 }
-.content_ct{
+
+.content_ct {
     padding: 20px 0;
 }
-.input_search{
+
+.input_search {
     width: 85%;
     display: inline-block;
 }
-.form_search{
+
+.form_search {
     margin: 30px 0;
 }
-.col-md-12 .error{
+
+.col-md-12 .error {
 
     color: #fff;
 }
-.page{
+
+.page {
     width: 100%;
 }
-.image_post{
+
+.image_post {
     overflow: hidden;
     width: 750px;
     height: 400px;
 }
-.image_width{
+
+.image_width {
     width: 100%;
 }
-.mb-4{
-    
+
+.mb-4 {
+
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid rgba(0, 0, 0, .125);
     margin: 50px 0;
     overflow: hidden;
-
 }
-.card-body{
+
+.card-body {
     padding: 20px;
 }
-.footer_post  {  padding: 10px 20px;
-    background-color: rgba(0,0,0,.03);
-    border-top: 1px solid rgba(0,0,0,.125);
+
+.footer_post {
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, .03);
+    border-top: 1px solid rgba(0, 0, 0, .125);
 }
-.form_search_show{
+
+.form_search_show {
     width: 100%;
     display: flex;
 }
+
 .card-header {
     padding: .75rem 1.25rem;
     margin: 0;
-    background-color: rgba(0,0,0,.03);
-    border-bottom: 1px solid rgba(0,0,0,.125);
+    background-color: rgba(0, 0, 0, .03);
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
 }
+
 .card {
     overflow: hidden;
     position: relative;
@@ -353,34 +397,40 @@ padding: 20px;
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid rgba(0, 0, 0, .125);
     border-radius: .25rem;
 }
+
 .my-4 {
     margin-top: 1.5rem!important;
     margin-bottom: 1.5rem!important;
 }
+
 .post_body {
-  
+
     padding: 1.25rem;
 }
-.post_8{
+
+.post_8 {
     display: inline-block;
 }
-.color_menu{
+
+.color_menu {
     color: #13204b !important;
     font-size: 110%;
     font-weight: bold;
-
 }
-.color_menu:hover{
+
+.color_menu:hover {
     background-color: #13204b !important;
     color: #fff!important;
 }
-.title_article{
+
+.title_article {
     font-size: 26px;
 }
-.upload_img_p{
+
+.upload_img_p {
     padding: 10px;
     text-align: center;
     background-color: #BAD7E5;
@@ -388,6 +438,11 @@ padding: 20px;
     font-size: 17px;
     font-weight: bold;
 }
-.btn-insert{
+
+.btn-insert {
     margin-top: 20px;
+}
+
+.img_article{
+    margin-bottom: 10px;
 }

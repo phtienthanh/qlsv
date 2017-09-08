@@ -37,7 +37,8 @@
             <br>
             <img src="<?php echo base_url();?>medias/student/<?php echo $student["avatar"];?>" width="150">
             <input type="text" name="img_name" class="form-control hinden" value="<?php echo $student["avatar"]; ?>"/>
-            <input type="file" name="userfile" value="<?php echo $student["avatar"]; ?>"/>
+            <input type="file" name="userfile" class="userfile hinden">
+             <p class="btn btn-primary btn_select ">Select image</p>
             <br>
             <!--  <input type="text"  name="avarta" placeholder="Avatar" value="<?php echo $student["avatar"];?>"> -->
             <?php echo form_error("avarta"); ?>

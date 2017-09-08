@@ -12,8 +12,8 @@
                     <div class="col-md-6 col-8 align-self-center">
                         <h3 class="text-themecolor m-b-0 m-t-0"> Update article</h3>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item active">Profile</li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Article</a></li>
+                            <li class="breadcrumb-item active">Update</li>
                         </ol>
                     </div>
                     <div class="col-md-6 col-4 align-self-center">
@@ -23,10 +23,11 @@
                 <div class="row row_ud">
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
-                            <div class="card-block">
+                            <div class="">
                                 <form action="<?php echo base_url();?>article/upload/<?php echo  $student["id"]; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-                                    <center class="m-t-30"> <img src="<?php echo base_url();?>medias/article/<?php echo $student["image"]; ?>" width="150" />
-                                        <input type="file" name="userfile" class="btn">
+                                    <center class="m-t-30"> <img class="img_article" src="<?php echo base_url();?>medias/article/<?php echo $student["image"]; ?>" width="150"   />
+                                        <input type="file" name="userfile" class="userfile hinden">
+                                        <p class="btn btn-primary btn_select ">Select image</p>
                                         <input type="text" class="hinden" name="img_name" value="<?php echo $student["image"]; ?>">
                                         <input type="submit" name="submit" value="upload" class="btn btn-success">
                                 </form>

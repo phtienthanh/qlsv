@@ -1,5 +1,12 @@
 $(document).ready(function() {
 
+	$('.btn_select').click(function(){
+
+		$('.userfile').click();
+	    
+	});
+
+
 	$('.form_update').validate({
 		
 		rules : {

@@ -43,7 +43,8 @@
             
             <h3 for="">Avatar</h3>
             
-            <input type="file" name="userfile">
+            <input type="file" name="userfile" class="userfile hinden">
+             <p class="btn btn-primary btn_select ">Select image</p>
             
             <h3 for="">Role</h3>
             

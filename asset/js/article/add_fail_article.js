@@ -1,5 +1,11 @@
 $(document).ready(function() {
 
+		$('.btn_select').click(function(){
+
+			$('.avatar').click();
+	    
+		});
+
 	$('.Form_insert').validate({
 		
 		rules : {

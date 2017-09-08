@@ -6,6 +6,9 @@
     <br>
     <span class=""> <a href="<?php echo base_url('article/add') ?>" title="" class="btn btn-success back">Add article</a></span>
     <span class="addcate"> <a href="<?php echo base_url('categories/home') ?>" title="" class="btn btn-warning back">Categories</a></span>
+    <div  >
+        
+    
     <table class="table_article">
         <thead class="thead-inverse">
             <tr>
@@ -82,6 +85,7 @@
           ?>
         </tbody>
     </table>
+    </div>
     <tbody>
         <tbody>
             <button class="btn btn-danger delete" data-toggle="modal" data-target="#delall"> Delete</button>

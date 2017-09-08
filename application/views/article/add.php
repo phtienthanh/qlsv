@@ -28,7 +28,8 @@
             <br>
             <h3 for="">Avatar</h3>
             <br>
-            <input type="file" name="userfile" class="avatar">
+            <input type="file" name="userfile" class="avatar hinden">
+             <p class="btn btn-primary btn_select ">Select image</p>
             <br>
             <h3 for="">Author</h3>
             <br>
