@@ -141,7 +141,7 @@ class article extends MY_Controller {
 
 						"slug" => $slug,
 
-						"date" => date('d/m/Y'),
+						"date" => date('d/n/Y'),
 
 					
 					);

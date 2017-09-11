@@ -641,6 +641,8 @@ class Home extends MY_Controller {
 
 			$config['total_rows'] = $this->Marticle->show_number_title_article($keyword);
 
+			$this->data['search_ar'] = $config['total_rows'];
+
 			$this->data['query'] = $this->Marticle->show_article($perpage, $_GET['page'], $keyword);
 		
 		}	

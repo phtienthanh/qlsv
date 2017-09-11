@@ -26,10 +26,12 @@
             <?php echo form_error("content"); ?>
             <br>
             <br>
-            <h3 for="">Avatar</h3>
+            <h3 for="">Avatar <label class="img_bb">*(Bắt buộc chọn ảnh)</label></h3>
+          
             <br>
             <input type="file" name="userfile" class="avatar hinden">
              <p class="btn btn-primary btn_select ">Select image</p>
+               <?php echo form_error("userfile"); ?>
             <br>
             <h3 for="">Author</h3>
             <br>
@@ -60,7 +62,7 @@
             <?php echo form_error("categories"); ?>
             <br>
             <br>
-            <input type="submit" name="submit" value="insert" class="btn btn-primary btn-block btn-large btn-insert ">
+            <input type="submit" name="submit" value="insert" class="btn btn-primary btn-block btn-large btn-insert">
         </form>
     </div>
 </body>

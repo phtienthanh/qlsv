@@ -24,7 +24,10 @@ $(document).ready(function() {
 			content : {
 				required : true,
 				
-			}
+			},
+			userfile : {
+				required : true,
+			},
 		},
 
 		messages : {
@@ -44,6 +47,9 @@ $(document).ready(function() {
 			categories : {
 				required : "Categories không được để trống",
 				
+			},
+				userfile : {
+				required : "Bắt buộc phải chọn ảnh",
 			},
 
 		},

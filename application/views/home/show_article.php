@@ -3,6 +3,13 @@
     <div class="container">
     <div class="col-md-8">
         <h1 class="my-4">Show article</h1>
+<?php
+        if(isset($search_ar) && count($search_ar)) {
+            ?>
+
+        <h3 class="title"> Tìm thấy <?php echo $search_ar; ?> kết quả</h3>
+
+        <?php } ?>
         <?php foreach($query as $row) {
 
                 if ($row['is_deleted'] == 0 ) {
@@ -13,13 +20,28 @@
                         <img class="image_width" src="<?php echo base_url();?>medias/article/<?php echo $row['image']; ?>">
                     </div>
                     <div class="card-body">
-                        <h2 class="card-title"><?php echo $row['title']; ?></h2>
+                        <h2 class="card-title"><?php 
+
+                        if (strlen($row['title']) > 30 ) {
+
+                            echo substr($row['title'],0,30); echo '...';
+                            
+                        } else {
+
+                            echo $row['title'];
+                           
+                        } ?>
+                            
+                        </h2>
                         <div class="card-text">
                         <div>
-                            <?php echo $row['content']; ?>
+
+                            <p><?php echo substr( preg_replace('/([^\pL\.\ ]+)/u', '', strip_tags($row['content'])),0,400); echo '...'; ?></p>
+
                         </div>
                             
                         </div>
+
                         <a class="btn btn-primary" href="<?php echo base_url();?>home/preview/<?php echo $row['slug']; ?>" title="">Article detail</a>
                     </div>
                     <div class="card-footer footer_post">

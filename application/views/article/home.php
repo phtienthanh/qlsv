@@ -32,7 +32,17 @@
                         <div class="col-md-3"> <img class="avarta_1" src="<?php echo base_url();?>medias/article/<?php echo $val['image']; ?>" width="90%"></div>
                         <div class="col-md-5">
                             <p class="title title_article">
-                                <?php echo $val['title']; ?>
+                                <?php 
+
+                        if (strlen($val['title']) > 30 ) {
+
+                            echo substr($val['title'],0,30); echo '...';
+                            
+                        } else {
+
+                            echo $val['title'];
+                           
+                        } ?>
                             </p>
                     <pre class="content1">
                     <?php echo substr( htmlentities($val['content']),0,100);
