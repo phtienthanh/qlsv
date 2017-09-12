@@ -2,13 +2,13 @@
  
 class Msinhvien extends CI_Model {
  
-    protected $table = 'student';
+    protected $table = 'users';
 
     public function get_all_sinhvien() {
 
         $this->db->order_by('id','desc');
     
-        $query = $this->db->get('student');
+        $query = $this->db->get('users');
     
         $ar = $query->result_array();
 
@@ -224,7 +224,7 @@ class Msinhvien extends CI_Model {
 
             $this->db->where("is_deleted",'0');
 
-            $query = $this->db->get('student');    
+            $query = $this->db->get('users');    
         
             if ($query->num_rows() > 1) {
              

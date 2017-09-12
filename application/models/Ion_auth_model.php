@@ -983,7 +983,7 @@ class Ion_auth_model extends CI_Model
 
   		$this->db->where('active',1);
        	
-       	$query = $this->db->get('student');
+       	$query = $this->db->get('users');
        
 
 
@@ -1527,7 +1527,7 @@ class Ion_auth_model extends CI_Model
 		// if no id was passed use the current users id
 		$id = isset($id) ? $id : $this->session->userdata('user_id');
 			$this->db->where('id',$id);
-			$query = $this->db->get('student');
+			$query = $this->db->get('users');
 
 
 		// $this->limit(1);

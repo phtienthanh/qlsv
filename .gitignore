@@ -9,3 +9,10 @@ application/logs/*
 
 /application/config/config.php
 /application/config/database.php
+
+/medias/student/*.*
+/medias/article/*.*
+!/meidas/student/doanthi.jpg
+!/meidas/article/doanthi.jpg
+
+
