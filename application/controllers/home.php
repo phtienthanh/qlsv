@@ -42,11 +42,15 @@ class Home extends MY_Controller {
 			
 			$user = $this->ion_auth->login($this->input->post('email'), $this->input->post('password'));
 
+			var_dump($user);
+
 			if ($user) {
 
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-
-				$data = $user->role; 
+				
+				$userInfo = $this->ion_auth->user()->row();
+				
+				var_dump($userInfo) ; exit();
 
 				$this->data['role'] = $data;
 

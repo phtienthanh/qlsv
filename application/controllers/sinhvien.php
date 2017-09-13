@@ -31,6 +31,34 @@ class Sinhvien extends MY_Controller {
         }
 
         $this->load->model('Msinhvien');
+
+        $this->load->model('Mrole');
+
+        $listCg = $this->Mrole->get_role();
+
+        $newArray = [];
+
+         if (isset($listCg) && count($listCg) > 0) {
+
+        	foreach ($listCg as $listCgKey => $listCgValue) {
+
+	        	if ($listCgValue['is_deleted'] == 0) {
+
+	        		$newArray[$listCgValue['id']] = $listCgValue['name'];
+	        		
+	        	}  else {
+
+	        		$newArray[$listCgValue['id']] = "All";
+
+	        	}
+
+	        }
+
+        }
+
+        $this->data['newArray'] = $newArray;
+
+		$this->data['categories'] =  $listCg;
 		
 		$this->data['student'] = $this->Msinhvien->get_all_sinhvien();
 

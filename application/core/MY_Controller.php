@@ -14,11 +14,21 @@ class MY_Controller extends CI_Controller {
 
 		if ($this->ion_auth->logged_in() == true) {
 
+            $this->load->model('Mrole');
+
+            
+
 			      $userInfo = $this->ion_auth->user()->row();
+
+            // var_dump( $userInfo);
             
             $id = $userInfo->id;
+
+            $data = $this->Mrole->get_role($userInfo->id); 
+
+            $id_role =  $this->Mrole->get_name_role($data['group_id']);
   			
-            $role = $userInfo->role;
+            $role = $id_role['name'];
   			
             $first_name = $userInfo->first_name;
   			
