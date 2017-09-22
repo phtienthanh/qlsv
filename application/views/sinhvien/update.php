@@ -45,10 +45,28 @@
             <br>
             <label for="">Role</label>
             <br>
-            <select name="role" class="form-control" value="<?php echo $student["role"];?>">
-                <option <?php if ($student["role"]=="Admin" ) { echo "selected"; } ?>>Admin</option>
-                <option <?php if ($student["role"]=="User" ) { echo "selected"; } ?>>User</option>
-            </select>
+   
+            
+                <?php 
+                    
+            if(isset($role) && count($role)) {
+
+            foreach ($role as $key => $val) {
+                             
+                 ?><tr selected>
+                     <input name='<?php echo $val['id']; ?>' type='checkbox' value='<?php echo $val['id']; ?>'  <?php  if (isset($$val['name']) && count($$val['name'])) {
+
+    echo 'checked';
+   
+} ?> /><?php echo $val['name']; ?>
+                 </tr>
+                   
+                    <?php       
+
+                        }  
+                    }
+                
+                ?>
             <?php echo form_error("role"); ?>
             <br>
             <input class="btn btn-warning" type="submit" name="insert" value="Update">

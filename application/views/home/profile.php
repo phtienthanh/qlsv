@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="form-group form-g">
                                         <label class="col-md-12 col-role">Role</label>
-                                        <input type="text" name="role" readonly="value" class="form-control form-control-line" value="<?php echo $student["role"]; ?>">
+                                        <input type="text" name="role" readonly="value" class="form-control form-control-line" value="<?php echo $newArray[$student['id']] ?>">
                                         <?php echo form_error("role"); ?>
                                     </div>
                                     <div class="form-group">

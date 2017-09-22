@@ -14,21 +14,27 @@ class MY_Controller extends CI_Controller {
 
 		if ($this->ion_auth->logged_in() == true) {
 
-            $this->load->model('Mrole');
-
-            
-
-			      $userInfo = $this->ion_auth->user()->row();
-
-            // var_dump( $userInfo);
+			$userInfo = $this->ion_auth->user()->row();
             
             $id = $userInfo->id;
 
-            $data = $this->Mrole->get_role($userInfo->id); 
+            $this->load->model('Mrole');
 
-            $id_role =  $this->Mrole->get_name_role($data['group_id']);
-  			
-            $role = $id_role['name'];
+            $listCg = $this->Mrole->get_all_role();
+
+            $newArray = [];
+
+            if (isset($listCg) && count($listCg) > 0) {
+
+                foreach ($listCg as $listCgKey => $listCgValue) {
+
+                    $newArray[$listCgValue['user_id']] = $this->Mrole->get_name_role($listCgValue['group_id'])['name'];
+
+                }
+
+            }
+
+             $role = $newArray[$id];
   			
             $first_name = $userInfo->first_name;
   			
@@ -38,7 +44,7 @@ class MY_Controller extends CI_Controller {
   			
             $password = $userInfo->password;
 
-			      $avatar = $userInfo->avatar;
+			$avatar = $userInfo->avatar;
             
             $this->data['id']=$id;
   			

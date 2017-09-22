@@ -877,6 +877,8 @@ class Ion_auth_model extends CI_Model
 	 **/
 	public function register($identity, $password, $email, $additional_data = array(), $groups = array())
 	{
+
+		
 		$this->trigger_events('pre_register');
 
 		$manual_activation = $this->config->item('manual_activation', 'ion_auth');
@@ -891,7 +893,7 @@ class Ion_auth_model extends CI_Model
 			$this->set_error('account_creation_missing_default_group');
 			return FALSE;
 		}
-
+	
 		// check if the default set in config exists in database
 		$query = $this->db->get_where($this->tables['groups'],array('name' => $this->config->item('default_group', 'ion_auth')),1)->row();
 		if( !isset($query->id) && empty($groups) )
@@ -935,11 +937,13 @@ class Ion_auth_model extends CI_Model
 		$id = $this->db->insert_id($this->tables['users'] . '_id_seq');
 
 		// add in groups array if it doesn't exists and stop adding into default group if default group ids are set
+
+		
 		if( isset($default_group->id) && empty($groups) )
 		{
 			$groups[] = $default_group->id;
 		}
-
+		
 		if (!empty($groups))
 		{
 			// add to groups
@@ -978,17 +982,13 @@ class Ion_auth_model extends CI_Model
 		    			  ->order_by('id', 'desc')
 		                  ->get($this->tables['users']);
 
-		// if($this->is_max_login_attempts_exceeded($identity))
-		// {
-			// Hash something anyway, just to take up time
 			$this->hash_password($password);
 			var_dump($this->hash_password($password));
 
 			$this->trigger_events('post_login_unsuccessful');
 			$this->set_error('login_timeout');
 
-		// 	return FALSE;
-		// }
+		
 
 		if ($query->num_rows() === 1)
 		{
@@ -1579,17 +1579,19 @@ class Ion_auth_model extends CI_Model
 	{
 		$this->trigger_events('remove_from_group');
 
-		// user id is required
 		if(empty($user_id))
 		{
 			return FALSE;
 		}
+
+
 
 		// if group id(s) are passed remove user from the group(s)
 		if( ! empty($group_ids))
 		{
 			if(!is_array($group_ids))
 			{
+				
 				$group_ids = array($group_ids);
 			}
 
@@ -1607,6 +1609,8 @@ class Ion_auth_model extends CI_Model
 		// otherwise remove user from all groups
 		else
 		{
+
+			var_dump('1');
 			if ($return = $this->db->delete($this->tables['users_groups'], array($this->join['users'] => (float)$user_id))) {
 				$this->_cache_user_in_group[$user_id] = array();
 			}

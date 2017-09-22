@@ -34,23 +34,17 @@ class Sinhvien extends MY_Controller {
 
         $this->load->model('Mrole');
 
-        $listCg = $this->Mrole->get_role();
+        $listCg = $this->Mrole->get_all_role();
+
+        $listgr = $this->Mrole->get_all_group();
 
         $newArray = [];
 
          if (isset($listCg) && count($listCg) > 0) {
 
-        	foreach ($listCg as $listCgKey => $listCgValue) {
+        	foreach ($listgr as $listCgKey => $listCgValue) {
 
-	        	if ($listCgValue['is_deleted'] == 0) {
-
-	        		$newArray[$listCgValue['id']] = $listCgValue['name'];
-	        		
-	        	}  else {
-
-	        		$newArray[$listCgValue['id']] = "All";
-
-	        	}
+	        	$newArray[$listCgValue['id']] = $this->Mrole->get_name_role($listCgValue['id'])['name'];
 
 	        }
 
@@ -58,24 +52,32 @@ class Sinhvien extends MY_Controller {
 
         $this->data['newArray'] = $newArray;
 
-		$this->data['categories'] =  $listCg;
+		$this->data['role'] =  $listCg;
 		
 		$this->data['student'] = $this->Msinhvien->get_all_sinhvien();
 
 		$this->load->view('Sinhvien/show',$this->data);
 
 	}
-   
-    public function insert() {
 
-		if ($this->data['role'] == 'User') {
+    public function create_user() {
+
+       	if ($this->data['role'] == 'User') {
             
             redirect('home/index');
 
         }
-        
-    	$config['protocol']    = 'smtp';
-        
+
+		$config['max_size'] = 20480;
+
+		$config['upload_path'] = './medias/student/';
+
+		$config['allowed_types'] = 'gif|jpg|png';
+
+		$this->load->library('upload', $config);
+
+		$config['protocol']    = 'smtp';
+	        
         $config['smtp_host']    = 'ssl://smtp.gmail.com';
         
         $config['smtp_port']    = '465';
@@ -112,158 +114,198 @@ class Sinhvien extends MY_Controller {
 
         $this->email->message($message); 
 
-        $this->load->model('Msinhvien'); 
+        $this->session->set_flashdata('message', $this->ion_auth->messages());
 
-		$config['max_size'] = 20480;
+        $tables = $this->config->item('tables','ion_auth');
 
-		$config['upload_path'] = './medias/student/';
+        $identity_column = $this->config->item('identity'  ,'ion_auth');
 
-		$config['allowed_types'] = 'gif|jpg|png';
+         $this->data['role'] = $this->Mrole->get_all_group(); 
 
-		$this->load->library('upload', $config);
+        $this->data['identity_column'] = $identity_column;
+        $this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required');
+        $this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required');
+        if($identity_column!=='email')
+        {
+            $this->form_validation->set_rules('identity',$this->lang->line('create_user_validation_identity_label'),'required|is_unique['.$tables['users'].'.'.$identity_column.']');
+            $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email');
+        }
+        else
+        {
+            $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|is_unique[' . $tables['users'] . '.email]');
+        }
+      
+        $this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
+        $this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
+
+        if ($this->form_validation->run() == true)
+        {
+
+        	if ($this->input->post('1') || $this->input->post('2') || $this->input->post('3') ) {
+	        
+	            $email    = strtolower($this->input->post('email'));
+	            $identity = ($identity_column==='email') ? $email : $this->input->post('identity');
+	            $password = $this->input->post('password');
+
+
+	            if ($_FILES['userfile']['name'] == '') {
+
+			        $additional_data = array(
+			            'first_name' => $this->input->post('first_name'),
+			            'last_name'  => $this->input->post('last_name'),
+			            'avatar' => "doanthi.jpg",
+			            'is_deleted' => 0,
+
+			        );
+
+					$listCg = $this->Mrole->get_all_group();
+
+					$groups_id = [];
+
+			         if (isset($listCg) && count($listCg) > 0) {
+
+			        	foreach ($listCg as $listCgKey => $value) {
+
+			        		if ($this->input->post($value['id']) == $value['id'] ) {
+
+				        		$groups_id[] = $this->input->post($value['id']);
+
+				        	}
+
+				        }
+
+			        }
+						
+			        if ($this->ion_auth->register($identity, $password, $email, $additional_data,$groups_id)) {
+			        		
+		        		$this->email->send(); 
+
+		        		$success = 'Add new student success';
+
+						$this->data['succes'] = $success;
+
+			        }
+
+	        	} else {
+
+					$additional_data = array(
+
+		            'first_name' => $this->input->post('first_name'),
+		            'last_name'  => $this->input->post('last_name'),
+		            'avatar' =>$_FILES['userfile']['name'],
+		            'is_deleted' => 0,
+
+		        	);		
+
+					$listCg = $this->Mrole->get_all_group();
+
+					$groups_id = [];
+
+			        if (isset($listCg) && count($listCg) > 0) {
+
+			        	foreach ($listCg as $listCgKey => $value) {
+
+			        		if ($this->input->post($value['id']) == $value['id'] ) {
+
+				        		$groups_id[] = $this->input->post($value['id']);
+
+				        	}
+
+				        }
+
+			        }
 		
-		$data = $this->Msinhvien->get_all_sinhvien();
+		        	if (!$this->upload->do_upload()) { 
 
-		if ($this->input->post("submit")) {
+					$success = 'Add new student fail';
 
-       		$this->form_validation->set_rules('email','Email','required');
+					$this->data['succes'] = $success;
 
-	       	$this->form_validation->set_rules('first_name','First name','required');
+					} else {
+			    	
+			        	if ($this->ion_auth->register($identity, $password, $email, $additional_data, $groups_id)) {
+			        		
+			        		$this->email->send(); 
 
-	       	$this->form_validation->set_message('required','%s không được bỏ trống');
-	       	
-	       	$this->form_validation->set_rules('last_name','Last name','required');
-
-	       	$this->form_validation->set_message('valid_email','%s không  được định dạng');
-
-	       	$this->form_validation->set_message('matches','%s mật khẩu không đúng');
-
-	       	$this->form_validation->set_message('is_unique','%s đã tồn tại');
-
-	       	$this->form_validation->set_rules('password','Password','required|matches[confirm_password]');
-
-	       	$this->form_validation->set_rules('confirm_password','Confirm password','required');
-	       	
-	       	$this->form_validation->set_rules('role','Role','required');
-
-	       	$email_exist = $this->Msinhvien->get_exist_email($this->input->post('email'));
-
-	       	if ($email_exist) {
-	       		
-	       		$this->form_validation->set_rules('email','Email','required|valid_email|is_unique[student.email]');
-
-	       	}
-
-	       	if ($this->input->post("role") == 'Admin' || $this->input->post("role") == 'User' ) {
-    		
-	    		if ($this->form_validation->run()) {
-
-	    			if ($_FILES['userfile']['name'] == '') {
-
-	    				$list = array(
-
-							"first_name" => $this->input->post("first_name"),
-							
-							"last_name" => $this->input->post("last_name"),
-							
-							"email" => $this->input->post("email"),
-							
-							"password" => $this->input->post("password"),
-							
-							"avatar" =>	'doanthi.jpg',
-							
-							"role" => $this->input->post("role"),
-
-							"is_deleted" => 0,
-
-							"active" => 1,
-
-						);
-
-						if ($this->Msinhvien->insert($list)) {
-
-							$file_data =  $this->upload->data();
-
-							$this->email->send();
-
-							$success = 'Successfully added new but failed image upload';
-							
-							$this->data['succes']= $success;
-				
-						} else {
-
-							$this->data['error'] = array('error' => "add fail");
-
-						} 
-
-	    			} else {
-
-		    			$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], -4);
-
-	    				if (!$this->upload->do_upload()) { 
-
-	    					$success = 'Add new student fail';
+			        		$success = 'Add new student success';
 
 							$this->data['succes'] = $success;
 
-						} else {
+							$this->load->view('sinhvien/insert',$this->data);
 
-							$list = array(
+			        	}
 
-								"first_name" => $this->input->post("first_name"),
-								
-								"last_name" => $this->input->post("last_name"),
-								
-								"email" => $this->input->post("email"),
-								
-								"password" => $this->input->post("password"),
-								
-								"avatar" =>	$_FILES['userfile']['name'],
-								
-								"role" => $this->input->post("role"),
+			   		}
 
-								"is_deleted" => 0,
+	        	}
 
-								"active" => 1,
+	        } else {
 
-							);
+	        	$success = 'Please select a role';
 
-							if ($this->Msinhvien->insert($list)) {
+				$this->data['succes'] = $success;
 
-								$file_data =  $this->upload->data();
+				$this->load->view('sinhvien/insert',$this->data);
 
-								$this->email->send();
+	        }
+        	
+    	} else {
 
-								$success = 'Add new student success';
+            $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
-								$this->data['succes'] = $success;
+            $this->data['first_name'] = array(
+                'name'  => 'first_name',
+                'id'    => 'first_name',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('first_name'),
+            );
+            $this->data['last_name'] = array(
+                'name'  => 'last_name',
+                'id'    => 'last_name',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('last_name'),
+            );
+            $this->data['identity'] = array(
+                'name'  => 'identity',
+                'id'    => 'identity',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('identity'),
+            );
+            $this->data['email'] = array(
+                'name'  => 'email',
+                'id'    => 'email',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('email'),
+            );
+            $this->data['company'] = array(
+                'name'  => 'company',
+                'id'    => 'company',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('company'),
+            );
+            $this->data['phone'] = array(
+                'name'  => 'phone',
+                'id'    => 'phone',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('phone'),
+            );
+            $this->data['password'] = array(
+                'name'  => 'password',
+                'id'    => 'password',
+                'type'  => 'password',
+                'value' => $this->form_validation->set_value('password'),
+            );
+            $this->data['password_confirm'] = array(
+                'name'  => 'password_confirm',
+                'id'    => 'password_confirm',
+                'type'  => 'password',
+                'value' => $this->form_validation->set_value('password_confirm'),
+            );
 
-							} else {
+           $this->load->view('sinhvien/insert',$this->data);
 
-								$this->data['error'] = array('error' => "add fail");
+        }
 
-							} 
-					
-						}
-
-		    		}
-
-				}
-
-			} else {
-
-				echo "Role error";
-
-			}
-						       
-       	} else if ($this->input->post("back")) {
-
-       		redirect('sinhvien/show');   
-       			    	
-       	}
-	
-        $this->load->view('sinhvien/insert',$this->data);
-   
     }
 
     public function update($id) {
@@ -280,6 +322,50 @@ class Sinhvien extends MY_Controller {
 	    		redirect('sinhvien/changepass/'.$id);  
 	       	
 	       	}
+
+	       	$listCg = $this->Mrole->get_all_group();
+
+			$groups_id = [];
+
+			$list_id_role = $this->Mrole->get_role_groups($id);
+
+			foreach ($list_id_role as $listCgKey => $id_value) {
+
+				if ($id_value['group_id'] == '1') {
+
+					$this->data['Admin'] = true;
+					
+				}
+
+				if ($id_value['group_id'] == '2') {
+
+					$this->data['Members'] = true;
+					
+				}
+
+				if ($id_value['group_id'] == '3') {
+
+					$this->data['User'] = true;
+					
+				}
+
+			
+			}
+
+	        if (isset($listCg) && count($listCg) > 0) {
+
+	        	foreach ($listCg as $listCgKey => $value) {
+	        		
+
+	        		if ($this->input->post($value['id']) == $id ) {
+
+		        		$groups_id[] = $this->input->post($value['id']);
+
+		        	}
+
+		        }
+
+		    }
 	    
 	       	$this->load->model('Msinhvien');
 	    
@@ -292,12 +378,37 @@ class Sinhvien extends MY_Controller {
 		       	$this->form_validation->set_rules('last_name','Last name','required');
 		       	
 		       	$this->form_validation->set_rules('email','Email','required');
-		       	
-		       	$this->form_validation->set_rules('role','Role','required');
 	
 		       	$this->form_validation->set_message('required','%s không được bỏ trống');
 	    
 		       	if ($this->form_validation->run()) {
+
+		       		$listCg = $this->Mrole->get_all_group();
+
+						$groups_id = [];
+
+						foreach ($list_id_role as $listCgKey => $id_value) {
+
+							$this->ion_auth_model->remove_from_group($id_value['group_id'],$id);
+					
+						}
+
+
+		         		if (isset($listCg) && count($listCg) > 0) {
+
+		        			foreach ($listCg as $listCgKey => $value) {
+		        				
+		        				if ($this->input->post($value['id']) == $value['id'] ) {
+
+			        				$groups_id[] = $this->input->post($value['id']);
+
+					        	}
+
+					        }
+
+					       $this->ion_auth_model->add_to_group($groups_id, $id);
+
+				        }
 	
 		       		if ($_FILES['userfile']['name'] == '') {
 	
@@ -308,8 +419,6 @@ class Sinhvien extends MY_Controller {
 							"last_name" => $this->input->post("last_name"),
 	
 							"avatar" => $this->input->post("img_name"),
-							
-							"role" => $this->input->post("role"),
 						
 						);
 
@@ -346,8 +455,6 @@ class Sinhvien extends MY_Controller {
 								"last_name" => $this->input->post("last_name"),
 		
 								"avatar" => $this->input->post("img_name"),
-								
-								"role" => $this->input->post("role"),
 							
 							);
 
@@ -374,8 +481,6 @@ class Sinhvien extends MY_Controller {
 								"last_name" => $this->input->post("last_name"),
 								
 								"avatar" => $_FILES['userfile']['name'],
-								
-								"role" => $this->input->post("role"),
 							
 							);
 
@@ -402,6 +507,8 @@ class Sinhvien extends MY_Controller {
 		       	redirect('sinhvien/show');   
 		       			    
 			}
+
+			$this->data['role'] =  $listCg;
 	   		
 	   		$this->load->view("sinhvien/update",$this->data);
 	

@@ -42,15 +42,11 @@ class Home extends MY_Controller {
 			
 			$user = $this->ion_auth->login($this->input->post('email'), $this->input->post('password'));
 
-			var_dump($user);
-
 			if ($user) {
 
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 				
 				$userInfo = $this->ion_auth->user()->row();
-				
-				var_dump($userInfo) ; exit();
 
 				$this->data['role'] = $data;
 
@@ -93,6 +89,30 @@ class Home extends MY_Controller {
 				redirect('home/index');
 
 			}
+
+			$this->load->model('Msinhvien');
+
+	        $this->load->model('Mrole');
+
+	        $listCg = $this->Mrole->get_all_role();
+
+	        $newArray = [];
+
+	         if (isset($listCg) && count($listCg) > 0) {
+
+	        	foreach ($listCg as $listCgKey => $listCgValue) {
+
+		        	$newArray[$listCgValue['user_id']] = $this->Mrole->get_name_role($listCgValue['group_id'])['name'];
+
+		        }
+
+        	}
+
+	        $this->data['newArray'] = $newArray;
+
+			$this->data['role'] =  $listCg;
+			
+			$this->data['student'] = $this->Msinhvien->get_all_sinhvien();
 
 	   		$this->load->model('Msinhvien');
 

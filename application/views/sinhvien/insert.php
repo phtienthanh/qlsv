@@ -37,8 +37,8 @@
             
             <h3 for="">Confirm Password</h3>
             
-            <input type="password" name="confirm_password" placeholder="Confirm password" class="form-control" value="<?php echo set_value("confirm_password");?>">
-            <?php echo form_error("confirm_password"); ?>
+            <input type="password" name="password_confirm" placeholder="Confirm password" class="form-control" value="<?php echo set_value("password_confirm");?>">
+            <?php echo form_error("password_confirm"); ?>
             <span id="eror_cfpassword"> </span>
             
             <h3 for="">Avatar</h3>
@@ -48,10 +48,24 @@
             
             <h3 for="">Role</h3>
             
-            <select name="role" class="form-control">
-                <option>Admin</option>
-                <option>User</option>
-            </select>
+           
+                <?php 
+                    
+            if(isset($role) && count($role)) {
+
+            foreach ($role as $key => $val) {
+                             
+                 ?><tr selected>
+                     <input name='<?php echo $val['id']; ?>' type='checkbox' value='<?php echo $val['id']; ?>' /><?php echo $val['name']; ?>
+                 </tr>
+                   
+                    <?php       
+
+                        }  
+                    }
+                
+                ?>
+        
             <?php echo form_error("role"); ?>
             
             <input type="submit" name="submit" value="Insert" class="btn btn-primary btn-block btn-large btn-insert">

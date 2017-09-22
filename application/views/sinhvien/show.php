@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
-
 <body>
     <h1 class="title">Manage student</h1>
-    <form action="<?php echo base_url('sinhvien/insert')  ?> " method="get" accept-charset="utf-8" id="dataTable">
+    <form action="<?php echo base_url('sinhvien/create_user')  ?> " method="get" accept-charset="utf-8" id="dataTable">
         <input type="submit" value="Add new student" class="btn btn-primary">
     </form>
     <table class="table container responstable">
@@ -26,12 +25,16 @@
         if(isset($student) && count($student > 0)) {
 
             foreach ($student as $key => $val) { 
-                
+
+                foreach ($role as $key => $value) {
+
+                    if ($val['id'] == $value['user_id']) {
+
                 if ( $val['is_deleted'] == 0) {
                 
         ?>
             <tr class="reload">
-                <tr class="<?php echo $val['role']; ?>">
+                <tr>
                     <td>
                         <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
                     <td>
@@ -49,7 +52,7 @@
                         <img src="<?php echo base_url();?>medias/student/<?php echo $val['avatar']; ?>" height="75px">
                     </td>
                     <td>
-                        <?php echo $val['role']; ?>
+                        <?php echo $newArray[$value['group_id']]; ?>
                     </td>
                     <td><a class="btn btn-default glyphicon glyphicon-edit" href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title=""></a></td>
                 </tr>
@@ -57,7 +60,8 @@
             <?php  
         }     
     }
-
+}
+}
 }
    
   ?>
