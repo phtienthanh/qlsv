@@ -307,6 +307,7 @@ class Ion_auth_model extends CI_Model
 		                  ->order_by('id', 'desc')
 		                  ->get($this->tables['users']);
 
+
 		$hash_password_db = $query->row();
 
 		if ($query->num_rows() !== 1)
@@ -535,7 +536,7 @@ class Ion_auth_model extends CI_Model
 
 		$data = array(
 		    'activation_code' => $activation_code,
-		    'active'          => 0
+		    'active'          => 0,
 		);
 
 		$this->trigger_events('extra_where');
@@ -650,7 +651,7 @@ class Ion_auth_model extends CI_Model
 		                  ->where($this->identity_column, $identity)
 		                  ->limit(1)
 		    			  ->order_by('id', 'desc')
-		                  ->get($this->tables['users']);
+		                  ->get($this->tables['users']); 
 
 		if ($query->num_rows() !== 1)
 		{
@@ -667,6 +668,7 @@ class Ion_auth_model extends CI_Model
 		{
 			// store the new password and reset the remember code so all remembered instances have to re-login
 			$hashed_new_password  = $this->hash_password($new, $user->salt);
+
 			$data = array(
 			    'password' => $hashed_new_password,
 			    'remember_code' => NULL,
@@ -983,8 +985,6 @@ class Ion_auth_model extends CI_Model
 		                  ->get($this->tables['users']);
 
 			$this->hash_password($password);
-			var_dump($this->hash_password($password));
-
 			$this->trigger_events('post_login_unsuccessful');
 			$this->set_error('login_timeout');
 
@@ -1610,7 +1610,6 @@ class Ion_auth_model extends CI_Model
 		else
 		{
 
-			var_dump('1');
 			if ($return = $this->db->delete($this->tables['users_groups'], array($this->join['users'] => (float)$user_id))) {
 				$this->_cache_user_in_group[$user_id] = array();
 			}
@@ -1755,6 +1754,7 @@ class Ion_auth_model extends CI_Model
 	**/
 	public function delete_user($id)
 	{
+
 		$this->trigger_events('pre_delete_user');
 
 		$this->db->trans_begin();

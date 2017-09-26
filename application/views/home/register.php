@@ -34,8 +34,8 @@
             <br>
             <h3 for="">Confirm Password</h3>
             <br>
-            <input type="password" name="confirm_password" placeholder="Confirm password" class="form-control cf_password" value="<?php echo set_value(" confirm_password ");?>">
-            <?php echo form_error("confirm_password"); ?>
+            <input type="password" name="password_confirm" placeholder="Confirm password" class="form-control cf_password" value="<?php echo set_value(" password_confirm ");?>">
+            <?php echo form_error("password_confirm"); ?>
             <br>
             <input type="submit" name="submit" value="Register" class="btn btn-primary btn-block btn-large btn-insert">
         </form>

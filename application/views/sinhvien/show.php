@@ -2,7 +2,7 @@
 <html>
 <body>
     <h1 class="title">Manage student</h1>
-    <form action="<?php echo base_url('sinhvien/create_user')  ?> " method="get" accept-charset="utf-8" id="dataTable">
+    <form action="<?php echo base_url('sinhvien/create_user');?> " method="post" accept-charset="utf-8" id="dataTable">
         <input type="submit" value="Add new student" class="btn btn-primary">
     </form>
     <table class="table container responstable">
@@ -34,7 +34,7 @@
                 
         ?>
             <tr class="reload">
-                <tr>
+                <tr class="<?php echo $newArray[$value['group_id']]; ?>">
                     <td>
                         <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
                     <td>
@@ -142,6 +142,5 @@
 var baseURL = "<?php echo base_url(); ?>";
 </script>
 <script type="text/javascript" src="<?php echo base_url();?>asset/js/student/show.js"></script>
-
 </html>
 <style>

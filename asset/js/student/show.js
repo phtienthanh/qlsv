@@ -35,20 +35,19 @@ $(document).ready(function() {
 
                     data = JSON.parse(data);
 
-                    console.log(data);
-
                     if( data.status == 0 ) {
 
                         $(".nodelete").click();
 
                     } else {
 
+                        $(".User.selected").remove();
+
                         $(".Delete").click();
 
                     }               
 
-                    $(".User.selected").remove();
-
+                    
                     $(".btn-can").click();
 
                 },

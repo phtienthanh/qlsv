@@ -21,7 +21,7 @@ $(document).ready(function() {
 				required : true,
 				
 			},
-			confirm_password : {
+			password_confirm : {
 				required : true,
 					
 			},	
@@ -49,7 +49,7 @@ $(document).ready(function() {
 				
 			},
 
-			confirm_password :  {
+			password_confirm :  {
 
 				required : " Confirm Password không được để trống",
 				

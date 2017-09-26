@@ -120,37 +120,44 @@ class Sinhvien extends MY_Controller {
 
         $identity_column = $this->config->item('identity'  ,'ion_auth');
 
-         $this->data['role'] = $this->Mrole->get_all_group(); 
+        $this->data['role'] = $this->Mrole->get_all_group(); 
 
         $this->data['identity_column'] = $identity_column;
+        
         $this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required');
+        
         $this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required');
-        if($identity_column!=='email')
-        {
+        
+        if($identity_column!=='email') {
+
             $this->form_validation->set_rules('identity',$this->lang->line('create_user_validation_identity_label'),'required|is_unique['.$tables['users'].'.'.$identity_column.']');
+            
             $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email');
-        }
-        else
-        {
+        
+        } else {
+
             $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|is_unique[' . $tables['users'] . '.email]');
+
         }
       
         $this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
+
         $this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
 
-        if ($this->form_validation->run() == true)
-        {
+        if ($this->form_validation->run() == true) {
 
         	if ($this->input->post('1') || $this->input->post('2') || $this->input->post('3') ) {
 	        
 	            $email    = strtolower($this->input->post('email'));
-	            $identity = ($identity_column==='email') ? $email : $this->input->post('identity');
-	            $password = $this->input->post('password');
 
+	            $identity = ($identity_column==='email') ? $email : $this->input->post('identity');
+
+	            $password = $this->input->post('password');
 
 	            if ($_FILES['userfile']['name'] == '') {
 
 			        $additional_data = array(
+			        	
 			            'first_name' => $this->input->post('first_name'),
 			            'last_name'  => $this->input->post('last_name'),
 			            'avatar' => "doanthi.jpg",
@@ -254,52 +261,74 @@ class Sinhvien extends MY_Controller {
             $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
             $this->data['first_name'] = array(
+            
                 'name'  => 'first_name',
                 'id'    => 'first_name',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('first_name'),
+            
             );
+            
             $this->data['last_name'] = array(
+            
                 'name'  => 'last_name',
                 'id'    => 'last_name',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('last_name'),
+            
             );
+            
             $this->data['identity'] = array(
+            
                 'name'  => 'identity',
                 'id'    => 'identity',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('identity'),
+            
             );
+            
             $this->data['email'] = array(
+            
                 'name'  => 'email',
                 'id'    => 'email',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('email'),
+            
             );
+            
             $this->data['company'] = array(
+            
                 'name'  => 'company',
                 'id'    => 'company',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('company'),
+            
             );
+            
             $this->data['phone'] = array(
+            
                 'name'  => 'phone',
                 'id'    => 'phone',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('phone'),
+            
             );
+            
             $this->data['password'] = array(
+            
                 'name'  => 'password',
                 'id'    => 'password',
                 'type'  => 'password',
                 'value' => $this->form_validation->set_value('password'),
             );
+            
             $this->data['password_confirm'] = array(
+            
                 'name'  => 'password_confirm',
                 'id'    => 'password_confirm',
                 'type'  => 'password',
                 'value' => $this->form_validation->set_value('password_confirm'),
+            
             );
 
            $this->load->view('sinhvien/insert',$this->data);
@@ -524,55 +553,78 @@ class Sinhvien extends MY_Controller {
 
     	if (isset($id) && count($id) > 0) {
 
-    		$this->load->model('Msinhvien');
+		$this->form_validation->set_rules('old_password', $this->lang->line('change_password_validation_old_password_label'), 'required');
 
-	      	$data = $this->Msinhvien->get_id_sinhvien($id);
+		$this->form_validation->set_rules('new_password', $this->lang->line('change_password_validation_new_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[new_password_confirm]');
 
-	      	if ($this->input->post("change")) {
-
-		    	$this->form_validation->set_rules('old_password','Current password ','required');
-		       	
-		       	$this->form_validation->set_rules('new_password','New password','required');
-		       	
-		       	$this->form_validation->set_rules('new_password_confirm','Confirm password ','required|matches[new_password]');
-
-		       	$this->form_validation->set_message('required','%s not be empty');
-		       	
-		       	$this->form_validation->set_message('matches','%s Incorrect');
-	    
-		       	if ($this->form_validation->run()) {
-
-		       		if ($data['password'] == $this->input->post("old_password")) {
-		       		
-		       			$change = array(
-		       			
-		       				'password' => $this->input->post("new_password"),
-		       			
-		       			);
-		       			
-		       			if ($this->Msinhvien->changepass_sinhvien($id,$change)) {
-		       					
-		       				$change_succes = "Change password succes";
-
-		       			} else {
-
-		       				$change_succes = "Change password fail";
-
-		       			}
-
-		       			$this->data['change_succes'] = $change_succes;
-		       		
-		       		} else {
-
-	       				$change_succes = "Incorrect password";
-
-	       				$this->data['change_succes'] = $change_succes;
-
-		       		}	
+		$this->form_validation->set_rules('new_password_confirm', $this->lang->line('change_password_validation_new_password_confirm_label'), 'required');
 		
-				} 
-		         
-	       	}
+		$this->load->model('ion_auth_model');
+		
+		if (!$this->ion_auth->logged_in()) {
+
+			redirect('auth/login', 'refresh');
+
+		}
+
+		$user = $this->ion_auth->user()->row();
+
+		if ($this->form_validation->run() == false) {
+			
+			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+
+			$this->data['min_password_length'] = $this->config->item('min_password_length', 'ion_auth');
+			
+			$this->data['old_password'] = array(
+			
+				'name' => 'old_password',
+				'id'   => 'old_password',
+				'type' => 'password',
+			
+			);
+			
+			$this->data['new_password'] = array(
+			
+				'name'    => 'new',
+				'id'      => 'new',
+				'type'    => 'password',
+				'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
+			
+			);
+			
+			$this->data['new_password_confirm'] = array(
+			
+				'name'    => 'new_confirm',
+				'id'      => 'new_confirm',
+				'type'    => 'password',
+				'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
+			
+			);
+			
+			$this->data['user_id'] = array(
+			
+				'name'  => 'user_id',
+				'id'    => 'user_id',
+				'type'  => 'hidden',
+				'value' => $user->id,
+			
+			);
+		
+		} else {
+
+			$identity = $this->session->userdata('identity');
+
+			$change = $this->ion_auth->change_password($identity, $this->input->post('old_password'), $this->input->post('new_password'));
+
+			if ($change) {
+				
+				$this->data['change_succes'] = 'Change succes';
+				
+			} else {
+
+				$this->data['change_succes'] = 'Change errors please do again';
+			}
+		}
 
    	   		$this->load->view("sinhvien/changepass",$this->data);
     	
@@ -588,6 +640,8 @@ class Sinhvien extends MY_Controller {
 
 		$this->load->model('Msinhvien');
 
+		$this->load->model('Ion_auth_model');
+
 		$dataId = $this->input->post('id');
 
 		$stack = array();
@@ -596,12 +650,20 @@ class Sinhvien extends MY_Controller {
 
 			if ($val != "0") {
 
-				$data = $this->Msinhvien->get_id_sinhvien($val);
+				$data = $this->Mrole->get_role_groups($val);
 
-				if ($data['role'] == "User") {
+				if (count($data) == 1) {
 
-					array_push($stack, $data['id']);
+					foreach ($data as $key => $val) {
 
+						if ($val['group_id'] == "3") {
+
+							array_push($stack, $val['user_id']);
+
+						}
+
+					}
+					
 				}
 
 			}
@@ -610,27 +672,21 @@ class Sinhvien extends MY_Controller {
 
 		if (count($stack) > 0) {
 
-			foreach ($stack as $key => $value) {
+			foreach ($dataId as $key => $value) {
 
 				$data = $this->Msinhvien->get_id_sinhvien($value);
-
-				$list_update = array(	
-		
-					"is_deleted" => 1,
-				
-				);
 
 				if (file_exists("medias/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg") {
 			        
 			        if (unlink("medias/student/".$data['avatar'])) {
 
-			            $this->Msinhvien->delete_checkbox($value,$list_update);    
+			            $this->Ion_auth_model->delete_user($value);    
 			        
 			        } 
      			
      			} else if (file_exists("medias/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg") {
 
-     				$this->Msinhvien->delete_checkbox($value,$list_update, $data);    
+     				$this->Ion_auth_model->delete_user($value);    
 
      			}
 

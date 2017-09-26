@@ -238,113 +238,186 @@ class Home extends MY_Controller {
        
             redirect('home');
 
-        }	
+        }
 
-    	$this->load->model('Msinhvien');
-		
-		$data = $this->Msinhvien->forget_password($this->input->post('email'));
-       
-       	if ($this->input->post("submit")) {
+       $config['protocol']    = 'smtp';
+	        
+        $config['smtp_host']    = 'ssl://smtp.gmail.com';
+        
+        $config['smtp_port']    = '465';
+        
+        $config['smtp_timeout'] = '7';
+        
+        $config['smtp_user']    = 'doanthi2241@gmail.com';
+        
+        $config['smtp_pass']    = 'doanthi123';
+        
+        $config['charset']    = 'utf-8';
+        
+        $config['newline']    = "\r\n";
+        
+        $config['mailtype'] = 'text'; 
+        
+        $config['validation'] = TRUE;   
 
-       		if ($data) {
+        $this->email->initialize($config);
 
-       			$data_fail = "Email already exists";
+        $this->email->from('doanthi2241@gmail.com', 'Ron');
 
-				$this->data['data_fail'] = $data_fail;
-       		
-       		} else {
+        $this->email->to($this->input->post("email")); 
 
-	       		$this->form_validation->set_rules('email','Email','required|valid_email');
-	 
-		       	$this->form_validation->set_rules('first_name','First name','required');
+        $this->email->subject('Email Test');
 
-		       	$this->form_validation->set_message('required','%s không được bỏ trống');
-		       	
-		       	$this->form_validation->set_rules('last_name','Last name','required');
+        $message = "Contact form\n\n";
 
-		       	$this->form_validation->set_message('valid_email','%s không  được định dạng');
+		$message .= "Last namet : ".$this->input->post("last_name") . "\n";
 
-		       	$this->form_validation->set_message('is_unique','%s đã tồn tại');
+		$message .= "Email: ".$this->input->post("email") . "\n";
 
-		       	$this->form_validation->set_message('matches','%s không được để trống');
+		$message .= "Role: ".$this->input->post("role") . "\n";
 
-		       	$this->form_validation->set_rules('password','Password','required|matches[confirm_password]');
+        $this->email->message($message); 
 
-		       	$this->form_validation->set_rules('confirm_password','Confirm password','required');
-			
-	    		if ($this->form_validation->run()) {
-	    			
-					$list = array(
+        $this->session->set_flashdata('message', $this->ion_auth->messages());
 
-						"first_name" => $this->input->post("first_name"),
-						
-						"last_name" => $this->input->post("last_name"),
-						
-						"email" => $this->input->post("email"),
-						
-						"password" => $this->input->post("password"),
-						
-						"avatar" => "doanthi.jpg",
-						
-						"role" => 'User',
 
-						"is_deleted" => 0,
+        $this->load->model('ion_auth_model');	
 
-						"active" => 0,
+    	$this->data['title'] = $this->lang->line('create_user_heading');
 
-					);
+        $tables = $this->config->item('tables','ion_auth');
 
-					if ($this->Msinhvien->insert($list)) {
+        $identity_column = $this->config->item('identity','ion_auth');
+        
+        $this->data['identity_column'] = $identity_column;
 
-						$config['protocol']    = 'smtp';
-				        
-				        $config['smtp_host']    = 'ssl://smtp.gmail.com';
-				        
-				        $config['smtp_port']    = '465';
-				        
-				        $config['smtp_timeout'] = '7';
-				        
-				        $config['smtp_user']    = 'doanthi2241@gmail.com';
-				        
-				        $config['smtp_pass']    = 'doanthi123';
-				        
-				        $config['charset']    = 'utf-8';
-				        
-				        $config['newline']    = "\r\n";
-				        
-				        $config['mailtype'] = 'text'; // or html
-				        
-				        $config['validation'] = TRUE; // bool whether to validate email or not      
+        // validate form input
+        $this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required');
+        
+        $this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required');
+        
+        if($identity_column!=='email') {
+            
+            $this->form_validation->set_rules('identity',$this->lang->line('create_user_validation_identity_label'),'required|is_unique['.$tables['users'].'.'.$identity_column.']');
+            
+            $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email');
+        
+        } else {
+            
+            $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|is_unique[' . $tables['users'] . '.email]');
+        
+        }
+        
+        $this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
+        
+        $this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
 
-				        $this->email->initialize($config);
+        if ($this->form_validation->run() == true) {
 
-				        $this->email->from('doanthi2241@gmail.com', 'Ron');
+            $email    = strtolower($this->input->post('email'));
+            
+            $identity = ($identity_column==='email') ? $email : $this->input->post('identity');
+            
+            $password = $this->input->post('password');
 
-				        $this->email->to($this->input->post("email")); 
+            $additional_data = array(
+            
+                'first_name' => $this->input->post('first_name'),
+                'last_name'  => $this->input->post('last_name'),
+                'avatar' => 'doanthi.jpg',
+                'is_deleted' => 0,
+ 
+            );
+        }
 
-				        $this->email->subject('Email Test');
+        if ($this->form_validation->run() == true && $this->ion_auth->register($identity, $password, $email, $additional_data)) {
+            // check to see if we are creating the user
+            // redirect them back to the admin page
+            $this->email->send(); 
+        
+            $this->session->set_flashdata('message', $this->ion_auth->messages());
+        
+           	redirect('home/register_success');
+        
+        } else {
+            // display the create user form
+            // set the flash data error message if there is one
+            $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
-						$message = base_url('home/active/').'/'.$this->db->insert_id(). "\n";
+            $this->data['first_name'] = array(
+              
+                'name'  => 'first_name',
+                'id'    => 'first_name',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('first_name'),
+            
+            );
+            
+            $this->data['last_name'] = array(
+            
+                'name'  => 'last_name',
+                'id'    => 'last_name',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('last_name'),
+            
+            );
+            
+            $this->data['identity'] = array(
+            
+                'name'  => 'identity',
+                'id'    => 'identity',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('identity'),
+            
+            );
+            
+            $this->data['email'] = array(
+            
+                'name'  => 'email',
+                'id'    => 'email',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('email'),
+            
+            );
+            
+            $this->data['company'] = array(
+            
+                'name'  => 'company',
+                'id'    => 'company',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('company'),
+            
+            );
+            
+            $this->data['phone'] = array(
+            
+                'name'  => 'phone',
+                'id'    => 'phone',
+                'type'  => 'text',
+                'value' => $this->form_validation->set_value('phone'),
+            
+            );
 
-				        $this->email->message($message);  
+            $this->data['password'] = array(
+            
+                'name'  => 'password',
+                'id'    => 'password',
+                'type'  => 'password',
+                'value' => $this->form_validation->set_value('password'),
+            
+            );
+            
+            $this->data['password_confirm'] = array(
+            
+                'name'  => 'password_confirm',
+                'id'    => 'password_confirm',
+                'type'  => 'password',
+                'value' => $this->form_validation->set_value('password_confirm'),
+            
+            );
 
-						$this->email->send();
-
-						redirect('home/success');	
-				
-					} else {
-
-						$data_fail = "Registration failed";
-
-						$this->data['data_fail'] = $data_fail;
-
-					}	
-
-				}
-							       
-	       	}
-
-       }
+          
+        }
 	
         $this->load->view('home/register',$this->data);
    
@@ -505,6 +578,12 @@ class Home extends MY_Controller {
 	public function success() {
 
 		$this->load->view('home/success');
+	
+	}
+
+	public function register_success() {
+
+		$this->load->view('home/register_success');
 	
 	}
 
