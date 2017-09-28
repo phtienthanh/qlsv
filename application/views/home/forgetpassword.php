@@ -12,7 +12,7 @@
 
             }
          ?></h3>
-        <form action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+        <form class="form_forget" action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <a class="btn btn-default btn-register" href="<?php echo base_url();?>home/login" title="">Back</a>
             <br>
             <h3 for="">Please enter email</h3>
@@ -24,5 +24,7 @@
         </form>
     </div>
 </body>
-
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+<script src="{{url(js/validate.js)}}"></script>
+<script type="text/javascript" src="<?php echo base_url();?>asset/js/home/forget_email.js"></script>
 </html>

@@ -459,3 +459,8 @@ body {
     font-weight: normal;
     color: red;
 }
+.form_forget {
+    width: 500px;
+    display: inline-block;
+    text-align: left;
+}
