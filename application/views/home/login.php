@@ -16,7 +16,7 @@
         <a class="btn btn-default btn-register" href="<?php echo base_url();?>home/register" title="">Register</a>
         <a class="btn btn-default" href="<?php echo base_url();?>home/forget" title="">Forgot password</a>
     </div>
-    <form action="<?php echo base_url();?>home/login" method="POST" role="form">
+    <form  class="Form_login" action="<?php echo base_url();?>home/login"  method="POST" role="form">
         <div class="title"> Login</div>
         <p class="title">
             <?php if (isset($login_fail) && count($login_fail) > 0) {
@@ -39,5 +39,7 @@
         </div>
     </form>
 </body>
-
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+<script src="{{url(js/validate.js)}}"></script>
+<script type="text/javascript" src="<?php echo base_url();?>asset/js/home/login_fail.js"></script>
 </html>

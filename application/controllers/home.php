@@ -35,8 +35,10 @@ class Home extends MY_Controller {
 		$this->data['title'] = $this->lang->line('login_heading');
 		
 		$this->form_validation->set_rules('email', str_replace(':', '', $this->lang->line('login_identity_label')), 'required|valid_email');
-		
+		 
 		$this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
+
+		$this->form_validation->set_message('valid_email','%1 The identity field must contain a valid email address');
 
 		if ($this->form_validation->run() == true) {
 			
@@ -98,7 +100,7 @@ class Home extends MY_Controller {
 
 	        $newArray = [];
 
-	         if (isset($listCg) && count($listCg) > 0) {
+	        if (isset($listCg) && count($listCg) > 0) {
 
 	        	foreach ($listCg as $listCgKey => $listCgValue) {
 
@@ -240,7 +242,7 @@ class Home extends MY_Controller {
 
         }
 
-       $config['protocol']    = 'smtp';
+        $config['protocol']    = 'smtp';
 	        
         $config['smtp_host']    = 'ssl://smtp.gmail.com';
         
@@ -296,7 +298,7 @@ class Home extends MY_Controller {
         
         $this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required');
         
-        if($identity_column!=='email') {
+        if($identity_column !== 'email') {
             
             $this->form_validation->set_rules('identity',$this->lang->line('create_user_validation_identity_label'),'required|is_unique['.$tables['users'].'.'.$identity_column.']');
             
@@ -316,7 +318,7 @@ class Home extends MY_Controller {
 
             $email    = strtolower($this->input->post('email'));
             
-            $identity = ($identity_column==='email') ? $email : $this->input->post('identity');
+            $identity = ($identity_column === 'email') ? $email : $this->input->post('identity');
             
             $password = $this->input->post('password');
 
@@ -459,7 +461,7 @@ class Home extends MY_Controller {
 
         $message = "Please visit the link below forgot password:\n";
 
-		$message .= "Password: ". base_url('home/change/').'/'.$token . "\n";
+		$message = "Password: ". base_url('home/change/').'/'.$token . "\n";
 
         $this->email->message($message); 
 
