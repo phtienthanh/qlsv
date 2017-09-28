@@ -1,4 +1,3 @@
-
 <?php 
 
 if (!defined('BASEPATH')) exit ('No direct script access allowed');  
@@ -9,7 +8,7 @@ class article extends MY_Controller {
 	        
         parent::__construct();
 
-        $this->load->helper("slug" , "form" );
+        $this->load->helper("slug" , "form");
 
         $this->load->helper('date');
 
@@ -145,8 +144,6 @@ class article extends MY_Controller {
 
 					
 					);
-
-					
 
 					if ($list['image'] == '') {
 
@@ -335,6 +332,7 @@ class article extends MY_Controller {
 					redirect('article/update/'.$this->data['student']['slug']); 
 
 				}
+
 			}
 
 		} else {
@@ -370,6 +368,7 @@ class article extends MY_Controller {
 		        	}  else {
 
 		        		$newArray[$listCgValue['id']] = "All";
+
 		        	}
 
 		        }
@@ -416,7 +415,7 @@ class article extends MY_Controller {
 		        
 		        }
      			
-     		} else if (file_exists("medias/article/".$data['image']) && $data['image'] == "doanthi.jpg"){
+     		} else if (file_exists("medias/article/".$data['image']) && $data['image'] == "doanthi.jpg") {
 
      			$this->Marticle->delete_checkbox($value,$list_update);  
 

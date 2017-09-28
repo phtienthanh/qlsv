@@ -224,7 +224,7 @@ class Sinhvien extends MY_Controller {
 		
 		        	if (!$this->upload->do_upload()) { 
 
-					$success = 'Add new student fail';
+						$success = 'Add new student fail';
 
 					$this->data['succes'] = $success;
 
@@ -344,6 +344,7 @@ class Sinhvien extends MY_Controller {
 			if ($this->data['role'] == 'User') {
 	            
 	            redirect('home/index');
+
 	        }
 	        
 	    	if ($this->input->post("change_password")) {
@@ -624,6 +625,7 @@ class Sinhvien extends MY_Controller {
 
 				$this->data['change_succes'] = 'Change errors please do again';
 			}
+			
 		}
 
    	   		$this->load->view("sinhvien/changepass",$this->data);

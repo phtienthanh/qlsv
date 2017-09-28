@@ -281,8 +281,7 @@ class Home extends MY_Controller {
         $this->email->message($message); 
 
         $this->session->set_flashdata('message', $this->ion_auth->messages());
-
-
+ 
         $this->load->model('ion_auth_model');	
 
     	$this->data['title'] = $this->lang->line('create_user_heading');
@@ -293,7 +292,6 @@ class Home extends MY_Controller {
         
         $this->data['identity_column'] = $identity_column;
 
-        // validate form input
         $this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required');
         
         $this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required');
@@ -330,11 +328,11 @@ class Home extends MY_Controller {
                 'is_deleted' => 0,
  
             );
+
         }
 
         if ($this->form_validation->run() == true && $this->ion_auth->register($identity, $password, $email, $additional_data)) {
-            // check to see if we are creating the user
-            // redirect them back to the admin page
+        
             $this->email->send(); 
         
             $this->session->set_flashdata('message', $this->ion_auth->messages());
@@ -342,8 +340,7 @@ class Home extends MY_Controller {
            	redirect('home/register_success');
         
         } else {
-            // display the create user form
-            // set the flash data error message if there is one
+
             $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
             $this->data['first_name'] = array(
@@ -712,6 +709,7 @@ class Home extends MY_Controller {
 	        	}  else {
 
 	        		$newArray[$listCgValue['id']] = "All";
+
 	        	}
 
 	        }
@@ -736,7 +734,7 @@ class Home extends MY_Controller {
 
 		$config['base_url'] = base_url('/home/show_article?keyword='.$keyword);
 
-		if ($keyword == "")  {
+		if ($keyword == "") {
 
 			$this->data['query'] =  $this->Marticle->show_all_article($perpage,$_GET['page']);
 
