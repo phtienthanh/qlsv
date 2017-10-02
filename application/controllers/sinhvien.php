@@ -240,7 +240,7 @@ class Sinhvien extends MY_Controller {
 
 							$this->data['succes'] = $success;
 
-							$this->load->view('sinhvien/insert',$this->data);
+							$this->load->view('sinhvien/insert', $this->data);
 
 			        	}
 
@@ -254,7 +254,7 @@ class Sinhvien extends MY_Controller {
 
 				$this->data['succes'] = $success;
 
-				$this->load->view('sinhvien/insert',$this->data);
+				$this->load->view('sinhvien/insert', $this->data);
 
 	        }
         	
@@ -637,7 +637,6 @@ class Sinhvien extends MY_Controller {
 
 				$this->session->set_flashdata('message_update', '<div class="succes"> Change succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-				
 			} else {
 
 				$this->data['change_succes'] = 'Change errors please do again';
@@ -645,8 +644,6 @@ class Sinhvien extends MY_Controller {
 				$this->session->set_flashdata('message_update', '<div class="succes"> Change errors please do again<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 			}
-
-
 
 			redirect('sinhvien/show');
 

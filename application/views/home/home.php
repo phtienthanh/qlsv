@@ -1,9 +1,6 @@
 
 <!DOCTYPE html>
 
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
   
     <head>
@@ -16,7 +13,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <!-- Favicon -->
         <link href="favicon.ico" rel="shortcut icon">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <!-- Bootstrap Core CSS -->
         <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/bootstrap.css" rel="stylesheet">
         <!-- Template CSS -->
@@ -377,9 +373,7 @@
                     </div>
                     <!-- End Footer Menu -->
                     <!-- Copyright -->
-                    <div id="copyright" class="col-md-4">
-                        <p class="pull-right">(c) 2014 Your Copyright Info</p>
-                    </div>
+
                     <!-- End Copyright -->
                 </div>
             </div>
@@ -400,6 +394,8 @@
             <script type="text/javascript" src="<?php echo base_url();?>asset/js/home/jquery.sticky.js" charset="utf-8"></script>
             <!-- Slimbox2-->
             <script type="text/javascript" src="<?php echo base_url();?>asset/js/home/slimbox2.js" charset="utf-8"></script>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <!-- Modernizr -->
             <script src="<?php echo base_url();?>asset/js/home/modernizr.custom.js" type="text/javascript"></script>
             <!-- End JS -->

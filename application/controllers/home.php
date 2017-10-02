@@ -46,11 +46,9 @@ class Home extends MY_Controller {
 
 			if ($user) {
 
-				// $this->session->set_flashdata('message', $this->ion_auth->messages());
-
 				$this->session->set_flashdata('message', '<div style="background-color: #fff; height:50px; color:#000; font-weight:bold;" class="success">Login success <button type="button" class="close" data-dismiss="alert">
-    ×
-  </button></div>');
+				    ×
+				  </button></div>');
 
 				redirect('home', 'refresh');	
 				

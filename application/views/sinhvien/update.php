@@ -53,7 +53,6 @@
             <br>
             <label for="">Role</label>
             <br>
-   
             
                 <?php 
                     
@@ -64,10 +63,10 @@
                  ?><tr selected>
                      <input name='<?php echo $val['id']; ?>' type='checkbox' value='<?php echo $val['id']; ?>'  <?php  if (isset($$val['name']) && count($$val['name'])) {
 
-    echo 'checked';
-   
-} ?> /><?php echo $val['name']; ?>
-                 </tr>
+                    echo 'checked';
+                   
+                } ?> /><?php echo $val['name']; ?>
+                                 </tr>
                    
                     <?php       
 

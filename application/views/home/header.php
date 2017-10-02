@@ -26,7 +26,7 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <?php if ($this->ion_auth->logged_in() == true && $role != 'User' ) {
+                    <?php if ($checklogin == true && $role != 'User' ) {
                         
                      ?>
                     <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url();?>sinhvien/show">Manage student</a></li>
@@ -35,7 +35,7 @@
                     <?php } ?>
                     <ul class="nav navbar-nav navbar-right">
                         <?php 
-                        if ($this->ion_auth->logged_in() == false) {
+                        if ($checklogin == false) {
                           
                          ?>
                     <li class="li_menu"><a class="manage_login1" href="<?php echo base_url();?>home/login">Login</a></li>
@@ -45,7 +45,7 @@
                         <ul class="dropdown-menu menu-header">
 
                                 <?php 
-                        if ($this->ion_auth->logged_in() == true) {
+                        if ($checklogin == true) {
                           
                          ?>
                             <li class="manage_logout"><a class="manage_logout" href="<?php echo base_url();?>home/profile/<?php echo $id; ?>"> Manage profile </a></li>
@@ -60,54 +60,7 @@
             </div>
         </div>
     </nav>
-   <!--  <?php
-
-    if($this->ion_auth->logged_in() == false) {
-    ?>
-        <script type="text/javascript">
-        $('.manage_logout').hide();
-
-        $('.manage_student').hide();
-
-        $('.manage_login1').show();
-        </script>
-        <?php
-
-    } else  if($this->ion_auth->logged_in() == true) {
-
-    ?>
-            <?php
-    
-        if(($role) == 'Admin') {
-
-    ?>
-    
-        <script type="text/javascript">
-        $('.manage_student').show();
-        </script>
-        <?php
-   
-        } else  if(($role) == 'User') {
-   
-    ?>
-        <script type="text/javascript">
-        $('.manage_student').hide();
-        </script>
-        <?php
-
-        }
-
-        ?>
-
-        <script type="text/javascript">
-        $('.manage_login1').hide();
-
-        $('.manage_logout').show();
-        </script>
-        <?php
-
-    }
-    ?> -->
+  
 </body>
 <script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
 </html>

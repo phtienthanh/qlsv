@@ -22,7 +22,7 @@ class MY_Controller extends CI_Controller {
 
             $listCg = $this->Mrole->get_all_role();
 
-            $newArray = [];
+            $newArray = array();
 
             if (isset($listCg) && count($listCg) > 0) {
 
@@ -59,10 +59,10 @@ class MY_Controller extends CI_Controller {
             $this->data['password']=$password;
   			
             $this->data['avatar']=$avatar; 
-
-            $this->data['checklogin'] = $this->ion_auth->logged_in();
-            
+      
 		}
+
+        $this->data['checklogin'] = $this->ion_auth->logged_in();
 	
 	}
     
