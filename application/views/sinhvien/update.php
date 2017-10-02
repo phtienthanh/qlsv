@@ -21,21 +21,29 @@
             <br>
             <label for="">First name</label>
             <br>
-            <input type="text" name="first_name" class="form-control" placeholder="First name" value="<?php echo $student["first_name"];?>">
+            <input type="text" name="first_name" class="form-control" placeholder="First name" value="<?php
+            if (isset($student["first_name"]) && count($student["first_name"])) {
+             echo $student["first_name"]; }?>">
             <?php echo form_error("first_name"); ?>
             <br>
             <label for="">Last name</label>
             <br>
-            <input type="text" name="last_name" class="form-control" placeholder="Last name" value="<?php echo $student["last_name"];?>">
+            <input type="text" name="last_name" class="form-control" placeholder="Last name" value="<?php
+            if (isset($student["last_name"]) && count($student["last_name"])) {
+             echo $student["last_name"]; }?>">
             <?php echo form_error("last_name"); ?>
             <br>
             <label for="">Email</label>
             <br>
-            <input type="text" name="email" class="form-control" readonly="value" placeholder="Email" value="<?php echo $student["email"];?> ">
+            <input type="text" name="email" class="form-control" readonly="value" placeholder="Email" value="<?php
+
+            if (isset($student["email"]) && count($student["email"])) {
+             echo $student["email"];}?> ">
             <br>
             <label for="">Avatar</label>
             <br>
-            <img src="<?php echo base_url();?>medias/student/<?php echo $student["avatar"];?>" width="150">
+            <img src="<?php echo base_url();?>medias/student/<?php  if (isset($student["avatar"]) && count($student["avatar"])) {
+             echo $student["avatar"]; }?>" width="150">
             <input type="text" name="img_name" class="form-control hinden" value="<?php echo $student["avatar"]; ?>"/>
             <input type="file" name="userfile" class="userfile hinden">
              <p class="btn btn-primary btn_select ">Select image</p>
@@ -78,5 +86,4 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
 <script src="{{url(js/validate.js)}}"></script>
 <script src="<?php echo base_url();?>asset/js/student/update_fail_student.js"></script>
-
 </html>

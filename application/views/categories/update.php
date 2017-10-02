@@ -11,7 +11,10 @@
             <br>
             <label for="">Name</label>
             <br>
-            <input type="text" class="form-control form-control-line" name="input_text" value="<?php echo $student['name'];  ?>">
+            <input type="text" class="form-control form-control-line" name="input_text" value="<?php
+              if(isset($student['name']) && count($student['name']) > 0) {
+               echo $student['name']; 
+           } ?>">
             <?php echo form_error("input_text"); ?>
             <br>
             <input type="submit" class="btn btn-success" name="change" value="change" class="color_input">
