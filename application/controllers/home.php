@@ -46,11 +46,11 @@ class Home extends MY_Controller {
 
 			if ($user) {
 
-				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				
-				$userInfo = $this->ion_auth->user()->row();
+				// $this->session->set_flashdata('message', $this->ion_auth->messages());
 
-				$this->data['role'] = $data;
+				$this->session->set_flashdata('message', '<div style="background-color: #fff; height:50px; color:#000; font-weight:bold;" class="success">Login success <button type="button" class="close" data-dismiss="alert">
+    ×
+  </button></div>');
 
 				redirect('home', 'refresh');	
 				
@@ -86,73 +86,83 @@ class Home extends MY_Controller {
 
 		if (isset($id) && count($id) > 0) {
 
-			if (!$this->ion_auth->logged_in()) {
-				
-				redirect('home/index');
-
-			}
-
 			$this->load->model('Msinhvien');
 
-	        $this->load->model('Mrole');
-
-	        $listCg = $this->Mrole->get_all_role();
-
-	        $newArray = [];
-
-	        if (isset($listCg) && count($listCg) > 0) {
-
-	        	foreach ($listCg as $listCgKey => $listCgValue) {
-
-		        	$newArray[$listCgValue['user_id']] = $this->Mrole->get_name_role($listCgValue['group_id'])['name'];
-
-		        }
-
-        	}
-
-	        $this->data['newArray'] = $newArray;
-
-			$this->data['role'] =  $listCg;
-			
-			$this->data['student'] = $this->Msinhvien->get_all_sinhvien();
-
-	   		$this->load->model('Msinhvien');
-
 	      	$this->data['student'] = $this->Msinhvien->get_id_sinhvien($id); 
-	      
-	      	if ($this->input->post("submit")) {
-	      		
-	      		$this->form_validation->set_rules('first_name','First name','required');
-	       	
-		       	$this->form_validation->set_rules('last_name','Last name','required');
 
-		       	$this->form_validation->set_message('required','%snot be empty');
-	      		
-	      		if ($this->form_validation->run()) {
+	      	if (count($this->data['student']) == 0) {
 
-		      		$list_update = array(
+	      		redirect('home');
 
-						"first_name" => $this->input->post("first_name"),
-						
-						"last_name" => $this->input->post("last_name"),
-						
-					);	
+	      	} else {
 
-					if ($this->Msinhvien->update($id,$list_update)) {
+				if (!$this->ion_auth->logged_in()) {
+					
+					redirect('home');
+
+				}
+
+		        $this->load->model('Mrole');
+
+		        $listCg = $this->Mrole->get_all_role();
+
+		        $newArray = array();
+
+		        if (count($listCg) > 0) {
+
+		        	foreach ($listCg as $listCgKey => $listCgValue) {
+
+			        	$newArray[$listCgValue['user_id']] = $this->Mrole->get_name_role($listCgValue['group_id'])['name'];
+
+			        }
+
+	        	}
+
+		        $this->data['newArray'] = $newArray;
+
+				$this->data['role'] =  $listCg;
+		      
+		      	if ($this->input->post("submit")) {
+		      		
+		      		$this->form_validation->set_rules('first_name','First name','required');
+		       	
+			       	$this->form_validation->set_rules('last_name','Last name','required');
+
+			       	$this->form_validation->set_message('required','%snot be empty');
+		      		
+		      		if ($this->form_validation->run()) {
+
+			      		$list_update = array(
+
+							"first_name" => $this->input->post("first_name"),
+							
+							"last_name" => $this->input->post("last_name"),
+							
+						);	
+
+						if ($this->Msinhvien->update($id,$list_update)) {
+
+							$this->session->set_flashdata('message_profile', '<div style="background-color: green;" class="success">Thành công<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+						} else {
+
+
+							$this->session->set_flashdata('message_profile', '<div style="background-color: red;" class="success"> Thất bại<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+						}
 
 						redirect('home/profile/'.$id);
 
-					}
+				    }
 
-			    }
+		    	} 
 
-	    	} 
-
-			$this->load->view("home/profile",$this->data);
+				$this->load->view("home/profile",$this->data);
+			}
 
 		} else {
 
-			return flase;
+			redirect('home');
 
 		}
     
@@ -160,9 +170,11 @@ class Home extends MY_Controller {
 
 	public function upload($id) {
 
-		if (isset($id) && count($id) > 0) {
-
-	   		$this->load->model('Msinhvien');
+		$this->load->model('Msinhvien');
+	    
+	    $checkId = $this->Msinhvien->get_id_sinhvien($id); 
+    	
+    	if (isset($id) && count($id) > 0 && count($checkId)>0) {
 
 	      	$data = $this->Msinhvien->get_id_sinhvien($id); 		
 		       		
@@ -195,8 +207,10 @@ class Home extends MY_Controller {
 				$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'],-4);
 
 				if (!$this->upload->do_upload()) {
+
+					$this->session->set_flashdata('message_upload', '<div  style="color: red; font-weight: normal;" class="success"> Upload fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
 				
-					redirect('home/upload_fail/'.$id);
+					redirect('home/profile/'.$id); 
 
 				} else {
 
@@ -219,6 +233,8 @@ class Home extends MY_Controller {
 		            $this->Msinhvien->update($id,$list_update);
 
 		            $file_data =  $this->upload->data();
+
+		            $this->session->set_flashdata('message_upload', '<div style="color: red; font-weight: normal;" class="success"> upload succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 					redirect('home/profile/'.$id); 
 	     			
@@ -282,7 +298,7 @@ class Home extends MY_Controller {
 
         $this->session->set_flashdata('message', $this->ion_auth->messages());
  
-        $this->load->model('ion_auth_model');	
+        // $this->load->model('ion_auth_model');	
 
     	$this->data['title'] = $this->lang->line('create_user_heading');
 
@@ -335,9 +351,9 @@ class Home extends MY_Controller {
         
             $this->email->send(); 
         
-            $this->session->set_flashdata('message', $this->ion_auth->messages());
+            $this->session->set_flashdata('message_login', $this->ion_auth->messages());
         
-           	redirect('home/register_success');
+           	redirect('home/login');
         
         } else {
 
@@ -690,13 +706,11 @@ class Home extends MY_Controller {
 
     	$this->load->library('pagination');
 
-    	$this->load->model('Marticle');
-
     	$this->load->model('Mcategories');
 
     	$listCg = $this->Mcategories->get_all_categories();
 
-        $newArray = [];
+        $newArray = array();
 
         if (isset($listCg) && count($listCg) > 0) {
 
@@ -735,6 +749,8 @@ class Home extends MY_Controller {
 		$config['base_url'] = base_url('/home/show_article?keyword='.$keyword);
 
 		if ($keyword == "") {
+
+			$this->load->model('Marticle');
 
 			$this->data['query'] =  $this->Marticle->show_all_article($perpage,$_GET['page']);
 
@@ -786,7 +802,7 @@ class Home extends MY_Controller {
 
 	      	$listCg = $this->Mcategories->get_all_categories();
 
-        	$newArray = [];
+        	$newArray = array();
 
         	if (isset($listCg) && count($listCg) > 0) {
 

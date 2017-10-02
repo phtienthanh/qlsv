@@ -2,6 +2,8 @@
 <html>
 <body>
     <h1 class="title">Manage student</h1>
+
+    <?php echo $this->session->flashdata('message_update'); ?>
     <form action="<?php echo base_url('sinhvien/create_user');?> " method="post" accept-charset="utf-8" id="dataTable">
         <input type="submit" value="Add new student" class="btn btn-primary">
     </form>

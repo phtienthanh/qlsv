@@ -32,13 +32,11 @@ class article extends MY_Controller {
 
 	public function home() {
 
-		$this->load->model('Marticle');
-
 		$this->load->model('Mcategories');
 
 		$listCg = $this->Mcategories->get_all_categories();
 
-        $newArray = [];
+        $newArray = array();
 
         if (isset($listCg) && count($listCg) > 0) {
 
@@ -62,6 +60,8 @@ class article extends MY_Controller {
 
 		$this->data['categories'] =  $listCg;
 
+		$this->load->model('Marticle');
+
 		$this->data['article'] = $this->Marticle->get_all_article();
 
 		$this->load->view('article/home',$this->data);
@@ -74,9 +74,9 @@ class article extends MY_Controller {
 
        	$data = $this->Marticle->get_all_article();
 
-       	$this->load->model('Mcategories');
-
        	$slug = create_slug($this->input->post('title')).'.html';
+
+       	$this->load->model('Mcategories');
 
        	$this->data['categories'] = $this->Mcategories->get_all_categories();
 
@@ -171,15 +171,15 @@ class article extends MY_Controller {
 						
 							$data['img'] = base_url().'/medias/article'.$file_data['file_name'];
 
-							$success = 'Add new success';
+							$this->session->set_flashdata('message_add', '<div class="succes">Add new article success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-							$this->data['success'] = $success;
+                    		redirect('article/home');
 
 						} else {
 
-							$add_fail = 'Add new success';
+ 							$this->session->set_flashdata('message_add', '<div class="succes">Add new article fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-							$this->data['success'] = $add_fail;
+                    		redirect('article/home');
 
 						}
 
@@ -201,9 +201,11 @@ class article extends MY_Controller {
 
 	public function update($slug) {
 
-		if (isset($slug) && count($slug) > 0) {
+		$this->load->model('Marticle');
 
-			$this->load->model('Marticle');
+		$checkslug = $this->Marticle->get_slug_article($slug);
+
+		if (isset($slug) && count($slug) > 0 && count($checkslug) > 0) {
 
 			$this->load->model('Mcategories');
 
@@ -249,8 +251,9 @@ class article extends MY_Controller {
 					
 					$this->Marticle->update_slug_article($slug,$list_update);
 
-					redirect('article/home');	   
+					$this->session->set_flashdata('message_add', '<div class="succes">Update new article success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
+                   	redirect('article/home');
 				}
 		         
 	       	} else if ($this->input->post("back")) {
@@ -271,9 +274,11 @@ class article extends MY_Controller {
 
     public function upload($id) {
 
-     	if (isset($id) && count($id) > 0) {
+    	$this->load->model('Marticle');
 
-	     	$this->load->model('Marticle');
+    	$checkId = $this->Marticle->get_article($id);
+
+     	if (isset($id) && count($id) > 0 && count($checkId) > 0 ) {
 
 	      	$this->data['student'] = $this->Marticle->get_article($id);
 
@@ -345,17 +350,19 @@ class article extends MY_Controller {
 
     public function preview($slug) {
 
-    	if (isset($slug) && count($slug) > 0) {
-	    		
-	    	$this->load->model('Marticle');
-	    	
-	    	$this->load->model('Mcategories');
+    	$this->load->model('Marticle');
+
+    	$checkslug = $this->Marticle->get_slug_article($slug);
+
+    	if (isset($slug) && count($slug) > 0 && count($checkslug) > 0) {
 
 	      	$this->data['student'] = $this->Marticle->get_slug_article($slug); 	
 
+	    	$this->load->model('Mcategories');
+
 	      	$listCg = $this->Mcategories->get_all_categories();
 
-        	$newArray = [];
+        	$newArray = array();
 
         	if (isset($listCg) && count($listCg) > 0) {
 
@@ -393,11 +400,11 @@ class article extends MY_Controller {
 
     public function delete_checkbox() {
 
-    	$this->load->model('Marticle');
-
 		$dataId = $this->input->post('id');
 
 		foreach ($dataId as $key => $value) {
+
+			$this->load->model('Marticle');
 
 			$data = $this->Marticle->get_article($value);
 

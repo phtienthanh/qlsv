@@ -6,20 +6,20 @@
 
 <body class="fix-header card-no-border body-profile">
     <h1 class="title">Manage profile</h1>
-    <h3 class="title"><?php if (isset($notification) && count($notification) > 0) {
-   echo $notification;
-} ?></h3>
+
     <div id="main-wrapper">
         <div class="page-wrapper">
             <div class="container-fluid container-f">
                 <div class="row row_av">
-                    <!-- Column -->
+                    
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             
                                 <form action="<?php echo base_url();?>home/upload/<?php echo  $student["id"]; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                                 <div class="upload_img_p">
                                     Upload image
+
+                                    <p><?php echo $this->session->flashdata('message_upload'); ?></p>
                                 </div>
                                     <center class="m-t-30"> <img src="<?php echo base_url();?>medias/student/<?php echo $student["avatar"]; ?>" width="150" />
                                         <input type="file" name="userfile" class="btn">
@@ -35,6 +35,7 @@
                         <div class="card">
                          <div class="upload_img_p">
                                     User information
+                                    <p><?php echo $this->session->flashdata('message_profile'); ?></p>
                                 </div>
                             <div class="card-block">
 

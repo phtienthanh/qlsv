@@ -30,15 +30,13 @@ class Sinhvien extends MY_Controller {
 
         }
 
-        $this->load->model('Msinhvien');
-
         $this->load->model('Mrole');
 
         $listCg = $this->Mrole->get_all_role();
 
         $listgr = $this->Mrole->get_all_group();
 
-        $newArray = [];
+        $newArray = array();
 
          if (isset($listCg) && count($listCg) > 0) {
 
@@ -53,6 +51,8 @@ class Sinhvien extends MY_Controller {
         $this->data['newArray'] = $newArray;
 
 		$this->data['role'] =  $listCg;
+
+		$this->load->model('Msinhvien');
 		
 		$this->data['student'] = $this->Msinhvien->get_all_sinhvien();
 
@@ -120,6 +120,8 @@ class Sinhvien extends MY_Controller {
 
         $identity_column = $this->config->item('identity'  ,'ion_auth');
 
+        $this->load->model('Mrole');
+
         $this->data['role'] = $this->Mrole->get_all_group(); 
 
         $this->data['identity_column'] = $identity_column;
@@ -167,7 +169,7 @@ class Sinhvien extends MY_Controller {
 
 					$listCg = $this->Mrole->get_all_group();
 
-					$groups_id = [];
+					$listGroup = array();
 
 			         if (isset($listCg) && count($listCg) > 0) {
 
@@ -175,7 +177,7 @@ class Sinhvien extends MY_Controller {
 
 			        		if ($this->input->post($value['id']) == $value['id'] ) {
 
-				        		$groups_id[] = $this->input->post($value['id']);
+				        		$listGroup[] = $this->input->post($value['id']);
 
 				        	}
 
@@ -183,13 +185,13 @@ class Sinhvien extends MY_Controller {
 
 			        }
 						
-			        if ($this->ion_auth->register($identity, $password, $email, $additional_data,$groups_id)) {
+			        if ($this->ion_auth->register($identity, $password, $email, $additional_data,$listGroup)) {
 			        		
 		        		$this->email->send(); 
 
-		        		$success = 'Add new student success';
+						$this->session->set_flashdata('message_update', '<div class="succes">Add new student success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-						$this->data['succes'] = $success;
+							redirect('sinhvien/show'); 
 
 			        }
 
@@ -206,7 +208,7 @@ class Sinhvien extends MY_Controller {
 
 					$listCg = $this->Mrole->get_all_group();
 
-					$groups_id = [];
+					$listGroup = array();
 
 			        if (isset($listCg) && count($listCg) > 0) {
 
@@ -214,7 +216,7 @@ class Sinhvien extends MY_Controller {
 
 			        		if ($this->input->post($value['id']) == $value['id'] ) {
 
-				        		$groups_id[] = $this->input->post($value['id']);
+				        		$listGroup[] = $this->input->post($value['id']);
 
 				        	}
 
@@ -224,13 +226,13 @@ class Sinhvien extends MY_Controller {
 		
 		        	if (!$this->upload->do_upload()) { 
 
-						$success = 'Add new student fail';
+					$this->session->set_flashdata('message_update', '<div class="succes">Add new student fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-					$this->data['succes'] = $success;
+							redirect('sinhvien/show'); 
 
 					} else {
 			    	
-			        	if ($this->ion_auth->register($identity, $password, $email, $additional_data, $groups_id)) {
+			        	if ($this->ion_auth->register($identity, $password, $email, $additional_data, $listGroup)) {
 			        		
 			        		$this->email->send(); 
 
@@ -338,8 +340,12 @@ class Sinhvien extends MY_Controller {
     }
 
     public function update($id) {
+
+    	$this->load->model('Msinhvien');
+	    
+	    $checkId = $this->Msinhvien->get_id_sinhvien($id); 
     	
-    	if (isset($id) && count($id) > 0) {
+    	if (isset($id) && count($id) > 0 && count($checkId)>0) {
 		
 			if ($this->data['role'] == 'User') {
 	            
@@ -353,13 +359,15 @@ class Sinhvien extends MY_Controller {
 	       	
 	       	}
 
+	       	$this->load->model('Mrole');
+
 	       	$listCg = $this->Mrole->get_all_group();
 
-			$groups_id = [];
+			$listGroup = array();
 
-			$list_id_role = $this->Mrole->get_role_groups($id);
+			$getListGroup = $this->Mrole->get_role_groups($id);
 
-			foreach ($list_id_role as $listCgKey => $id_value) {
+			foreach ($getListGroup as $listCgKey => $id_value) {
 
 				if ($id_value['group_id'] == '1') {
 
@@ -379,25 +387,21 @@ class Sinhvien extends MY_Controller {
 					
 				}
 
-			
 			}
 
 	        if (isset($listCg) && count($listCg) > 0) {
 
 	        	foreach ($listCg as $listCgKey => $value) {
 	        		
-
 	        		if ($this->input->post($value['id']) == $id ) {
 
-		        		$groups_id[] = $this->input->post($value['id']);
+		        		$listGroup[] = $this->input->post($value['id']);
 
 		        	}
 
 		        }
 
 		    }
-	    
-	       	$this->load->model('Msinhvien');
 	    
 	      	$this->data['student'] = $this->Msinhvien->get_id_sinhvien($id); 
 	      	
@@ -415,14 +419,13 @@ class Sinhvien extends MY_Controller {
 
 		       		$listCg = $this->Mrole->get_all_group();
 
-						$groups_id = [];
+						$listGroup = array();
 
-						foreach ($list_id_role as $listCgKey => $id_value) {
+						foreach ($getListGroup as $listCgKey => $id_value) {
 
 							$this->ion_auth_model->remove_from_group($id_value['group_id'],$id);
 					
 						}
-
 
 		         		if (isset($listCg) && count($listCg) > 0) {
 
@@ -430,13 +433,13 @@ class Sinhvien extends MY_Controller {
 		        				
 		        				if ($this->input->post($value['id']) == $value['id'] ) {
 
-			        				$groups_id[] = $this->input->post($value['id']);
+			        				$listGroup[] = $this->input->post($value['id']);
 
 					        	}
 
 					        }
 
-					       $this->ion_auth_model->add_to_group($groups_id, $id);
+					       $this->ion_auth_model->add_to_group($listGroup, $id);
 
 				        }
 	
@@ -454,6 +457,9 @@ class Sinhvien extends MY_Controller {
 
 						if ($this->Msinhvien->update($id,$list_update)) {
 							
+
+							$this->session->set_flashdata('message_update', '<div class="succes"> Update succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
 							redirect('sinhvien/show'); 
 
 						}
@@ -490,6 +496,8 @@ class Sinhvien extends MY_Controller {
 
 							$this->Msinhvien->update($id,$list_update);
 
+							$this->session->set_flashdata('message_update', '<div class="succes"> Update succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
 							redirect('sinhvien/upload_fail/'.$id);
 
 						} else { 
@@ -519,6 +527,8 @@ class Sinhvien extends MY_Controller {
 				        		if ($this->upload->data()) {
 
 									$data['img'] = base_url().'/images'.$file_data['file_name'];
+
+									$this->session->set_flashdata('message_update', '<div class="succes"> Update succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 									redirect('sinhvien/show'); 
 				            
@@ -552,7 +562,11 @@ class Sinhvien extends MY_Controller {
 
     public function changepass($id) {
 
-    	if (isset($id) && count($id) > 0) {
+		$this->load->model('Msinhvien');
+	    
+	    $checkId = $this->Msinhvien->get_id_sinhvien($id); 
+    	
+    	if (isset($id) && count($id) > 0 && count($checkId)>0) {
 
 		$this->form_validation->set_rules('old_password', $this->lang->line('change_password_validation_old_password_label'), 'required');
 
@@ -620,12 +634,22 @@ class Sinhvien extends MY_Controller {
 			if ($change) {
 				
 				$this->data['change_succes'] = 'Change succes';
+
+				$this->session->set_flashdata('message_update', '<div class="succes"> Change succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
 				
 			} else {
 
 				$this->data['change_succes'] = 'Change errors please do again';
+
+				$this->session->set_flashdata('message_update', '<div class="succes"> Change errors please do again<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
 			}
-			
+
+
+
+			redirect('sinhvien/show');
+
 		}
 
    	   		$this->load->view("sinhvien/changepass",$this->data);
@@ -639,10 +663,6 @@ class Sinhvien extends MY_Controller {
     }	
 
     public function delete_checkbox() {
-
-		$this->load->model('Msinhvien');
-
-		$this->load->model('Ion_auth_model');
 
 		$dataId = $this->input->post('id');
 
@@ -676,11 +696,15 @@ class Sinhvien extends MY_Controller {
 
 			foreach ($dataId as $key => $value) {
 
+				$this->load->model('Msinhvien');
+
 				$data = $this->Msinhvien->get_id_sinhvien($value);
 
 				if (file_exists("medias/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg") {
 			        
 			        if (unlink("medias/student/".$data['avatar'])) {
+
+			        	$this->load->model('Ion_auth_model');
 
 			            $this->Ion_auth_model->delete_user($value);    
 			        

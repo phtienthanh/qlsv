@@ -3,6 +3,8 @@
 <body>
     </style>
     <h1 class="title">Manage categories</h1>
+
+    <?php echo $this->session->flashdata('message_add'); ?>
     <span class="addcate"> <a href="<?php echo base_url('article/home')  ?>" title="" class="btn btn-primary ">Back</a></span>
     <br>
     <span class="addcate"> <a href="<?php echo base_url('categories/add') ?>" title="" class="btn btn-warning btn-addct">Add Categories</a></span>

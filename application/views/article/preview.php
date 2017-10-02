@@ -26,18 +26,31 @@
                                         <label class="col-md-3"><b>Author :</b></label>
                                         <div class="col-md-3">
                                             <p>
-                                                <?php echo $student["author"]; ?>
+                                                <?php
+                                                if(isset($student["author"]) && count($student["author"])) {
+                                                
+                                                echo $student["author"];
+                                             } ?>
                                             </p>
                                         </div>
                                         <label class="col-md-3"><b>Categories :</b></label>
                                         <div class="col-md-3">
                                             <p>
-                                                <?php echo $newArray[$student['categories']] ?> </p>
+                                                <?php
+
+                                                if(isset($newArray[$student['categories']]) && count($newArray[$student['categories']])) {
+                                                 echo $newArray[$student['categories']];
+                                                 
+                                                } ?> </p>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <p>
-                                            <?php echo nl2br( $student["content"], false); ?>
+                                            <?php 
+                                            if(isset($student["content"]) && count($student["content"])) {
+
+                                            echo nl2br( $student["content"], false);
+                                            } ?>
                                         </p>
                                     </div>
                                    <span class="back"> <a href="<?php echo base_url('article/home') ?>" title="" class="btn btn-primary">Back</a></span>

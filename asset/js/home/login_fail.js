@@ -7,6 +7,7 @@ $(document).ready(function() {
 			email : {
 				
 				required : true,
+				email:true,
 				
 			},
 			password : {
@@ -21,7 +22,7 @@ $(document).ready(function() {
 			email : {
 
 				required : "First name  không được để trống",
-				
+
 			},
 			password : {
 

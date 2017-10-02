@@ -276,7 +276,7 @@ body {
 
     color: red;
     font-size: 16px;
-    font-weight: 100;
+    font-weight: normal;
 }
 
 .content-form {
@@ -463,4 +463,10 @@ body {
     width: 500px;
     display: inline-block;
     text-align: left;
+}
+.succes {
+
+    text-align: center;
+    font-size: 18px;
+    color: red;
 }

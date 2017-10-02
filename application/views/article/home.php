@@ -2,6 +2,8 @@
 <html>
 <body>
     <h1 class="title">Manage article</h1>
+
+    <?php echo $this->session->flashdata('message_add'); ?>
     <span class="back"> <a href="<?php echo base_url('home') ?>" title="" class="btn btn-primary">Back</a></span>
     <br>
     <span class=""> <a href="<?php echo base_url('article/add') ?>" title="" class="btn btn-success back">Add article</a></span>

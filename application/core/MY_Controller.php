@@ -59,6 +59,8 @@ class MY_Controller extends CI_Controller {
             $this->data['password']=$password;
   			
             $this->data['avatar']=$avatar; 
+
+            $this->data['checklogin'] = $this->ion_auth->logged_in();
             
 		}
 	

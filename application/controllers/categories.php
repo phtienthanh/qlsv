@@ -30,9 +30,9 @@ class Categories extends MY_Controller {
 
     public function home() {
 
-        $this->load->model('Mcategories');
-
         $this->db->order_by("id","desc");
+
+        $this->load->model('Mcategories');
         
         $this->data['categories'] = $this->Mcategories->get_all_categories();
 
@@ -42,13 +42,13 @@ class Categories extends MY_Controller {
 
     public function add() {
 
-        $this->load->model('Mcategories');
-
         if ($this->input->post('submit')) {
 
             $this->form_validation->set_rules('input_text','Name','required');
 
             $this->form_validation->set_message('required','%s không được bỏ trống');
+
+            $this->load->model('Mcategories');
 
             $check_exist = $this->Mcategories->get_exist_categories($this->input->post('input_text'));
 
@@ -71,12 +71,15 @@ class Categories extends MY_Controller {
                     "is_deleted" => 0,
                     
                 );
-          
-                $this->load->model('Mcategories');
 
-                $this->Mcategories->insert($list);    
+                if ($this->Mcategories->insert($list)) {
 
-                redirect('categories/home');    
+                    $this->session->set_flashdata('message_add', '<div class="succes">Add new categories success<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+                    redirect('categories/home');  
+                    
+                }   
+                  
 
             }
 
@@ -88,9 +91,11 @@ class Categories extends MY_Controller {
 
     public function update($id) {
 
-        if (isset($id) && count($id) > 0) {
+        $this->load->model('Mcategories');
 
-            $this->load->model('Mcategories');
+        $get_id = $this->Mcategories->get_id_categories($id);
+  
+        if (isset($id) && count($id) > 0  && count($get_id) > 0 ) {
 
             $data['student'] = $this->Mcategories->get_id_categories($id);      
             
@@ -109,6 +114,8 @@ class Categories extends MY_Controller {
                     );
                    
                     $this->Mcategories->update($id,$list_update); 
+
+                    $this->session->set_flashdata('message_add', '<div class="succes">Update new categories success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
                     redirect('categories/home');
 
