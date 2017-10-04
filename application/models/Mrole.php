@@ -6,7 +6,7 @@ class Mrole extends CI_Model {
 
 	public function get_all_role() {
 
-  		$this->db->order_by('id','desc');
+  		$this->db->order_by('id', 'desc');
     
         $query = $this->db->get('users_groups');
     
@@ -20,7 +20,7 @@ class Mrole extends CI_Model {
 
 	    $this->load->database();
 
-        $this->db->where("id",$id);
+        $this->db->where("id", $id);
 
         return $this->db->get($this->table)->row_array();
 
@@ -30,7 +30,7 @@ class Mrole extends CI_Model {
 
         $this->load->database();
 
-        $this->db->where("user_id",$id);
+        $this->db->where("user_id", $id);
 
         return $this->db->get($this->table)->result_array();
 
@@ -40,7 +40,7 @@ class Mrole extends CI_Model {
 
 	    $this->load->database();
 
-        $this->db->where("id",$id);
+        $this->db->where("id", $id);
 
         return $this->db->get("groups")->row_array();
 
@@ -48,7 +48,7 @@ class Mrole extends CI_Model {
 
 	public function get_all_group() {
 
-  		$this->db->order_by('id','desc');
+  		$this->db->order_by('id', 'desc');
     
         $query = $this->db->get('groups');
     

@@ -6,7 +6,7 @@ class Msinhvien extends CI_Model {
 
     public function get_all_sinhvien() {
 
-        $this->db->order_by('id','desc');
+        $this->db->order_by('id', 'desc');
     
         $query = $this->db->get('users');
     
@@ -40,13 +40,13 @@ class Msinhvien extends CI_Model {
     
     }
 
-    public function update($id,$data) {
+    public function update($id, $data) {
 
         if (isset($id) && count($id) > 0) {
            
             $this->load->database();
             
-            $this->db->where("id",$id);
+            $this->db->where("id", $id);
              
             if ($this->db->update($this->table, $data)) {
 
@@ -72,7 +72,7 @@ class Msinhvien extends CI_Model {
         
             $this->load->database();
 
-            $this->db->where("id",$id);
+            $this->db->where("id", $id);
 
             return $this->db->get($this->table)->row_array();
 
@@ -84,13 +84,13 @@ class Msinhvien extends CI_Model {
 
     }
 
-    public function changepass_sinhvien($id,$data) {
+    public function changepass_sinhvien($id, $data) {
 
         if (isset($id) && count($id) > 0) {
 
             $this->load->database();
             
-            $this->db->where("id",$id);
+            $this->db->where("id", $id);
              
             if ($this->db->update($this->table, $data)) {
        
@@ -116,9 +116,9 @@ class Msinhvien extends CI_Model {
         
             $this->load->database();
             
-            $this->db->where("id",$id);
+            $this->db->where("id", $id);
 
-            $this->db->update($this->table,$data);
+            $this->db->update($this->table, $data);
 
         } else {
                  
@@ -136,7 +136,7 @@ class Msinhvien extends CI_Model {
             
             $this->db->where("is_deleted",0);
 
-            $this->db->where("email",$email);
+            $this->db->where("email", $email);
 
             $query = $this->db->get($this->table);           
             
@@ -158,13 +158,13 @@ class Msinhvien extends CI_Model {
 
     }
 
-    public function update_forget($id,$data) {
+    public function update_forget($id, $data) {
 
         if (isset($id) && count($id) > 0) {
        
             $this->load->database();
             
-            $this->db->where("id",$id);
+            $this->db->where("id", $id);
              
             $forget = $this->db->update($this->table, $data);
 
@@ -192,7 +192,7 @@ class Msinhvien extends CI_Model {
 
             $this->load->database();
 
-            $this->db->where("token",$token);
+            $this->db->where("token", $token);
 
             $query = $this->db->get($this->table);         
         
@@ -220,9 +220,9 @@ class Msinhvien extends CI_Model {
 
             $this->load->database();
 
-            $this->db->where("email",$email);
+            $this->db->where("email", $email);
 
-            $this->db->where("is_deleted",'0');
+            $this->db->where("is_deleted", '0');
 
             $query = $this->db->get('users');    
         
