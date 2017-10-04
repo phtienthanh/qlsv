@@ -30,6 +30,7 @@
                                                 if(isset($student["author"]) && count($student["author"])) {
                                                 
                                                 echo $student["author"];
+
                                              } ?>
                                             </p>
                                         </div>
@@ -39,7 +40,8 @@
                                                 <?php
 
                                                 if(isset($newArray[$student['categories']]) && count($newArray[$student['categories']])) {
-                                                 echo $newArray[$student['categories']];
+
+                                                    echo $newArray[$student['categories']];
                                                  
                                                 } ?> </p>
                                         </div>
@@ -50,6 +52,7 @@
                                             if(isset($student["content"]) && count($student["content"])) {
 
                                             echo nl2br( $student["content"], false);
+                                            
                                             } ?>
                                         </p>
                                     </div>

@@ -5,13 +5,19 @@
     <div class="insert">
         <h1>Add new article</h1>
         <h4><?php if (isset($slug) && count($slug) > 0) {
+
             echo  $slug;
+
         } ?></h4>
         <h4><?php if (isset($success) && count($success) > 0) {
+
             echo  $success;
+
         } ?></h4>
         <h4><?php if (isset($error['error']) && count($error['error']) > 0) {
+
             echo  $error['error'];
+        
         } ?></h4>
         <form class="Form_insert" name="myForm" action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <br>
@@ -27,11 +33,10 @@
             <br>
             <br>
             <h3 for="">Avatar <label class="img_bb">*(Bắt buộc chọn ảnh)</label></h3>
-          
             <br>
             <input type="file" name="userfile" class="avatar hinden">
-             <p class="btn btn-primary btn_select ">Select image</p>
-               <?php echo form_error("userfile"); ?>
+            <p class="btn btn-primary btn_select ">Select image</p>
+            <?php echo form_error("userfile"); ?>
             <br>
             <h3 for="">Author</h3>
             <br>
@@ -44,20 +49,25 @@
                     
             if(isset($categories) && count($categories)) {
 
-            foreach ($categories as $key => $val) {
+                foreach ($categories as $key => $val) {
 
-                if ($val['is_deleted'] == 0) {
-                  
-                 ?>
+                    if ($val['is_deleted'] == 0) {
+                      
+                    ?>
+                    
                     <option value="<?php echo $val['id']; ?>">
+                        
                         <?php echo $val['name']; ?>
-                    </option>
-                    <?php       
 
-                        }  
-                    }
+                    </option>
+                    
+            <?php       
+
+                    }  
+                
                 }
-                ?>
+
+            }?>
             </select>
             <?php echo form_error("categories"); ?>
             <br>
