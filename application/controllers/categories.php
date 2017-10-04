@@ -42,7 +42,7 @@ class Categories extends MY_Controller {
 
         if ($this->input->post('submit')) {
 
-            $this->form_validation->set_rules('input_text', 'Name','required');
+            $this->form_validation->set_rules('input_text', 'Name', 'required');
 
             $this->form_validation->set_message('required', '%s không được bỏ trống');
 
@@ -52,7 +52,7 @@ class Categories extends MY_Controller {
 
             if (count($checkExist) > 0) {
               
-                $this->form_validation->set_rules('input_text', 'Name','required|is_unique[categories.name]');
+                $this->form_validation->set_rules('input_text', 'Name', 'required|is_unique[categories.name]');
 
                 $this->form_validation->set_message('required', '%s không được bỏ trống');
             

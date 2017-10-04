@@ -8,7 +8,7 @@ class article extends MY_Controller {
 	        
         parent::__construct();
 
-        $this->load->helper("slug" , "form");
+        $this->load->helper("slug", "form");
 
         $this->load->helper('date');
 
@@ -58,7 +58,7 @@ class article extends MY_Controller {
 
         $this->data['newArray'] = $newArray;
 
-		$this->data['categories'] =  $listCg;
+		$this->data['categories'] = $listCg;
 
 		$this->load->model('Marticle');
 
@@ -167,7 +167,7 @@ class article extends MY_Controller {
 
 						if ($this->Marticle->insert($list)) {
 							
-							$file_data =  $this->upload->data();
+							$file_data = $this->upload->data();
 						
 							$data['img'] = base_url().'/medias/article'.$file_data['file_name'];
 
@@ -251,7 +251,7 @@ class article extends MY_Controller {
 			       			
 			       		}
 						
-						$this->Marticle->update_slug_article($slug,$list_update);
+						$this->Marticle->update_slug_article($slug, $list_update);
 
 						$this->session->set_flashdata('message_add', '<div class="succes">Update new article success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
@@ -402,7 +402,7 @@ class article extends MY_Controller {
 
 		        $this->data['newArray'] = $newArray;
 
-				$this->data['categories'] =  $listCg;
+				$this->data['categories'] = $listCg;
 
 				$this->data['article'] = $this->Marticle->get_all_article();
 
@@ -448,7 +448,7 @@ class article extends MY_Controller {
      			
      		} else if (file_exists("medias/article/".$data['image']) && $data['image'] == "doanthi.jpg") {
 
-     			$this->Marticle->delete_checkbox($value,$list_update);  
+     			$this->Marticle->delete_checkbox($value, $list_update);  
 
      		}
 	
@@ -462,7 +462,7 @@ class article extends MY_Controller {
     		
     		$this->data['slug'] = $slug;
 
-    		$this->load->view('article/upload_fail',$this->data);
+    		$this->load->view('article/upload_fail', $this->data);
 
     	} else {
 

@@ -40,9 +40,9 @@ class Sinhvien extends MY_Controller {
 
          if (isset($listCg) && count($listCg) > 0) {
 
-        	foreach ($listgr as $listCgKey => $listCgValue) {
+        	foreach ($listgr as $listgrKey => $listgrValue) {
 
-	        	$newArray[$listCgValue['id']] = $this->Mrole->get_name_role($listCgValue['id'])['name'];
+	        	$newArray[$listgrValue['id']] = $this->Mrole->get_name_role($listgrValue['id'])['name'];
 
 	        }
 
@@ -167,17 +167,17 @@ class Sinhvien extends MY_Controller {
 
 			        );
 
-					$listCg = $this->Mrole->get_all_group();
+					$listRl = $this->Mrole->get_all_group();
 
 					$listGroup = array();
 
-			         if (isset($listCg) && count($listCg) > 0) {
+			         if (count($listRl) > 0) {
 
-			        	foreach ($listCg as $listCgKey => $value) {
+			        	foreach ($listRl as $listRlKey => $listRlvalue) {
 
-			        		if ($this->input->post($value['id']) == $value['id'] ) {
+			        		if ($this->input->post($listRlvalue['id']) == $listRlvalue['id'] ) {
 
-				        		$listGroup[] = $this->input->post($value['id']);
+				        		$listGroup[] = $this->input->post($listRlvalue['id']);
 
 				        	}
 
@@ -206,17 +206,17 @@ class Sinhvien extends MY_Controller {
 
 		        	);		
 
-					$listCg = $this->Mrole->get_all_group();
+					$listRl = $this->Mrole->get_all_group();
 
 					$listGroup = array();
 
-			        if (isset($listCg) && count($listCg) > 0) {
+			        if (count($listRl) > 0) {
 
-			        	foreach ($listCg as $listCgKey => $value) {
+			        	foreach ($listRl as $listRlKey => $listRlvalue) {
 
-			        		if ($this->input->post($value['id']) == $value['id'] ) {
+			        		if ($this->input->post($listRlvalue['id']) == $listRlvalue['id'] ) {
 
-				        		$listGroup[] = $this->input->post($value['id']);
+				        		$listGroup[] = $this->input->post($listRlvalue['id']);
 
 				        	}
 
@@ -334,27 +334,27 @@ class Sinhvien extends MY_Controller {
 
 		       	$this->load->model('Mrole');
 
-		       	$listCg = $this->Mrole->get_all_group();
+		       	$listRl = $this->Mrole->get_all_group();
 
 				$listGroup = array();
 
 				$getListGroup = $this->Mrole->get_role_groups($id);
 
-				foreach ($getListGroup as $listCgKey => $listvalue) {
+				foreach ($getListGroup as $getListKey => $getListvalue) {
 
-					if ($listvalue['group_id'] == '1') {
+					if ($getListvalue['group_id'] == '1') {
 
 						$this->data['Admin'] = true;
 						
 					}
 
-					if ($listvalue['group_id'] == '2') {
+					if ($getListvalue['group_id'] == '2') {
 
 						$this->data['Members'] = true;
 						
 					}
 
-					if ($listvalue['group_id'] == '3') {
+					if ($getListvalue['group_id'] == '3') {
 
 						$this->data['User'] = true;
 						
@@ -362,13 +362,13 @@ class Sinhvien extends MY_Controller {
 
 				}
 
-		        if (isset($listCg) && count($listCg) > 0) {
+		        if (count($listRl) > 0) {
 
-		        	foreach ($listCg as $listCgKey => $value) {
+		        	foreach ($listRl as $listRlKey => $listRlvalue) {
 		        		
-		        		if ($this->input->post($value['id']) == $id ) {
+		        		if ($this->input->post($listRlvalue['id']) == $id ) {
 
-			        		$listGroup[] = $this->input->post($value['id']);
+			        		$listGroup[] = $this->input->post($listRlvalue['id']);
 
 			        	}
 
@@ -390,23 +390,23 @@ class Sinhvien extends MY_Controller {
 		    
 			       	if ($this->form_validation->run()) {
 
-			       		$listCg = $this->Mrole->get_all_group();
+			       		$listgr = $this->Mrole->get_all_group();
 
 							$listGroup = array();
 
-							foreach ($getListGroup as $listCgKey => $listvalue) {
+							foreach ($getListGroup as $getListKey => $getListvalue) {
 
-								$this->ion_auth_model->remove_from_group($listvalue['group_id'], $id);
+								$this->ion_auth_model->remove_from_group($getListvalue['group_id'], $id);
 						
 							}
 
-			         		if (isset($listCg) && count($listCg) > 0) {
+			         		if (count($listgr) > 0) {
 
-			        			foreach ($listCg as $listCgKey => $value) {
+			        			foreach ($listgr as $listgrKey => $listgrvalue) {
 			        				
-			        				if ($this->input->post($value['id']) == $value['id'] ) {
+			        				if ($this->input->post($listgrvalue['id']) == $listgrvalue['id'] ) {
 
-				        				$listGroup[] = $this->input->post($value['id']);
+				        				$listGroup[] = $this->input->post($listgrvalue['id']);
 
 						        	}
 
