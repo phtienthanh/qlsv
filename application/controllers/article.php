@@ -442,7 +442,7 @@ class article extends MY_Controller {
 			        
 		        if (unlink("medias/article/".$data['image'])) {
 
-		            $this->Marticle->delete_checkbox($value,$list_update);  
+		            $this->Marticle->delete_checkbox($value, $list_update);  
 		        
 		        }
      			
