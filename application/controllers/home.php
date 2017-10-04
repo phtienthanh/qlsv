@@ -10,11 +10,11 @@ class Home extends MY_Controller {
 
        	$this->load->helper('form');
 
-	    $this->load->library(array('ion_auth','form_validation'));
+	    $this->load->library(array('ion_auth', 'form_validation'));
  
 		$this->load->model('ion_auth_model');
 
-		$this->load->view('home/header',$this->data);
+		$this->load->view('home/header', $this->data);
 
     }   
 
@@ -46,17 +46,15 @@ class Home extends MY_Controller {
 
 			if ($user) {
 
-				$this->session->set_flashdata('message', '<div style="background-color: #fff; height:50px; color:#000; font-weight:bold;" class="success">Login success <button type="button" class="close" data-dismiss="alert">
-				    ×
-				  </button></div>');
+				$this->session->set_flashdata('message', '<div  class="succesLogin">Login success <button type="button" class="close" data-dismiss="alert"> × </button></div>');
 
 				redirect('home', 'refresh');	
 				
 			} else {
 
-				$this->data['login_fail'] = 'Email or password error';
+				$this->session->set_flashdata('message', '<div  class="succesLogin">Email or password error<button type="button" class="close" data-dismiss="alert"> × </button></div>');
 
-				$this->load->view('home/login',$this->data);
+				redirect('home/login', 'refresh');	
 	
 			}
 		
@@ -86,16 +84,16 @@ class Home extends MY_Controller {
 
 			$this->load->model('Msinhvien');
 
-	      	$this->data['student'] = $this->Msinhvien->get_id_sinhvien($id); 
+	      	$getId = $this->Msinhvien->get_id_sinhvien($id);
 
-	      	if (count($this->data['student']) == 0) {
+	      	if (count($getId) == 0) {
 
 	      		redirect('home');
 
 	      	} else {
 
 				if (!$this->ion_auth->logged_in()) {
-					
+
 					redirect('home');
 
 				}
@@ -122,15 +120,15 @@ class Home extends MY_Controller {
 		      
 		      	if ($this->input->post("submit")) {
 		      		
-		      		$this->form_validation->set_rules('first_name','First name','required');
+		      		$this->form_validation->set_rules('first_name', 'First name','required');
 		       	
-			       	$this->form_validation->set_rules('last_name','Last name','required');
+			       	$this->form_validation->set_rules('last_name', 'Last name','required');
 
-			       	$this->form_validation->set_message('required','%snot be empty');
+			       	$this->form_validation->set_message('required', '%snot be empty');
 		      		
 		      		if ($this->form_validation->run()) {
 
-			      		$list_update = array(
+			      		$list_update = array (
 
 							"first_name" => $this->input->post("first_name"),
 							
@@ -140,12 +138,12 @@ class Home extends MY_Controller {
 
 						if ($this->Msinhvien->update($id,$list_update)) {
 
-							$this->session->set_flashdata('message_profile', '<div style="background-color: green;" class="success">Thành công<button type="button" class="close" data-dismiss="alert">×</button></div>');
+							$this->session->set_flashdata('message_profile', '<div  class="succes">Update success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 						} else {
 
 
-							$this->session->set_flashdata('message_profile', '<div style="background-color: red;" class="success"> Thất bại<button type="button" class="close" data-dismiss="alert">×</button></div>');
+							$this->session->set_flashdata('message_profile', '<div class="succes">Update fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 						}
 
@@ -155,7 +153,10 @@ class Home extends MY_Controller {
 
 		    	} 
 
-				$this->load->view("home/profile",$this->data);
+		    	$this->data['student'] = $getId;
+
+				$this->load->view("home/profile", $this->data);
+
 			}
 
 		} else {
@@ -167,78 +168,82 @@ class Home extends MY_Controller {
 	}
 
 	public function upload($id) {
-
-		$this->load->model('Msinhvien');
-	    
-	    $checkId = $this->Msinhvien->get_id_sinhvien($id); 
     	
-    	if (isset($id) && count($id) > 0 && count($checkId)>0) {
+    	if (isset($id) && count($id) > 0) {
 
-	      	$data = $this->Msinhvien->get_id_sinhvien($id); 		
-		       		
-	   		if ($_FILES['userfile']['name'] == '') {
+    		$this->load->model('Msinhvien');
+	    
+	   		$checkId = $this->Msinhvien->get_id_sinhvien($id); 
+			
+			if (count($checkId) > 0) {
 
-	   			$list_update = array(
+				if ($_FILES['userfile']['name'] == '') {
 
-					"avatar" => $this->input->post("img_name"),
+		   			$list_update = array(
 
-				);
+						"avatar" => $this->input->post("img_name"),
 
-				redirect('home/profile/'.$id); 
-	   			
-	   		} 
-				
-			$config['max_size'] = 20480;
+					);
 
-			$config['upload_path'] = './medias/student/';
-
-			$config['allowed_types'] = 'gif|jpg|png';
-
-			$this->load->library('upload', $config);
-
-			if ($_FILES['userfile']['name'] == $this->input->post('img_name')) {
-
-				redirect('home/profile/'.$id);
-
-			} else {
-
-				$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'],-4);
-
-				if (!$this->upload->do_upload()) {
-
-					$this->session->set_flashdata('message_upload', '<div  style="color: red; font-weight: normal;" class="success"> Upload fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
-				
 					redirect('home/profile/'.$id); 
+		   			
+		   		} 
+					
+				$config['max_size'] = 20480;
+
+				$config['upload_path'] = './medias/student/';
+
+				$config['allowed_types'] = 'gif|jpg|png';
+
+				$this->load->library('upload', $config);
+
+				if ($_FILES['userfile']['name'] == $this->input->post('img_name')) {
+
+					redirect('home/profile/'.$id);
 
 				} else {
 
-					if (file_exists("medias/student/".$data['avatar'])) {
+					$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'],-4);
 
-						if ($data['avatar'] != "doanthi.jpg") {
+					if (!$this->upload->do_upload()) {
 
-							unlink("medias/student/".$data['avatar']);
-						
+						$this->session->set_flashdata('message_upload', '<div  class="succes">Upload fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
+					
+						redirect('home/profile/'.$id); 
+
+					} else {
+
+						if (file_exists("medias/student/".$data['avatar'])) {
+
+							if ($data['avatar'] != "doanthi.jpg") {
+
+								unlink("medias/student/".$data['avatar']);
+							
+							}
+
 						}
+					        
+				       	$list_update = array(
 
-					}
-				        
-			       	$list_update = array(
+							"avatar" => $_FILES['userfile']['name'],
+				
+						);
 
-						"avatar" => $_FILES['userfile']['name'],
-			
-					);
+			            $this->Msinhvien->update($id,$list_update);
 
-		            $this->Msinhvien->update($id,$list_update);
+			            $this->session->set_flashdata('message_upload', '<div  class="succes">Upload success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-		            $file_data =  $this->upload->data();
+						redirect('home/profile/'.$id); 
+		     			
+		 			} 
 
-		            $this->session->set_flashdata('message_upload', '<div style="color: red; font-weight: normal;" class="success"> upload succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
+		 		}
+			 	
+			} else {
 
-					redirect('home/profile/'.$id); 
-	     			
-	 			} 
+			redirect('home'); 
 
-	 		}
+			} 		
 
 		} else {
 
@@ -294,15 +299,13 @@ class Home extends MY_Controller {
 
         $this->email->message($message); 
 
-        $this->session->set_flashdata('message', $this->ion_auth->messages());
- 
-        // $this->load->model('ion_auth_model');	
+        $this->session->set_flashdata('message', $this->ion_auth->messages());	
 
     	$this->data['title'] = $this->lang->line('create_user_heading');
 
-        $tables = $this->config->item('tables','ion_auth');
+        $tables = $this->config->item('tables', 'ion_auth');
 
-        $identity_column = $this->config->item('identity','ion_auth');
+        $identity_column = $this->config->item('identity', 'ion_auth');
         
         $this->data['identity_column'] = $identity_column;
 
@@ -310,9 +313,9 @@ class Home extends MY_Controller {
         
         $this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required');
         
-        if($identity_column !== 'email') {
+        if ($identity_column !== 'email') {
             
-            $this->form_validation->set_rules('identity',$this->lang->line('create_user_validation_identity_label'),'required|is_unique['.$tables['users'].'.'.$identity_column.']');
+            $this->form_validation->set_rules('identity', $this->lang->line('create_user_validation_identity_label'),'required|is_unique['.$tables['users'].'.'.$identity_column.']');
             
             $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email');
         
@@ -334,7 +337,7 @@ class Home extends MY_Controller {
             
             $password = $this->input->post('password');
 
-            $additional_data = array(
+            $dataRg = array(
             
                 'first_name' => $this->input->post('first_name'),
                 'last_name'  => $this->input->post('last_name'),
@@ -345,11 +348,11 @@ class Home extends MY_Controller {
 
         }
 
-        if ($this->form_validation->run() == true && $this->ion_auth->register($identity, $password, $email, $additional_data)) {
+        if ($this->form_validation->run() == true && $this->ion_auth->register($identity, $password, $email, $dataRg)) {
         
             $this->email->send(); 
         
-            $this->session->set_flashdata('message_login', $this->ion_auth->messages());
+            $this->session->set_flashdata('message_login', '<div  class="succes">Account Successfully Created<button type="button" class="close" data-dismiss="alert">×</button></div>');
         
            	redirect('home/login');
         
@@ -392,24 +395,6 @@ class Home extends MY_Controller {
                 'value' => $this->form_validation->set_value('email'),
             
             );
-            
-            $this->data['company'] = array(
-            
-                'name'  => 'company',
-                'id'    => 'company',
-                'type'  => 'text',
-                'value' => $this->form_validation->set_value('company'),
-            
-            );
-            
-            $this->data['phone'] = array(
-            
-                'name'  => 'phone',
-                'id'    => 'phone',
-                'type'  => 'text',
-                'value' => $this->form_validation->set_value('phone'),
-            
-            );
 
             $this->data['password'] = array(
             
@@ -432,13 +417,13 @@ class Home extends MY_Controller {
           
         }
 	
-        $this->load->view('home/register',$this->data);
+        $this->load->view('home/register', $this->data);
    
     }
 
     public function forget() {
 
-    	$token = rand(1000,9999);
+    	$token = rand(1000, 9999);
 
     	$config['protocol']    = 'smtp';
         
@@ -478,9 +463,9 @@ class Home extends MY_Controller {
 
         if ($this->input->post("submit")) {
 
-        	$this->form_validation->set_rules('email','Email','required|valid_email');
+        	$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 
-        	$this->form_validation->set_message('required','%s not be empty');
+        	$this->form_validation->set_message('required', '%s not be empty');
 
         	if ($this->form_validation->run()) {
 
@@ -498,7 +483,7 @@ class Home extends MY_Controller {
 			
 					);
 
-					if ($this->Msinhvien->update_forget($id,$list_update)) {
+					if ($this->Msinhvien->update_forget($id, $list_update)) {
 
 						if ($this->email->send()) {
 							
@@ -532,7 +517,7 @@ class Home extends MY_Controller {
 
    		} 
  
- 		$this->load->view('home/forgetpassword',$this->data);
+ 		$this->load->view('home/forgetpassword', $this->data);
 	
 	}
 
@@ -542,9 +527,9 @@ class Home extends MY_Controller {
 			
 		  	if ($this->input->post("submit")) {
 
-	        	$this->form_validation->set_rules('new_password','Password','required|matches[new_password_confirm]');
+	        	$this->form_validation->set_rules('new_password', 'Password', 'required|matches[new_password_confirm]');
 
-		       	$this->form_validation->set_rules('new_password_confirm','Confirm password','required');
+		       	$this->form_validation->set_rules('new_password_confirm', 'Confirm password', 'required');
 		       	
 	        	if ($this->form_validation->run()) {
 
@@ -554,17 +539,17 @@ class Home extends MY_Controller {
 
 	        		$id = $user["0"]["id"];
 
-	    			$list_update = array(	
+	    			$listUpdate = array(
 			
 						"password" => $this->input->post('new_password'),
 			
 					);
 
-					if ($this->Msinhvien->update_forget($id,$list_update)) {
+					if ($this->Msinhvien->update_forget($id,$listUpdate)) {
 					
-						$token = rand(1000,9999);
+						$token = rand(1000, 9999);
 
-	        			$list_update = array(	
+	        			$listUpdate = array(
 				
 							"token" => $token,
 				
@@ -602,7 +587,7 @@ class Home extends MY_Controller {
 
 	public function upload_fail($id) {
 
-		$this->load->view('home/upload_fail_profile',$id);
+		$this->load->view('home/upload_fail_profile', $id);
 	
 	}
 
@@ -624,7 +609,7 @@ class Home extends MY_Controller {
 
 			$this->load->model('Msinhvien');
 
-			$this->Msinhvien->update($id,$list_update);
+			$this->Msinhvien->update($id, $list_update);
 
 			$this->load->view('home/active');
 
@@ -646,15 +631,15 @@ class Home extends MY_Controller {
 
 	      	if ($this->input->post("change")) {
 
-		    	$this->form_validation->set_rules('old_password','Current password ','required');
+		    	$this->form_validation->set_rules('old_password', 'Current password ', 'required');
 		       	
-		       	$this->form_validation->set_rules('new_password','New password','required');
+		       	$this->form_validation->set_rules('new_password', 'New password', 'required');
 		       	
-		       	$this->form_validation->set_rules('new_password_confirm','Confirm password ','required|matches[new_password]');
+		       	$this->form_validation->set_rules('new_password_confirm', 'Confirm password ', 'required|matches[new_password]');
 
-		       	$this->form_validation->set_message('required','%s not be empty');
+		       	$this->form_validation->set_message('required', '%s not be empty');
 		       	
-		       	$this->form_validation->set_message('matches','%s Incorrect');
+		       	$this->form_validation->set_message('matches', '%s Incorrect');
 	    
 		       	if ($this->form_validation->run()) {
 
@@ -666,7 +651,7 @@ class Home extends MY_Controller {
 		       			
 		       			);
 		       			
-		       			if ($this->Msinhvien->changepass_sinhvien($id,$change)) {
+		       			if ($this->Msinhvien->changepass_sinhvien($id, $change)) {
 		       					
 		       				$change_succes = "Change password succes";
 
@@ -690,7 +675,7 @@ class Home extends MY_Controller {
 		         
 	       	}
 
-   	   		$this->load->view("home/changepassword_profile",$this->data);
+   	   		$this->load->view("home/changepassword_profile", $this->data);
     	
     	} else {
 
@@ -750,7 +735,7 @@ class Home extends MY_Controller {
 
 			$this->load->model('Marticle');
 
-			$this->data['query'] =  $this->Marticle->show_all_article($perpage,$_GET['page']);
+			$this->data['query'] =  $this->Marticle->show_all_article($perpage, $_GET['page']);
 
 			$config['total_rows'] = $this->Marticle->show_number_article();
 
@@ -822,7 +807,7 @@ class Home extends MY_Controller {
 
 	        $this->data['newArray'] = $newArray;
 
-			$this->data['categories'] =  $listCg;
+			$this->data['categories'] = $listCg;
 
 			$this->data['article'] = $this->Marticle->get_all_article();
 

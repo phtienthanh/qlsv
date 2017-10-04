@@ -34,7 +34,7 @@ class MY_Controller extends CI_Controller {
 
             }
 
-             $role = $newArray[$id];
+            $role = $newArray[$id];
   			
             $first_name = $userInfo->first_name;
   			
@@ -46,19 +46,19 @@ class MY_Controller extends CI_Controller {
 
 			$avatar = $userInfo->avatar;
             
-            $this->data['id']=$id;
+            $this->data['id'] = $id;
   			
-            $this->data['role']=$role;
+            $this->data['role'] = $role;
   			
-            $this->data['first_name']=$first_name;
+            $this->data['first_name'] = $first_name;
   			
-            $this->data['email']=$email;
+            $this->data['email'] = $email;
   			
-            $this->data['last_name']=$last_name;
+            $this->data['last_name'] = $last_name;
   			
-            $this->data['password']=$password;
+            $this->data['password'] = $password;
   			
-            $this->data['avatar']=$avatar; 
+            $this->data['avatar'] = $avatar; 
       
 		}
 

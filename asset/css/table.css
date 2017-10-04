@@ -470,3 +470,8 @@ body {
     font-size: 18px;
     color: red;
 }
+.succesLogin{
+    background-color: #fff;
+    height:50px; color:#000;
+    font-weight:bold;
+}

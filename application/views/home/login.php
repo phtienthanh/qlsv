@@ -24,10 +24,9 @@
 
         <div class="title"> <?php echo $this->session->flashdata('message'); ?></div>
         <p class="title">
-            <?php if (isset($login_fail) && count($login_fail) > 0) {
-   echo $login_fail;
-} ?>
-
+            <?php if (isset($login_fail) && count($login_fail) > 0) { 
+                echo $login_fail;
+            } ?>
 
         </p>
 

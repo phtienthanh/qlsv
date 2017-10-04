@@ -18,7 +18,7 @@ class Sinhvien extends MY_Controller {
 
 		$this->load->library('form_validation');
 
-		$this->load->view('home/header',$this->data);
+		$this->load->view('home/header', $this->data);
 
     }
 
@@ -56,7 +56,7 @@ class Sinhvien extends MY_Controller {
 		
 		$this->data['student'] = $this->Msinhvien->get_all_sinhvien();
 
-		$this->load->view('Sinhvien/show',$this->data);
+		$this->load->view('Sinhvien/show', $this->data);
 
 	}
 
@@ -116,9 +116,9 @@ class Sinhvien extends MY_Controller {
 
         $this->session->set_flashdata('message', $this->ion_auth->messages());
 
-        $tables = $this->config->item('tables','ion_auth');
+        $tables = $this->config->item('tables', 'ion_auth');
 
-        $identity_column = $this->config->item('identity'  ,'ion_auth');
+        $identity_column = $this->config->item('identity', 'ion_auth');
 
         $this->load->model('Mrole');
 
@@ -132,7 +132,7 @@ class Sinhvien extends MY_Controller {
         
         if($identity_column!=='email') {
 
-            $this->form_validation->set_rules('identity',$this->lang->line('create_user_validation_identity_label'),'required|is_unique['.$tables['users'].'.'.$identity_column.']');
+            $this->form_validation->set_rules('identity', $this->lang->line('create_user_validation_identity_label'),'required|is_unique['.$tables['users'].'.'.$identity_column.']');
             
             $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email');
         
@@ -158,7 +158,7 @@ class Sinhvien extends MY_Controller {
 
 	            if ($_FILES['userfile']['name'] == '') {
 
-			        $additional_data = array(
+			        $listCr = array(
 			        	
 			            'first_name' => $this->input->post('first_name'),
 			            'last_name'  => $this->input->post('last_name'),
@@ -185,7 +185,7 @@ class Sinhvien extends MY_Controller {
 
 			        }
 						
-			        if ($this->ion_auth->register($identity, $password, $email, $additional_data,$listGroup)) {
+			        if ($this->ion_auth->register($identity, $password, $email, $listCr, $listGroup)) {
 			        		
 		        		$this->email->send(); 
 
@@ -197,11 +197,11 @@ class Sinhvien extends MY_Controller {
 
 	        	} else {
 
-					$additional_data = array(
+					$additional_data = array (
 
 		            'first_name' => $this->input->post('first_name'),
 		            'last_name'  => $this->input->post('last_name'),
-		            'avatar' =>$_FILES['userfile']['name'],
+		            'avatar' => $_FILES['userfile']['name'],
 		            'is_deleted' => 0,
 
 		        	);		
@@ -234,13 +234,11 @@ class Sinhvien extends MY_Controller {
 			    	
 			        	if ($this->ion_auth->register($identity, $password, $email, $additional_data, $listGroup)) {
 			        		
-			        		$this->email->send(); 
+			        		$this->email->send();
 
-			        		$success = 'Add new student success';
+			        		$this->session->set_flashdata('message_update', '<div class="succes">Add new student success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-							$this->data['succes'] = $success;
-
-							$this->load->view('sinhvien/insert', $this->data);
+							redirect('sinhvien/show');
 
 			        	}
 
@@ -298,24 +296,6 @@ class Sinhvien extends MY_Controller {
             
             );
             
-            $this->data['company'] = array(
-            
-                'name'  => 'company',
-                'id'    => 'company',
-                'type'  => 'text',
-                'value' => $this->form_validation->set_value('company'),
-            
-            );
-            
-            $this->data['phone'] = array(
-            
-                'name'  => 'phone',
-                'id'    => 'phone',
-                'type'  => 'text',
-                'value' => $this->form_validation->set_value('phone'),
-            
-            );
-            
             $this->data['password'] = array(
             
                 'name'  => 'password',
@@ -333,159 +313,122 @@ class Sinhvien extends MY_Controller {
             
             );
 
-           $this->load->view('sinhvien/insert',$this->data);
+           $this->load->view('sinhvien/insert', $this->data);
 
         }
 
     }
 
     public function update($id) {
-
-    	$this->load->model('Msinhvien');
-	    
-	    $checkId = $this->Msinhvien->get_id_sinhvien($id); 
     	
-    	if (isset($id) && count($id) > 0 && count($checkId)>0) {
-		
-			if ($this->data['role'] == 'User') {
+    	if (isset($id) && count($id) > 0) {
+
+    		$this->load->model('Msinhvien');
+	    
+	    	$checkId = $this->Msinhvien->get_id_sinhvien($id); 
+
+    		if (count($checkId) > 0) {
+
+				if ($this->data['role'] == 'User') {
 	            
 	            redirect('home/index');
 
-	        }
-	        
-	    	if ($this->input->post("change_password")) {
-
-	    		redirect('sinhvien/changepass/'.$id);  
-	       	
-	       	}
-
-	       	$this->load->model('Mrole');
-
-	       	$listCg = $this->Mrole->get_all_group();
-
-			$listGroup = array();
-
-			$getListGroup = $this->Mrole->get_role_groups($id);
-
-			foreach ($getListGroup as $listCgKey => $id_value) {
-
-				if ($id_value['group_id'] == '1') {
-
-					$this->data['Admin'] = true;
-					
-				}
-
-				if ($id_value['group_id'] == '2') {
-
-					$this->data['Members'] = true;
-					
-				}
-
-				if ($id_value['group_id'] == '3') {
-
-					$this->data['User'] = true;
-					
-				}
-
-			}
-
-	        if (isset($listCg) && count($listCg) > 0) {
-
-	        	foreach ($listCg as $listCgKey => $value) {
-	        		
-	        		if ($this->input->post($value['id']) == $id ) {
-
-		        		$listGroup[] = $this->input->post($value['id']);
-
-		        	}
-
 		        }
+		        
+		    	if ($this->input->post("change_password")) {
 
-		    }
-	    
-	      	$this->data['student'] = $this->Msinhvien->get_id_sinhvien($id); 
-	      	
-	      	if ($this->input->post("insert")) {
-		
-		       	$this->form_validation->set_rules('first_name','First name','required');
-	       	
-		       	$this->form_validation->set_rules('last_name','Last name','required');
+		    		redirect('sinhvien/changepass/'.$id);  
 		       	
-		       	$this->form_validation->set_rules('email','Email','required');
-	
-		       	$this->form_validation->set_message('required','%s không được bỏ trống');
-	    
-		       	if ($this->form_validation->run()) {
+		       	}
 
-		       		$listCg = $this->Mrole->get_all_group();
+		       	$this->load->model('Mrole');
 
-						$listGroup = array();
+		       	$listCg = $this->Mrole->get_all_group();
 
-						foreach ($getListGroup as $listCgKey => $id_value) {
+				$listGroup = array();
 
-							$this->ion_auth_model->remove_from_group($id_value['group_id'],$id);
-					
-						}
+				$getListGroup = $this->Mrole->get_role_groups($id);
 
-		         		if (isset($listCg) && count($listCg) > 0) {
+				foreach ($getListGroup as $listCgKey => $listvalue) {
 
-		        			foreach ($listCg as $listCgKey => $value) {
-		        				
-		        				if ($this->input->post($value['id']) == $value['id'] ) {
+					if ($listvalue['group_id'] == '1') {
 
-			        				$listGroup[] = $this->input->post($value['id']);
-
-					        	}
-
-					        }
-
-					       $this->ion_auth_model->add_to_group($listGroup, $id);
-
-				        }
-	
-		       		if ($_FILES['userfile']['name'] == '') {
-	
-		       			$list_update = array(
-	
-							"first_name" => $this->input->post("first_name"),
-							
-							"last_name" => $this->input->post("last_name"),
-	
-							"avatar" => $this->input->post("img_name"),
+						$this->data['Admin'] = true;
 						
-						);
-
-						if ($this->Msinhvien->update($id,$list_update)) {
-							
-
-							$this->session->set_flashdata('message_update', '<div class="succes"> Update succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
-
-							redirect('sinhvien/show'); 
-
-						}
-
 					}
 
-					$config['max_size'] = 20480;
-			
-					$config['upload_path'] = './medias/student/';
+					if ($listvalue['group_id'] == '2') {
 
-					$config['allowed_types'] = 'gif|jpg|png';
-
-					$this->load->library('upload', $config);
-
-					if ($_FILES['userfile']['name'] == $this->input->post('img_name')) {
-
-						redirect('sinhvien/update/'.$id);
-
-					} else {
-
-						$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], -4);
+						$this->data['Members'] = true;
 						
-						if (!$this->upload->do_upload()) {
+					}
 
-			        		$list_update = array(
+					if ($listvalue['group_id'] == '3') {
 
+						$this->data['User'] = true;
+						
+					}
+
+				}
+
+		        if (isset($listCg) && count($listCg) > 0) {
+
+		        	foreach ($listCg as $listCgKey => $value) {
+		        		
+		        		if ($this->input->post($value['id']) == $id ) {
+
+			        		$listGroup[] = $this->input->post($value['id']);
+
+			        	}
+
+			        }
+
+			    }
+		    
+		      	$this->data['student'] = $this->Msinhvien->get_id_sinhvien($id); 
+		      	
+		      	if ($this->input->post("insert")) {
+			
+			       	$this->form_validation->set_rules('first_name','First name','required');
+		       	
+			       	$this->form_validation->set_rules('last_name','Last name','required');
+			       	
+			       	$this->form_validation->set_rules('email','Email','required');
+		
+			       	$this->form_validation->set_message('required','%s không được bỏ trống');
+		    
+			       	if ($this->form_validation->run()) {
+
+			       		$listCg = $this->Mrole->get_all_group();
+
+							$listGroup = array();
+
+							foreach ($getListGroup as $listCgKey => $listvalue) {
+
+								$this->ion_auth_model->remove_from_group($listvalue['group_id'], $id);
+						
+							}
+
+			         		if (isset($listCg) && count($listCg) > 0) {
+
+			        			foreach ($listCg as $listCgKey => $value) {
+			        				
+			        				if ($this->input->post($value['id']) == $value['id'] ) {
+
+				        				$listGroup[] = $this->input->post($value['id']);
+
+						        	}
+
+						        }
+
+						       $this->ion_auth_model->add_to_group($listGroup, $id);
+
+					        }
+		
+			       		if ($_FILES['userfile']['name'] == '') {
+		
+			       			$list_update = array(
+		
 								"first_name" => $this->input->post("first_name"),
 								
 								"last_name" => $this->input->post("last_name"),
@@ -494,53 +437,97 @@ class Sinhvien extends MY_Controller {
 							
 							);
 
-							$this->Msinhvien->update($id,$list_update);
+							if ($this->Msinhvien->update($id, $list_update)) {
+								
+								$this->session->set_flashdata('message_update', '<div class="succes"> Update succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-							$this->session->set_flashdata('message_update', '<div class="succes"> Update succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
-
-							redirect('sinhvien/upload_fail/'.$id);
-
-						} else { 
-		       			
-							if (file_exists("medias/student/".$this->data['student']['avatar'])) {
-
-								if ($this->data['student']['avatar'] != "doanthi.jpg") {
-									
-									unlink("medias/student/".$this->data['student']['avatar']);
-
-								}
+								redirect('sinhvien/show'); 
 
 							}
 
-							$list_update = array(
-		
-								"first_name" => $this->input->post("first_name"),
-								
-								"last_name" => $this->input->post("last_name"),
-								
-								"avatar" => $_FILES['userfile']['name'],
+						}
+
+						$config['max_size'] = 20480;
+				
+						$config['upload_path'] = './medias/student/';
+
+						$config['allowed_types'] = 'gif|jpg|png';
+
+						$this->load->library('upload', $config);
+
+						if ($_FILES['userfile']['name'] == $this->input->post('img_name')) {
+
+							redirect('sinhvien/update/'.$id);
+
+						} else {
+
+							$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], -4);
 							
-							);
+							if (!$this->upload->do_upload()) {
 
-				        	if ($this->Msinhvien->update($id,$list_update)) {
+				        		$list_update = array(
 
-				        		if ($this->upload->data()) {
+									"first_name" => $this->input->post("first_name"),
+									
+									"last_name" => $this->input->post("last_name"),
+			
+									"avatar" => $this->input->post("img_name"),
+								
+								);
 
-									$data['img'] = base_url().'/images'.$file_data['file_name'];
+								$this->Msinhvien->update($id,$list_update);
 
-									$this->session->set_flashdata('message_update', '<div class="succes"> Update succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
+								$this->session->set_flashdata('message_update', '<div class="succes"> Update succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-									redirect('sinhvien/show'); 
-				            
-				            	}
+								redirect('sinhvien/upload_fail/'.$id);
 
-				        	}				            
+							} else { 
+			       			
+								if (file_exists("medias/student/".$this->data['student']['avatar'])) {
 
-			       		}
+									if ($this->data['student']['avatar'] != "doanthi.jpg") {
+										
+										unlink("medias/student/".$this->data['student']['avatar']);
 
-			       	}
+									}
 
-				} 
+								}
+
+								$list_update = array(
+			
+									"first_name" => $this->input->post("first_name"),
+									
+									"last_name" => $this->input->post("last_name"),
+									
+									"avatar" => $_FILES['userfile']['name'],
+								
+								);
+
+					        	if ($this->Msinhvien->update($id, $list_update)) {
+
+					        		if ($this->upload->data()) {
+
+										$data['img'] = base_url().'/images'.$file_data['file_name'];
+
+										$this->session->set_flashdata('message_update', '<div class="succes"> Update succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+										redirect('sinhvien/show'); 
+					            
+					            	}
+
+					        	}				            
+
+				       		}
+
+				       	}
+
+					} 
+	    		
+	    		} else if ($this->input->post("back")) {
+		
+		       		redirect('sinhvien/show');   
+		       			    
+				}
 	
 			} else if ($this->input->post("back")) {
 		
@@ -550,7 +537,7 @@ class Sinhvien extends MY_Controller {
 
 			$this->data['role'] =  $listCg;
 	   		
-	   		$this->load->view("sinhvien/update",$this->data);
+	   		$this->load->view("sinhvien/update", $this->data);
 	
 	   	} else {
 
@@ -561,95 +548,99 @@ class Sinhvien extends MY_Controller {
 	}
 
     public function changepass($id) {
+	
+    	if (isset($id) && count($id) > 0) {
 
-		$this->load->model('Msinhvien');
+    		$this->load->model('Msinhvien');
 	    
-	    $checkId = $this->Msinhvien->get_id_sinhvien($id); 
-    	
-    	if (isset($id) && count($id) > 0 && count($checkId)>0) {
+	    	$checkId = $this->Msinhvien->get_id_sinhvien($id); 
 
-		$this->form_validation->set_rules('old_password', $this->lang->line('change_password_validation_old_password_label'), 'required');
+    		if (count($checkId) > 0) {
 
-		$this->form_validation->set_rules('new_password', $this->lang->line('change_password_validation_new_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[new_password_confirm]');
+				$this->form_validation->set_rules('old_password', $this->lang->line('change_password_validation_old_password_label'), 'required');
 
-		$this->form_validation->set_rules('new_password_confirm', $this->lang->line('change_password_validation_new_password_confirm_label'), 'required');
-		
-		$this->load->model('ion_auth_model');
-		
-		if (!$this->ion_auth->logged_in()) {
+				$this->form_validation->set_rules('new_password', $this->lang->line('change_password_validation_new_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[new_password_confirm]');
 
-			redirect('auth/login', 'refresh');
-
-		}
-
-		$user = $this->ion_auth->user()->row();
-
-		if ($this->form_validation->run() == false) {
-			
-			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-
-			$this->data['min_password_length'] = $this->config->item('min_password_length', 'ion_auth');
-			
-			$this->data['old_password'] = array(
-			
-				'name' => 'old_password',
-				'id'   => 'old_password',
-				'type' => 'password',
-			
-			);
-			
-			$this->data['new_password'] = array(
-			
-				'name'    => 'new',
-				'id'      => 'new',
-				'type'    => 'password',
-				'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
-			
-			);
-			
-			$this->data['new_password_confirm'] = array(
-			
-				'name'    => 'new_confirm',
-				'id'      => 'new_confirm',
-				'type'    => 'password',
-				'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
-			
-			);
-			
-			$this->data['user_id'] = array(
-			
-				'name'  => 'user_id',
-				'id'    => 'user_id',
-				'type'  => 'hidden',
-				'value' => $user->id,
-			
-			);
-		
-		} else {
-
-			$identity = $this->session->userdata('identity');
-
-			$change = $this->ion_auth->change_password($identity, $this->input->post('old_password'), $this->input->post('new_password'));
-
-			if ($change) {
+				$this->form_validation->set_rules('new_password_confirm', $this->lang->line('change_password_validation_new_password_confirm_label'), 'required');
 				
-				$this->data['change_succes'] = 'Change succes';
+				$this->load->model('ion_auth_model');
+				
+				if (!$this->ion_auth->logged_in()) {
 
-				$this->session->set_flashdata('message_update', '<div class="succes"> Change succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
+					redirect('auth/login', 'refresh');
 
-			} else {
+				}
 
-				$this->data['change_succes'] = 'Change errors please do again';
+				$user = $this->ion_auth->user()->row();
 
-				$this->session->set_flashdata('message_update', '<div class="succes"> Change errors please do again<button type="button" class="close" data-dismiss="alert">×</button></div>');
+				if ($this->form_validation->run() == false) {
+					
+					$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
-			}
+					$this->data['min_password_length'] = $this->config->item('min_password_length', 'ion_auth');
+					
+					$this->data['old_password'] = array(
+					
+						'name' => 'old_password',
+						'id'   => 'old_password',
+						'type' => 'password',
+					
+					);
+					
+					$this->data['new_password'] = array(
+					
+						'name'    => 'new',
+						'id'      => 'new',
+						'type'    => 'password',
+						'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
+					
+					);
+					
+					$this->data['new_password_confirm'] = array(
+					
+						'name'    => 'new_confirm',
+						'id'      => 'new_confirm',
+						'type'    => 'password',
+						'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
+					
+					);
+					
+					$this->data['user_id'] = array(
+					
+						'name'  => 'user_id',
+						'id'    => 'user_id',
+						'type'  => 'hidden',
+						'value' => $user->id,
+					
+					);
+				
+				} else {
 
-			redirect('sinhvien/show');
+					$identity = $this->session->userdata('identity');
 
-		}
+					$change = $this->ion_auth->change_password($identity, $this->input->post('old_password'), $this->input->post('new_password'));
 
-   	   		$this->load->view("sinhvien/changepass",$this->data);
+					if ($change) {
+						
+						$this->data['change_succes'] = 'Change succes';
+
+						$this->session->set_flashdata('message_update', '<div class="succes"> Change succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+					} else {
+
+						$this->data['change_succes'] = 'Change errors please do again';
+
+						$this->session->set_flashdata('message_update', '<div class="succes"> Change errors please do again<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+					}
+
+					redirect('sinhvien/show');
+
+				}
+
+		   	   	$this->load->view("sinhvien/changepass", $this->data);
+		    			
+		    }
     	
     	} else {
 
@@ -751,7 +742,7 @@ class Sinhvien extends MY_Controller {
 
 	 		$this->data['id'] = $id;
 	 		
-	    	$this->load->view('sinhvien/upload_fail_update',$this->data);
+	    	$this->load->view('sinhvien/upload_fail_update', $this->data);
 	    	
 	    } else {
 
