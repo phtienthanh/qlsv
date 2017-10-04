@@ -110,7 +110,7 @@ class Msinhvien extends CI_Model {
       
     }
 
-    public function delete_checkbox($id,$data) {
+    public function delete_checkbox($id, $data) {
 
         if (isset($id) && count($id) > 0) {
         
@@ -134,7 +134,7 @@ class Msinhvien extends CI_Model {
 
             $this->load->database();
             
-            $this->db->where("is_deleted",0);
+            $this->db->where("is_deleted", 0);
 
             $this->db->where("email", $email);
 

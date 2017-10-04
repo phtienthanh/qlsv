@@ -104,7 +104,7 @@ class Mcategories extends CI_Model {
     
     }
     
-     public function delete_checkbox($id,$data) {
+     public function delete_checkbox($id, $data) {
 
         if (isset($id) && count($id) > 0) {
         

@@ -74,7 +74,7 @@ class Marticle extends CI_Model {
         
             $query = $this->db->get('article');
         
-            return  $query->num_rows();
+            return $query->num_rows();
 
         } else {
 
@@ -90,7 +90,7 @@ class Marticle extends CI_Model {
     
         $query = $this->db->get('article');
     
-        return  $query->num_rows();
+        return $query->num_rows();
 
     }
 

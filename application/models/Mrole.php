@@ -16,7 +16,7 @@ class Mrole extends CI_Model {
 
 	}
 
-	public function get_role($id){
+	public function get_role($id) {
 
 	    $this->load->database();
 
@@ -26,7 +26,7 @@ class Mrole extends CI_Model {
 
 	}
 
-    public function get_role_groups($id){
+    public function get_role_groups($id) {
 
         $this->load->database();
 
@@ -36,7 +36,7 @@ class Mrole extends CI_Model {
 
     }
 
-	public function get_name_role($id){
+	public function get_name_role($id) {
 
 	    $this->load->database();
 
