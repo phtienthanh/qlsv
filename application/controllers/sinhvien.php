@@ -50,7 +50,7 @@ class Sinhvien extends MY_Controller {
 
         $this->data['newArray'] = $newArray;
 
-		$this->data['role'] =  $listCg;
+		$this->data['role'] = $listCg;
 
 		$this->load->model('Msinhvien');
 		
@@ -76,21 +76,21 @@ class Sinhvien extends MY_Controller {
 
 		$this->load->library('upload', $config);
 
-		$config['protocol']    = 'smtp';
+		$config['protocol'] = 'smtp';
 	        
-        $config['smtp_host']    = 'ssl://smtp.gmail.com';
+        $config['smtp_host'] = 'ssl://smtp.gmail.com';
         
-        $config['smtp_port']    = '465';
+        $config['smtp_port'] = '465';
         
         $config['smtp_timeout'] = '7';
         
-        $config['smtp_user']    = 'doanthi2241@gmail.com';
+        $config['smtp_user'] = 'doanthi2241@gmail.com';
         
-        $config['smtp_pass']    = 'doanthi123';
+        $config['smtp_pass'] = 'doanthi123';
         
-        $config['charset']    = 'utf-8';
+        $config['charset'] = 'utf-8';
         
-        $config['newline']    = "\r\n";
+        $config['newline'] = "\r\n";
         
         $config['mailtype'] = 'text'; 
         
@@ -106,11 +106,11 @@ class Sinhvien extends MY_Controller {
 
         $message = "Contact form\n\n";
 
-		$message .= "Last namet : ".$this->input->post("last_name") . "\n";
+		$message .= "Last namet : ".$this->input->post("last_name")."\n";
 
-		$message .= "Email: ".$this->input->post("email") . "\n";
+		$message .= "Email: ".$this->input->post("email")."\n";
 
-		$message .= "Role: ".$this->input->post("role") . "\n";
+		$message .= "Role: ".$this->input->post("role")."\n";
 
         $this->email->message($message); 
 
@@ -130,7 +130,7 @@ class Sinhvien extends MY_Controller {
         
         $this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required');
         
-        if($identity_column!=='email') {
+        if($identity_column !== 'email') {
 
             $this->form_validation->set_rules('identity', $this->lang->line('create_user_validation_identity_label'),'required|is_unique['.$tables['users'].'.'.$identity_column.']');
             
@@ -138,21 +138,21 @@ class Sinhvien extends MY_Controller {
         
         } else {
 
-            $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|is_unique[' . $tables['users'] . '.email]');
+            $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|is_unique['.$tables['users'].'.email]');
 
         }
       
-        $this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
+        $this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length['.$this->config->item('min_password_length', 'ion_auth').']|max_length['.$this->config->item('max_password_length', 'ion_auth').']|matches[password_confirm]');
 
         $this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
 
         if ($this->form_validation->run() == true) {
 
-        	if ($this->input->post('1') || $this->input->post('2') || $this->input->post('3') ) {
+        	if ($this->input->post('1') || $this->input->post('2') || $this->input->post('3')) {
 	        
-	            $email    = strtolower($this->input->post('email'));
+	            $email = strtolower($this->input->post('email'));
 
-	            $identity = ($identity_column==='email') ? $email : $this->input->post('identity');
+	            $identity = ($identity_column === 'email') ? $email : $this->input->post('identity');
 
 	            $password = $this->input->post('password');
 
@@ -197,12 +197,12 @@ class Sinhvien extends MY_Controller {
 
 	        	} else {
 
-					$additional_data = array (
+					$additional_data = array(
 
-		            'first_name' => $this->input->post('first_name'),
-		            'last_name'  => $this->input->post('last_name'),
-		            'avatar' => $_FILES['userfile']['name'],
-		            'is_deleted' => 0
+			            'first_name' => $this->input->post('first_name'),
+			            'last_name' => $this->input->post('last_name'),
+			            'avatar' => $_FILES['userfile']['name'],
+			            'is_deleted' => 0
 
 		        	);		
 
@@ -226,9 +226,9 @@ class Sinhvien extends MY_Controller {
 		
 		        	if (!$this->upload->do_upload()) { 
 
-					$this->session->set_flashdata('message_update', '<div class="succes">Add new student fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
+						$this->session->set_flashdata('message_update', '<div class="succes">Add new student fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-							redirect('sinhvien/show'); 
+						redirect('sinhvien/show'); 
 
 					} else {
 			    	
@@ -304,7 +304,7 @@ class Sinhvien extends MY_Controller {
             
             );
 
-           $this->load->view('sinhvien/insert', $this->data);
+           	$this->load->view('sinhvien/insert', $this->data);
 
         }
 
@@ -322,7 +322,7 @@ class Sinhvien extends MY_Controller {
 
 				if ($this->data['role'] == 'User') {
 	            
-	            redirect('home/index');
+	            	redirect('home/index');
 
 		        }
 		        
@@ -380,41 +380,41 @@ class Sinhvien extends MY_Controller {
 		      	
 		      	if ($this->input->post("insert")) {
 			
-			       	$this->form_validation->set_rules('first_name','First name','required');
+			       	$this->form_validation->set_rules('first_name', 'First name', 'required');
 		       	
-			       	$this->form_validation->set_rules('last_name','Last name','required');
+			       	$this->form_validation->set_rules('last_name', 'Last name', 'required');
 			       	
-			       	$this->form_validation->set_rules('email','Email','required');
+			       	$this->form_validation->set_rules('email', 'Email', 'required');
 		
-			       	$this->form_validation->set_message('required','%s không được bỏ trống');
+			       	$this->form_validation->set_message('required', '%s không được bỏ trống');
 		    
 			       	if ($this->form_validation->run()) {
 
 			       		$listgr = $this->Mrole->get_all_group();
 
-							$listGroup = array();
+						$listGroup = array();
 
-							foreach ($getListGroup as $getListKey => $getListvalue) {
+						foreach ($getListGroup as $getListKey => $getListvalue) {
 
-								$this->ion_auth_model->remove_from_group($getListvalue['group_id'], $id);
-						
-							}
+							$this->ion_auth_model->remove_from_group($getListvalue['group_id'], $id);
+					
+						}
 
-			         		if (count($listgr) > 0) {
+		         		if (count($listgr) > 0) {
 
-			        			foreach ($listgr as $listgrKey => $listgrvalue) {
-			        				
-			        				if ($this->input->post($listgrvalue['id']) == $listgrvalue['id'] ) {
+		        			foreach ($listgr as $listgrKey => $listgrvalue) {
+		        				
+		        				if ($this->input->post($listgrvalue['id']) == $listgrvalue['id'] ) {
 
-				        				$listGroup[] = $this->input->post($listgrvalue['id']);
+			        				$listGroup[] = $this->input->post($listgrvalue['id']);
 
-						        	}
-
-						        }
-
-						       $this->ion_auth_model->add_to_group($listGroup, $id);
+					        	}
 
 					        }
+
+					       $this->ion_auth_model->add_to_group($listGroup, $id);
+
+				        }
 		
 			       		if ($_FILES['userfile']['name'] == '') {
 		
@@ -526,7 +526,7 @@ class Sinhvien extends MY_Controller {
 		       			    
 			}
 
-			$this->data['role'] =  $listCg;
+			$this->data['role'] = $listRl;
 	   		
 	   		$this->load->view("sinhvien/update", $this->data);
 	
