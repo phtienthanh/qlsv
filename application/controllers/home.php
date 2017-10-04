@@ -10,11 +10,9 @@ class Home extends MY_Controller {
 
        	$this->load->helper('form');
 
-	    $this->load->library(array('ion_auth', 'form_validation'));
+	    $this->load->library('form_validation');
 
 	    $this->load->library('pagination');
- 
-		$this->load->model('ion_auth_model');
 
 		$this->load->view('home/header', $this->data);
 
@@ -292,11 +290,11 @@ class Home extends MY_Controller {
 
         $message = "Contact form\n\n";
 
-		$message .= "Last namet : ".$this->input->post("last_name") . "\n";
+		$message .= "Last namet : ".$this->input->post("last_name")."\n";
 
-		$message .= "Email: ".$this->input->post("email") . "\n";
+		$message .= "Email: ".$this->input->post("email")."\n";
 
-		$message .= "Role: ".$this->input->post("role") . "\n";
+		$message .= "Role: ".$this->input->post("role")."\n";
 
         $this->email->message($message); 
 
@@ -322,11 +320,11 @@ class Home extends MY_Controller {
         
         } else {
             
-            $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|is_unique[' . $tables['users'] . '.email]');
+            $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email|is_unique['.$tables['users'].'.email]');
         
         }
         
-        $this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
+        $this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length['.$this->config->item('min_password_length', 'ion_auth').']|max_length['.$this->config->item('max_password_length', 'ion_auth').']|matches[password_confirm]');
         
         $this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
 
@@ -448,7 +446,7 @@ class Home extends MY_Controller {
 
         $message = "Please visit the link below forgot password:\n";
 
-		$message = "Password: ". base_url('home/change/').'/'.$token . "\n";
+		$message = "Password: ".base_url('home/change/').'/'.$token."\n";
 
         $this->email->message($message); 
 
