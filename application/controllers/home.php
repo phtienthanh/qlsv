@@ -11,6 +11,8 @@ class Home extends MY_Controller {
        	$this->load->helper('form');
 
 	    $this->load->library(array('ion_auth', 'form_validation'));
+
+	    $this->load->library('pagination');
  
 		$this->load->model('ion_auth_model');
 
@@ -38,7 +40,7 @@ class Home extends MY_Controller {
 		 
 		$this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
 
-		$this->form_validation->set_message('valid_email','%1 The identity field must contain a valid email address');
+		$this->form_validation->set_message('valid_email', '%1 The identity field must contain a valid email address');
 
 		if ($this->form_validation->run() == true) {
 			
@@ -46,13 +48,13 @@ class Home extends MY_Controller {
 
 			if ($user) {
 
-				$this->session->set_flashdata('message', '<div  class="succesLogin">Login success <button type="button" class="close" data-dismiss="alert"> × </button></div>');
+				$this->session->set_flashdata('message', '<div class="succesLogin">Login success <button type="button" class="close" data-dismiss="alert"> × </button></div>');
 
 				redirect('home', 'refresh');	
 				
 			} else {
 
-				$this->session->set_flashdata('message', '<div  class="succesLogin">Email or password error<button type="button" class="close" data-dismiss="alert"> × </button></div>');
+				$this->session->set_flashdata('message', '<div class="succesLogin">Email or password error<button type="button" class="close" data-dismiss="alert"> × </button></div>');
 
 				redirect('home/login', 'refresh');	
 	
@@ -128,20 +130,19 @@ class Home extends MY_Controller {
 		      		
 		      		if ($this->form_validation->run()) {
 
-			      		$list_update = array (
+			      		$list_update = array(
 
 							"first_name" => $this->input->post("first_name"),
 							
-							"last_name" => $this->input->post("last_name"),
+							"last_name" => $this->input->post("last_name")
 							
 						);	
 
-						if ($this->Msinhvien->update($id,$list_update)) {
+						if ($this->Msinhvien->update($id, $list_update)) {
 
-							$this->session->set_flashdata('message_profile', '<div  class="succes">Update success<button type="button" class="close" data-dismiss="alert">×</button></div>');
+							$this->session->set_flashdata('message_profile', '<div class="succes">Update success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 						} else {
-
 
 							$this->session->set_flashdata('message_profile', '<div class="succes">Update fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
@@ -181,7 +182,7 @@ class Home extends MY_Controller {
 
 		   			$list_update = array(
 
-						"avatar" => $this->input->post("img_name"),
+						"avatar" => $this->input->post("img_name")
 
 					);
 
@@ -207,7 +208,7 @@ class Home extends MY_Controller {
 
 					if (!$this->upload->do_upload()) {
 
-						$this->session->set_flashdata('message_upload', '<div  class="succes">Upload fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
+						$this->session->set_flashdata('message_upload', '<div class="succes">Upload fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
 					
 						redirect('home/profile/'.$id); 
 
@@ -225,13 +226,13 @@ class Home extends MY_Controller {
 					        
 				       	$list_update = array(
 
-							"avatar" => $_FILES['userfile']['name'],
+							"avatar" => $_FILES['userfile']['name']
 				
 						);
 
-			            $this->Msinhvien->update($id,$list_update);
+			            $this->Msinhvien->update($id, $list_update);
 
-			            $this->session->set_flashdata('message_upload', '<div  class="succes">Upload success<button type="button" class="close" data-dismiss="alert">×</button></div>');
+			            $this->session->set_flashdata('message_upload', '<div class="succes">Upload success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 						redirect('home/profile/'.$id); 
 		     			
@@ -261,21 +262,21 @@ class Home extends MY_Controller {
 
         }
 
-        $config['protocol']    = 'smtp';
+        $config['protocol'] = 'smtp';
 	        
-        $config['smtp_host']    = 'ssl://smtp.gmail.com';
+        $config['smtp_host'] = 'ssl://smtp.gmail.com';
         
-        $config['smtp_port']    = '465';
+        $config['smtp_port'] = '465';
         
         $config['smtp_timeout'] = '7';
         
-        $config['smtp_user']    = 'doanthi2241@gmail.com';
+        $config['smtp_user'] = 'doanthi2241@gmail.com';
         
-        $config['smtp_pass']    = 'doanthi123';
+        $config['smtp_pass'] = 'doanthi123';
         
-        $config['charset']    = 'utf-8';
+        $config['charset'] = 'utf-8';
         
-        $config['newline']    = "\r\n";
+        $config['newline'] = "\r\n";
         
         $config['mailtype'] = 'text'; 
         
@@ -315,7 +316,7 @@ class Home extends MY_Controller {
         
         if ($identity_column !== 'email') {
             
-            $this->form_validation->set_rules('identity', $this->lang->line('create_user_validation_identity_label'),'required|is_unique['.$tables['users'].'.'.$identity_column.']');
+            $this->form_validation->set_rules('identity', $this->lang->line('create_user_validation_identity_label'), 'required|is_unique['.$tables['users'].'.'.$identity_column.']');
             
             $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'required|valid_email');
         
@@ -331,7 +332,7 @@ class Home extends MY_Controller {
 
         if ($this->form_validation->run() == true) {
 
-            $email    = strtolower($this->input->post('email'));
+            $email = strtolower($this->input->post('email'));
             
             $identity = ($identity_column === 'email') ? $email : $this->input->post('identity');
             
@@ -342,7 +343,7 @@ class Home extends MY_Controller {
                 'first_name' => $this->input->post('first_name'),
                 'last_name'  => $this->input->post('last_name'),
                 'avatar' => 'doanthi.jpg',
-                'is_deleted' => 0,
+                'is_deleted' => 0
  
             );
 
@@ -352,7 +353,7 @@ class Home extends MY_Controller {
         
             $this->email->send(); 
         
-            $this->session->set_flashdata('message_login', '<div  class="succes">Account Successfully Created<button type="button" class="close" data-dismiss="alert">×</button></div>');
+            $this->session->set_flashdata('message_login', '<div class="succes">Account Successfully Created<button type="button" class="close" s>×</button></div>');
         
            	redirect('home/login');
         
@@ -365,7 +366,7 @@ class Home extends MY_Controller {
                 'name'  => 'first_name',
                 'id'    => 'first_name',
                 'type'  => 'text',
-                'value' => $this->form_validation->set_value('first_name'),
+                'value' => $this->form_validation->set_value('first_name')
             
             );
             
@@ -374,16 +375,7 @@ class Home extends MY_Controller {
                 'name'  => 'last_name',
                 'id'    => 'last_name',
                 'type'  => 'text',
-                'value' => $this->form_validation->set_value('last_name'),
-            
-            );
-            
-            $this->data['identity'] = array(
-            
-                'name'  => 'identity',
-                'id'    => 'identity',
-                'type'  => 'text',
-                'value' => $this->form_validation->set_value('identity'),
+                'value' => $this->form_validation->set_value('last_name')
             
             );
             
@@ -392,7 +384,7 @@ class Home extends MY_Controller {
                 'name'  => 'email',
                 'id'    => 'email',
                 'type'  => 'text',
-                'value' => $this->form_validation->set_value('email'),
+                'value' => $this->form_validation->set_value('email')
             
             );
 
@@ -401,7 +393,7 @@ class Home extends MY_Controller {
                 'name'  => 'password',
                 'id'    => 'password',
                 'type'  => 'password',
-                'value' => $this->form_validation->set_value('password'),
+                'value' => $this->form_validation->set_value('password')
             
             );
             
@@ -410,11 +402,10 @@ class Home extends MY_Controller {
                 'name'  => 'password_confirm',
                 'id'    => 'password_confirm',
                 'type'  => 'password',
-                'value' => $this->form_validation->set_value('password_confirm'),
+                'value' => $this->form_validation->set_value('password_confirm')
             
             );
 
-          
         }
 	
         $this->load->view('home/register', $this->data);
@@ -425,21 +416,21 @@ class Home extends MY_Controller {
 
     	$token = rand(1000, 9999);
 
-    	$config['protocol']    = 'smtp';
+    	$config['protocol'] = 'smtp';
         
-        $config['smtp_host']    = 'ssl://smtp.gmail.com';
+        $config['smtp_host'] = 'ssl://smtp.gmail.com';
         
-        $config['smtp_port']    = '465';
+        $config['smtp_port'] = '465';
         
         $config['smtp_timeout'] = '7';
         
-        $config['smtp_user']    = 'doanthi2241@gmail.com';
+        $config['smtp_user'] = 'doanthi2241@gmail.com';
         
-        $config['smtp_pass']    = 'doanthi123';
+        $config['smtp_pass'] = 'doanthi123';
         
-        $config['charset']    = 'utf-8';
+        $config['charset'] = 'utf-8';
         
-        $config['newline']    = "\r\n";
+        $config['newline'] = "\r\n";
         
         $config['mailtype'] = 'text'; // or html
         
@@ -479,7 +470,7 @@ class Home extends MY_Controller {
 
         			$list_update = array(	
 			
-						"token" => $token,
+						"token" => $token
 			
 					);
 
@@ -541,7 +532,7 @@ class Home extends MY_Controller {
 
 	    			$listUpdate = array(
 			
-						"password" => $this->input->post('new_password'),
+						"password" => $this->input->post('new_password')
 			
 					);
 
@@ -551,7 +542,7 @@ class Home extends MY_Controller {
 
 	        			$listUpdate = array(
 				
-							"token" => $token,
+							"token" => $token
 				
 						);
 
@@ -603,7 +594,7 @@ class Home extends MY_Controller {
 
 			$list_update = array(	
 
-				"active" => 1,
+				"active" => 1
 
 			);
 
@@ -647,7 +638,7 @@ class Home extends MY_Controller {
 		       		
 		       			$change = array(
 		       			
-		       				'password' => $this->input->post("new_password"),
+		       				'password' => $this->input->post("new_password")
 		       			
 		       			);
 		       			
@@ -687,8 +678,6 @@ class Home extends MY_Controller {
 
     public function show_article() {
 
-    	$this->load->library('pagination');
-
     	$this->load->model('Mcategories');
 
     	$listCg = $this->Mcategories->get_all_categories();
@@ -715,7 +704,7 @@ class Home extends MY_Controller {
 
         $this->data['newArray'] = $newArray;
 
-		$this->data['categories'] =  $listCg;	
+		$this->data['categories'] = $listCg;	
 
     	$perpage = 10;
         
@@ -735,7 +724,7 @@ class Home extends MY_Controller {
 
 			$this->load->model('Marticle');
 
-			$this->data['query'] =  $this->Marticle->show_all_article($perpage, $_GET['page']);
+			$this->data['query'] = $this->Marticle->show_all_article($perpage, $_GET['page']);
 
 			$config['total_rows'] = $this->Marticle->show_number_article();
 
@@ -765,7 +754,7 @@ class Home extends MY_Controller {
 
 		$this->pagination->initialize($config);
 
-		$this->data['paginator'] =  $this->pagination->create_links();
+		$this->data['paginator'] = $this->pagination->create_links();
 
 		$this->data['search'] = $keyword;
 

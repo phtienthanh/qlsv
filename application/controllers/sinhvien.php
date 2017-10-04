@@ -163,7 +163,7 @@ class Sinhvien extends MY_Controller {
 			            'first_name' => $this->input->post('first_name'),
 			            'last_name'  => $this->input->post('last_name'),
 			            'avatar' => "doanthi.jpg",
-			            'is_deleted' => 0,
+			            'is_deleted' => 0
 
 			        );
 
@@ -202,7 +202,7 @@ class Sinhvien extends MY_Controller {
 		            'first_name' => $this->input->post('first_name'),
 		            'last_name'  => $this->input->post('last_name'),
 		            'avatar' => $_FILES['userfile']['name'],
-		            'is_deleted' => 0,
+		            'is_deleted' => 0
 
 		        	);		
 
@@ -265,7 +265,7 @@ class Sinhvien extends MY_Controller {
                 'name'  => 'first_name',
                 'id'    => 'first_name',
                 'type'  => 'text',
-                'value' => $this->form_validation->set_value('first_name'),
+                'value' => $this->form_validation->set_value('first_name')
             
             );
             
@@ -274,25 +274,16 @@ class Sinhvien extends MY_Controller {
                 'name'  => 'last_name',
                 'id'    => 'last_name',
                 'type'  => 'text',
-                'value' => $this->form_validation->set_value('last_name'),
+                'value' => $this->form_validation->set_value('last_name')
             
             );
-            
-            $this->data['identity'] = array(
-            
-                'name'  => 'identity',
-                'id'    => 'identity',
-                'type'  => 'text',
-                'value' => $this->form_validation->set_value('identity'),
-            
-            );
-            
+                    
             $this->data['email'] = array(
             
                 'name'  => 'email',
                 'id'    => 'email',
                 'type'  => 'text',
-                'value' => $this->form_validation->set_value('email'),
+                'value' => $this->form_validation->set_value('email')
             
             );
             
@@ -301,7 +292,7 @@ class Sinhvien extends MY_Controller {
                 'name'  => 'password',
                 'id'    => 'password',
                 'type'  => 'password',
-                'value' => $this->form_validation->set_value('password'),
+                'value' => $this->form_validation->set_value('password')
             );
             
             $this->data['password_confirm'] = array(
@@ -309,7 +300,7 @@ class Sinhvien extends MY_Controller {
                 'name'  => 'password_confirm',
                 'id'    => 'password_confirm',
                 'type'  => 'password',
-                'value' => $this->form_validation->set_value('password_confirm'),
+                'value' => $this->form_validation->set_value('password_confirm')
             
             );
 
@@ -433,7 +424,7 @@ class Sinhvien extends MY_Controller {
 								
 								"last_name" => $this->input->post("last_name"),
 		
-								"avatar" => $this->input->post("img_name"),
+								"avatar" => $this->input->post("img_name")
 							
 							);
 
@@ -471,7 +462,7 @@ class Sinhvien extends MY_Controller {
 									
 									"last_name" => $this->input->post("last_name"),
 			
-									"avatar" => $this->input->post("img_name"),
+									"avatar" => $this->input->post("img_name")
 								
 								);
 
@@ -499,7 +490,7 @@ class Sinhvien extends MY_Controller {
 									
 									"last_name" => $this->input->post("last_name"),
 									
-									"avatar" => $_FILES['userfile']['name'],
+									"avatar" => $_FILES['userfile']['name']
 								
 								);
 
@@ -583,7 +574,7 @@ class Sinhvien extends MY_Controller {
 					
 						'name' => 'old_password',
 						'id'   => 'old_password',
-						'type' => 'password',
+						'type' => 'password'
 					
 					);
 					
@@ -592,7 +583,7 @@ class Sinhvien extends MY_Controller {
 						'name'    => 'new',
 						'id'      => 'new',
 						'type'    => 'password',
-						'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
+						'pattern' => '^.{'.$this->data['min_password_length'].'}.*$'
 					
 					);
 					
@@ -601,7 +592,7 @@ class Sinhvien extends MY_Controller {
 						'name'    => 'new_confirm',
 						'id'      => 'new_confirm',
 						'type'    => 'password',
-						'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
+						'pattern' => '^.{'.$this->data['min_password_length'].'}.*$'
 					
 					);
 					
@@ -610,8 +601,8 @@ class Sinhvien extends MY_Controller {
 						'name'  => 'user_id',
 						'id'    => 'user_id',
 						'type'  => 'hidden',
-						'value' => $user->id,
-					
+						'value' => $user->id
+				
 					);
 				
 				} else {
@@ -710,7 +701,7 @@ class Sinhvien extends MY_Controller {
 
 			   'status' => 1,
 			   'data' => $stack,
-			   'message' => "Delete !!!",
+			   'message' => "Delete !!!"
 			
 			);
 
@@ -724,7 +715,7 @@ class Sinhvien extends MY_Controller {
 
 			   'status' => 0,
 			   'data' => null,
-			   'message' => "Can't Delete Admin Account !!!",
+			   'message' => "Can't Delete Admin Account !!!"
 			   
 			);
 

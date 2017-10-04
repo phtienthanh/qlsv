@@ -434,7 +434,7 @@ class article extends MY_Controller {
 
 			$list_update = array(	
 		
-				"is_deleted" => 1,
+				"is_deleted" => 1
 				
 			);	
 
