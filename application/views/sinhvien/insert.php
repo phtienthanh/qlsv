@@ -4,13 +4,7 @@
 <body>
     <div class="insert">
         <h1>Add new student</h1>
-        <h3>
-        <?php if (isset($error) && count($error) > 0) {
-
-            echo $error;
-        
-        } ?>
-        </h3>
+        <h3><?php if (isset($error) && count($error) > 0) { echo $error; } ?></h3>
         <h3>
         <?php if (isset($succes) && count($succes) > 0 ) {
         
@@ -44,17 +38,20 @@
              <p class="btn btn-primary btn_select ">Select image</p>
             <h3 for="">Role</h3>
 
-            <?php if(isset($role) && count($role) > 0) { ?>
+            <?php 
+            if(isset($role) && count($role) > 0) { 
 
-                <?php foreach ($role as $keyRole => $valRole) { ?>
-                
+                foreach ($role as $keyRole => $valRole) { ?>
+
                     <tr selected>
                         <input name='<?php echo $valRole['id']; ?>' type='checkbox' value='<?php echo $valRole['id']; ?>' /><?php echo $valRole['name']; ?>
                     </tr>
                    
-                <?php } ?> 
+            <?php 
+                }  
 
-            <?php } ?>
+            } 
+            ?>
         
             <?php echo form_error("role"); ?>
             

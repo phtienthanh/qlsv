@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <body>
     <h1 class="title">Manage article</h1>
     <?php echo $this->session->flashdata('message_add'); ?>

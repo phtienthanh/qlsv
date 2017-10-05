@@ -27,7 +27,6 @@
                                         echo $student["last_name"];
 
                                     }?>
-                                        
                                 </h4>
                                 </center>
                             </form>

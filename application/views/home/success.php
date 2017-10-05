@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <body class="title">
     <h1>Sign Up Success</h1>
     <h3>Please login to gmail to activate your account</h3>

@@ -1,17 +1,13 @@
 <?php  $data1; ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/login.css">
 </head>
-
 <body>
     <style type="text/css" media="screen">
-
     </style>
-
     </nav>
     <div class="tow-btn">
         <a class="btn btn-default btn-register" href="<?php echo base_url();?>home/register" title="">Register</a>
@@ -21,15 +17,7 @@
         <div class="title"> Login</div>
         <p class="title"><?php echo $this->session->flashdata('message_login'); ?></p>
         <div class="title"> <?php echo $this->session->flashdata('message'); ?></div>
-        <p class="title">
-
-        <?php if (isset($login_fail) && count($login_fail) > 0) { 
-
-            echo $login_fail;
-
-        } ?>
-            
-        </p>
+        <p class="title"><?php if (isset($login_fail) && count($login_fail) > 0) { echo $login_fail;} ?></p>
         <div class="form-group form-gr">
             <label for="">Email</label>
             <br>

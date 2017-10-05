@@ -26,23 +26,16 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <?php if ($checklogin == true && $role != 'User' ) {
-                        
-                     ?>
-                    <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url();?>sinhvien/show">Manage student</a></li>
-                    <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url();?>article/home">Manage article</a></li>
-                    <li class="li_menu"><a class="color_menu" href="<?php echo base_url();?>home/show_article?page=">Show article</a></li>
+                    <?php if ($checklogin == true && $role != 'User' ) { ?>
+                        <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url();?>sinhvien/show">Manage student</a></li>
+                        <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url();?>article/home">Manage article</a></li>
+                        <li class="li_menu"><a class="color_menu" href="<?php echo base_url();?>home/show_article?page=">Show article</a></li>
                     <?php } ?>
                     <ul class="nav navbar-nav navbar-right">
-
                         <?php if ($checklogin == false) { ?>
-
-                            <li class="li_menu"><a class="manage_login1" href="<?php echo base_url();?>home/login">Login</a></li>
-
+                        <li class="li_menu"><a class="manage_login1" href="<?php echo base_url();?>home/login">Login</a></li>
                         <?php } ?>
-
                         <?php if ($checklogin == true) { ?>
-
                             <li class="dropdown manage_logout"> <a href="#" class="dropdown-toggle fa fa-user " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
                                 <ul class="dropdown-menu menu-header">
                                     <li class="manage_logout"><a class="manage_logout" href="<?php echo base_url();?>home/profile/<?php echo $id; ?>"> Manage profile </a></li>

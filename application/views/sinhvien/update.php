@@ -63,14 +63,7 @@
                 <?php foreach ($role as $keyRole => $valRole) { ?>
                     
                     <tr selected><input name='<?php echo $valRole['id']; ?>' type='checkbox' value='<?php echo $valRole['id']; ?>'
-                        <?php  if (isset($$valRole['name']) && count($$valRole['name']) > 0) {
-
-                            echo 'checked';
-                   
-                        } ?> />
-
-                        <?php echo $valRole['name']; ?></tr>
-                   
+                        <?php  if (isset($$valRole['name']) && count($$valRole['name']) > 0) { echo 'checked'; } ?> /> <?php echo $valRole['name']; ?></tr>         
                 <?php } ?>
             
             <?php } ?>  

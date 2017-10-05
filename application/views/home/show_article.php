@@ -20,7 +20,6 @@
                     </div>
                     <div class="card-body">
                         <h2 class="card-title">
-
                         <?php if (strlen($row['title']) > 30 ) {
 
                             echo substr($row['title'],0,30); echo '...';
@@ -29,8 +28,7 @@
 
                             echo $row['title'];
                            
-                        } ?>
-                            
+                        } ?>    
                         </h2>
                         <div class="card-text">
                             <div>

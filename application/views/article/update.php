@@ -77,11 +77,12 @@
                                         <div class="col-md-12">
                                             <select name="categories" class="form-control form-control-line cate">
                                                 
-                                                <?php  if(isset($categoriess) && count($categoriess) > 0) { ?>
+                                                <?php  
+                                                if(isset($categoriess) && count($categoriess) > 0) { 
 
-                                                    <?php foreach ($categoriess as $keyCategories => $valCategories) { ?>
+                                                    foreach ($categoriess as $keyCategories => $valCategories) { 
 
-                                                        <?php if ( $valCategories['is_deleted'] == 0) { ?>
+                                                        if ( $valCategories['is_deleted'] == 0) { ?>
 
                                                             <option value="<?php echo $valCategories['id']; ?>" <?php if ($student[ "categories"] == $valCategories[ 'id'] ) { 
 
@@ -90,11 +91,15 @@
                                                                 } ?> > <?php echo $valCategories['name']; ?>
                                                             </option>
 
-                                                        <?php } ?>
+                                                <?php
+                                                        }
+                                                
+                                                    }
 
-                                                    <?php } ?>
+                                                } 
 
-                                                <?php } ?>
+                                                ?>
+                                            </select>
                                              
                                         </div>
                                     </div>

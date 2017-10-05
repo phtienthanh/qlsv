@@ -24,14 +24,14 @@
 
                 <?php foreach ($categories as $keyCategories => $valCategories) { ?>
 
-                    <?php if ($val['is_deleted'] == 0 ) { ?>
+                    <?php if ($valCategories['is_deleted'] == 0 ) { ?>
 
                         <tr class="reload <?php echo $valCategories['id']; ?>">
                             <td><input type="checkbox" name="checkboxlist[]" value=<?php echo $valCategories[ 'id'];?> ></td>
                             <td><?php echo $valCategories['id']; ?></td>
                             <td><?php echo $valCategories['name']; ?></td>
                             
-                            <?php if ( $valCategories['id'] != 1) {?>
+                            <?php if ($valCategories['id'] != 1) {?>
 
                             <td class="center"><a class="btn btn-success" href="<?php echo base_url();?>categories/update/<?php echo $valCategories['id']; ?>" title="">Update</a></td>
 

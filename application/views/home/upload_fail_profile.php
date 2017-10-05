@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <body class="title">
     <h1>Upload fail</h1>
     <h3>Please click on the button to upload again</h3>

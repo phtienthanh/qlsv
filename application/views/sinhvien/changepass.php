@@ -1,21 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css" rel="stylesheet">
 </head>
-
 <body>
     <h1 class="title"> Change password</h1>
-    <h3 class="title">
-        <?php if (isset($change_succes) && count($change_succes) > 0) {
-
-            echo $change_succes;
-
-        } ?>
-            
-    </h3>
+    <h3 class="title"><?php if (isset($change_succes) && count($change_succes) > 0) { echo $change_succes; } ?></h3>
     <div class="insert">
         <form class="login wrapper" action="" method="POST">
             <span> <a href="<?php echo base_url('sinhvien/show') ?>" title="" class="btn btn-primary">Back</a></span>
@@ -41,5 +32,4 @@
     </div>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </body>
-
 </html>

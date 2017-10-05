@@ -1,8 +1,5 @@
-
 <!DOCTYPE html>
-
-<html lang="en">
-  
+<html lang="en"> 
     <head>
         <!-- Title -->
         <title>Boss - Professional Bootstrap Template</title>
@@ -24,10 +21,7 @@
         <link href="http://fonts.googleapis.com/css?family=Raleway:100,300,400" type="text/css" rel="stylesheet">
         <link href="http://fonts.googleapis.com/css?family=Roboto:400,300" type="text/css" rel="stylesheet">
     </head>
-  
     <body>
-
-      
         <!-- Header -->
         <div id="header" style="background-position: 50% 0%; height:100%;" data-stellar-background-ratio="0.5">
             <div class="container">
@@ -65,10 +59,7 @@
                                 </li>
                                 <li>
                                     <span class="fa-user ">User</span>
-                                    <ul>
-                                        
-                                        
-                                    </ul>
+                                   
                                 </li>
                                 <li>
                                     <a href="contact.html" class="fa-comment ">Contact</a>
@@ -77,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- End Top Menu -->
+              
             </div>
         </div>
         <!-- End Header -->
