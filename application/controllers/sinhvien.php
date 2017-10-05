@@ -366,9 +366,9 @@ class Sinhvien extends MY_Controller {
 
 		        	foreach ($listRl as $keyListRl => $valListRl) {
 		        		
-		        		if ($this->input->post($listRlvalue['id']) == $id ) {
+		        		if ($this->input->post($valListRl['id']) == $id ) {
 
-			        		$listGroup[] = $this->input->post($listRlvalue['id']);
+			        		$listGroup[] = $this->input->post($valListRl['id']);
 
 			        	}
 
