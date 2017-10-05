@@ -14,27 +14,27 @@
             <tbody>
                 <?php if (isset($article) && count($article) > 0) { ?>
 
-                    <?php foreach ($article as $keyarticle => $val) { ?>
+                    <?php foreach ($article as $keyArticle => $valArticle) { ?>
 
-                        <?php if ( $val['is_deleted'] == 0) { ?>
+                        <?php if ( $valArticle['is_deleted'] == 0) { ?>
                             <tr>
                                 <td>
-                                    <div class="row row_xxx row_xxx<?php echo $val['id'];?>">
+                                    <div class="row row_xxx row_xxx<?php echo $valArticle['id'];?>">
                                         <div class="col-md-1 checkbox">
-                                            <input type="checkbox" name="checkboxlist[]" value="<?php echo $val['id'];?>">
+                                            <input type="checkbox" name="checkboxlist[]" value="<?php echo $valArticle['id'];?>">
                                         </div>
-                                        <div class="col-md-3"> <img class="avarta_1" src="<?php echo base_url();?>medias/article/<?php echo $val['image']; ?>" width="90%"></div>
+                                        <div class="col-md-3"> <img class="avarta_1" src="<?php echo base_url();?>medias/article/<?php echo $valArticle['image']; ?>" width="90%"></div>
                                         <div class="col-md-5">
                                             <p class="title title_article">
                                                 <?php 
 
-                                                if (strlen($val['title']) > 30 ) {
+                                                if (strlen($valArticle['title']) > 30 ) {
 
-                                                    echo substr($val['title'],0,30); echo '...';
+                                                    echo substr($valArticle['title'],0,30); echo '...';
                                                     
                                                 } else {
 
-                                                    echo $val['title'];
+                                                    echo $valArticle['title'];
                                                    
                                                 } 
 
@@ -43,7 +43,7 @@
                                             <pre class="content1">
                                                 <?php
                                                 
-                                                echo substr( htmlentities($val['content']),0,100);
+                                                echo substr( htmlentities($valArticle['content']),0,100);
                                                 
                                                 echo "...";
                                                 
@@ -52,17 +52,17 @@
                                             <div class="form-group">
                                                 <label class="col-md-3"><b>Author :</b></label>
                                                 <div class="col-md-3">
-                                                    <p><?php echo $val["author"]; ?></p>
+                                                    <p><?php echo $valArticle["author"]; ?></p>
                                                 </div>
                                                 <label class="col-md-3"><b>Categories :</b></label>
                                                 <div class="col-md-3">
-                                                    <p><?php echo $newArray[$val['categories']] ?></p>
+                                                    <p><?php echo $newArray[$valArticle['categories']] ?></p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3 btn_control">
-                                            <span><a class="btn btn-success" href="<?php echo base_url();?>article/update/<?php echo $val['slug']; ?>" title="">Update</a></span>
-                                            <div class="modal fade" id="<?php echo $val['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <span><a class="btn btn-success" href="<?php echo base_url();?>article/update/<?php echo $valArticle['slug']; ?>" title="">Update</a></span>
+                                            <div class="modal fade" id="<?php echo $valArticle['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -73,12 +73,12 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                            <a href="<?php echo base_url();?>article/delete/<?php echo $val['id']; ?>" class="btn btn-danger btn-ok">Delete</a>
+                                                            <a href="<?php echo base_url();?>article/delete/<?php echo $valArticle['id']; ?>" class="btn btn-danger btn-ok">Delete</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <span><a class="btn btn-warning" href="<?php echo base_url();?>article/preview/<?php echo $val['slug']; ?>" title="">Preview</a></span>
+                                            <span><a class="btn btn-warning" href="<?php echo base_url();?>article/preview/<?php echo $valArticle['slug']; ?>" title="">Preview</a></span>
                                         </div>
                                     </div>
                                 </td>

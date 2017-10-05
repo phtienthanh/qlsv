@@ -40,9 +40,9 @@ class Sinhvien extends MY_Controller {
 
          if (isset($listCg) && count($listCg) > 0) {
 
-        	foreach ($listgr as $listgrKey => $listgrValue) {
+        	foreach ($listgr as $keyListgr => $valListgr) {
 
-	        	$newArray[$listgrValue['id']] = $this->Mrole->get_name_role($listgrValue['id'])['name'];
+	        	$newArray[$valListgr['id']] = $this->Mrole->get_name_role($valListgr['id'])['name'];
 
 	        }
 
@@ -173,11 +173,11 @@ class Sinhvien extends MY_Controller {
 
 			         if (count($listRl) > 0) {
 
-			        	foreach ($listRl as $listRlKey => $listRlvalue) {
+			        	foreach ($listRl as $keyListRl => $valListRl) {
 
-			        		if ($this->input->post($listRlvalue['id']) == $listRlvalue['id'] ) {
+			        		if ($this->input->post($valListRl['id']) == $valListRl['id'] ) {
 
-				        		$listGroup[] = $this->input->post($listRlvalue['id']);
+				        		$listGroup[] = $this->input->post($valListRl['id']);
 
 				        	}
 
@@ -212,11 +212,11 @@ class Sinhvien extends MY_Controller {
 
 			        if (count($listRl) > 0) {
 
-			        	foreach ($listRl as $listRlKey => $listRlvalue) {
+			        	foreach ($listRl as $keyListRl => $valListRl) {
 
-			        		if ($this->input->post($listRlvalue['id']) == $listRlvalue['id'] ) {
+			        		if ($this->input->post($valListRl['id']) == $valListRl['id'] ) {
 
-				        		$listGroup[] = $this->input->post($listRlvalue['id']);
+				        		$listGroup[] = $this->input->post($valListRl['id']);
 
 				        	}
 
@@ -340,21 +340,21 @@ class Sinhvien extends MY_Controller {
 
 				$getListGroup = $this->Mrole->get_role_groups($id);
 
-				foreach ($getListGroup as $getListKey => $getListvalue) {
+				foreach ($getListGroup as $keyGetListGroup => $valGetListGroup) {
 
-					if ($getListvalue['group_id'] == '1') {
+					if ($valGetListGroup['group_id'] == '1') {
 
 						$this->data['Admin'] = true;
 						
 					}
 
-					if ($getListvalue['group_id'] == '2') {
+					if ($valGetListGroup['group_id'] == '2') {
 
 						$this->data['Members'] = true;
 						
 					}
 
-					if ($getListvalue['group_id'] == '3') {
+					if ($valGetListGroup['group_id'] == '3') {
 
 						$this->data['User'] = true;
 						
@@ -364,7 +364,7 @@ class Sinhvien extends MY_Controller {
 
 		        if (count($listRl) > 0) {
 
-		        	foreach ($listRl as $listRlKey => $listRlvalue) {
+		        	foreach ($listRl as $keyListRl => $valListRl) {
 		        		
 		        		if ($this->input->post($listRlvalue['id']) == $id ) {
 
@@ -394,19 +394,19 @@ class Sinhvien extends MY_Controller {
 
 						$listGroup = array();
 
-						foreach ($getListGroup as $getListKey => $getListvalue) {
+						foreach ($getListGroup as $keyGetListGroup => $valGetListGroup) {
 
-							$this->ion_auth_model->remove_from_group($getListvalue['group_id'], $id);
+							$this->ion_auth_model->remove_from_group($valGetListGroup['group_id'], $id);
 					
 						}
 
 		         		if (count($listgr) > 0) {
 
-		        			foreach ($listgr as $listgrKey => $listgrvalue) {
+		        			foreach ($listgr as $keyListgr => $valListgr {
 		        				
-		        				if ($this->input->post($listgrvalue['id']) == $listgrvalue['id'] ) {
+		        				if ($this->input->post($valListgr['id']) == $valListgr['id'] ) {
 
-			        				$listGroup[] = $this->input->post($listgrvalue['id']);
+			        				$listGroup[] = $this->input->post($valListgr['id']);
 
 					        	}
 
@@ -647,19 +647,19 @@ class Sinhvien extends MY_Controller {
 
 		$stack = array();
 
-		foreach ($dataId as $key => $val) {
+		foreach ($dataId as $keyDataId => $valDataId) {
 
-			if ($val != "0") {
+			if ($valDataId != "0") {
 
-				$data = $this->Mrole->get_role_groups($val);
+				$data = $this->Mrole->get_role_groups($valDataId);
 
 				if (count($data) == 1) {
 
-					foreach ($data as $key => $val) {
+					foreach ($data as $keyData => $valData) {
 
-						if ($val['group_id'] == "3") {
+						if ($valDataId['group_id'] == "3") {
 
-							array_push($stack, $val['user_id']);
+							array_push($stack, $valData['user_id']);
 
 						}
 
@@ -673,11 +673,11 @@ class Sinhvien extends MY_Controller {
 
 		if (count($stack) > 0) {
 
-			foreach ($dataId as $key => $value) {
+			foreach ($dataId as $keyDataId => $valueDataId) {
 
 				$this->load->model('Msinhvien');
 
-				$data = $this->Msinhvien->get_id_sinhvien($value);
+				$data = $this->Msinhvien->get_id_sinhvien($valueDataId);
 
 				if (file_exists("medias/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg") {
 			        
@@ -685,13 +685,13 @@ class Sinhvien extends MY_Controller {
 
 			        	$this->load->model('Ion_auth_model');
 
-			            $this->Ion_auth_model->delete_user($value);    
+			            $this->Ion_auth_model->delete_user($valueDataId);    
 			        
 			        } 
      			
      			} else if (file_exists("medias/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg") {
 
-     				$this->Ion_auth_model->delete_user($value);    
+     				$this->Ion_auth_model->delete_user($valueDataId);    
 
      			}
 

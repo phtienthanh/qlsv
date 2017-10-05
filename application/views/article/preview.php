@@ -25,13 +25,12 @@
                                     <div class="form-group">
                                         <label class="col-md-3"><b>Author :</b></label>
                                         <div class="col-md-3">
-                                            <p>
-                                                <?php
+                                            <p><?php
                                                 if(isset($student["author"]) && count($student["author"]) > 0) {
                                                 
-                                                echo $student["author"];
+                                                    echo $student["author"];
 
-                                             } ?>
+                                                } ?> 
                                             </p>
                                         </div>
                                         <label class="col-md-3"><b>Categories :</b></label>

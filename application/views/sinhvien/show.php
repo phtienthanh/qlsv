@@ -24,39 +24,39 @@
         <tbody>
             <?php if(isset($student) && count($student > 0)) { ?>
 
-                <?php foreach ($student as $key => $val) {  ?>
+                <?php foreach ($student as $keyStudent => $valStudent) {  ?>
 
-                    <?php foreach ($role as $key => $value) {  ?>
+                    <?php foreach ($role as $keyRole => $valRole) {  ?>
 
-                        <?php if ($val['id'] == $value['user_id']) { ?>
+                        <?php if ($valStudent['id'] == $valRole['user_id']) { ?>
 
-                            <?php if ( $val['is_deleted'] == 0) {?>
+                            <?php if ( $valStudent['is_deleted'] == 0) {?>
 
                                 <tr class="reload">
-                                    <tr class="<?php echo $newArray[$value['group_id']]; ?>">
+                                    <tr class="<?php echo $newArray[$valRole['group_id']]; ?>">
                                         <td>
-                                            <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
+                                            <input type="checkbox" name="checkboxlist[]" value=<?php echo $valStudent[ 'id'];?> ></td>
                                         <td>
-                                            <?php echo $val['id']; ?> </td>
+                                            <?php echo $valStudent['id']; ?> </td>
                                         <td>
-                                            <?php echo $val['first_name']; ?>
+                                            <?php echo $valStudent['first_name']; ?>
                                         </td>
                                         <td>
-                                            <?php echo $val['last_name']; ?>
+                                            <?php echo $valStudent['last_name']; ?>
                                         </td>
                                         <td>
-                                            <?php echo $val['email']; ?>
+                                            <?php echo $valStudent['email']; ?>
                                         </td>
                                         <td>
-                                            <img src="<?php echo base_url();?>medias/student/<?php echo $val['avatar']; ?>" height="75px">
+                                            <img src="<?php echo base_url();?>medias/student/<?php echo $valStudent['avatar']; ?>" height="75px">
                                         </td>
                                         <td>
-                                            <?php echo $newArray[$value['group_id']]; ?>
+                                            <?php echo $newArray[$valRole['group_id']]; ?>
                                         </td>
-                                        <td><a class="btn btn-default glyphicon glyphicon-edit" href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title=""></a></td>
+                                        <td><a class="btn btn-default glyphicon glyphicon-edit" href="<?php echo base_url();?>sinhvien/update/<?php echo $valStudent['id']; ?>" title=""></a></td>
                                     </tr>
                                 </tr>
-                                
+
                             <?php } ?>
 
                         <?php } ?>

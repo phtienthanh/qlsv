@@ -44,13 +44,13 @@
       
                 <?php if (isset($categories) && count($categories) > 0) { ?>
 
-                    <?php foreach ($categories as $key => $val) { ?>
+                    <?php foreach ($categories as $keyCategories => $valCategories) { ?>
                     
-                        <?php if ($val['is_deleted'] == 0) { ?>
+                        <?php if ($valCategories['is_deleted'] == 0) { ?>
                     
-                            <option value="<?php echo $val['id']; ?>">
+                            <option value="<?php echo $valCategories['id']; ?>">
                                 
-                                <?php echo $val['name']; ?>
+                                <?php echo $valCategories['name']; ?>
 
                             </option>
                     

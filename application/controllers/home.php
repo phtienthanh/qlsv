@@ -106,9 +106,9 @@ class Home extends MY_Controller {
 
 		        if (count($listCg) > 0) {
 
-		        	foreach ($listCg as $listCgKey => $listCgValue) {
+		        	foreach ($listCg as $keyListCg => $valListCg) {
 
-			        	$newArray[$listCgValue['user_id']] = $this->Mrole->get_name_role($listCgValue['group_id'])['name'];
+			        	$newArray[$valListCg['user_id']] = $this->Mrole->get_name_role($valListCg['group_id'])['name'];
 
 			        }
 
@@ -684,15 +684,15 @@ class Home extends MY_Controller {
 
         if (isset($listCg) && count($listCg) > 0) {
 
-        	foreach ($listCg as $listCgKey => $listCgValue) {
+        	foreach ($listCg as $keyListCg => $valListCg) {
 
-	        	if ($listCgValue['is_deleted'] == 0) {
+	        	if ($valListCg['is_deleted'] == 0) {
 
-	        		$newArray[$listCgValue['id']] = $listCgValue['name'];
+	        		$newArray[$valListCg['id']] = $valListCg['name'];
 	        		
 	        	}  else {
 
-	        		$newArray[$listCgValue['id']] = "All";
+	        		$newArray[$valListCg['id']] = "All";
 
 	        	}
 
@@ -776,15 +776,15 @@ class Home extends MY_Controller {
 
         	if (isset($listCg) && count($listCg) > 0) {
 
-        		foreach ($listCg as $listCgKey => $listCgValue) {
+        		foreach ($listCg as $keyListCg => $valListCg) {
 
-		        	if ($listCgValue['is_deleted'] == 0) {
+		        	if ($valListCg['is_deleted'] == 0) {
 
-		        		$newArray[$listCgValue['id']] = $listCgValue['name'];
+		        		$newArray[$valListCg['id']] = $valListCg['name'];
 		        		
 		        	}  else {
 
-		        		$newArray[$listCgValue['id']] = "All";
+		        		$newArray[$valListCg['id']] = "All";
 
 		        	}
 

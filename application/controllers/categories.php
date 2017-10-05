@@ -144,9 +144,9 @@ class Categories extends MY_Controller {
 
         $dataId = $this->input->post('id');
 
-        foreach ($dataId as $key => $value) {
+        foreach ($dataId as $keyDataId => $valDataId) {
 
-            if ($value == 1) {
+            if ($valDataId == 1) {
                 
                 $list_update = array(   
         
@@ -154,7 +154,7 @@ class Categories extends MY_Controller {
                 
                 );
 
-                $this->Mcategories->delete_checkbox($value, $list_update);  
+                $this->Mcategories->delete_checkbox($valDataId, $list_update);  
 
             } else {
 
@@ -164,7 +164,7 @@ class Categories extends MY_Controller {
                 
                 );
 
-                $this->Mcategories->delete_checkbox($value, $list_update); 
+                $this->Mcategories->delete_checkbox($valDataId, $list_update); 
 
             }  
 

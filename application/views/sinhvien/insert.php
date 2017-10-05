@@ -46,9 +46,10 @@
 
             <?php if(isset($role) && count($role) > 0) { ?>
 
-                <?php foreach ($role as $keyrole => $valrole) { ?>
+                <?php foreach ($role as $keyRole => $valRole) { ?>
+                
                     <tr selected>
-                        <input name='<?php echo $valrole['id']; ?>' type='checkbox' value='<?php echo $valrole['id']; ?>' /><?php echo $valrole['name']; ?>
+                        <input name='<?php echo $valRole['id']; ?>' type='checkbox' value='<?php echo $valRole['id']; ?>' /><?php echo $valRole['name']; ?>
                     </tr>
                    
                 <?php } ?> 

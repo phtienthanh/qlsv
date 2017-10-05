@@ -468,10 +468,15 @@ body {
 
     text-align: center;
     font-size: 18px;
-    color: red;
+    color: blue;
 }
 .succesLogin{
     background-color: #fff;
     height:50px; color:#000;
     font-weight:bold;
+}
+.fail{
+     text-align: center;
+    font-size: 18px;
+    color: red;
 }

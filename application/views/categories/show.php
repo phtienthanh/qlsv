@@ -22,18 +22,18 @@
 
             <?php if(isset($categories) && count($categories) > 0) { ?>
 
-                <?php foreach ($categories as $key => $val) { ?>
+                <?php foreach ($categories as $keyCategories => $valCategories) { ?>
 
                     <?php if ($val['is_deleted'] == 0 ) { ?>
 
-                        <tr class="reload <?php echo $val['id']; ?>">
-                            <td><input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
-                            <td><?php echo $val['id']; ?></td>
-                            <td><?php echo $val['name']; ?></td>
+                        <tr class="reload <?php echo $valCategories['id']; ?>">
+                            <td><input type="checkbox" name="checkboxlist[]" value=<?php echo $valCategories[ 'id'];?> ></td>
+                            <td><?php echo $valCategories['id']; ?></td>
+                            <td><?php echo $valCategories['name']; ?></td>
                             
-                            <?php if ( $val['id'] != 1) {?>
+                            <?php if ( $valCategories['id'] != 1) {?>
 
-                            <td class="center"><a class="btn btn-success" href="<?php echo base_url();?>categories/update/<?php echo $val['id']; ?>" title="">Update</a></td>
+                            <td class="center"><a class="btn btn-success" href="<?php echo base_url();?>categories/update/<?php echo $valCategories['id']; ?>" title="">Update</a></td>
 
                             <?php } ?>
 

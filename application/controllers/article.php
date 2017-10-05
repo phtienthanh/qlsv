@@ -177,7 +177,7 @@ class article extends MY_Controller {
 
 						} else {
 
- 							$this->session->set_flashdata('message_add', '<div class="succes">Add new article fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
+ 							$this->session->set_flashdata('message_add', '<div class="fail">Add new article fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
                     		redirect('article/home');
 
@@ -187,7 +187,7 @@ class article extends MY_Controller {
 
 	    		}
 
-			}
+			}	
 				       
    		} else if ($this->input->post("back")) {
 
@@ -426,11 +426,11 @@ class article extends MY_Controller {
 
 		$dataId = $this->input->post('id');
 
-		foreach ($dataId as $key => $value) {
+		foreach ($dataId as $keyDataId => $valDataId) {
 
 			$this->load->model('Marticle');
 
-			$data = $this->Marticle->get_article($value);
+			$data = $this->Marticle->get_article($valDataId);
 
 			$list_update = array(	
 		
@@ -442,13 +442,13 @@ class article extends MY_Controller {
 			        
 		        if (unlink("medias/article/".$data['image'])) {
 
-		            $this->Marticle->delete_checkbox($value, $list_update);  
+		            $this->Marticle->delete_checkbox($valDataId, $list_update);  
 		        
 		        }
      			
      		} else if (file_exists("medias/article/".$data['image']) && $data['image'] == "doanthi.jpg") {
 
-     			$this->Marticle->delete_checkbox($value, $list_update);  
+     			$this->Marticle->delete_checkbox($valDataId, $list_update);  
 
      		}
 	
