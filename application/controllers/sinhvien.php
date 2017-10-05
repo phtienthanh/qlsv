@@ -402,7 +402,7 @@ class Sinhvien extends MY_Controller {
 
 		         		if (count($listgr) > 0) {
 
-		        			foreach ($listgr as $keyListgr => $valListgr {
+		        			foreach ($listgr as $keyListgr => $valListgr) {
 		        				
 		        				if ($this->input->post($valListgr['id']) == $valListgr['id'] ) {
 
