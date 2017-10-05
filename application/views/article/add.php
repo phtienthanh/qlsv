@@ -4,16 +4,12 @@
 <body>
     <div class="insert">
         <h1>Add new article</h1>
-        <h4><?php if (isset($slug) && count($slug) > 0) {
+        <h4> <?php if (isset($slug) && count($slug) > 0) {
 
             echo  $slug;
 
         } ?></h4>
-        <h4><?php if (isset($success) && count($success) > 0) {
-
-            echo  $success;
-
-        } ?></h4>
+ 
         <h4><?php if (isset($error['error']) && count($error['error']) > 0) {
 
             echo  $error['error'];
@@ -45,29 +41,25 @@
             <br>
             <h3 for="">Categories</h3>
             <select name="categories" class="form-control form-control-line cate categories">
-                <?php 
+      
+                <?php if (isset($categories) && count($categories) > 0) { ?>
+
+                    <?php foreach ($categories as $key => $val) { ?>
                     
-            if(isset($categories) && count($categories)) {
+                        <?php if ($val['is_deleted'] == 0) { ?>
+                    
+                            <option value="<?php echo $val['id']; ?>">
+                                
+                                <?php echo $val['name']; ?>
 
-                foreach ($categories as $key => $val) {
+                            </option>
+                    
+                        <?php } ?>
 
-                    if ($val['is_deleted'] == 0) {
+                    <?php } ?>
                       
-                    ?>
-                    
-                    <option value="<?php echo $val['id']; ?>">
-                        
-                        <?php echo $val['name']; ?>
+                <?php } ?>  
 
-                    </option>
-                    
-            <?php       
-
-                    }  
-                
-                }
-
-            }?>
             </select>
             <?php echo form_error("categories"); ?>
             <br>

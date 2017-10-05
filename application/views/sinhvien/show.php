@@ -22,51 +22,51 @@
             </tr>
         </thead>
         <tbody>
-            <?php 
+            <?php if(isset($student) && count($student > 0)) { ?>
 
-        if(isset($student) && count($student > 0)) {
+                <?php foreach ($student as $key => $val) {  ?>
 
-            foreach ($student as $key => $val) { 
+                    <?php foreach ($role as $key => $value) {  ?>
 
-                foreach ($role as $key => $value) {
+                        <?php if ($val['id'] == $value['user_id']) { ?>
 
-                    if ($val['id'] == $value['user_id']) {
+                            <?php if ( $val['is_deleted'] == 0) {?>
 
-                if ( $val['is_deleted'] == 0) {
-                
-        ?>
-            <tr class="reload">
-                <tr class="<?php echo $newArray[$value['group_id']]; ?>">
-                    <td>
-                        <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
-                    <td>
-                        <?php echo $val['id']; ?> </td>
-                    <td>
-                        <?php echo $val['first_name']; ?>
-                    </td>
-                    <td>
-                        <?php echo $val['last_name']; ?>
-                    </td>
-                    <td>
-                        <?php echo $val['email']; ?>
-                    </td>
-                    <td>
-                        <img src="<?php echo base_url();?>medias/student/<?php echo $val['avatar']; ?>" height="75px">
-                    </td>
-                    <td>
-                        <?php echo $newArray[$value['group_id']]; ?>
-                    </td>
-                    <td><a class="btn btn-default glyphicon glyphicon-edit" href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title=""></a></td>
-                </tr>
-            </tr>
-            <?php  
-        }     
-    }
-}
-}
-}
-   
-  ?>
+                                <tr class="reload">
+                                    <tr class="<?php echo $newArray[$value['group_id']]; ?>">
+                                        <td>
+                                            <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
+                                        <td>
+                                            <?php echo $val['id']; ?> </td>
+                                        <td>
+                                            <?php echo $val['first_name']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $val['last_name']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $val['email']; ?>
+                                        </td>
+                                        <td>
+                                            <img src="<?php echo base_url();?>medias/student/<?php echo $val['avatar']; ?>" height="75px">
+                                        </td>
+                                        <td>
+                                            <?php echo $newArray[$value['group_id']]; ?>
+                                        </td>
+                                        <td><a class="btn btn-default glyphicon glyphicon-edit" href="<?php echo base_url();?>sinhvien/update/<?php echo $val['id']; ?>" title=""></a></td>
+                                    </tr>
+                                </tr>
+                                
+                            <?php } ?>
+
+                        <?php } ?>
+
+                    <?php } ?>
+
+                <?php } ?>
+
+            <?php } ?>
+
         </tbody>
     </table>
     <button class="btn btn-danger delete_std" data-toggle="modal" data-target="#delall"> Delete</button>

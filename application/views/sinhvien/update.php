@@ -3,18 +3,22 @@
 
 <body>
     <h1 class="title">Update student
-<p class="title"> <?php  if (isset($upload['error']) && count($upload['error'])) {
+        <p class="title">
+            <?php  if (isset($upload['error']) && count($upload['error']) > 0) {
 
-    echo $upload['error'];
-   
-} ?></p></h1>
-    <p class="title">
-        <?php  if (isset($upload_fail) && count($upload_fail)) {
+            echo $upload['error'];
+           
+            } ?>
+            
+        </p></h1>
+        <p class="title"> 
+            <?php  if (isset($upload_fail) && count($upload_fail) > 0) {
 
-    echo $upload_fail;
-   
-} ?>
-    </p>
+            echo $upload_fail;
+       
+        } ?>
+            
+        </p>
     <div class="insert">
         <form action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <input type="submit" name="back" value="Back" class="btn btn-danger btn-block btn-insert">
@@ -22,14 +26,14 @@
             <label for="">First name</label>
             <br>
             <input type="text" name="first_name" class="form-control" placeholder="First name" value="<?php
-            if (isset($student["first_name"]) && count($student["first_name"])) {
+            if (isset($student["first_name"]) && count($student["first_name"]) > 0) {
              echo $student["first_name"]; }?>">
             <?php echo form_error("first_name"); ?>
             <br>
             <label for="">Last name</label>
             <br>
             <input type="text" name="last_name" class="form-control" placeholder="Last name" value="<?php
-            if (isset($student["last_name"]) && count($student["last_name"])) {
+            if (isset($student["last_name"]) && count($student["last_name"]) > 0) {
              echo $student["last_name"]; }?>">
             <?php echo form_error("last_name"); ?>
             <br>
@@ -37,12 +41,12 @@
             <br>
             <input type="text" name="email" class="form-control" readonly="value" placeholder="Email" value="<?php
 
-            if (isset($student["email"]) && count($student["email"])) {
+            if (isset($student["email"]) && count($student["email"]) > 0) {
              echo $student["email"];}?> ">
             <br>
             <label for="">Avatar</label>
             <br>
-            <img src="<?php echo base_url();?>medias/student/<?php  if (isset($student["avatar"]) && count($student["avatar"])) {
+            <img src="<?php echo base_url();?>medias/student/<?php  if (isset($student["avatar"]) && count($student["avatar"]) > 0) {
              echo $student["avatar"]; }?>" width="150">
             <input type="text" name="img_name" class="form-control hinden" value="<?php echo $student["avatar"]; ?>"/>
             <input type="file" name="userfile" class="userfile hinden">
@@ -54,26 +58,23 @@
             <label for="">Role</label>
             <br>
             
-                <?php 
+            <?php if(isset($role) && count($role) > 0) { ?>
+
+                <?php foreach ($role as $key => $val) { ?>
                     
-            if(isset($role) && count($role)) {
+                    <tr selected><input name='<?php echo $val['id']; ?>' type='checkbox' value='<?php echo $val['id']; ?>'
+                        <?php  if (isset($$val['name']) && count($$val['name']) > 0) {
 
-            foreach ($role as $key => $val) {
-                             
-                 ?><tr selected>
-                     <input name='<?php echo $val['id']; ?>' type='checkbox' value='<?php echo $val['id']; ?>'  <?php  if (isset($$val['name']) && count($$val['name'])) {
-
-                    echo 'checked';
+                            echo 'checked';
                    
-                } ?> /><?php echo $val['name']; ?>
-                                 </tr>
-                   
-                    <?php       
+                        } ?> />
 
-                        }  
-                    }
-                
-                ?>
+                        <?php echo $val['name']; ?></tr>
+                   
+                <?php } ?>
+            
+            <?php } ?>  
+        
             <?php echo form_error("role"); ?>
             <br>
             <input class="btn btn-warning" type="submit" name="insert" value="Update">

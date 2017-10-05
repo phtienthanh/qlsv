@@ -76,28 +76,26 @@
                                         <label class="col-md-12">Categories</label>
                                         <div class="col-md-12">
                                             <select name="categories" class="form-control form-control-line cate">
-                                                <?php 
                                                 
-                                            if(isset($categoriess) && count($categoriess)) {
+                                                <?php  if(isset($categoriess) && count($categoriess) > 0) { ?>
 
-                                                foreach ($categoriess as $key => $val) {
+                                                    <?php foreach ($categoriess as $key => $val) { ?>
 
-                                                    if ( $val['is_deleted'] == 0) {
+                                                        <?php if ( $val['is_deleted'] == 0) { ?>
 
-                                                    ?>
-                                                <option value="<?php echo $val['id']; ?>" <?php if ($student[ "categories"]==$val[ 'id'] ) { 
-                                                    echo "selected"; } 
-                                                    ?> >
+                                                            <option value="<?php echo $val['id']; ?>" <?php if ($student[ "categories"] == $val[ 'id'] ) { 
 
-                                                    <?php echo $val['name']; ?>
-                                                </option>
-                                                <?php  
+                                                                echo "selected";
+                                                                
+                                                                } ?> > <?php echo $val['name']; ?>
+                                                            </option>
 
-                                                    }
-                                                }
+                                                        <?php } ?>
 
-                                            }
-                                            ?>
+                                                    <?php } ?>
+
+                                                <?php } ?>
+                                             
                                         </div>
                                     </div>
                                     <div class="form-group">

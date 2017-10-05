@@ -384,7 +384,7 @@ class article extends MY_Controller {
 
 	        	if (count($listCg) > 0) {
 
-	        		foreach ($listCg as $listCgKey => $listCgValue) {
+	        		foreach ($listCg as $keyCg => $valueCg) {
 
 			        	if ($listCgValue['is_deleted'] == 0) {
 

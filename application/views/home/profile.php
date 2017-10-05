@@ -22,11 +22,12 @@
                                 <input type="text" class="hinden" name="img_name" value="<?php echo $student["avatar"]; ?>">
                                 <input type="submit" name="submit" value="upload" class="btn btn-success">
                                 <h4 class="card-title m-t-10">
-                                <?php
-                                    if (isset($student['last_name']) && count($student['last_name']) > 0) {
+                                    <?php if (isset($student['last_name']) && count($student['last_name']) > 0) {
+
                                         echo $student["last_name"];
-                                    }
-                                ?>
+
+                                    }?>
+                                        
                                 </h4>
                                 </center>
                             </form>
@@ -43,14 +44,14 @@
                                     <div class="form-group">
                                         <label class="col-md-12">First Name</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="first_name" placeholder="First name" class="form-control form-control-line" value="<?php if(isset($student['first_name']) && count($student['first_name']) >0) { echo $student["first_name"];}?>">
+                                            <input type="text" name="first_name" placeholder="First name" class="form-control form-control-line" value="<?php if(isset($student['first_name']) && count($student['first_name']) > 0) { echo $student["first_name"];}?>">
                                             <?php echo form_error("first_name"); ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12">Last Name</label>
                                         <div class="col-md-12">
-                                            <input type="text" name="last_name" placeholder="Last name" class="form-control form-control-line" value="<?php if(isset($student['last_name']) && count($student['last_name']) >0) {
+                                            <input type="text" name="last_name" placeholder="Last name" class="form-control form-control-line" value="<?php if(isset($student['last_name']) && count($student['last_name']) > 0) {
                                              echo $student["last_name"];} ?>">
                                             <?php echo form_error("last_name"); ?>
                                         </div>

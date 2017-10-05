@@ -19,38 +19,32 @@
             </tr>
         </thead>
         <tbody>
-            <?php 
 
-        if(isset($categories) && count($categories) >0) {
+            <?php if(isset($categories) && count($categories) > 0) { ?>
 
-            foreach ($categories as $key => $val) { 
+                <?php foreach ($categories as $key => $val) { ?>
 
-                if ($val['is_deleted'] == 0 ) {
-                ?>
-            <tr class="reload <?php echo $val['id']; ?>">
-                <td>
-                    <input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
-                <td>
-                    <?php echo $val['id']; ?> </td>
-                <td>
-                    <?php echo $val['name']; ?>
-                </td>
-                <?php if ( $val['id'] != 1) {?>
-                <td class="center"><a class="btn btn-success" href="<?php echo base_url();?>categories/update/<?php echo $val['id']; ?>" title="">Update</a></td>
-                <?php
+                    <?php if ($val['is_deleted'] == 0 ) { ?>
 
-                        } 
-              
-                ?>
-            </tr>
-            <?php  
-            }     
+                        <tr class="reload <?php echo $val['id']; ?>">
+                            <td><input type="checkbox" name="checkboxlist[]" value=<?php echo $val[ 'id'];?> ></td>
+                            <td><?php echo $val['id']; ?></td>
+                            <td><?php echo $val['name']; ?></td>
+                            
+                            <?php if ( $val['id'] != 1) {?>
 
-            }
+                            <td class="center"><a class="btn btn-success" href="<?php echo base_url();?>categories/update/<?php echo $val['id']; ?>" title="">Update</a></td>
 
-        }
-           
-          ?>
+                            <?php } ?>
+
+                        </tr>
+
+                    <?php } ?>
+
+                <?php } ?>
+
+            <?php } ?>     
+
         </tbody>
     </table>
     <button class="btn btn-danger delete_std" data-toggle="modal" data-target="#delall"> Delete</button>

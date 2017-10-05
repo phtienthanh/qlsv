@@ -34,29 +34,26 @@
                     <li class="li_menu"><a class="color_menu" href="<?php echo base_url();?>home/show_article?page=">Show article</a></li>
                     <?php } ?>
                     <ul class="nav navbar-nav navbar-right">
-                        <?php 
-                        if ($checklogin == false) {
-                          
-                         ?>
-                    <li class="li_menu"><a class="manage_login1" href="<?php echo base_url();?>home/login">Login</a></li>
-                    <?php } ?>
-                    <li class="dropdown manage_logout">
-                        <a href="#" class="dropdown-toggle fa fa-user " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
-                        <ul class="dropdown-menu menu-header">
 
-                                <?php 
-                        if ($checklogin == true) {
-                          
-                         ?>
-                            <li class="manage_logout"><a class="manage_logout" href="<?php echo base_url();?>home/profile/<?php echo $id; ?>"> Manage profile </a></li>
-                         
-                            <li class="manage_logout"><a href="<?php echo base_url();?>home/logout">Logout</a></li>
-                             <?php } ?>
-                        </ul>
-                    </li>
+                        <?php if ($checklogin == false) { ?>
+
+                            <li class="li_menu"><a class="manage_login1" href="<?php echo base_url();?>home/login">Login</a></li>
+
+                        <?php } ?>
+
+                        <?php if ($checklogin == true) { ?>
+
+                            <li class="dropdown manage_logout"> <a href="#" class="dropdown-toggle fa fa-user " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
+                                <ul class="dropdown-menu menu-header">
+                                    <li class="manage_logout"><a class="manage_logout" href="<?php echo base_url();?>home/profile/<?php echo $id; ?>"> Manage profile </a></li>
+                                    <li class="manage_logout"><a href="<?php echo base_url();?>home/logout">Logout</a></li>
+                                </ul>
+                            </li>
+
+                        <?php } ?>
+
+                    </ul>
                 </ul>
-                </ul>
-                
             </div>
         </div>
     </nav>

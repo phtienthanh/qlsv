@@ -8,11 +8,14 @@
 
 <body>
     <h1 class="title"> Change password</h1>
-    <h3 class="title"><?php if (isset($change_succes) && count($change_succes) > 0) {
+    <h3 class="title">
+        <?php if (isset($change_succes) && count($change_succes) > 0) {
 
-        echo $change_succes;
+            echo $change_succes;
 
-    } ?></h3>
+        } ?>
+            
+    </h3>
     <div class="insert">
         <form class="login wrapper" action="" method="POST">
             <span> <a href="<?php echo base_url('sinhvien/show') ?>" title="" class="btn btn-primary">Back</a></span>

@@ -27,7 +27,7 @@
                                         <div class="col-md-3">
                                             <p>
                                                 <?php
-                                                if(isset($student["author"]) && count($student["author"])) {
+                                                if(isset($student["author"]) && count($student["author"]) > 0) {
                                                 
                                                 echo $student["author"];
 
@@ -36,22 +36,17 @@
                                         </div>
                                         <label class="col-md-3"><b>Categories :</b></label>
                                         <div class="col-md-3">
-                                            <p>
-                                                <?php
-
-                                                if(isset($newArray[$student['categories']]) && count($newArray[$student['categories']])) {
+                                            <p><?php if(isset($newArray[$student['categories']]) && count($newArray[$student['categories']]) > 0) {
 
                                                     echo $newArray[$student['categories']];
                                                  
-                                                } ?> </p>
+                                                } ?></p>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <p>
-                                            <?php 
-                                            if(isset($student["content"]) && count($student["content"])) {
+                                        <p><?php if(isset($student["content"]) && count($student["content"]) > 0) {
 
-                                            echo nl2br( $student["content"], false);
+                                                echo nl2br( $student["content"], false);
                                             
                                             } ?>
                                         </p>
