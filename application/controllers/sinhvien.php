@@ -375,7 +375,7 @@ class Sinhvien extends MY_Controller {
 			        }
 
 			    }
-		    
+
 		      	$this->data['student'] = $this->Msinhvien->get_id_sinhvien($id); 
 		      	
 		      	if ($this->input->post("insert")) {
@@ -389,32 +389,6 @@ class Sinhvien extends MY_Controller {
 			       	$this->form_validation->set_message('required', '%s không được bỏ trống');
 		    
 			       	if ($this->form_validation->run()) {
-
-			       		$listgr = $this->Mrole->get_all_group();
-
-						$listGroup = array();
-
-						foreach ($getListGroup as $keyGetListGroup => $valGetListGroup) {
-
-							$this->ion_auth_model->remove_from_group($valGetListGroup['group_id'], $id);
-					
-						}
-
-		         		if (count($listgr) > 0) {
-
-		        			foreach ($listgr as $keyListgr => $valListgr) {
-		        				
-		        				if ($this->input->post($valListgr['id']) == $valListgr['id'] ) {
-
-			        				$listGroup[] = $this->input->post($valListgr['id']);
-
-					        	}
-
-					        }
-
-					       $this->ion_auth_model->add_to_group($listGroup, $id);
-
-				        }
 		
 			       		if ($_FILES['userfile']['name'] == '') {
 		
@@ -428,7 +402,49 @@ class Sinhvien extends MY_Controller {
 							
 							);
 
-							if ($this->Msinhvien->update($id, $list_update)) {
+						if ($this->Msinhvien->update($id, $list_update)) {
+
+							$listgr = $this->Mrole->get_all_group();
+
+			         		if (count($listgr) > 0) {
+
+			         			$listGroup = array();
+
+			        			foreach ($listgr as $keyListgr => $valListgr) {
+			        				
+			        				if ($this->input->post($valListgr['id']) == $valListgr['id'] ) {
+
+				        				$listGroup[] = $this->input->post($valListgr['id']);
+
+						        	}
+
+						        }
+
+						        if (count($listGroup) > 0) {
+
+						        	foreach ($getListGroup as $keyGetListGroup => $valGetListGroup) {
+
+										$this->ion_auth_model->remove_from_group($valGetListGroup['group_id'], $id);
+						
+									}
+
+						        	$this->ion_auth_model->add_to_group($listGroup, $id);
+						        
+						        } else {
+
+						        	$this->session->set_flashdata('message_update', '<div class="fail">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+									redirect('sinhvien/show'); 
+
+						        }
+
+					        } else {
+
+					        	$this->session->set_flashdata('message_update', '<div class="succes">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+								redirect('sinhvien/show'); 
+					        	
+					        }
 								
 								$this->session->set_flashdata('message_update', '<div class="succes"> Update succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
@@ -520,11 +536,11 @@ class Sinhvien extends MY_Controller {
 		       			    
 				}
 	
-			} else if ($this->input->post("back")) {
-		
-		       	redirect('sinhvien/show');   
-		       			    
-			}
+			} else {
+
+	    		redirect('sinhvien/show');   
+    	
+    		}
 
 			$this->data['role'] = $listRl;
 	   		
@@ -631,7 +647,11 @@ class Sinhvien extends MY_Controller {
 
 		   	   	$this->load->view("sinhvien/changepass", $this->data);
 		    			
-		    }
+		    } else {
+
+    			redirect('sinhvien/show');   
+
+    		}
     	
     	} else {
 
@@ -643,87 +663,89 @@ class Sinhvien extends MY_Controller {
 
     public function delete_checkbox() {
 
-		$dataId = $this->input->post('id');
+	    $dataId = $this->input->post('id');
 
-		$stack = array();
+	    $stack = false;
 
-		foreach ($dataId as $keyDataId => $valDataId) {
+	    foreach ($dataId as $keyDataId => $valDataId) {
 
-			if ($valDataId != "0") {
+	      	if ($valDataId != "0") {
 
-				$data = $this->Mrole->get_role_groups($valDataId);
+	        	$data = $this->Mrole->get_role_groups($valDataId);
 
-				if (count($data) == 1) {
+		        if (count($data) < 3) {
 
-					foreach ($data as $keyData => $valData) {
+		          foreach ($data as $keyData => $valData) {
 
-						if ($valDataId['group_id'] == "3") {
+			            if ($valData['group_id'] == "1") {
 
-							array_push($stack, $valData['user_id']);
+			              $stack = true;
 
-						}
+			            }
 
-					}
-					
-				}
+		          	}
+		          
+		        }
 
-			}
+	      	}
 
-		}
+	    }
 
-		if (count($stack) > 0) {
+	    if ($stack == false) {
 
-			foreach ($dataId as $keyDataId => $valueDataId) {
+	      	foreach ($dataId as $keyDataId => $valueDataId) {
 
-				$this->load->model('Msinhvien');
+		        $this->load->model('Msinhvien');
 
-				$data = $this->Msinhvien->get_id_sinhvien($valueDataId);
+		        $data = $this->Msinhvien->get_id_sinhvien($valueDataId);
 
-				if (file_exists("medias/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg") {
-			        
-			        if (unlink("medias/student/".$data['avatar'])) {
+		        if (file_exists("medias/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg") {
+		              
+		            if (unlink("medias/student/".$data['avatar'])) {
 
-			        	$this->load->model('Ion_auth_model');
+	                	$this->load->model('ion_auth_model');
 
-			            $this->Ion_auth_model->delete_user($valueDataId);    
-			        
-			        } 
-     			
-     			} else if (file_exists("medias/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg") {
+	                	$this->ion_auth_model->delete_user($valueDataId);    
+	              
+	              	} 
+		          
+		        } else if (file_exists("medias/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg") {
 
-     				$this->Ion_auth_model->delete_user($valueDataId);    
+	          		$this->load->model('ion_auth_model');
 
-     			}
+	            	$this->ion_auth_model->delete_user($valueDataId);    
 
-			}
-				
+		        }
+
+	    	}
+	        
 			$returnData = array(
 
-			   'status' => 1,
-			   'data' => $stack,
-			   'message' => "Delete !!!"
-			
+			    'status' => 1,
+			    'data' => $stack,
+			    'message' => "Delete !!!"
+			  
 			);
 
-			echo json_encode($returnData);
+		    echo json_encode($returnData);
 
-	   		exit();
+		    exit();
 
-		} else {
+	    } else {
 
-			$returnData = array(
+	      	$returnData = array(
 
-			   'status' => 0,
-			   'data' => null,
-			   'message' => "Can't Delete Admin Account !!!"
-			   
-			);
+	         	'status' => 0,
+	         	'data' => null,
+	         	'message' => "Can't Delete Admin Account !!!"
+	         
+	      	);
 
-			echo json_encode($returnData);
+	      	echo json_encode($returnData);
 
-			exit();
+	      	exit();
 
-		} 		
+	    }     
 
     }  
 
