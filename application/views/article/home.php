@@ -5,8 +5,8 @@
     <?php echo $this->session->flashdata('message_add'); ?>
     <span class="back"> <a href="<?php echo base_url('home') ?>" title="" class="btn btn-primary">Back</a></span>
     <br>
-    <span class=""> <a href="<?php echo base_url('article/add') ?>" title="" class="btn btn-success back">Add article</a></span>
-    <span class="addcate"> <a href="<?php echo base_url('categories/home') ?>" title="" class="btn btn-warning back">Categories</a></span>
+    <span class=""> <a href="<?php echo base_url('article/add') ?>" <?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-success back">Add article</a></span>
+    <span class="addcate"> <a href="<?php echo base_url('categories/home') ?>"<?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-warning back">Categories</a></span>
     <div>
         <table class="table_article">
             <thead class="thead-inverse"></thead>
@@ -20,7 +20,7 @@
                                 <td>
                                     <div class="row row_xxx row_xxx<?php echo $valArticle['id'];?>">
                                         <div class="col-md-1 checkbox">
-                                            <input type="checkbox" name="checkboxlist[]" value="<?php echo $valArticle['id'];?>">
+                                            <input type="checkbox" <?php if ($AdminPr == false) { echo 'disabled'; } ?> name="checkboxlist[]" value="<?php echo $valArticle['id'];?>">
                                         </div>
                                         <div class="col-md-3"> <img class="avarta_1" src="<?php echo base_url();?>medias/article/<?php echo $valArticle['image']; ?>" width="90%"></div>
                                         <div class="col-md-5">
@@ -60,7 +60,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-3 btn_control">
-                                            <span><a class="btn btn-success" href="<?php echo base_url();?>article/update/<?php echo $valArticle['slug']; ?>" title="">Update</a></span>
+                                            <span><a class="btn btn-success" href="<?php echo base_url();?>article/update/<?php echo $valArticle['slug']; ?>"<?php if ($AdminPr == false) { echo 'disabled'; } ?>>Update</a></span>
                                             <div class="modal fade" id="<?php echo $valArticle['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -92,7 +92,7 @@
     </div>
     <tbody>
         <tbody>
-            <button class="btn btn-danger delete" data-toggle="modal" data-target="#delall"> Delete</button>
+            <button class="btn btn-danger delete" <?php if ($AdminPr == false) { echo 'disabled'; } ?> data-toggle="modal" data-target="#delall"> Delete</button>
             <div class="modal fade" id="delall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog model-de">
                     <div class="modal-content">

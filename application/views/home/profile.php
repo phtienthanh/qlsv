@@ -64,8 +64,19 @@
                                     </div>
                                     <div class="form-group form-g">
                                         <label class="col-md-12 col-role">Role</label>
-                                        <input type="text" name="role" readonly="value" class="form-control form-control-line" value="<?php echo $newArray[$student['id']]; ?>">
-                                        <?php echo form_error("role"); ?>
+                                            <br>
+                                            
+                                            <?php if(isset($role) && count($role) > 0) { ?>
+
+                                                <?php foreach ($role as $keyRole => $valRoler) { ?>
+
+                                                    <tr selected><input name='<?php echo $valRoler['id']; ?>' type='checkbox' value='<?php echo $valRoler['id']; ?>'
+                                                        <?php  if (isset($$valRoler['name']) && count($$valRoler['name']) > 0 && $$valRoler['name'] == true) { echo 'checked'; }  ?> disabled/> <?php echo $valRoler['name']; ?></tr>         
+                                                <?php } ?>
+                                            
+                                            <?php } ?>  
+                                        
+                                            <?php echo form_error("role"); ?>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-6 btn-form">

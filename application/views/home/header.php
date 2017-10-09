@@ -26,10 +26,13 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <?php if ($checklogin == true && $role != 'User' ) { ?>
+                    <?php 
+                        if ($checklogin == true ) {
+                                if ($AdminPr == true || $MemberPr == true) { ?>
                         <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url();?>sinhvien/show">Manage student</a></li>
                         <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url();?>article/home">Manage article</a></li>
                         <li class="li_menu"><a class="color_menu" href="<?php echo base_url();?>home/show_article?page=">Show article</a></li>
+                        <?php } ?>
                     <?php } ?>
                     <ul class="nav navbar-nav navbar-right">
                         <?php if ($checklogin == false) { ?>

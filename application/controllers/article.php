@@ -20,17 +20,17 @@ class article extends MY_Controller {
 
         }	
 
-        if ($this->data['role'] == 'User') {
-		
-			redirect('home/index');
-
-		}			
-
         $this->load->view('home/header', $this->data);
         
     }
 
 	public function home() {
+
+		if ($this->data['UserPr'] == true && $this->data['AdminPr'] == false && $this->data['MemberPr'] == false ) {
+            
+            redirect('home/index');
+
+        }
 
 		$this->load->model('Mcategories');
 
@@ -69,6 +69,12 @@ class article extends MY_Controller {
 	}
 
 	public function add() {
+
+		if ($this->data['AdminPr'] == false) {
+            
+            redirect('home/index');
+
+        }
 
 		$this->load->model('Marticle');
 
@@ -209,6 +215,12 @@ class article extends MY_Controller {
 
 			if (count($checkslug) > 0) {
 
+				if ($this->data['AdminPr'] == false) {
+	            
+	            	redirect('home/index');
+
+	        	}
+
 				$this->load->model('Mcategories');
 
 				$data['categoriess'] = $this->Mcategories->get_all_categories();
@@ -251,11 +263,14 @@ class article extends MY_Controller {
 			       			
 			       		}
 						
-						$this->Marticle->update_slug_article($slug, $list_update);
+						if ($this->Marticle->update_slug_article($slug, $list_update)) {
 
-						$this->session->set_flashdata('message_add', '<div class="succes">Update new article success<button type="button" class="close" data-dismiss="alert">×</button></div>');
+							$this->session->set_flashdata('message_add', '<div class="succes">Update new article success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-	                   	redirect('article/home');
+		                   	redirect('article/update/'.$slug);
+							
+						}
+
 					}
 			         
 		       	} else if ($this->input->post("back")) {
@@ -281,6 +296,12 @@ class article extends MY_Controller {
     }
 
     public function upload($id) {
+
+		if ($this->data['AdminPr'] == false) {
+            
+            redirect('home/index');
+
+        }
 
      	if (isset($id) && count($id) > 0) {
 
@@ -320,9 +341,15 @@ class article extends MY_Controller {
 
 						);
 
-						$this->Marticle->update($id, $list_update);
+						if ($this->Marticle->update($id, $list_update)) {
+							
+							$this->session->set_flashdata('message_upload', '<div class="fail">Upload fail. please upload the picture again<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-						redirect('article/upload_fail/'.$this->data['student']['slug']); 
+							redirect('article/update/'.$checkId['slug']);  
+
+						}
+
+						
 
 					} else {
 
@@ -342,9 +369,13 @@ class article extends MY_Controller {
 
 						);
 
-						$this->Marticle->update($id, $list_update);
+						if ($this->Marticle->update($id, $list_update)) {
 
-						redirect('article/update/'.$this->data['student']['slug']); 
+							$this->session->set_flashdata('message_upload', '<div class="succes">Upload success<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+							redirect('article/update/'.$checkId['slug']);
+							
+						}
 
 					}
 
@@ -384,7 +415,7 @@ class article extends MY_Controller {
 
 	        	if (count($listCg) > 0) {
 
-	        		foreach ($listCg as $keyCg => $valueCg) {
+	        		foreach ($listCg as $keyCg => $listCgValue) {
 
 			        	if ($listCgValue['is_deleted'] == 0) {
 
@@ -456,20 +487,4 @@ class article extends MY_Controller {
 
     }
 
-    public function upload_fail($slug) {
-
-    	if (isset($slug) && count($slug) > 0) {
-    		
-    		$this->data['slug'] = $slug;
-
-    		$this->load->view('article/upload_fail', $this->data);
-
-    	} else {
-
-			redirect('article/home');
-
-    	}
-
-    }	
-   
 }

@@ -20,21 +20,35 @@ class MY_Controller extends CI_Controller {
 
             $this->load->model('Mrole');
 
-            $listCg = $this->Mrole->get_all_role();
+            $this->data['AdminPr'] = false;
 
-            $newArray = array();
+            $this->data['MemberPr'] = false;
+             
+            $this->data['UserPr'] = false;
 
-            if (isset($listCg) && count($listCg) > 0) {
+            $listRoler = $this->Mrole->get_role_groups($id);
 
-                foreach ($listCg as $listCgKey => $listCgValue) {
+            foreach ($listRoler as $keyListRole => $valListRole) {
 
-                    $newArray[$listCgValue['user_id']] = $this->Mrole->get_name_role($listCgValue['group_id'])['name'];
+                if ($valListRole['group_id'] == '1') {
 
+                    $this->data['AdminPr'] = true;
+                        
+                }
+
+                if ($valListRole['group_id'] == '2') {
+
+                    $this->data['MemberPr'] = true;
+                    
+                }
+
+                if ($valListRole['group_id'] == '3') {
+
+                    $this->data['UserPr'] = true;
+                    
                 }
 
             }
-
-            $role = $newArray[$id];
   			
             $first_name = $userInfo->first_name;
   			
@@ -47,8 +61,6 @@ class MY_Controller extends CI_Controller {
 			$avatar = $userInfo->avatar;
             
             $this->data['id'] = $id;
-  			
-            $this->data['role'] = $role;
   			
             $this->data['first_name'] = $first_name;
   			

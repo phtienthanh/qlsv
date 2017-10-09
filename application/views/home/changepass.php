@@ -3,7 +3,6 @@
 <html>
 <body>
     <h1 class="title"> Change password</h1>
-    <h3 class="title"><?php if (isset($change_succes) && count($change_succes) > 0) { echo $change_succes; } ?></h3>
     <div class="insert">
         <form class="login wrapper" action="" method="POST">
             <br>

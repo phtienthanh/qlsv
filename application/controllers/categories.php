@@ -18,7 +18,7 @@ class Categories extends MY_Controller {
 
         }
         
-        if ($this->data['role'] == 'User') {
+        if ($this->data['AdminPr'] == false) {
             
             redirect('home/index');
 

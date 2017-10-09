@@ -97,26 +97,50 @@ class Home extends MY_Controller {
 					redirect('home');
 
 				}
+		        
+		       	$this->load->model('Mrole');
 
-		        $this->load->model('Mrole');
+		       	$listRl = $this->Mrole->get_all_group();
 
-		        $listCg = $this->Mrole->get_all_role();
+				$listGroup = array();
 
-		        $newArray = array();
+				$getListGroup = $this->Mrole->get_role_groups($id);
 
-		        if (count($listCg) > 0) {
+				foreach ($getListGroup as $keyGetListGroup => $valGetListGroup) {
 
-		        	foreach ($listCg as $keyListCg => $valListCg) {
+					if ($valGetListGroup['group_id'] == '1') {
 
-			        	$newArray[$valListCg['user_id']] = $this->Mrole->get_name_role($valListCg['group_id'])['name'];
+						$this->data['Admin'] = true;
+						
+					}
+
+					if ($valGetListGroup['group_id'] == '2') {
+
+						$this->data['Members'] = true;
+						
+					}
+
+					if ($valGetListGroup['group_id'] == '3') {
+
+						$this->data['User'] = true;
+						
+					}
+
+				}
+
+		        if (count($listRl) > 0) {
+
+		        	foreach ($listRl as $keyListRl => $valListRl) {
+		        		
+		        		if ($this->input->post($valListRl['id']) == $id ) {
+
+			        		$listGroup[] = $this->input->post($valListRl['id']);
+
+			        	}
 
 			        }
 
-	        	}
-
-		        $this->data['newArray'] = $newArray;
-
-				$this->data['role'] =  $listCg;
+			    }
 		      
 		      	if ($this->input->post("submit")) {
 		      		
@@ -153,6 +177,8 @@ class Home extends MY_Controller {
 		    	} 
 
 		    	$this->data['student'] = $getId;
+
+		    	$this->data['role'] = $listRl;
 
 				$this->load->view("home/profile", $this->data);
 
@@ -240,7 +266,7 @@ class Home extends MY_Controller {
 			 	
 			} else {
 
-			redirect('home'); 
+				redirect('home'); 
 
 			} 		
 
@@ -568,24 +594,6 @@ class Home extends MY_Controller {
 	
 	}
 
-	public function register_success() {
-
-		$this->load->view('home/register_success');
-	
-	}
-
-	public function upload_fail($id) {
-
-		$this->load->view('home/upload_fail_profile', $id);
-	
-	}
-
-	public function changesuccess() {
-
-		$this->load->view('home/change_success');
-	
-	}
-
 	public function active($id) {
 
 		if (isset($id) && count($id) > 0) {
@@ -615,60 +623,103 @@ class Home extends MY_Controller {
     	if (isset($id) && count($id) > 0) {
 
     		$this->load->model('Msinhvien');
-
-	      	$data = $this->Msinhvien->get_id_sinhvien($id);
-
-	      	if ($this->input->post("change")) {
-
-		    	$this->form_validation->set_rules('old_password', 'Current password ', 'required');
-		       	
-		       	$this->form_validation->set_rules('new_password', 'New password', 'required');
-		       	
-		       	$this->form_validation->set_rules('new_password_confirm', 'Confirm password ', 'required|matches[new_password]');
-
-		       	$this->form_validation->set_message('required', '%s not be empty');
-		       	
-		       	$this->form_validation->set_message('matches', '%s Incorrect');
 	    
-		       	if ($this->form_validation->run()) {
+	    	$checkId = $this->Msinhvien->get_id_sinhvien($id); 
 
-		       		if ($data['password'] == $this->input->post("old_password")) {
-		       		
-		       			$change = array(
-		       			
-		       				'password' => $this->input->post("new_password")
-		       			
-		       			);
-		       			
-		       			if ($this->Msinhvien->changepass_sinhvien($id, $change)) {
-		       					
-		       				$change_succes = "Change password succes";
+    		if (count($checkId) > 0) {
 
-		       			} else {
+				$this->form_validation->set_rules('old_password', $this->lang->line('change_password_validation_old_password_label'), 'required');
 
-		       				$change_succes = "Change password fail";
+				$this->form_validation->set_rules('new_password', $this->lang->line('change_password_validation_new_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[new_password_confirm]');
 
-		       			}
+				$this->form_validation->set_rules('new_password_confirm', $this->lang->line('change_password_validation_new_password_confirm_label'), 'required');
+				
+				$this->load->model('ion_auth_model');
+				
+				if (!$this->ion_auth->logged_in()) {
 
-		       			$this->data['change_succes'] = $change_succes;
-		       		
-		       		} else {
+					redirect('auth/login', 'refresh');
 
-	       				$change_succes = "Incorrect password";
+				}
 
-	       				$this->data['change_succes'] = $change_succes;
+				$user = $this->ion_auth->user()->row();
 
-		       		}	
-		
-				} 
-		         
-	       	}
+				if ($this->form_validation->run() == false) {
+					
+					$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
-   	   		$this->load->view("home/changepassword_profile", $this->data);
+					$this->data['min_password_length'] = $this->config->item('min_password_length', 'ion_auth');
+					
+					$this->data['old_password'] = array(
+					
+						'name' => 'old_password',
+						'id'   => 'old_password',
+						'type' => 'password'
+					
+					);
+					
+					$this->data['new_password'] = array(
+					
+						'name'    => 'new',
+						'id'      => 'new',
+						'type'    => 'password',
+						'pattern' => '^.{'.$this->data['min_password_length'].'}.*$'
+					
+					);
+					
+					$this->data['new_password_confirm'] = array(
+					
+						'name'    => 'new_confirm',
+						'id'      => 'new_confirm',
+						'type'    => 'password',
+						'pattern' => '^.{'.$this->data['min_password_length'].'}.*$'
+					
+					);
+					
+					$this->data['user_id'] = array(
+					
+						'name'  => 'user_id',
+						'id'    => 'user_id',
+						'type'  => 'hidden',
+						'value' => $user->id
+				
+					);
+				
+				} else {
+
+					$identity = $this->session->userdata('identity');
+
+					$change = $this->ion_auth->change_password($identity, $this->input->post('old_password'), $this->input->post('new_password'));
+
+					if ($change) {
+						
+						$this->data['change_succes'] = 'Change succes';
+
+						$this->session->set_flashdata('message_update', '<div class="succes"> Change succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+					} else {
+
+						$this->data['change_succes'] = 'Change errors please do again';
+
+						$this->session->set_flashdata('message_update', '<div class="succes"> Change errors please do again<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+					}
+
+					redirect('home/profile/'.$id);
+
+				}
+
+		   	   	$this->load->view("home/changepassword_profile", $this->data);
+		    			
+		    } else {
+
+    			redirect('sinhvien/show');   
+
+    		}
     	
     	} else {
 
-    		return false;
+    		redirect('sinhvien/show');   
 
     	}
  

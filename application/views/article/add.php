@@ -3,8 +3,8 @@
 <body>
     <div class="insert">
         <h1>Add new article</h1>
-        <h4> <?php if (isset($slug) && count($slug) > 0) { echo $slug; }?></h4>
-        <h4><?php if (isset($error['error']) && count($error['error']) > 0) { echo $error['error']; } ?></h4>
+        <h4> <?php if (isset($slug) && count($slug) > 0) { echo $slug;}?></h4>
+        <h4><?php if (isset($error['error']) && count($error['error']) > 0) { echo $error['error'];} ?></h4>
         <form class="Form_insert" name="myForm" action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <br>
             <h3 for="">Title</h3>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <body>
     <h1 class="title">Update student
         <p class="title">
@@ -19,6 +18,7 @@
         } ?>
             
         </p>
+        <h3 class="title"><?php echo $this->session->flashdata('message_update'); ?></h3>
     <div class="insert">
         <form action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <input type="submit" name="back" value="Back" class="btn btn-danger btn-block btn-insert">
@@ -39,10 +39,7 @@
             <br>
             <label for="">Email</label>
             <br>
-            <input type="text" name="email" class="form-control" readonly="value" placeholder="Email" value="<?php
-
-            if (isset($student["email"]) && count($student["email"]) > 0) {
-             echo $student["email"];}?> ">
+            <input type="text" name="email" class="form-control" readonly="value" placeholder="Email" value="<?php if (isset($student["email"]) && count($student["email"]) > 0) { echo $student["email"];}?> ">
             <br>
             <label for="">Avatar</label>
             <br>
@@ -52,25 +49,23 @@
             <input type="file" name="userfile" class="userfile hinden">
              <p class="btn btn-primary btn_select ">Select image</p>
             <br>
-            <!--  <input type="text"  name="avarta" placeholder="Avatar" value="<?php echo $student["avatar"];?>"> -->
             <?php echo form_error("avarta"); ?>
             <br>
             <label for="">Role</label>
             <br>
-            
-            <?php if(isset($role) && count($role) > 0) { ?>
+            <?php if(isset($roleUpdate) && count($roleUpdate) > 0) { ?>
 
-                <?php foreach ($role as $keyRole => $valRole) { ?>
-                    
+                <?php foreach ($roleUpdate as $keyRole => $valRole) { ?>
+    
                     <tr selected><input name='<?php echo $valRole['id']; ?>' type='checkbox' value='<?php echo $valRole['id']; ?>'
-                        <?php  if (isset($$valRole['name']) && count($$valRole['name']) > 0) { echo 'checked'; } ?> /> <?php echo $valRole['name']; ?></tr>         
+                        <?php  if (isset($$valRole['name']) && count($$valRole['name']) > 0 && $$valRole['name'] == true) { echo 'checked'; } ?> /> <?php echo $valRole['name']; ?></tr>         
                 <?php } ?>
             
             <?php } ?>  
         
             <?php echo form_error("role"); ?>
             <br>
-            <input class="btn btn-warning" type="submit" name="insert" value="Update">
+            <input class="btn btn-warning" type="submit" name="insert"  value="Update">
             <span><a class="btn btn-success" href="<?php echo base_url();?>sinhvien/changepass/<?php echo $student["id"];?>" title=""> Change password</a></span>
         </form>
     </div>

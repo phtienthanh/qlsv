@@ -24,12 +24,12 @@ class Sinhvien extends MY_Controller {
 
     public function show() {
 
-		if ($this->data['role'] == 'User') {
+    	if ($this->data['UserPr'] == true && $this->data['AdminPr'] == false && $this->data['MemberPr'] == false ) {
             
             redirect('home/index');
 
         }
-
+  
         $this->load->model('Mrole');
 
         $listCg = $this->Mrole->get_all_role();
@@ -62,7 +62,7 @@ class Sinhvien extends MY_Controller {
 
     public function create_user() {
 
-       	if ($this->data['role'] == 'User') {
+       	if ($this->data['AdminPr'] == false) {
             
             redirect('home/index');
 
@@ -191,13 +191,13 @@ class Sinhvien extends MY_Controller {
 
 						$this->session->set_flashdata('message_update', '<div class="succes">Add new student success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-							redirect('sinhvien/show'); 
+						redirect('sinhvien/show'); 
 
 			        }
 
 	        	} else {
 
-					$additional_data = array(
+					$listCr = array(
 
 			            'first_name' => $this->input->post('first_name'),
 			            'last_name' => $this->input->post('last_name'),
@@ -232,7 +232,7 @@ class Sinhvien extends MY_Controller {
 
 					} else {
 			    	
-			        	if ($this->ion_auth->register($identity, $password, $email, $additional_data, $listGroup)) {
+			        	if ($this->ion_auth->register($identity, $password, $email, $listCr, $listGroup)) {
 			        		
 			        		$this->email->send();
 
@@ -320,11 +320,11 @@ class Sinhvien extends MY_Controller {
 
     		if (count($checkId) > 0) {
 
-				if ($this->data['role'] == 'User') {
-	            
-	            	redirect('home/index');
+				if ($this->data['AdminPr'] == false) {
+            
+            		redirect('home/index');
 
-		        }
+        		}
 		        
 		    	if ($this->input->post("change_password")) {
 
@@ -434,21 +434,21 @@ class Sinhvien extends MY_Controller {
 
 						        	$this->session->set_flashdata('message_update', '<div class="fail">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-									redirect('sinhvien/show'); 
+									redirect('sinhvien/update/'.$id); 
 
 						        }
 
 					        } else {
 
-					        	$this->session->set_flashdata('message_update', '<div class="succes">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
+					        	$this->session->set_flashdata('message_update', '<div class="fail">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-								redirect('sinhvien/show'); 
+								redirect('sinhvien/update/'.$id);
 					        	
 					        }
 								
 								$this->session->set_flashdata('message_update', '<div class="succes"> Update succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-								redirect('sinhvien/show'); 
+								redirect('sinhvien/update/'.$id); 
 
 							}
 
@@ -482,11 +482,9 @@ class Sinhvien extends MY_Controller {
 								
 								);
 
-								$this->Msinhvien->update($id,$list_update);
+								$this->session->set_flashdata('message_update', '<div class="fail"> Update fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-								$this->session->set_flashdata('message_update', '<div class="succes"> Update succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
-
-								redirect('sinhvien/upload_fail/'.$id);
+								redirect('sinhvien/update/'.$id);
 
 							} else { 
 			       			
@@ -518,7 +516,7 @@ class Sinhvien extends MY_Controller {
 
 										$this->session->set_flashdata('message_update', '<div class="succes"> Update succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-										redirect('sinhvien/show'); 
+										redirect('sinhvien/update/'.$id); 
 					            
 					            	}
 
@@ -542,7 +540,7 @@ class Sinhvien extends MY_Controller {
     	
     		}
 
-			$this->data['role'] = $listRl;
+			$this->data['roleUpdate'] = $listRl;
 	   		
 	   		$this->load->view("sinhvien/update", $this->data);
 	
@@ -563,6 +561,12 @@ class Sinhvien extends MY_Controller {
 	    	$checkId = $this->Msinhvien->get_id_sinhvien($id); 
 
     		if (count($checkId) > 0) {
+
+    			if ($this->data['AdminPr'] == false) {
+            
+            		redirect('home/index');
+
+        		}
 
 				$this->form_validation->set_rules('old_password', $this->lang->line('change_password_validation_old_password_label'), 'required');
 
@@ -748,21 +752,5 @@ class Sinhvien extends MY_Controller {
 	    }     
 
     }  
-
-    public function upload_fail($id) {
-
-    	if (isset($id) && count($id) > 0) {
-
-	 		$this->data['id'] = $id;
-	 		
-	    	$this->load->view('sinhvien/upload_fail_update', $this->data);
-	    	
-	    } else {
-
-	    	redirect('sinhvien/show');   
-
-	    }
-
-    } 
    
 }

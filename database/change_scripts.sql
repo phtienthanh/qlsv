@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2017 at 09:40 AM
+-- Generation Time: Oct 09, 2017 at 09:30 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -114,7 +114,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `lang_folder`, `avatar`, `is_deleted`, `token`) VALUES
-(84, '127.0.0.1', 'doanthi2241@gmail.com', '$2y$08$prBvp60nyuW1FhIEoDi/h.s86XUB5xsOVI6LCkcqIiJZEPdGrdbSu', NULL, 'doanthi2241@gmail.com', NULL, NULL, NULL, NULL, 1506409941, 1506409951, 1, 'doanthi123', '123123', NULL, NULL, NULL, 'doanthi.jpg', 0, NULL);
+(84, '127.0.0.1', 'doanthi2241@gmail.com', '$2y$08$kjUkk6vv1paSMGGhhH6FZu9JKO8MhUmAiebeVrM4Vo5fCNCS2HtN2', NULL, 'doanthi2241@gmail.com', NULL, NULL, NULL, NULL, 1506409941, 1507540671, 1, 'doanthi12311', '1231232122', NULL, NULL, NULL, '1507540093.png', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -133,7 +133,8 @@ CREATE TABLE `users_groups` (
 --
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
-(77, 84, 2);
+(176, 84, 1),
+(175, 84, 2);
 
 --
 -- Indexes for dumped tables
@@ -180,12 +181,12 @@ ALTER TABLE `users_groups`
 -- AUTO_INCREMENT for table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `groups`
 --
@@ -195,12 +196,12 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 --
 -- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
 --
 -- Constraints for dumped tables
 --
