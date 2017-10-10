@@ -9,7 +9,6 @@
                 <div class="row page-titles">
                     <div class="col-md-6 col-8 align-self-center">
                         <h3 class="text-themecolor m-b-0 m-t-0"> Update article</h3>
-
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Article</a></li>
                             <li class="breadcrumb-item active">Update</li>
@@ -41,7 +40,7 @@
                     <div class="col-lg-8 col-xlg-9 col-md-7">
                         <div class="card">
                             <div class="card-block">
-                                <?php echo $this->session->flashdata('message_update'); ?>
+                                <?php echo $this->session->flashdata('message_add'); ?>
                                 <form action="" name="myForm" method="post" class="form-horizontal form-material form_update" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label class="col-md-12">Title</label>

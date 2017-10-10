@@ -211,9 +211,9 @@ class article extends MY_Controller {
 
 			$this->load->model('Marticle');
 
-			$checkslug = $this->Marticle->get_slug_article($slug);
+			$checkslugs = $this->Marticle->get_slug_article($slug);
 
-			if (count($checkslug) > 0) {
+			if (count($checkslugs) > 0) {
 
 				if ($this->data['AdminPr'] == false) {
 	            
@@ -237,35 +237,29 @@ class article extends MY_Controller {
 			       	
 			       	$this->form_validation->set_rules('content','content','required');
 
-			       	$this->form_validation->set_message('is_unique','%s đã tồn tại');
-
 			       	$this->form_validation->set_rules('author','author','required');
 
 			       	$this->form_validation->set_rules('categories','categories','required');
 		    
 			       	if ($this->form_validation->run()) {
 
-			       		if ($_FILES['userfile']['name'] == '') {
+		       			$list_update = array(
 
-			       			$list_update = array(
-
-								"title" => $this->input->post("title"),
-								
-								"content" => $this->input->post("content"),
-								
-								"author" => $this->input->post("author"),
-
-								"categories" => $this->input->post("categories"),
-
-								"slug" => $checkSlug.'.html',
+							"title" => $this->input->post("title"),
 							
-							);
-			       			
-			       		}
+							"content" => $this->input->post("content"),
+							
+							"author" => $this->input->post("author"),
+
+							"categories" => $this->input->post("categories"),
+
+							"slug" => $checkSlug.'.html',
+						
+						);	
 						
 						if ($this->Marticle->update_slug_article($slug, $list_update)) {
 
-							$this->session->set_flashdata('message_add', '<div class="succes">Update new article success<button type="button" class="close" data-dismiss="alert">×</button></div>');
+							$this->session->set_flashdata('message_add', '<div class="succes">Update success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 		                   	redirect('article/update/'.$slug);
 							
