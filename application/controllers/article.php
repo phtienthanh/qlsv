@@ -211,9 +211,9 @@ class article extends MY_Controller {
 
 			$this->load->model('Marticle');
 
-			$checkslugs = $this->Marticle->get_slug_article($slug);
+			$checkSlugs = $this->Marticle->get_slug_article($slug);
 
-			if (count($checkslugs) > 0) {
+			if (count($checkSlugs) > 0) {
 
 				if ($this->data['AdminPr'] == false) {
 	            
@@ -329,21 +329,19 @@ class article extends MY_Controller {
 
 					if (!$this->upload->do_upload()) {
 
-						$list_update = array(
+						$listUpdate = array(
 
 							"image" =>$this->input->post('img_name'),
 
 						);
 
-						if ($this->Marticle->update($id, $list_update)) {
+						if ($this->Marticle->update($id, $listUpdate)) {
 							
 							$this->session->set_flashdata('message_upload', '<div class="fail">Upload fail. please upload the picture again<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 							redirect('article/update/'.$checkId['slug']);  
 
-						}
-
-						
+						}	
 
 					} else {
 
@@ -357,13 +355,13 @@ class article extends MY_Controller {
 
 						}
 
-						$list_update = array(
+						$listUpdate = array(
 
 							"image" =>  $_FILES['userfile']['name'],
 
 						);
 
-						if ($this->Marticle->update($id, $list_update)) {
+						if ($this->Marticle->update($id, $listUpdate)) {
 
 							$this->session->set_flashdata('message_upload', '<div class="succes">Upload success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 

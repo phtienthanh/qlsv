@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <body class="fix-header card-no-border">
-    <!-- ============================================================== -->
     <div id="main-wrapper">
         <div class="page-wrapper">
             <div class="container-fluid page-wrapper">
@@ -58,7 +56,7 @@
                                             } ?>
                                         </p>
                                     </div>
-                                   <span class="back"> <a href="<?php echo base_url('article/home') ?>" title="" class="btn btn-primary">Back</a></span>
+                                   <span class="back"> <a href="<?php echo base_url('article/home'); ?>" title="" class="btn btn-primary">Back</a></span>
                                 </form>
                             </div>
                         </div>

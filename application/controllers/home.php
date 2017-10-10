@@ -104,43 +104,13 @@ class Home extends MY_Controller {
 
 				$listGroup = array();
 
-				$getListGroup = $this->Mrole->get_role_groups($id);
-
+				$getListGroup = $this->ion_auth->get_users_groups()->result();
+				
 				foreach ($getListGroup as $keyGetListGroup => $valGetListGroup) {
 
-					if ($valGetListGroup['group_id'] == '1') {
-
-						$this->data['Admin'] = true;
-						
-					}
-
-					if ($valGetListGroup['group_id'] == '2') {
-
-						$this->data['Members'] = true;
-						
-					}
-
-					if ($valGetListGroup['group_id'] == '3') {
-
-						$this->data['User'] = true;
-						
-					}
-
+					$listGroup[] = $valGetListGroup->name;
+					
 				}
-
-		        if (count($listRl) > 0) {
-
-		        	foreach ($listRl as $keyListRl => $valListRl) {
-		        		
-		        		if ($this->input->post($valListRl['id']) == $id ) {
-
-			        		$listGroup[] = $this->input->post($valListRl['id']);
-
-			        	}
-
-			        }
-
-			    }
 		      
 		      	if ($this->input->post("submit")) {
 		      		
@@ -177,6 +147,8 @@ class Home extends MY_Controller {
 		    	} 
 
 		    	$this->data['student'] = $getId;
+ 
+		    	$this->data['getUsergroups'] = $listGroup;
 
 		    	$this->data['role'] = $listRl;
 
@@ -373,13 +345,24 @@ class Home extends MY_Controller {
 
         }
 
-        if ($this->form_validation->run() == true && $this->ion_auth->register($identity, $password, $email, $dataRg)) {
+        if ($this->form_validation->run() == true) {
+        	
+        	if ($this->ion_auth->register($identity, $password, $email, $dataRg)) {
+
+	        	$this->email->send(); 
+	        
+	            $this->session->set_flashdata('message_login', '<div class="succes">Account Successfully Created<button type="button" class="close" s>×</button></div>');
+	        
+	           	redirect('home/login');
+	
+        	} else {
+
+        		$this->session->set_flashdata('message_register', '<div class="false">Register account false Created<button type="button" class="close" s>×</button></div>');
         
-            $this->email->send(); 
+           		redirect('home/register');
+
+        	}
         
-            $this->session->set_flashdata('message_login', '<div class="succes">Account Successfully Created<button type="button" class="close" s>×</button></div>');
-        
-           	redirect('home/login');
         
         } else {
 

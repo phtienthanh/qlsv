@@ -29,7 +29,7 @@
 
                                                 if (strlen($valArticle['title']) > 30 ) {
 
-                                                    echo substr($valArticle['title'],0,30); echo '...';
+                                                    echo substr($valArticle['title'], 0, 30); echo '...';
                                                     
                                                 } else {
 
@@ -42,7 +42,7 @@
                                             <pre class="content1">
                                                 <?php
                                                 
-                                                echo substr( htmlentities($valArticle['content']),0,100);
+                                                echo substr(htmlentities($valArticle['content']), 0, 100);
                                                 
                                                 echo "...";
                                                 
@@ -53,7 +53,7 @@
                                                 <div class="col-md-3">
                                                     <p><?php echo $valArticle["author"]; ?></p>
                                                 </div>
-                                                <label class="col-md-3"><b>Categories :</b></label>
+                                                <label class="col-md-3"><b>Categories : </b></label>
                                                 <div class="col-md-3">
                                                     <p><?php echo $newArray[$valArticle['categories']] ?></p>
                                                 </div>
@@ -90,60 +90,59 @@
             </tbody>
         </table>
     </div>
-    <tbody>
-        <tbody>
-            <button class="btn btn-danger delete" <?php if ($AdminPr == false) { echo 'disabled'; } ?> data-toggle="modal" data-target="#delall"> Delete</button>
-            <div class="modal fade" id="delall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog model-de">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            Delete
-                        </div>
-                        <div class="modal-header">
-                            You want to delete ???
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default btn-can" data-dismiss="modal">Cancel</button>
-                            <button class="btn btn-danger btn-ok dellall">Delete</button>
-                        </div>
-                    </div>
+    
+    <button class="btn btn-danger delete" <?php if ($AdminPr == false) { echo 'disabled'; } ?> data-toggle="modal" data-target="#delall"> Delete</button>
+    <div class="modal fade" id="delall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog model-de">
+            <div class="modal-content">
+                <div class="modal-header">
+                    Delete
+                </div>
+                <div class="modal-header">
+                    You want to delete ???
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-can" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-danger btn-ok dellall">Delete</button>
                 </div>
             </div>
-            <button type="button" class="btn btn-info btn-lg checkxxx" data-toggle="modal" data-target="#erroModal">Open Modal</button>
-            <div id="erroModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"></button>
-                            <h4 class="modal-title"></h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Please select checkbox.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-info btn-lg checkxxx" data-toggle="modal" data-target="#erroModal">Open Modal</button>
+    <div id="erroModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p>Please select checkbox.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-            <button type="button" class="btn btn-info btn-lg hinden delete-c" data-toggle="modal" data-target="#nodelete">Open Modal</button>
-            <div id="nodelete" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"></button>
-                            <h4 class="modal-title"></h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Successfully deleted !!!</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-info btn-lg hinden delete-c" data-toggle="modal" data-target="#nodelete">Open Modal</button>
+    <div id="nodelete" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p>Successfully deleted !!!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
+        </div>
+    </div>
 </body>
 <script type="text/javascript">
 var baseURL = "<?php echo base_url(); ?>";

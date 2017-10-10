@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="<?php echo base_url();?>asset/css/table.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/table.css" rel="stylesheet">
 </head>
 <body>
     <h1 class="title"> Change password</h1>

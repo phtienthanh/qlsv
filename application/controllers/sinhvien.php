@@ -336,45 +336,19 @@ class Sinhvien extends MY_Controller {
 
 		       	$listRl = $this->Mrole->get_all_group();
 
-				$listGroup = array();
+				$listUserGroup = array();
 
-				$getListGroup = $this->Mrole->get_role_groups($id);
+				$listIdgroup = array();
 
+				$getListGroup = $this->ion_auth->get_users_groups($id)->result();
+				
 				foreach ($getListGroup as $keyGetListGroup => $valGetListGroup) {
 
-					if ($valGetListGroup['group_id'] == '1') {
+					$listUserGroup[] = $valGetListGroup->name;
 
-						$this->data['Admin'] = true;
-						
-					}
-
-					if ($valGetListGroup['group_id'] == '2') {
-
-						$this->data['Members'] = true;
-						
-					}
-
-					if ($valGetListGroup['group_id'] == '3') {
-
-						$this->data['User'] = true;
-						
-					}
-
+					$listIdgroup[] = $valGetListGroup->id;
+					
 				}
-
-		        if (count($listRl) > 0) {
-
-		        	foreach ($listRl as $keyListRl => $valListRl) {
-		        		
-		        		if ($this->input->post($valListRl['id']) == $id ) {
-
-			        		$listGroup[] = $this->input->post($valListRl['id']);
-
-			        	}
-
-			        }
-
-			    }
 
 		      	$this->data['student'] = $this->Msinhvien->get_id_sinhvien($id); 
 		      	
@@ -422,11 +396,10 @@ class Sinhvien extends MY_Controller {
 
 						        if (count($listGroup) > 0) {
 
-						        	foreach ($getListGroup as $keyGetListGroup => $valGetListGroup) {
 
-										$this->ion_auth_model->remove_from_group($valGetListGroup['group_id'], $id);
+										$this->ion_auth_model->remove_from_group($listIdgroup, $id);
 						
-									}
+									
 
 						        	$this->ion_auth_model->add_to_group($listGroup, $id);
 						        
@@ -541,6 +514,8 @@ class Sinhvien extends MY_Controller {
     		}
 
 			$this->data['roleUpdate'] = $listRl;
+
+			$this->data['UserGroup'] = $listUserGroup;	
 	   		
 	   		$this->load->view("sinhvien/update", $this->data);
 	

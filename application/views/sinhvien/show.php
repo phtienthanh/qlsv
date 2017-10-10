@@ -38,10 +38,11 @@
 
                                     <?php } ?>">
                                 <td>
-                                    <input type="checkbox" name="checkboxlist[]" value=<?php echo $valStudent[ 'id'];?> <?php if ($AdminPr == false) {
-                                    echo 'disabled'; } ?> ></td>
+                                    <input type="checkbox" name="checkboxlist[]" value=<?php echo $valStudent[ 'id'];?> <?php if ($AdminPr == false) { echo 'disabled'; } ?> >
+                                </td>
                                 <td>
-                                    <?php echo $valStudent['id']; ?> </td>
+                                    <?php echo $valStudent['id']; ?> 
+                                </td>
                                 <td>
                                     <?php echo $valStudent['first_name']; ?>
                                 </td>
@@ -79,8 +80,7 @@
 
         </tbody>
     </table>
-    <button <?php if ($AdminPr == false) {
-                                    echo 'disabled'; } ?> class="btn btn-danger delete_std" data-toggle="modal" data-target="#delall"> Delete</button>
+    <button <?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-danger delete_std" data-toggle="modal" data-target="#delall"> Delete</button>
     <div class="modal fade" id="delall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog model-de">
             <div class="modal-content">

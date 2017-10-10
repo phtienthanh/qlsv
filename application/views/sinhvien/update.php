@@ -2,22 +2,12 @@
 <html>
 <body>
     <h1 class="title">Update student
-        <p class="title">
-            <?php  if (isset($upload['error']) && count($upload['error']) > 0) {
-
-            echo $upload['error'];
+       <!--  <p class="title"><?php  if (isset($upload['error']) && count($upload['error']) > 0) {echo $upload['error'];
            
             } ?>
             
         </p></h1>
-        <p class="title"> 
-            <?php  if (isset($upload_fail) && count($upload_fail) > 0) {
-
-            echo $upload_fail;
-       
-        } ?>
-            
-        </p>
+        <p class="title"><?php  if (isset($upload_fail) && count($upload_fail) > 0) { echo $upload_fail; } ?></p> -->
         <h3 class="title"><?php echo $this->session->flashdata('message_update'); ?></h3>
     <div class="insert">
         <form action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
@@ -57,8 +47,7 @@
 
                 <?php foreach ($roleUpdate as $keyRole => $valRole) { ?>
     
-                    <tr selected><input name='<?php echo $valRole['id']; ?>' type='checkbox' value='<?php echo $valRole['id']; ?>'
-                        <?php  if (isset($$valRole['name']) && count($$valRole['name']) > 0 && $$valRole['name'] == true) { echo 'checked'; } ?> /> <?php echo $valRole['name']; ?></tr>         
+                    <tr selected><input name='<?php echo $valRole['id']; ?>' type='checkbox' value='<?php echo $valRole['id']; ?>'<?php if (in_array($valRole['name'], $UserGroup) == true) {  echo "checked";} ?>/> <?php echo $valRole['name']; ?></tr>         
                 <?php } ?>
             
             <?php } ?>  

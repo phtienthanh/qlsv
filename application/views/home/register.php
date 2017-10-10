@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 <body>
     <div class="insert">
         <h1>Register student</h1>
-        <h3 class="error"><?php if(isset($data_fail) && count($data_fail) > 0) { echo $data_fail; } ?></h3>
+        <p class="title"><?php echo $this->session->flashdata('message_register'); ?></p>
         <form action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <a class="btn btn-default btn-register" href="<?php echo base_url();?>home/login" title="">Back</a>
             <br>
@@ -40,5 +39,4 @@
     <script src="{{url(js/validate.js)}}"></script>
     <script src="<?php echo base_url();?>asset/js/home/register_fail.js"></script>
 </body>
-
 </html>

@@ -11,12 +11,12 @@
         <!-- Favicon -->
         <link href="favicon.ico" rel="shortcut icon">
         <!-- Bootstrap Core CSS -->
-        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/home/bootstrap.css" rel="stylesheet">
         <!-- Template CSS -->
-        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/animate.css" rel="stylesheet">
-        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/nexus.css" rel="stylesheet">
-        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/responsive.css" rel="stylesheet">
-        <link rel="stylesheet" href="<?php echo base_url();?>asset/css/home/custom.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/home/animate.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/home/nexus.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/home/responsive.css" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/home/custom.css" rel="stylesheet">
         <!-- Google Fonts-->
         <link href="http://fonts.googleapis.com/css?family=Raleway:100,300,400" type="text/css" rel="stylesheet">
         <link href="http://fonts.googleapis.com/css?family=Roboto:400,300" type="text/css" rel="stylesheet">
@@ -29,8 +29,8 @@
                 <div class="row">
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="<?php echo base_url();?>sinhvien" title="">
-                            <img src="<?php echo base_url();?>asset/img/logo.png" alt="Logo" />
+                        <a href="<?php echo base_url(); ?>sinhvien" title="">
+                            <img src="<?php echo base_url(); ?>asset/img/logo.png" alt="Logo" />
                         </a>
                     </div>
                     <!-- End Logo -->
@@ -41,7 +41,7 @@
                         <div class="text-center visible-lg">
                             <ul id="hornavmenu" class="nav navbar-nav">
                                 <li>
-                                    <a href="<?php echo base_url();?>sinhvien" class="fa-home active">Home</a>
+                                    <a href="<?php echo base_url(); ?>sinhvien" class="fa-home active">Home</a>
                                 </li>
                                 <li>
                                     <span class="fa-gears ">Features</span>
