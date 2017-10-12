@@ -501,12 +501,8 @@ class Sinhvien extends MY_Controller {
 
 					} 
 	    		
-	    		} else if ($this->input->post("back")) {
-		
-		       		redirect('sinhvien/show');   
-		       			    
-				}
-	
+	    		} 
+	    		
 			} else {
 
 	    		redirect('sinhvien/show');   
@@ -654,16 +650,20 @@ class Sinhvien extends MY_Controller {
 
 		        if (count($data) < 3) {
 
-		          foreach ($data as $keyData => $valData) {
+		          	foreach ($data as $keyData => $valData) {
 
 			            if ($valData['group_id'] == "1") {
 
-			              $stack = true;
+			              	$stack = true;
 
 			            }
 
 		          	}
 		          
+		        } else {
+
+		        	$stack = true;
+
 		        }
 
 	      	}

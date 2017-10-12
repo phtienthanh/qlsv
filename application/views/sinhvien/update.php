@@ -10,9 +10,11 @@
         <p class="title"><?php  if (isset($upload_fail) && count($upload_fail) > 0) { echo $upload_fail; } ?></p> -->
         <h3 class="title"><?php echo $this->session->flashdata('message_update'); ?></h3>
     <div class="insert">
-        <form action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-            <input type="submit" name="back" value="Back" class="btn btn-danger btn-block btn-insert">
+        
+       <!--  <input type="submit" name="back" value="Back" class="btn btn-danger btn-block btn-insert"> -->
             <br>
+        <form action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            <span class="btn-block btn-insert"> <a href="<?php echo base_url('sinhvien/show')  ?>" title="" class="btn btn-danger ">Back</a></span>
             <label for="">First name</label>
             <br>
             <input type="text" name="first_name" class="form-control" placeholder="First name" value="<?php

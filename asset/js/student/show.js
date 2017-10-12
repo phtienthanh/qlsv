@@ -41,6 +41,8 @@ $(document).ready(function() {
 
                     } else {
 
+                        $(".Members.selected").remove();
+
                         $(".User.selected").remove();
 
                         $(".Delete").click();
