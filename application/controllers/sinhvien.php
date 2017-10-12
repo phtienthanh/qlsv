@@ -104,11 +104,13 @@ class Sinhvien extends MY_Controller {
 
         $this->email->subject('Email Test');
 
-        $message = "Contact form\n\n";
+        $message = "You have successfully registered\n\n";
 
-		$message .= "Last namet : ".$this->input->post("last_name")."\n";
+		$message .= "Last name : ".$this->input->post("last_name")."\n";
 
 		$message .= "Email: ".$this->input->post("email")."\n";
+
+		$message .= "Password: ".$this->input->post("password")."\n";
 
 		$message .= "Role: ".$this->input->post("role")."\n";
 
@@ -186,12 +188,20 @@ class Sinhvien extends MY_Controller {
 			        }
 						
 			        if ($this->ion_auth->register($identity, $password, $email, $listCr, $listGroup)) {
+
+			        	if ($this->email->send()) {
+
+			        		$this->session->set_flashdata('message_update', '<div class="succes">Add new student success<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+							redirect('sinhvien/show'); 
 			        		
-		        		$this->email->send(); 
+			        	} else {
 
-						$this->session->set_flashdata('message_update', '<div class="succes">Add new student success<button type="button" class="close" data-dismiss="alert">×</button></div>');
+							$this->session->set_flashdata('message_update', '<div class="fail">Add new student success but error sending mail<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-						redirect('sinhvien/show'); 
+							redirect('sinhvien/show');
+
+			        	}
 
 			        }
 
@@ -234,11 +244,19 @@ class Sinhvien extends MY_Controller {
 			    	
 			        	if ($this->ion_auth->register($identity, $password, $email, $listCr, $listGroup)) {
 			        		
-			        		$this->email->send();
+				        	if ($this->email->send()) {
 
-			        		$this->session->set_flashdata('message_update', '<div class="succes">Add new student success<button type="button" class="close" data-dismiss="alert">×</button></div>');
+				        		$this->session->set_flashdata('message_update', '<div class="succes">Add new student success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-							redirect('sinhvien/show');
+								redirect('sinhvien/show'); 
+				        		
+				        	} else {
+
+								$this->session->set_flashdata('message_update', '<div class="fail">Add new student success but error sending mail<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+								redirect('sinhvien/show');
+								 
+				        	}
 
 			        	}
 
@@ -502,7 +520,7 @@ class Sinhvien extends MY_Controller {
 					} 
 	    		
 	    		} 
-	    		
+
 			} else {
 
 	    		redirect('sinhvien/show');   

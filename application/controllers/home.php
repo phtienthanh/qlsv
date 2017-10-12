@@ -286,13 +286,15 @@ class Home extends MY_Controller {
 
         $this->email->subject('Email Test');
 
-        $message = "Contact form\n\n";
+        $message = "You have successfully registered\n\n";
 
 		$message .= "Last namet : ".$this->input->post("last_name")."\n";
 
 		$message .= "Email: ".$this->input->post("email")."\n";
 
-		$message .= "Role: ".$this->input->post("role")."\n";
+		$message .= "Password: ".$this->input->post("password")."\n";
+
+		$message .= "Role: "."Members"."\n";
 
         $this->email->message($message); 
 
@@ -343,17 +345,27 @@ class Home extends MY_Controller {
  
             );
 
+            $listRole = array('2');
+
         }
 
         if ($this->form_validation->run() == true) {
         	
-        	if ($this->ion_auth->register($identity, $password, $email, $dataRg)) {
+        	if ($this->ion_auth->register($identity, $password, $email, $dataRg, $listRole)) {
 
-	        	$this->email->send(); 
+	        	if($this->email->send()){
+
+	        		$this->session->set_flashdata('message_login', '<div class="succes">Account Successfully Created<button type="button" class="close" s>×</button></div>');
 	        
-	            $this->session->set_flashdata('message_login', '<div class="succes">Account Successfully Created<button type="button" class="close" s>×</button></div>');
+	           		redirect('home/login');
+
+	        	} else {
+
+	        		$this->session->set_flashdata('message_login', '<div class="succes">Account Successfully Created but error sending mail<button type="button" class="close" s>×</button></div>');
 	        
-	           	redirect('home/login');
+	           		redirect('home/login');
+	        	
+	        	}
 	
         	} else {
 
@@ -451,7 +463,7 @@ class Home extends MY_Controller {
 
         $this->email->subject('Email Test');
 
-        $message = "Contact form\n\n";
+        $message = "Forget password\n\n";
 
         $message = "Please visit the link below forgot password:\n";
 
@@ -611,11 +623,11 @@ class Home extends MY_Controller {
 
     		if (count($checkId) > 0) {
 
-				$this->form_validation->set_rules('old_password', $this->lang->line('change_password_validation_old_password_label'), 'required');
+				$this->form_validation->set_rules('old_password','Current password', 'required');
 
-				$this->form_validation->set_rules('new_password', $this->lang->line('change_password_validation_new_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[new_password_confirm]');
+				$this->form_validation->set_rules('new_password', 'New password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[new_password_confirm]');
 
-				$this->form_validation->set_rules('new_password_confirm', $this->lang->line('change_password_validation_new_password_confirm_label'), 'required');
+				$this->form_validation->set_rules('new_password_confirm', 'Password confirm', 'required');
 				
 				$this->load->model('ion_auth_model');
 				

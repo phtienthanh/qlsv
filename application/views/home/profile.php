@@ -4,6 +4,7 @@
 </head>
 <body class="fix-header card-no-border body-profile">
     <h1 class="title">Manage profile</h1>
+    <p class="title"><?php echo $this->session->flashdata('message_update'); ?></p>
     <div id="main-wrapper">
         <div class="page-wrapper">
             <div class="container-fluid container-f">
