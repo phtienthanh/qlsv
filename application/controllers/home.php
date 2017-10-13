@@ -547,11 +547,15 @@ class Home extends MY_Controller {
 
 	        		$user = $this->Msinhvien->forget_tk($token);
 
-	        		$id = $user["0"]["id"];
+	        		$this->load->model('ion_auth_model');
+
+	        		$hashed_new_password  = $this->ion_auth_model->hash_password($this->input->post('new_password'), $user['salt']);
+
+	        		$id = $user["id"];
 
 	    			$listUpdate = array(
 			
-						"password" => $this->input->post('new_password')
+						"password" => $hashed_new_password
 			
 					);
 
@@ -565,7 +569,15 @@ class Home extends MY_Controller {
 				
 						);
 
-						redirect('home/changesuccess');
+	        			$this->session->set_flashdata('message_update', '<div class="success">Update password success<button type="button" class="close" s>×</button></div>');
+
+						redirect('home/change/'.$token);
+
+					} else {
+
+						$this->session->set_flashdata('message_update', '<div class="fail">Update password fail<button type="button" class="close" s>×</button></div>');
+
+						redirect('home/change/'.$token);
 
 					}
 				

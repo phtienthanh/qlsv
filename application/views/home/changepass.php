@@ -3,6 +3,8 @@
 <html>
 <body>
     <h1 class="title"> Change password</h1>
+    <div class="title"><?php echo $this->session->flashdata('message_update'); ?></div>
+
     <div class="insert">
         <form class="login wrapper" action="" method="POST">
             <br>
