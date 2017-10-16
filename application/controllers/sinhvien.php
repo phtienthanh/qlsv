@@ -68,6 +68,54 @@ class Sinhvien extends MY_Controller {
 
         }
 
+        $this->load->model('Mrole');
+
+        $listRl = $this->Mrole->get_all_group();
+
+		$listGroup = array();
+
+        if (count($listRl) > 0) {
+
+        	foreach ($listRl as $keyListRl => $valListRl) {
+
+        		if ($this->input->post($valListRl['id']) == $valListRl['id'] ) {
+
+	        		$listGroup[] = $this->input->post($valListRl['id']);
+
+	        	}
+
+	        }
+
+        }
+
+        $roleAdmin = "";
+        
+        $roleMembers = "";
+
+        $roleUser = "";
+
+        foreach ($listGroup as $keyListGroup => $valListGroup) {
+
+        	if ($valListGroup == '1') {
+
+                $roleAdmin = "Admin ,";
+                        
+                }
+
+            if ($valListGroup == '2') {
+
+                $roleMembers = "Members ,";
+                
+            }
+
+            if ($valListGroup == '3') {
+
+                $roleUser = "User";
+                
+            }
+
+        }
+
 		$config['max_size'] = 20480;
 
 		$config['upload_path'] = './medias/student/';
@@ -102,7 +150,7 @@ class Sinhvien extends MY_Controller {
 
         $this->email->to($this->input->post("email")); 
 
-        $this->email->subject('Email Test');
+        $this->email->subject('Add student');
 
         $message = "ADD NEW STUDENT"."\n";
 
@@ -116,7 +164,7 @@ class Sinhvien extends MY_Controller {
 
 		$message .= "Password: ".$this->input->post("password")."\n";
 
-		$message .= "Role: ".$this->input->post("role")."\n";
+		$message .= "Role: ".$roleAdmin.$roleMembers.$roleUser."\n";
 
         $this->email->message($message); 
 
@@ -125,8 +173,6 @@ class Sinhvien extends MY_Controller {
         $tables = $this->config->item('tables', 'ion_auth');
 
         $identity_column = $this->config->item('identity', 'ion_auth');
-
-        $this->load->model('Mrole');
 
         $this->data['role'] = $this->Mrole->get_all_group(); 
 
@@ -172,24 +218,6 @@ class Sinhvien extends MY_Controller {
 			            'is_deleted' => 0
 
 			        );
-
-					$listRl = $this->Mrole->get_all_group();
-
-					$listGroup = array();
-
-			         if (count($listRl) > 0) {
-
-			        	foreach ($listRl as $keyListRl => $valListRl) {
-
-			        		if ($this->input->post($valListRl['id']) == $valListRl['id'] ) {
-
-				        		$listGroup[] = $this->input->post($valListRl['id']);
-
-				        	}
-
-				        }
-
-			        }
 						
 			        if ($this->ion_auth->register($identity, $password, $email, $listCr, $listGroup)) {
 
@@ -219,24 +247,6 @@ class Sinhvien extends MY_Controller {
 			            'is_deleted' => 0
 
 		        	);		
-
-					$listRl = $this->Mrole->get_all_group();
-
-					$listGroup = array();
-
-			        if (count($listRl) > 0) {
-
-			        	foreach ($listRl as $keyListRl => $valListRl) {
-
-			        		if ($this->input->post($valListRl['id']) == $valListRl['id'] ) {
-
-				        		$listGroup[] = $this->input->post($valListRl['id']);
-
-				        	}
-
-				        }
-
-			        }
 		
 		        	if (!$this->upload->do_upload()) { 
 
@@ -247,7 +257,7 @@ class Sinhvien extends MY_Controller {
 					} else {
 			    	
 			        	if ($this->ion_auth->register($identity, $password, $email, $listCr, $listGroup)) {
-			        		
+
 				        	if ($this->email->send()) {
 
 				        		$this->session->set_flashdata('message_update', '<div class="succes">Add new student success<button type="button" class="close" data-dismiss="alert">×</button></div>');
@@ -260,7 +270,7 @@ class Sinhvien extends MY_Controller {
 
 								redirect('sinhvien/show');
 								 
-				        	}
+				        	} 
 
 			        	}
 
