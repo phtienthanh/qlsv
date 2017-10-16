@@ -288,9 +288,9 @@ class Home extends MY_Controller {
 
         $message = "REGISTER ACCOUNT\n";
 
-        $message = "---------------------\n\n";
+        $message .= "---------------------\n\n";
 
-        $message = "You have successfully registered\n";
+        $message .= "You have successfully registered\n";
 
 		$message .= "Last namet : ".$this->input->post("last_name")."\n";
 
