@@ -284,9 +284,13 @@ class Home extends MY_Controller {
 
         $this->email->to($this->input->post("email")); 
 
-        $this->email->subject('Email Test');
+        $this->email->subject('Register account');
 
-        $message = "You have successfully registered\n\n";
+        $message = "REGISTER ACCOUNT\n";
+
+        $message = "---------------------\n\n";
+
+        $message = "You have successfully registered\n";
 
 		$message .= "Last namet : ".$this->input->post("last_name")."\n";
 
@@ -294,7 +298,7 @@ class Home extends MY_Controller {
 
 		$message .= "Password: ".$this->input->post("password")."\n";
 
-		$message .= "Role: "."Members"."\n";
+		$message .= "Role: "."User"."\n";
 
         $this->email->message($message); 
 
@@ -345,7 +349,7 @@ class Home extends MY_Controller {
  
             );
 
-            $listRole = array('2');
+            $listRole = array('3');
 
         }
 

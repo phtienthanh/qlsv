@@ -104,7 +104,11 @@ class Sinhvien extends MY_Controller {
 
         $this->email->subject('Email Test');
 
-        $message = "You have successfully registered\n\n";
+        $message = "ADD NEW STUDENT"."\n";
+
+        $message .= "--------------------------"."\n";
+
+        $message = "You have add new account successfully \n\n";
 
 		$message .= "Last name : ".$this->input->post("last_name")."\n";
 
