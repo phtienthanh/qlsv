@@ -118,7 +118,7 @@ class Home extends MY_Controller {
 		       	
 			       	$this->form_validation->set_rules('last_name', 'Last name','required');
 
-			       	$this->form_validation->set_message('required', '%snot be empty');
+			       	$this->form_validation->set_message('required', '%s not be empty');
 		      		
 		      		if ($this->form_validation->run()) {
 
@@ -292,7 +292,9 @@ class Home extends MY_Controller {
 
         $message .= "You have successfully registered\n";
 
-		$message .= "Last namet : ".$this->input->post("last_name")."\n";
+        $message .= "First name : ".$this->input->post("first_name")."\n";
+
+		$message .= "Last name : ".$this->input->post("last_name")."\n";
 
 		$message .= "Email: ".$this->input->post("email")."\n";
 
@@ -465,13 +467,13 @@ class Home extends MY_Controller {
 
         $this->email->to($this->input->post("email")); 
 
-        $this->email->subject('Email Test');
+        $this->email->subject('FORGET PASSWORD');
 
-        $message = "Forget password\n\n";
+        $message = "FORGET PASSWORD\n";
 
-        $message = "Please visit the link below forgot password:\n";
+        $message .= "Please click on the link to reset your password:\n";
 
-		$message = "Password: ".base_url('home/change/').'/'.$token."\n";
+		$message .= "Password: ".base_url('home/change/').'/'.$token."\n";
 
         $this->email->message($message); 
 
@@ -573,9 +575,9 @@ class Home extends MY_Controller {
 				
 						);
 
-	        			$this->session->set_flashdata('message_update', '<div class="success">Update password success<button type="button" class="close" s>×</button></div>');
+	        			$this->session->set_flashdata('message_login', '<div class="succes">Update password success<button type="button" class="close" s>×</button></div>');
 
-						redirect('home/change/'.$token);
+						redirect('home/login');
 
 					} else {
 
@@ -639,7 +641,7 @@ class Home extends MY_Controller {
 
     		if (count($checkId) > 0) {
 
-				$this->form_validation->set_rules('old_password','Current password', 'required');
+				$this->form_validation->set_rules('old_password','Current password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']');
 
 				$this->form_validation->set_rules('new_password', 'New password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[new_password_confirm]');
 

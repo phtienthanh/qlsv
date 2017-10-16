@@ -36,17 +36,27 @@ $(document).ready(function() {
                 
                 },
 
-                success: function(events) {
+                success: function(data) {
 
-                    $('.selected').not('.1').remove();
+                    data = JSON.parse(data);
+
+                    if (data.status == 1) {
+
+                        $('.selected').not('.1').remove();
                     
-                    $(".btn-can").click();
+                        $(".Delete").click();
 
-                    $(".Delete").click();
+                    } else {
+
+                        $(".Delete1").click();
+
+                    }
+
+                    $(".btn-can").click();
 
                 },
 
-                error: function(events) {
+                error: function(data) {
 
                     alert("that bai");
 

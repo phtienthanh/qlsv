@@ -154,9 +154,11 @@ class Sinhvien extends MY_Controller {
 
         $message = "ADD NEW STUDENT"."\n";
 
-        $message .= "--------------------------"."\n";
+        $message .= "--------------------------"."\n\n";
 
-        $message .= "You have add new account successfully \n\n";
+        $message .= "Account completed to create\n";
+
+        $message .= "First name : ".$this->input->post("first_name")."\n";
 
 		$message .= "Last name : ".$this->input->post("last_name")."\n";
 

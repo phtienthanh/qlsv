@@ -143,20 +143,22 @@ class Categories extends MY_Controller {
         $this->load->model('Mcategories');
 
         $dataId = $this->input->post('id');
+        
+        $checkALl = false;
 
         foreach ($dataId as $keyDataId => $valDataId) {
 
-            if ($valDataId == 1) {
-                
-                $list_update = array(   
-        
-                    "is_deleted" => 0
-                
-                );
+            if ($valDataId == "1") {
 
-                $this->Mcategories->delete_checkbox($valDataId, $list_update);  
+                $checkALl = true;
+            
+            }
 
-            } else {
+        }
+
+        if ( $checkALl == false) {
+
+            foreach ($dataId as $keyDataId => $valDataId) {
 
                 $list_update = array(   
         
@@ -164,11 +166,37 @@ class Categories extends MY_Controller {
                 
                 );
 
-                $this->Mcategories->delete_checkbox($valDataId, $list_update); 
+                $this->Mcategories->delete_checkbox($valDataId, $list_update);    
 
-            }  
+            } 
 
-        } 
+            $returnData = array(
+
+                'status' => 1,
+                'data' => $checkALl,
+                'message' => "Delete !!!"
+              
+            );
+
+            echo json_encode($returnData);
+
+            exit();
+          
+        } else {
+
+            $returnData = array(
+
+                'status' => 0,
+                'data' => null,
+                'message' => "Can't Delete !!!"
+             
+            );
+
+            echo json_encode($returnData);
+
+            exit();
+
+        }  
 
     }       
    
