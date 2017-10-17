@@ -33,6 +33,7 @@ $(document).ready(function() {
 			userfile : {
 				
 				required : true,
+				
 			},
 		},
 
@@ -61,6 +62,7 @@ $(document).ready(function() {
 				userfile : {
 				
 				required : "Bắt buộc phải chọn ảnh",
+
 			},
 
 		},

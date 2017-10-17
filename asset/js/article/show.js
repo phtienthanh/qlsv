@@ -27,7 +27,9 @@
                 method: 'POST',
 
                 data: {
+
                     id: id
+                    
                 },
 
                 success: function(events) {
