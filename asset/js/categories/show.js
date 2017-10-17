@@ -22,8 +22,6 @@ $(document).ready(function() {
 
         } else {
 
-                console.log('id.length');
-
             $.ajax({
 
                 url: baseURL+"categories/delete_multiple",

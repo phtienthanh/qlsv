@@ -74,7 +74,7 @@ class MY_Controller extends CI_Controller {
       
 		}
 
-        $this->data['checklogin'] = $this->ion_auth->logged_in();
+        $this->data['checkLogin'] = $this->ion_auth->logged_in();
 	
 	}
     

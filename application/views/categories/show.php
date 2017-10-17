@@ -26,8 +26,7 @@
                     <?php if ($valCategories['is_deleted'] == 0 ) { ?>
 
                         <tr class="reload <?php echo $valCategories['id']; ?>">
-                            <td><input type="checkbox" name="checkboxlist[]" <?php if ($valCategories['id'] == '1') {
-                               echo 'disabled'; } ?> value=<?php echo $valCategories[ 'id']; ?> ></td>
+                            <td><input type="checkbox" name="checkboxlist[]" value=<?php echo $valCategories[ 'id']; ?> ></td>
                             <td><?php echo $valCategories['id']; ?></td>
                             <td><?php echo $valCategories['name']; ?></td>
                             <td class="center"><a class="btn btn-success" <?php if ($valCategories['id'] == '1') {

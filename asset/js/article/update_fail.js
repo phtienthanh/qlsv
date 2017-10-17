@@ -6,24 +6,27 @@ $(document).ready(function() {
 	    
 	});
 
-
 	$('.form_update').validate({
 		
 		rules : {
 			title : {
+
 				required : true,
 				
 			},
 			slug : {
+
 				required : true,
 				
 			},	
 			author : {
+
 				required : true,
 			},
 
 
 			content : {
+
 				required : true,
 				
 			},
@@ -38,14 +41,17 @@ $(document).ready(function() {
 				
 			},
 			slug : {
+
 				required : "slug không được để trống",
 				
 			},
 			author : {
+
 				required : "Author không được để trống",
 				
 			},
 			content : {
+
 				required : "Content không được để trống",
 				
 			},

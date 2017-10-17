@@ -4,7 +4,7 @@
 <body>
     <div class="insert">
         <h1>Forget password</h1>
-        <h3 class="error"><?php if(isset($checkmail) && count($checkmail) > 0){ echo $checkmail; } ?></h3>
+        <h3 class="error"><?php if(isset($checkMail) && count($checkMail) > 0){ echo $checkMail; } ?></h3>
         <form class="form_forget" action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <a class="btn btn-default btn-register" href="<?php echo base_url();?>home/login" title="">Back</a>
             <br>

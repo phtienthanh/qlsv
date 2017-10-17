@@ -400,7 +400,7 @@ class Sinhvien extends MY_Controller {
 		
 			       		if ($_FILES['userfile']['name'] == '') {
 		
-			       			$list_update = array(
+			       			$listUpdate = array(
 		
 								"first_name" => $this->input->post("first_name"),
 								
@@ -410,7 +410,7 @@ class Sinhvien extends MY_Controller {
 							
 							);
 
-						if ($this->Msinhvien->update($id, $list_update)) {
+						if ($this->Msinhvien->update($id, $listUpdate)) {
 
 							$listgr = $this->Mrole->get_all_group();
 
@@ -479,7 +479,7 @@ class Sinhvien extends MY_Controller {
 							
 							if (!$this->upload->do_upload()) {
 
-				        		$list_update = array(
+				        		$listUpdate = array(
 
 									"first_name" => $this->input->post("first_name"),
 									
@@ -505,7 +505,7 @@ class Sinhvien extends MY_Controller {
 
 								}
 
-								$list_update = array(
+								$listUpdate = array(
 			
 									"first_name" => $this->input->post("first_name"),
 									
@@ -515,7 +515,7 @@ class Sinhvien extends MY_Controller {
 								
 								);
 
-					        	if ($this->Msinhvien->update($id, $list_update)) {
+					        	if ($this->Msinhvien->update($id, $listUpdate)) {
 
 					        		if ($this->upload->data()) {
 
@@ -644,7 +644,7 @@ class Sinhvien extends MY_Controller {
 
 					} else {
 
-						$this->data['change_succes'] = 'Change errors please do again';
+						$this->data['changeSucces'] = 'Change errors please do again';
 
 						$this->session->set_flashdata('message_update', '<div class="succes"> Change errors please do again<button type="button" class="close" data-dismiss="alert">×</button></div>');
 

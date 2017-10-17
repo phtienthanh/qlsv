@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/header.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/table.css">
 </head>
-
 <body>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -26,7 +25,7 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <?php if ($checklogin == true ) { ?>
+                    <?php if ($checkLogin == true ) { ?>
 
                         <?php  if ($AdminPr == true || $MemberPr == true) { ?>
                     
@@ -38,10 +37,10 @@
                     
                     <?php } ?>
                     <ul class="nav navbar-nav navbar-right">
-                        <?php if ($checklogin == false) { ?>
+                        <?php if ($checkLogin == false) { ?>
                             <li class="li_menu"><a class="manage_login1" href="<?php echo base_url(); ?>home/login">Login</a></li>
                         <?php } ?>
-                        <?php if ($checklogin == true) { ?>
+                        <?php if ($checkLogin == true) { ?>
 
                             <li class="dropdown manage_logout"> <a href="#" class="dropdown-toggle fa fa-user " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
                                 <ul class="dropdown-menu menu-header">
@@ -57,7 +56,6 @@
             </div>
         </div>
     </nav>
-  
 </body>
 <script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
 </html>

@@ -41,7 +41,6 @@ $(document).ready(function() {
 			new_password_confirm : {
 
 				required : "Email không được để trống",
-
 				minlength: "Enter at least 8 characters",
 				
 			},

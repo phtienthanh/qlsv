@@ -4,14 +4,8 @@
 <body>
     <div class="insert">
         <h1>Add new student</h1>
-        <h3><?php if (isset($error) && count($error) > 0) { echo $error; } ?></h3>
-        <h3>
-        <?php if (isset($succes) && count($succes) > 0 ) {
-        
-            echo $succes;
-        
-        } ?>
-        </h3>
+        <h3><?php if (isset($error) && count($error) > 0) {echo $error; } ?></h3>
+        <h3><?php if (isset($succes) && count($succes) > 0 ) {echo $succes; } ?></h3>
         <form action="" name="myForm" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <span><a class="btn btn-success" href="<?php echo base_url();?>sinhvien/show" title="">Back</a></span>
             <br>
@@ -37,7 +31,6 @@
             <input type="file" name="userfile" class="userfile hinden">
              <p class="btn btn-primary btn_select ">Select image</p>
             <h3 for="">Role</h3>
-
             <?php 
             if(isset($role) && count($role) > 0) { 
 
@@ -52,9 +45,7 @@
 
             } 
             ?>
-        
             <?php echo form_error("role"); ?>
-            
             <input type="submit" name="submit" value="Insert" class="btn btn-primary btn-block btn-large btn-insert">
         </form>
     </div>

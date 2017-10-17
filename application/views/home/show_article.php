@@ -4,9 +4,9 @@
     <div class="col-md-8">
         <h1 class="my-4">Show article</h1>
 
-        <?php if(isset($search_ar) && count($search_ar)) { ?>
+        <?php if(isset($searchAr) && count($searchAr)) { ?>
 
-        <h3 class="title"> Tìm thấy <?php echo $search_ar; ?> kết quả</h3>
+        <h3 class="title"> Tìm thấy <?php echo $searchAr; ?> kết quả</h3>
 
         <?php } ?>
 

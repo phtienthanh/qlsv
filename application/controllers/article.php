@@ -243,7 +243,7 @@ class article extends MY_Controller {
 		    
 			       	if ($this->form_validation->run()) {
 
-		       			$list_update = array(
+		       			$listUpdate = array(
 
 							"title" => $this->input->post("title"),
 							
@@ -257,7 +257,7 @@ class article extends MY_Controller {
 						
 						);	
 						
-						if ($this->Marticle->update_slug_article($slug, $list_update)) {
+						if ($this->Marticle->update_slug_article($slug, $listUpdate)) {
 
 							$this->session->set_flashdata('message_add', '<div class="succes">Update success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
@@ -393,9 +393,9 @@ class article extends MY_Controller {
 
 			$this->load->model('Marticle');
 
-			$checkslug = $this->Marticle->get_slug_article($slug);
+			$checkSlug = $this->Marticle->get_slug_article($slug);
 
-			if (count($checkslug) > 0) {
+			if (count($checkSlug) > 0) {
 
 				$this->data['student'] = $this->Marticle->get_slug_article($slug); 	
 
@@ -455,7 +455,7 @@ class article extends MY_Controller {
 
 			$data = $this->Marticle->get_article($valDataId);
 
-			$list_update = array(	
+			$listUpdate = array(	
 		
 				"is_deleted" => 1
 				
@@ -465,13 +465,13 @@ class article extends MY_Controller {
 			        
 		        if (unlink("medias/article/".$data['image'])) {
 
-		            $this->Marticle->delete_checkbox($valDataId, $list_update);  
+		            $this->Marticle->delete_checkbox($valDataId, $listUpdate);  
 		        
 		        }
      			
      		} else if (file_exists("medias/article/".$data['image']) && $data['image'] == "doanthi.jpg") {
 
-     			$this->Marticle->delete_checkbox($valDataId, $list_update);  
+     			$this->Marticle->delete_checkbox($valDataId, $listUpdate);  
 
      		}
 	

@@ -15,7 +15,7 @@
 
                     <?php foreach ($article as $keyArticle => $valArticle) { ?>
 
-                        <?php if ( $valArticle['is_deleted'] == 0) { ?>
+                        <?php if ($valArticle['is_deleted'] == 0) { ?>
                             <tr>
                                 <td>
                                     <div class="row row_xxx row_xxx<?php echo $valArticle['id'];?>">
@@ -27,7 +27,7 @@
                                             <p class="title title_article">
                                                 <?php 
 
-                                                if (strlen($valArticle['title']) > 30 ) {
+                                                if (strlen($valArticle['title']) > 30) {
 
                                                     echo substr($valArticle['title'], 0, 30); echo '...';
                                                     

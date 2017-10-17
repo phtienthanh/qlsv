@@ -69,7 +69,7 @@
 
                                                 <?php foreach ($role as $keyRole => $valRoler) { ?>
 
-                                                    <tr selected><input name='<?php echo $valRoler['id']; ?>' type='checkbox' value='<?php echo $valRoler['id']; ?>' <?php if (in_array($valRoler['name'], $getUsergroups) == true) {  echo "checked";} ?> disabled/> <?php echo $valRoler['name']; ?></tr>
+                                                    <tr selected><input name='<?php echo $valRoler['id']; ?>' type='checkbox' value='<?php echo $valRoler['id']; ?>' <?php if (in_array($valRoler['name'], $getUserGroups) == true) {echo "checked";} ?> disabled/> <?php echo $valRoler['name']; ?></tr>
 
                                                 <?php } ?>
                                             

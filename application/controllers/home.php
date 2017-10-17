@@ -122,7 +122,7 @@ class Home extends MY_Controller {
 		      		
 		      		if ($this->form_validation->run()) {
 
-			      		$list_update = array(
+			      		$listUpdate = array(
 
 							"first_name" => $this->input->post("first_name"),
 							
@@ -130,7 +130,7 @@ class Home extends MY_Controller {
 							
 						);	
 
-						if ($this->Msinhvien->update($id, $list_update)) {
+						if ($this->Msinhvien->update($id, $listUpdate)) {
 
 							$this->session->set_flashdata('message_profile', '<div class="succes">Update success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
@@ -148,7 +148,7 @@ class Home extends MY_Controller {
 
 		    	$this->data['student'] = $getId;
  
-		    	$this->data['getUsergroups'] = $listGroup;
+		    	$this->data['getUserGroups'] = $listGroup;
 
 		    	$this->data['role'] = $listRl;
 
@@ -176,7 +176,7 @@ class Home extends MY_Controller {
 
 				if ($_FILES['userfile']['name'] == '') {
 
-		   			$list_update = array(
+		   			$listUpdate = array(
 
 						"avatar" => $this->input->post("img_name")
 
@@ -220,13 +220,13 @@ class Home extends MY_Controller {
 
 						}
 					        
-				       	$list_update = array(
+				       	$listUpdate = array(
 
 							"avatar" => $_FILES['userfile']['name']
 				
 						);
 
-			            $this->Msinhvien->update($id, $list_update);
+			            $this->Msinhvien->update($id, $listUpdate);
 
 			            $this->session->set_flashdata('message_upload', '<div class="succes">Upload success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
@@ -493,39 +493,39 @@ class Home extends MY_Controller {
 
         			$id = $user["0"]['id'];
 
-        			$list_update = array(	
+        			$listUpdate = array(	
 			
 						"token" => $token
 			
 					);
 
-					if ($this->Msinhvien->update_forget($id, $list_update)) {
+					if ($this->Msinhvien->update_forget($id, $listUpdate)) {
 
 						if ($this->email->send()) {
 							
-							$checkmail = "Please check your mail again";
+							$checkMail = "Please check your mail again";
 
 						} else {
 
-							$checkmail = "Send mail fail";
+							$checkMail = "Send mail fail";
 
 						}
 
-						$this->data['checkmail'] = $checkmail;
+						$this->data['checkMail'] = $checkMail;
 	
 					} else {
 
-						$checkmail = "Update fail";
+						$checkMail = "Update fail";
 
-        				$this->data['checkmail'] = $checkmail;
+        				$this->data['checkMail'] = $checkMail;
 
 					}
 
         		} else {
 
-        			$checkmail = "Email does not exist";
+        			$checkMail = "Email does not exist";
 
-        			$this->data['checkmail'] = $checkmail;
+        			$this->data['checkMail'] = $checkMail;
         		
         		}
 
@@ -611,7 +611,7 @@ class Home extends MY_Controller {
 
 		if (isset($id) && count($id) > 0) {
 
-			$list_update = array(	
+			$listUpdate = array(	
 
 				"active" => 1
 
@@ -619,7 +619,7 @@ class Home extends MY_Controller {
 
 			$this->load->model('Msinhvien');
 
-			$this->Msinhvien->update($id, $list_update);
+			$this->Msinhvien->update($id, $listUpdate);
 
 			$this->load->view('home/active');
 
@@ -772,7 +772,7 @@ class Home extends MY_Controller {
         
        	$config = array();	
 
-       	$keyword = trim($this->input->get('keyword', TRUE));
+       	$keyWord = trim($this->input->get('keyWord', TRUE));
 
        	if (!isset($_GET['page'])) {
 
@@ -780,9 +780,9 @@ class Home extends MY_Controller {
        	
        	}
 
-		$config['base_url'] = base_url('/home/show_article?keyword='.$keyword);
+		$config['base_url'] = base_url('/home/show_article?keyWord='.$keyWord);
 
-		if ($keyword == "") {
+		if ($keyWord == "") {
 
 			$this->load->model('Marticle');
 
@@ -792,11 +792,11 @@ class Home extends MY_Controller {
 
 		} else {
 
-			$config['total_rows'] = $this->Marticle->show_number_title_article($keyword);
+			$config['total_rows'] = $this->Marticle->show_number_title_article($keyWord);
 
-			$this->data['search_ar'] = $config['total_rows'];
+			$this->data['searchAr'] = $config['total_rows'];
 
-			$this->data['query'] = $this->Marticle->show_article($perpage, $_GET['page'], $keyword);
+			$this->data['query'] = $this->Marticle->show_article($perpage, $_GET['page'], $keyWord);
 		
 		}	
 		
@@ -818,7 +818,7 @@ class Home extends MY_Controller {
 
 		$this->data['paginator'] = $this->pagination->create_links();
 
-		$this->data['search'] = $keyword;
+		$this->data['search'] = $keyWord;
 
 		$this->load->view('home/show_article', $this->data);
 

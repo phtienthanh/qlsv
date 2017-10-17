@@ -87,6 +87,7 @@
                                                                 echo "selected";
                                                                 
                                                                 } ?> > <?php echo $valCategories['name']; ?>
+                                                                
                                                             </option>
 
                                                 <?php
