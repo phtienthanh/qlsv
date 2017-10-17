@@ -106,13 +106,13 @@ class Categories extends MY_Controller {
                     
                     if ($this->form_validation->run()) {
 
-                        $list_update = array(
+                        $listUpdate = array(
 
                             "name" => $this->input->post("input_text")
                          
                         );
                        
-                        $this->Mcategories->update($id, $list_update); 
+                        $this->Mcategories->update($id, $listUpdate); 
 
                         $this->session->set_flashdata('message_add', '<div class="succes">Update new categories success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
@@ -144,36 +144,36 @@ class Categories extends MY_Controller {
 
         $dataId = $this->input->post('id');
         
-        $checkALl = false;
+        $checkAll = false;
 
         foreach ($dataId as $keyDataId => $valDataId) {
 
             if ($valDataId == "1") {
 
-                $checkALl = true;
+                $checkAll = true;
             
             }
 
         }
 
-        if ( $checkALl == false) {
+        if ( $checkAll == false) {
 
             foreach ($dataId as $keyDataId => $valDataId) {
 
-                $list_update = array(   
+                $listUpdate = array(   
         
                     "is_deleted" => 1
                 
                 );
 
-                $this->Mcategories->delete_checkbox($valDataId, $list_update);    
+                $this->Mcategories->delete_checkbox($valDataId, $listUpdate);    
 
             } 
 
             $returnData = array(
 
                 'status' => 1,
-                'data' => $checkALl,
+                'data' => $checkAll,
                 'message' => "Delete !!!"
               
             );

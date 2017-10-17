@@ -63,6 +63,6 @@
     <?php echo form_open_multipart('home/upload');?>
 </body>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
-<script src="{{url(js/validate.js)}}"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
 <script src="<?php echo base_url();?>asset/js/student/update_fail_student.js"></script>
 </html>

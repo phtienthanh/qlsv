@@ -113,7 +113,7 @@
         </div>
     </div>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
-    <script src="{{url(js/validate.js)}}"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
     <script src="<?php echo base_url();?>asset/js/article/update_fail.js"></script>
 </body>
 

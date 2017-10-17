@@ -6,7 +6,7 @@
     <div class="title"><?php echo $this->session->flashdata('message_update'); ?></div>
 
     <div class="insert">
-        <form class="login wrapper"  action="" method="POST">
+        <form class="login wrapper" action="" method="POST">
             <br>
             <label for="">New password</label>
             <br>
@@ -23,8 +23,6 @@
         </p>
     </div>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-   <!--  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
-    <script src="{{url(js/validate.js)}}"></script>
-    <script src="<?php echo base_url();?>asset/js/home/changepass_profile.js"></script> -->
+
 </body>
 </html>
