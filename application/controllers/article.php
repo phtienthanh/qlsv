@@ -58,8 +58,6 @@ class article extends MY_Controller {
 
         $this->data['newArray'] = $newArray;
 
-		$this->data['categories'] = $listCg;
-
 		$this->load->model('Marticle');
 
 		$this->data['article'] = $this->Marticle->get_all_article();
@@ -148,7 +146,6 @@ class article extends MY_Controller {
 
 						"date" => date('d/n/Y'),
 
-					
 					);
 
 					if ($list['image'] == '') {
@@ -172,10 +169,6 @@ class article extends MY_Controller {
 					} else {
 
 						if ($this->Marticle->insert($list)) {
-							
-							$file_data = $this->upload->data();
-						
-							$data['img'] = base_url().'/medias/article'.$file_data['file_name'];
 
 							$this->session->set_flashdata('message_add', '<div class="succes">Add new article success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
