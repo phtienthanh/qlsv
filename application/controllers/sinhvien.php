@@ -34,15 +34,15 @@ class Sinhvien extends MY_Controller {
 
         $listCg = $this->Mrole->get_all_role();
 
-        $listgr = $this->Mrole->get_all_group();
+        $listGr = $this->Mrole->get_all_group();
 
         $newArray = array();
 
          if (isset($listCg) && count($listCg) > 0) {
 
-        	foreach ($listgr as $keyListgr => $valListgr) {
+        	foreach ($listGr as $keyListGr => $valListGr) {
 
-	        	$newArray[$valListgr['id']] = $this->Mrole->get_name_role($valListgr['id'])['name'];
+	        	$newArray[$valListGr['id']] = $this->Mrole->get_name_role($valListGr['id'])['name'];
 
 	        }
 
