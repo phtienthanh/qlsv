@@ -412,17 +412,17 @@ class Sinhvien extends MY_Controller {
 
 						if ($this->Msinhvien->update($id, $listUpdate)) {
 
-							$listgr = $this->Mrole->get_all_group();
+							$listGr = $this->Mrole->get_all_group();
 
-			         		if (count($listgr) > 0) {
+			         		if (count($listGr) > 0) {
 
 			         			$listGroup = array();
 
-			        			foreach ($listgr as $keyListgr => $valListgr) {
+			        			foreach ($listgr as $keyListGr => $valListGr) {
 			        				
-			        				if ($this->input->post($valListgr['id']) == $valListgr['id'] ) {
+			        				if ($this->input->post($valListGr['id']) == $valListGr['id'] ) {
 
-				        				$listGroup[] = $this->input->post($valListgr['id']);
+				        				$listGroup[] = $this->input->post($valListGr['id']);
 
 						        	}
 
