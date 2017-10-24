@@ -146,6 +146,8 @@ class Marticle extends CI_Model {
 
             $this->db->where("slug", $slug);
 
+            $this->db->where("is_deleted", 0);
+
             return $this->db->get($this->table)->row_array();
 
         } else {

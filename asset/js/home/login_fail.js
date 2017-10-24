@@ -8,11 +8,14 @@ $(document).ready(function() {
 				
 				required : true,
 				email:true,
+				maxlength: 30,
+				minlength: 6,
 				
 			},
 			password : {
 				required : true,
-			
+				maxlength: 30,
+				minlength: 6,
 				
 			},
 			

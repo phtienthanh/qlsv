@@ -2,33 +2,23 @@
 <html>
 <body class="arBody">
     <div class="insert">
-        <h1>Add new article</h1>
-        <h4> <?php if (isset($slug) && count($slug) > 0) { echo $slug; } ?></h4>
-        <h4><?php if (isset($error['error']) && count($error['error']) > 0) { echo $error['error']; } ?></h4>
         <form class="Form_insert" name="myForm" action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-            <br>
+            <h1>Add new article</h1>
+            <h4> <?php if (isset($slug) && count($slug) > 0) { echo $slug; } ?></h4>
+            <h4><?php if (isset($error['error']) && count($error['error']) > 0) { echo $error['error']; } ?></h4>
             <h3 for="">Title</h3>
-            <br>
             <input type="text" class="form-control form-control-line title" name="title" placeholder="Title" value="<?php echo set_value("first_name"); ?>">
             <?php echo form_error("title"); ?>
-            <br>
             <h3 for="">Content</h3>
-            <br>
             <textarea rows="4" class="form-control form-control-line content" name="content" cols="35"></textarea>
             <?php echo form_error("content"); ?>
-            <br>
-            <br>
             <h3 for="">Avatar <label class="img_bb">*(Bắt buộc chọn ảnh)</label></h3>
-            <br>
             <input type="file" name="userfile" class="avatar hinden">
             <p class="btn btn-primary btn_select">Select image</p>
             <?php echo form_error("userfile"); ?>
-            <br>
             <h3 for="">Author</h3>
-            <br>
             <input type="text" class="form-control form-control-line author" name="author" placeholder="Author" value="<?php echo set_value("author"); ?>">
             <?php echo form_error("author"); ?>
-            <br>
             <h3 for="">Categories</h3>
             <select name="categories" class="form-control form-control-line cate categories">
       
@@ -56,8 +46,6 @@
 
             </select>
             <?php echo form_error("categories"); ?>
-            <br>
-            <br>
             <input type="submit" name="submit" value="insert" class="btn btn-primary btn-block btn-large btn-insert">
         </form>
     </div>

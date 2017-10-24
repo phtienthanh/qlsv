@@ -151,7 +151,7 @@ table {
 }
 
 .Form_insert{
-margin-top: 30px;
+    margin-top: 30px;
     width: 50%;
     padding: 30px;
     display: inline-block;
@@ -516,11 +516,11 @@ body {
 .dangkiBody{
     background: url("../img/header_bg.jpg") no-repeat fixed 0 0 rgba(0, 0, 0, 0);
 }
-.card-body .Form_insert{
+.card-body .Form_insert,.card-no-border{
     border: none;
     padding: 0;
 }
-.arBody .Form_insert{
+/*.arBody .Form_insert{
     background-color: #21252E;
     border: none;
     border-radius: 3px;
@@ -536,4 +536,27 @@ border: none;
 .arBody .Form_insert .btn-insert{
     background-color: #fff;
     color: black;
+}*/
+.form_forget{
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    border:2px solid red;
+}
+.forgetBody,.arBody{
+    background: url("../img/header_bg.jpg") no-repeat fixed 0 0 rgba(0, 0, 0, 0);
+}
+.succesLogin{
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    background: url(../img/header_bg.jpg) no-repeat fixed 0 0 rgba(0, 0, 0, 0);
+    color: #fff;
+    margin-top: 40px;
+}
+.changepassForm {
+    background-color: #fff;
+    border-top: 5px solid #47a447;
+    padding: 20px;
+    border-radius: 0 0  5px 5px;
 }

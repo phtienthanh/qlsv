@@ -63,3 +63,6 @@
         margin-top: 30px;
         width: 60%;
     }
+ form input{
+    padding: 10px;
+ }

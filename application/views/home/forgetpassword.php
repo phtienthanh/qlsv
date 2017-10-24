@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-<body>
+<body class="forgetBody">
     <div class="insert">
-        <h1>Forget password</h1>
-        <h3 class="error"><?php if(isset($checkMail) && count($checkMail) > 0){ echo $checkMail; } ?></h3>
         <form class="form_forget" action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            <h1>Forget password</h1>
+            <h3 class="title error"><?php if(isset($checkMail) && count($checkMail) > 0){ echo $checkMail; } ?></h3>
+            <br>
+            <br>
             <a class="btn btn-default btn-register" href="<?php echo base_url();?>home/login" title="">Back</a>
             <br>
             <h3 for="">Please enter email</h3>

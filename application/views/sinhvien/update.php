@@ -7,6 +7,7 @@
             <p class="title"><?php  if (isset($upload_fail) && count($upload_fail) > 0) { echo $upload_fail; } ?></p>
             <h3 class="title"><?php echo $this->session->flashdata('message_update'); ?></h3>
             <span class="btn-block btn-insert"> <a href="<?php echo base_url('sinhvien/show')  ?>" title="" class="btn btn-danger ">Back</a></span>
+            <br>
             <label for="">First name</label>
             <br>
             <input type="text" name="first_name" class="form-control" placeholder="First name" value="<?php
@@ -47,6 +48,7 @@
             <?php } ?>  
         
             <?php echo form_error("role"); ?>
+            <br>
             <br>
             <input class="btn btn-warning" type="submit" name="insert"  value="Update">
             <span><a class="btn btn-success" href="<?php echo base_url();?>sinhvien/changepass/<?php echo $student["id"];?>" title=""> Change password</a></span>
