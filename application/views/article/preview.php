@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<body class="fix-header card-no-border">
+<body class="fix-header card-no-border dangkiBody">
     <div id="main-wrapper">
         <div class="page-wrapper">
             <div class="container-fluid page-wrapper">
                 <div class="row page-titles">
                     <div class="col-md-6 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Preview</h3>
                         <ol class="breadcrumb">
+                            <h3 class="text-themecolor m-b-0 m-t-0">Preview</h3>
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Aricle</a></li>
                             <li class="breadcrumb-item active">Preview</li>
                         </ol>

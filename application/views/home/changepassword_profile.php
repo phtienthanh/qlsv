@@ -1,11 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <!DOCTYPE html>
 <html>
-<body>
-    <h1 class="title"> Change password</h1>
+<body class="dangkiBody">
     <div class="insert">
-        <form class="login wrapper" action="" method="POST">
-            <span > <a href="<?php echo base_url('home/profile/'.$id)?>" title="" class="btn btn-primary">Back</a></span>
+        <form class="login wrapper Form_insert" action="" method="POST">
+            <h1 class="title"> Change password</h1>
+            <span > <a href="<?php echo base_url('home/profile/'.$id)?>" title="" class="btn btn-primary widthbtn">Back</a></span>
             <br>
             <label for="">Current password</label>
             <br>

@@ -486,7 +486,7 @@ class Sinhvien extends MY_Controller {
 								
 								);
 
-								$this->session->set_flashdata('message_update', '<div class="fail"> Update fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
+								$this->session->set_flashdata('message_update', '<div class="succes fail"> Update fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 								redirect('sinhvien/update/'.$id);
 
@@ -538,7 +538,7 @@ class Sinhvien extends MY_Controller {
 								        
 								        } else {
 
-								        	$this->session->set_flashdata('message_update', '<div class="fail">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
+								        	$this->session->set_flashdata('message_update', '<div class="succes fail">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 											redirect('sinhvien/update/'.$id); 
 
@@ -546,7 +546,7 @@ class Sinhvien extends MY_Controller {
 
 							        } else {
 
-							        	$this->session->set_flashdata('message_update', '<div class="fail">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
+							        	$this->session->set_flashdata('message_update', '<div class="succes fail">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 										redirect('sinhvien/update/'.$id);
 							        	

@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
-<body>
-    <h1 class="title">Manage article</h1>
-    <?php echo $this->session->flashdata('message_add'); ?>
+<body class="dangkiBody">
+    <h1 class="title colorMana">Manage article</h1>
+    <div class="title">
+        <?php echo $this->session->flashdata('message_add'); ?>
+    </div>
     <br>
     <br>
     <br>
-    <div class="col-md-2">
+    <div class="col-md-2 col2">
         <span class="back"> <a href="<?php echo base_url('home') ?>" title="" class="btn btn-primary">Back</a></span>
     <br>
     <span class=""> <a href="<?php echo base_url('article/add') ?>" <?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-success back">Add article</a></span>
     <span class="addcate"> <a href="<?php echo base_url('categories/home') ?>"<?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-warning back">Manage categories</a></span>
+    <br>
+    <?php if (count($article) > 0) { ?>
+
+        <button class="btn btn-danger back delete" <?php if ($AdminPr == false) { echo 'disabled'; } ?> data-toggle="modal" data-target="#delall"> Delete</button>
+
+    <?php } ?>
     </div>
     
     <div class="col-md-10">
@@ -103,12 +111,6 @@
                 <?php } ?>
             </tbody>
         </table>
-        <?php if (count($article) > 0) { ?>
-
-            <button class="btn btn-danger delete" <?php if ($AdminPr == false) { echo 'disabled'; } ?> data-toggle="modal" data-target="#delall"> Delete</button>
-
-        <?php } ?>
-
     </div>
     
     <div class="modal fade" id="delall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

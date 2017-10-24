@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
-<body>
-    <h1 class="title">Manage student</h1>
-    <?php echo $this->session->flashdata('message_update'); ?>
+<body class="dangkiBody">
+    <h1 class="title colorMana">Manage student</h1>
+    <div class="title">
+           <?php echo $this->session->flashdata('message_update'); ?>
+    </div>
     <form action="<?php echo base_url('sinhvien/create_user');?> " method="post" accept-charset="utf-8" id="dataTable">
         <input type="submit" value="Add new student" <?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-primary">
+        
     </form>
+    <button <?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-danger widthbtn delete_std" data-toggle="modal" data-target="#delall"> Delete</button>
     <table class="table container responstable">
         <thead class="thead-inverse">
             <tr>
@@ -80,7 +84,7 @@
 
         </tbody>
     </table>
-    <button <?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-danger delete_std" data-toggle="modal" data-target="#delall"> Delete</button>
+    
     <div class="modal fade" id="delall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog model-de">
             <div class="modal-content">

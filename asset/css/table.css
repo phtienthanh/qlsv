@@ -119,8 +119,11 @@ h1 span {
 
 #dataTable {
     margin: 50px;
+    display: inline-block;
 }
-
+.widthbtn{
+    width: 100px;
+}
 .container-f {
     margin: 100px 0 !important;
     background-color: #fff;
@@ -242,12 +245,6 @@ body {
 
 .align-self-center {
     padding: 0;
-}
-
-.body-profile, .page-wrapper {
-
-
-    background: url("../img/sango.jpg");
 }
 
 .row_av {
@@ -478,9 +475,18 @@ body {
 }
 .succes {
 
+   background: #fff;
     text-align: center;
     font-size: 18px;
     color: blue;
+    height: 50px;
+    line-height: 50px;
+    width: 300px;
+    display: inline-block;
+}
+.succes .close{
+    line-height: 50px;
+    margin-right: 16px;
 }
 .succesLogin{
     background-color: #fff;
@@ -510,10 +516,14 @@ body {
 .col-md-2 span a{
     width:100%;
 }
+.col-md-2 .delete{
+    width: 100%;
+    margin-left: 0;
+}
 .updateBody{
     background: url("../img/header_bg.jpg") no-repeat fixed 0 0 rgba(0, 0, 0, 0);
 }
-.dangkiBody{
+.dangkiBody, .page-wrapper{
     background: url("../img/header_bg.jpg") no-repeat fixed 0 0 rgba(0, 0, 0, 0);
 }
 .card-body .Form_insert,.card-no-border{
@@ -559,4 +569,10 @@ border: none;
     border-top: 5px solid #47a447;
     padding: 20px;
     border-radius: 0 0  5px 5px;
+}
+.colorMana{
+    color: #fff;
+}
+.col2{
+    margin-top: 20px;
 }

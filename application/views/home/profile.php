@@ -3,19 +3,21 @@
 <head>
 </head>
 <body class="fix-header card-no-border body-profile">
-   
     <div id="main-wrapper">
         <div class="page-wrapper">
             <div class="container-fluid container-f">
                 <h1 class="title">Manage profile</h1>
-                <p class="title"><?php echo $this->session->flashdata('message_update'); ?></p>
+                <div class="title">
+                    <p class="title"><?php echo $this->session->flashdata('message_update'); ?></p>
+                    <p><?php echo $this->session->flashdata('message_upload'); ?></p>
+                    <p><?php echo $this->session->flashdata('message_profile'); ?></p>
+                </div>
                 <div class="row row_av">
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             <form action="<?php echo base_url();?>home/upload/<?php echo $student["id"]; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                                 <div class="upload_img_p">
                                     Upload image
-                                    <p><?php echo $this->session->flashdata('message_upload'); ?></p>
                                 </div>
                                 <center class="m-t-30"> <img src="<?php echo base_url(); ?>medias/student/<?php echo $student["avatar"]; ?>" width="150" />
                                     <input type="file" name="userfile" class="btn">
@@ -36,7 +38,6 @@
                         <div class="card">
                             <div class="upload_img_p">
                                 User information
-                                <p><?php echo $this->session->flashdata('message_profile'); ?></p>
                             </div>
                             <div class="card-block">
                                 <form action="" method="post" class="form-horizontal form-material">

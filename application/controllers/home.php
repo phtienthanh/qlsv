@@ -581,7 +581,7 @@ class Home extends MY_Controller {
 
 					} else {
 
-						$this->session->set_flashdata('message_update', '<div class="fail">Update password fail<button type="button" class="close" s>×</button></div>');
+						$this->session->set_flashdata('message_update', '<div class="succes fail">Update password fail<button type="button" class="close" s>×</button></div>');
 
 						redirect('home/change/'.$token);
 

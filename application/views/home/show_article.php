@@ -49,7 +49,7 @@
                         <p class="cate_show"><b>Author: </b><?php echo $row['author']; ?></p>
                         <p><b> Poster on : </b> <span class="date-time"> <?php echo $row['date']; ?></span></p>
                     </div>
-                </div>>
+                </div>
             
             <?php } ?>
 

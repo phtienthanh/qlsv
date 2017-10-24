@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
-<body>
+<body class="dangkiBody">
     </style>
-    <h1 class="title">Manage categories</h1>
+    <h1 class="title colorMana">Manage categories</h1>
 
-    <?php echo $this->session->flashdata('message_add'); ?>
+    <div class="title">
+        <?php echo $this->session->flashdata('message_add'); ?>
+    </div>
     <div>
     <span class="addcate1"> <a href="<?php echo base_url('article/home')  ?>" title="" class="btn btn-primary ">Back</a></span>
     <span class="addcate1"> <a href="<?php echo base_url('categories/add') ?>" title="" class="btn btn-warning btn-addct">Add Categories</a></span>
+    <button class="btn btn-danger delete_std" data-toggle="modal" data-target="#delall"> Delete</button>
     </div>
         <table class="table container responstable">
         <thead class="thead-inverse">
@@ -42,8 +45,6 @@
 
         </tbody>
     </table>
-    
-    <button class="btn btn-danger delete_std" data-toggle="modal" data-target="#delall"> Delete</button>
     <div class="modal fade" id="delall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog model-de">
             <div class="modal-content">

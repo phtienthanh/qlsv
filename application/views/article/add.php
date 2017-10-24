@@ -3,7 +3,7 @@
 <body class="arBody">
     <div class="insert">
         <form class="Form_insert" name="myForm" action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-            <h1>Add new article</h1>
+            <h1 class="title">Add new article</h1>
             <h4> <?php if (isset($slug) && count($slug) > 0) { echo $slug; } ?></h4>
             <h4><?php if (isset($error['error']) && count($error['error']) > 0) { echo $error['error']; } ?></h4>
             <h3 for="">Title</h3>

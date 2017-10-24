@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
 </head>
-<body class="fix-header card-no-border">
+<body class="fix-header card-no-border dangkiBody">
     <div id="main-wrapper">
         <div class="page-wrapper">
             <div class="container-fluid page-wrapper">
                 <div class="row page-titles">
-                    <div class="col-md-6 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0"> Update article</h3>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Article</a></li>
-                            <li class="breadcrumb-item active">Update</li>
-                        </ol>
+                    
+                    <div class="title">
+                        <h1 class="colorMana"> Update article</h3>
+                        <p class="title"><?php echo $this->session->flashdata('message_upload'); ?></p>
+                        <?php echo $this->session->flashdata('message_add'); ?>
                     </div>
-                    <div class="col-md-6 col-4 align-self-center">
-                        <a href="<?php echo base_url();?>article/home" class="btn pull-right hidden-sm-down btn-warning float_r"> Back</a>
+                    <div>
+                        <a href="<?php echo base_url();?>article/home" class="btn  hidden-sm-down btn btn-success widthbtn"> Back</a>
                     </div>
                 </div>
                 <div class="row row_ud">
@@ -24,11 +23,10 @@
                             <div class="">
                                 <form action="<?php echo base_url();?>article/upload/<?php echo  $student["id"]; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                                     <center class="m-t-30"> <img class="img_article" src="<?php echo base_url();?>medias/article/<?php echo $student["image"]; ?>" width="150" />
-                                        <p class="title"><?php echo $this->session->flashdata('message_upload'); ?></p>
                                         <input type="file" name="userfile" class="userfile hinden">
                                         <p class="btn btn-primary btn_select ">Select image</p>
                                         <input type="text" class="hinden" name="img_name" value="<?php echo $student["image"]; ?>">
-                                        <input type="submit" name="submit" value="upload" class="btn btn-success">
+                                        <input type="submit" name="submit" value="Upload" class="btn btn-success">
                                 </form>
                                 <h4 class="card-title m-t-10"><?php echo  $student["title"]; ?></h4>
                                 </center>
@@ -40,7 +38,6 @@
                     <div class="col-lg-8 col-xlg-9 col-md-7">
                         <div class="card">
                             <div class="card-block">
-                                <?php echo $this->session->flashdata('message_add'); ?>
                                 <form action="" name="myForm" method="post" class="form-horizontal form-material form_update" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label class="col-md-12">Title</label>
@@ -102,7 +99,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12 btn-form">
-                                            <input type="submit" name="submit" class="btn btn-warning update-btn" value="Update">
+                                            <input type="submit" name="submit" class="btn btn-warning update-btn widthbtn" value="Update">
                                         </div>
                                     </div>
                                 </form>
