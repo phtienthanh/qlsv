@@ -17,7 +17,7 @@ $('.wrapper').validate({
 
 			input_text : {
 
-				required : "Name không được để trống",
+				required : "Name not be empty",
 				
 			},
 			

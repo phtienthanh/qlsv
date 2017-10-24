@@ -5,10 +5,11 @@
     <h1 class="title">Manage categories</h1>
 
     <?php echo $this->session->flashdata('message_add'); ?>
-    <span class="addcate"> <a href="<?php echo base_url('article/home')  ?>" title="" class="btn btn-primary ">Back</a></span>
-    <br>
-    <span class="addcate"> <a href="<?php echo base_url('categories/add') ?>" title="" class="btn btn-warning btn-addct">Add Categories</a></span>
-    <table class="table container responstable">
+    <div>
+    <span class="addcate1"> <a href="<?php echo base_url('article/home')  ?>" title="" class="btn btn-primary ">Back</a></span>
+    <span class="addcate1"> <a href="<?php echo base_url('categories/add') ?>" title="" class="btn btn-warning btn-addct">Add Categories</a></span>
+    </div>
+        <table class="table container responstable">
         <thead class="thead-inverse">
             <tr>
                 <th>
@@ -30,8 +31,9 @@
                             <td><?php echo $valCategories['id']; ?></td>
                             <td><?php echo $valCategories['name']; ?></td>
                             <td class="center"><a class="btn btn-success" <?php if ($valCategories['id'] == '1') {
-                               echo 'disabled'; } ?> href="<?php echo base_url();?>categories/update/<?php echo $valCategories['id']; ?>" title="">Update</a></td>
+                               echo 'disabled';} ?> href="<?php echo base_url();?>categories/update/<?php echo $valCategories['id']; ?>" title="">Update</a></td>
                         </tr>
+                        
                     <?php } ?>
 
                 <?php } ?>
@@ -40,6 +42,7 @@
 
         </tbody>
     </table>
+    
     <button class="btn btn-danger delete_std" data-toggle="modal" data-target="#delall"> Delete</button>
     <div class="modal fade" id="delall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog model-de">

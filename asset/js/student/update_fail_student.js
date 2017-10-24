@@ -12,12 +12,12 @@ $(document).ready(function() {
 
 			first_name : {
 
-				required : true,
+				maxlength: 30,
 
 			},
 			last_name : {
 
-				required : true,
+				maxlength: 30,
 
 			},
 			role : {
@@ -30,19 +30,9 @@ $(document).ready(function() {
 
 		messages : {
 
-			first_name : {
-
-				required : "First name  không được để trống",
-
-			},
-			last_name : {
-
-				required : "Last name không được để trống",
-
-			},
 			role : {
 				
-				required : "Email không được để trống",
+				required : "Email not be empty",
 
 			},
 			

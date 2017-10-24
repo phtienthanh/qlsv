@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<body>
+<body class="arBody">
     <div class="insert">
         <h1>Add new article</h1>
         <h4> <?php if (isset($slug) && count($slug) > 0) { echo $slug; } ?></h4>

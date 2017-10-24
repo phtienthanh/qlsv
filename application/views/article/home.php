@@ -3,11 +3,25 @@
 <body>
     <h1 class="title">Manage article</h1>
     <?php echo $this->session->flashdata('message_add'); ?>
-    <span class="back"> <a href="<?php echo base_url('home') ?>" title="" class="btn btn-primary">Back</a></span>
+    <br>
+    <br>
+    <br>
+    <div class="col-md-2">
+        <span class="back"> <a href="<?php echo base_url('home') ?>" title="" class="btn btn-primary">Back</a></span>
     <br>
     <span class=""> <a href="<?php echo base_url('article/add') ?>" <?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-success back">Add article</a></span>
-    <span class="addcate"> <a href="<?php echo base_url('categories/home') ?>"<?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-warning back">Categories</a></span>
-    <div>
+    <span class="addcate"> <a href="<?php echo base_url('categories/home') ?>"<?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-warning back">Manage categories</a></span>
+    </div>
+    
+    <div class="col-md-10">
+        <div>
+            <?php if (count($article) == 0) { ?>
+
+                <h3 class="title">There are no records</h3>
+
+            <?php } ?>
+           
+        </div>
         <table class="table_article">
             <thead class="thead-inverse"></thead>
             <tbody>
@@ -89,9 +103,14 @@
                 <?php } ?>
             </tbody>
         </table>
+        <?php if (count($article) > 0) { ?>
+
+            <button class="btn btn-danger delete" <?php if ($AdminPr == false) { echo 'disabled'; } ?> data-toggle="modal" data-target="#delall"> Delete</button>
+
+        <?php } ?>
+
     </div>
     
-    <button class="btn btn-danger delete" <?php if ($AdminPr == false) { echo 'disabled'; } ?> data-toggle="modal" data-target="#delall"> Delete</button>
     <div class="modal fade" id="delall" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog model-de">
             <div class="modal-content">

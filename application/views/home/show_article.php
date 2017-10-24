@@ -10,6 +10,12 @@
 
         <?php } ?>
 
+        <?php if (count($query) == 0) { ?>
+
+        <h3 class="title">No article show to</h3>
+
+        <?php } ?>
+
         <?php foreach($query as $row) { ?>
 
             <?php if ($row['is_deleted'] == 0 ) { ?>
@@ -57,7 +63,7 @@
                 <div class="card-body">
                     <form action="" class="Form_insert form_search form_search_show" method="get" accept-charset="utf-8">
                         <input type="text" name="keyword" class="form-control input_search">
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="submit" class="btn btn-primary btn_searchAr">Search</button>
                     </form>
                 </div>
             </div>

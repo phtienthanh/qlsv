@@ -180,9 +180,9 @@ class Sinhvien extends MY_Controller {
 
         $this->data['identity_column'] = $identity_column;
         
-        $this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required');
+        // $this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required');
         
-        $this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required');
+        // $this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required');
         
         if($identity_column !== 'email') {
 
@@ -418,9 +418,9 @@ class Sinhvien extends MY_Controller {
 
 			         			$listGroup = array();
 
-			        			foreach ($listgr as $keyListGr => $valListGr) {
+			        			foreach ($listGr as $keyListGr => $valListGr) {
 			        				
-			        				if ($this->input->post($valListGr['id']) == $valListGr['id'] ) {
+			        				if ($this->input->post($valListGr['id']) == $valListGr['id']) {
 
 				        				$listGroup[] = $this->input->post($valListGr['id']);
 
@@ -430,11 +430,8 @@ class Sinhvien extends MY_Controller {
 
 						        if (count($listGroup) > 0) {
 
-
-										$this->ion_auth_model->remove_from_group($listIdgroup, $id);
+									$this->ion_auth_model->remove_from_group($listIdgroup, $id);
 						
-									
-
 						        	$this->ion_auth_model->add_to_group($listGroup, $id);
 						        
 						        } else {
@@ -516,6 +513,44 @@ class Sinhvien extends MY_Controller {
 								);
 
 					        	if ($this->Msinhvien->update($id, $listUpdate)) {
+
+						        	$listGr = $this->Mrole->get_all_group();
+
+									if (count($listGr) > 0) {
+
+					         			$listGroup = array();
+
+					        			foreach ($listGr as $keyListGr => $valListGr) {
+					        				
+					        				if ($this->input->post($valListGr['id']) == $valListGr['id']) {
+
+						        				$listGroup[] = $this->input->post($valListGr['id']);
+
+								        	}
+
+								        }
+
+								        if (count($listGroup) > 0) {
+
+											$this->ion_auth_model->remove_from_group($listIdgroup, $id);
+								
+								        	$this->ion_auth_model->add_to_group($listGroup, $id);
+								        
+								        } else {
+
+								        	$this->session->set_flashdata('message_update', '<div class="fail">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+											redirect('sinhvien/update/'.$id); 
+
+								        }
+
+							        } else {
+
+							        	$this->session->set_flashdata('message_update', '<div class="fail">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+										redirect('sinhvien/update/'.$id);
+							        	
+							        }
 
 					        		if ($this->upload->data()) {
 

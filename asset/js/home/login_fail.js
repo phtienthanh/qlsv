@@ -21,12 +21,12 @@ $(document).ready(function() {
 
 			email : {
 
-				required : "First name  không được để trống",
+				required : "First name  not be empty",
 
 			},
 			password : {
 
-				required : "Last name không được để trống",
+				required : "Last name not be empty",
 				
 			},
 		},

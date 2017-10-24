@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html>
-<body>
-    <h1 class="title">Update student
-       <!--  <p class="title"><?php  if (isset($upload['error']) && count($upload['error']) > 0) {echo $upload['error'];
-           
-            } ?>
-            
-        </p></h1>
-        <p class="title"><?php  if (isset($upload_fail) && count($upload_fail) > 0) { echo $upload_fail; } ?></p> -->
-        <h3 class="title"><?php echo $this->session->flashdata('message_update'); ?></h3>
+<body class="updateBody">
     <div class="insert">
-        
-       <!--  <input type="submit" name="back" value="Back" class="btn btn-danger btn-block btn-insert"> -->
-            <br>
         <form action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            <h1 class="title">Update student</h1>
+            <p class="title"><?php  if (isset($upload_fail) && count($upload_fail) > 0) { echo $upload_fail; } ?></p>
+            <h3 class="title"><?php echo $this->session->flashdata('message_update'); ?></h3>
             <span class="btn-block btn-insert"> <a href="<?php echo base_url('sinhvien/show')  ?>" title="" class="btn btn-danger ">Back</a></span>
             <label for="">First name</label>
             <br>

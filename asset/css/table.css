@@ -96,7 +96,7 @@ body {
 
     font-family: Arial, sans-serif;
     color: #024457;
-    background: #f2f2f2;
+   
 }
 
 h1 {
@@ -150,7 +150,16 @@ table {
     margin-top: 0;
 }
 
-.Form_insert,
+.Form_insert{
+margin-top: 30px;
+    width: 50%;
+    padding: 30px;
+    display: inline-block;
+    text-align: left;
+    border: 2px solid #e67e22;
+        background-color: #fff
+}
+
 .wrapper {
     width: 500px;
     display: inline-block;
@@ -189,8 +198,8 @@ body {
 }
 
 .back {
-    margin-top: 10px;
-    margin-left: 20px;
+    margin-top: 20px;
+  
 }
 
 .btn_control {
@@ -235,8 +244,10 @@ body {
     padding: 0;
 }
 
-.body-profile {
-    background-color: #fff;
+.body-profile, .page-wrapper {
+
+
+    background: url("../img/sango.jpg");
 }
 
 .row_av {
@@ -263,14 +274,15 @@ body {
     margin-left: 50px;
 }
 
-.addcate {
+.addcate1 {
+    margin-top: 15px;
     margin-left: 50px !important;
 }
 
-.btn-addct {
+/*.btn-addct {
 
     margin-top: 20px !important;
-}
+}*/
 
 .error {
 
@@ -473,7 +485,7 @@ body {
 .succesLogin{
     background-color: #fff;
     height:50px; color:#000;
-    font-weight:bold;
+    text-align: left;
 }
 .fail{
      text-align: center;
@@ -489,3 +501,39 @@ body {
 .User{
     background-color:red;
 }*/
+.btn_searchAr{
+    margin-left: 20px;
+}
+.rgt{
+    background: url("../img/image4.jpg") ;
+}
+.col-md-2 span a{
+    width:100%;
+}
+.updateBody{
+    background: url("../img/header_bg.jpg") no-repeat fixed 0 0 rgba(0, 0, 0, 0);
+}
+.dangkiBody{
+    background: url("../img/header_bg.jpg") no-repeat fixed 0 0 rgba(0, 0, 0, 0);
+}
+.card-body .Form_insert{
+    border: none;
+    padding: 0;
+}
+.arBody .Form_insert{
+    background-color: #21252E;
+    border: none;
+    border-radius: 3px;
+   box-shadow: 0px 0px 3px 3px #888888;
+}
+.arBody .Form_insert h3 {
+    color: #B6B4B7;
+}
+.arBody .Form_insert input, .arBody .Form_insert select, .arBody .Form_insert textarea {
+background-color: #13161B;
+border: none;
+}
+.arBody .Form_insert .btn-insert{
+    background-color: #fff;
+    color: black;
+}

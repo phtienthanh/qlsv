@@ -38,22 +38,22 @@ $(document).ready(function() {
 
 			title : {
 				
-				required : "Title không được để trống",
+				required : "Title not be empty",
 				
 			},
 			slug : {
 
-				required : "slug không được để trống",
+				required : "slug not be empty",
 				
 			},
 			author : {
 
-				required : "Author không được để trống",
+				required : "Author not be empty",
 				
 			},
 			content : {
 
-				required : "Content không được để trống",
+				required : "Content not be empty",
 				
 			},
 			

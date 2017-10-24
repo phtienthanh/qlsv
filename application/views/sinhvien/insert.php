@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 
-<body>
+<body class="dangkiBody">
     <div class="insert">
-        <h1>Add new student</h1>
-        <h3><?php if (isset($error) && count($error) > 0) {echo $error; } ?></h3>
-        <h3><?php if (isset($succes) && count($succes) > 0 ) {echo $succes; } ?></h3>
         <form action="" name="myForm" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            <h1>Add new student</h1>
+            <h3><?php if (isset($error) && count($error) > 0) {echo $error; } ?></h3>
+            <h3><?php if (isset($succes) && count($succes) > 0 ) {echo $succes; } ?></h3>
             <span><a class="btn btn-success" href="<?php echo base_url();?>sinhvien/show" title="">Back</a></span>
             <br>
             <h3 for="">First name</h3>

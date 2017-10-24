@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<body>
+<body class="rgt">
     <div class="insert">
-        <h1>Register student</h1>
-        <p class="title"><?php echo $this->session->flashdata('message_register'); ?></p>
         <form action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            <h1 class="title">Register student</h1>
+            <p class="title"><?php echo $this->session->flashdata('message_register'); ?></p>
             <a class="btn btn-default btn-register" href="<?php echo base_url();?>home/login" title="">Back</a>
             <br>
             <h3 for="">First name</h3>

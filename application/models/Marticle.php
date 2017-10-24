@@ -7,6 +7,8 @@ class Marticle extends CI_Model {
     public function get_all_article() {
 
         $this->db->order_by("id", "desc");
+        
+        $this->db->where('is_deleted', "0");
     
         $query = $this->db->get('article');
       

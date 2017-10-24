@@ -30,39 +30,30 @@ $(document).ready(function() {
 				required : true,
 				
 			},
-			userfile : {
-				
-				required : true,
-				
-			},
+
 		},
 
 		messages : {
 
 			title : {
 				
-				required : "Title không được để trống",
+				required : "Title not be empty",
 				
 			},
 			author : {
 				
-				required : "Author không được để trống",
+				required : "Author not be empty",
 				
 			},
 			content : {
 				
-				required : "Content không được để trống",
+				required : "Content not be empty",
 				
 			},
 			categories : {
 
-				required : "Categories không được để trống",
+				required : "Categories not be empty",
 				
-			},
-				userfile : {
-				
-				required : "Bắt buộc phải chọn ảnh",
-
 			},
 
 		},

@@ -11,60 +11,46 @@ $(document).ready(function() {
 		rules : {
 
 			first_name : {
-
-				required : true,
-				
+				maxlength: 30,
 			},
 			last_name : {
-
-				required : true,
-				
+				maxlength: 30,
 			},
 			email : {
-
+				minlength: 6,
+				maxlength: 30,
 				required : true,
 				email : true,
-				
 			},
 			password : {
-
+				minlength: 6,
+				maxlength: 30,
 				required : true,
-				
 			},
 			confirm_password : {
-
+				minlength: 6,
+				maxlength: 30,
 				required : true,
 			},	
 
 		},
 
 		messages : {
-
-			first_name : {
-
-				required : "First name  không được để trống",
-				
-			},
-			last_name : {
-
-				required : "Last name không được để trống",
-				
-			},
 			email : {
 				
-				required : "Email không được để trống",
-				email: "Email không được định dạng",
+				required : "Email not be empty",
+				email: "Email not formatted",
 				
 			},
 			password :  {
 
-				required : "Password không được để trống",
+				required : "Password not be empty",
 				
 			},
 
 			confirm_password :  {
 
-				required : " Confirm Password không được để trống",
+				required : " Confirm Password not be empty",
 				
 			},
 
