@@ -7,7 +7,7 @@
             <h1 class="title">Add new student</h1>
             <h3><?php if (isset($error) && count($error) > 0) {echo $error; } ?></h3>
             <h3><?php if (isset($succes) && count($succes) > 0 ) {echo $succes; } ?></h3>
-            <span><a class="btn btn-primary btn-insert" href="<?php echo base_url();?>sinhvien/show" title="">Back</a></span>
+            <span><a class="btn  btn-default btn-back btn-insert" href="<?php echo base_url();?>sinhvien/show" title="">Back</a></span>
             <br>
             <h3 for="">First name</h3>
             <input type="text" name="first_name" class="form-control" placeholder="First name" value="<?php echo set_value("first_name"); ?>">

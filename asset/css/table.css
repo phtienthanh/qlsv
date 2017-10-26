@@ -490,6 +490,11 @@ body {
     line-height: 50px;
     margin-right: 16px;
 }
+.succesLogin .close{
+    line-height: 50px;
+    margin-right: 16px;
+}
+
 .fail{
      text-align: center;
     font-size: 18px;

@@ -38,7 +38,7 @@ $(document).ready(function() {
 				maxlength: 30,
 				required : true,
 			},
-			confirm_password : {
+			password_confirm : {
 				minlength: 6,
 				maxlength: 30,
 				required : true,
@@ -59,7 +59,7 @@ $(document).ready(function() {
 				
 			},
 
-			confirm_password :  {
+			password_confirm :  {
 
 				required : " Confirm Password not be empty",
 				
