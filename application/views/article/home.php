@@ -11,7 +11,7 @@
     <div class="col-md-2 col2">
         <span class="back"> <a href="<?php echo base_url('home') ?>" title="" class="btn btn-primary">Back</a></span>
     <br>
-    <span class=""> <a href="<?php echo base_url('article/add') ?>" <?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-success back">Add article</a></span>
+    <span class=""> <a href="<?php echo base_url('article/add') ?>" <?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-primary back">Add article</a></span>
     <span class="addcate"> <a href="<?php echo base_url('categories/home') ?>"<?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-warning back">Manage categories</a></span>
     <br>
     <?php if (count($article) > 0) { ?>
@@ -42,9 +42,9 @@
                                 <td>
                                     <div class="row row_xxx row_xxx<?php echo $valArticle['id'];?>">
                                         <div class="col-md-1 checkbox">
-                                            <input type="checkbox" <?php if ($AdminPr == false) { echo 'disabled'; } ?> name="checkboxlist[]" value="<?php echo $valArticle['id'];?>">
+                                            <input type="checkbox" class="checkboxhe" <?php if ($AdminPr == false) { echo 'disabled'; } ?> name="checkboxlist[]" value="<?php echo $valArticle['id'];?>">
                                         </div>
-                                        <div class="col-md-3"> <img class="avarta_1" src="<?php echo base_url();?>medias/article/<?php echo $valArticle['image']; ?>" width="90%"></div>
+                                        <div class="col-md-3 checkboxhe"> <img class="avarta_1" src="<?php echo base_url();?>medias/article/<?php echo $valArticle['image']; ?>" width="90%"></div>
                                         <div class="col-md-5">
                                             <p class="title title_article">
                                                 <?php 
@@ -71,14 +71,11 @@
                                                 ?>
                                             </pre>
                                             <div class="form-group">
-                                                <label class="col-md-3"><b>Author :</b></label>
-                                                <div class="col-md-3">
-                                                    <p><?php echo $valArticle["author"]; ?></p>
-                                                </div>
-                                                <label class="col-md-3"><b>Categories : </b></label>
-                                                <div class="col-md-3">
-                                                    <p><?php echo $newArray[$valArticle['categories']] ?></p>
-                                                </div>
+                                                <label><b>Author :</b></label>
+                                                <span><?php echo $valArticle["author"]; ?></span>
+                                                <br> 
+                                                <label><b>Categories : </b></label>
+                                                <span><?php echo $newArray[$valArticle['categories']] ?></span>
                                             </div>
                                         </div>
                                         <div class="col-md-3 btn_control">

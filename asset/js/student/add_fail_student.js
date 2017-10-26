@@ -16,6 +16,11 @@ $(document).ready(function() {
 			last_name : {
 				maxlength: 30,
 			},
+			Username : {
+				required : true,
+				maxlength: 30,
+				minlength: 6,
+			},
 			email : {
 				minlength: 6,
 				maxlength: 30,

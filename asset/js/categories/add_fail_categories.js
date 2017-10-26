@@ -6,7 +6,8 @@ $('.wrapper').validate({
 		rules : {
 
 			input_text : {
-				
+				maxlength: 30,
+				minlength: 6,
 				required : true,
 				
 			},

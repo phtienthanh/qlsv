@@ -314,9 +314,9 @@ class Home extends MY_Controller {
         
         $this->data['identity_column'] = $identity_column;
 
-        $this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required');
+        // $this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required');
         
-        $this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required');
+        // $this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required');
         
         if ($identity_column !== 'email') {
             
@@ -338,7 +338,7 @@ class Home extends MY_Controller {
 
             $email = strtolower($this->input->post('email'));
             
-            $identity = ($identity_column === 'email') ? $email : $this->input->post('identity');
+            $identity = $this->input->post('Username');
             
             $password = $this->input->post('password');
 

@@ -206,7 +206,7 @@ class Sinhvien extends MY_Controller {
 	        
 	            $email = strtolower($this->input->post('email'));
 
-	            $identity = ($identity_column === 'email') ? $email : $this->input->post('identity');
+	            $identity = $this->input->post('Username');
 
 	            $password = $this->input->post('password');
 

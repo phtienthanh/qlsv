@@ -7,7 +7,7 @@
             <h1 class="title">Add new student</h1>
             <h3><?php if (isset($error) && count($error) > 0) {echo $error; } ?></h3>
             <h3><?php if (isset($succes) && count($succes) > 0 ) {echo $succes; } ?></h3>
-            <span><a class="btn btn-success btn-insert" href="<?php echo base_url();?>sinhvien/show" title="">Back</a></span>
+            <span><a class="btn btn-primary btn-insert" href="<?php echo base_url();?>sinhvien/show" title="">Back</a></span>
             <br>
             <h3 for="">First name</h3>
             <input type="text" name="first_name" class="form-control" placeholder="First name" value="<?php echo set_value("first_name"); ?>">
@@ -16,6 +16,9 @@
             <h3 for="">Last name</h3>
             <input type="text" name="last_name" class="form-control" placeholder="Last name" value="<?php echo set_value("last_name"); ?>">
             <?php echo form_error("last_name"); ?>
+            <h3 for="">Username</h3>
+            <input type="text" name="Username" class="form-control" placeholder="Username" value="<?php echo set_value("Username"); ?>">
+            <?php echo form_error("Username"); ?>
             <h3 for="">Email</h3>
             <input type="text" name="email" placeholder="Email" class="form-control" value="<?php echo set_value("email");?>">
             <?php echo form_error("email"); ?>
@@ -47,7 +50,7 @@
             ?>
             <?php echo form_error("role"); ?>
             <br>
-            <input type="submit" name="submit" value="Insert" class="btn btn-primary btn-insert">
+            <input type="submit" name="submit" value="Insert" class="btn btn-success btn-insert">
         </form>
     </div>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>

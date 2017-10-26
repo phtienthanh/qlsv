@@ -13,14 +13,11 @@
         <a class="btn btn-default" href="<?php echo base_url(); ?>home/forget" title="">Forgot password</a>
     </div>
     <form  class="Form_login" action="<?php echo base_url(); ?>home/login"  method="POST" role="form">
-        
-        
-       
         <div class="form-group form-gr">
             <div class="title"> Login</div>
             <label for="">Email</label>
             <br>
-            <input type="text" class="form-control" name="email" placeholder="Username">
+            <input type="text" class="form-control" name="email" placeholder="Email">
             <?php echo form_error('email'); ?>
             <br>
             <br>

@@ -32,7 +32,7 @@ $(document).ready(function() {
 
 			role : {
 				
-				required : "Email not be empty",
+				required : "Role not be empty",
 
 			},
 			

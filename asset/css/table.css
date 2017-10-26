@@ -120,6 +120,7 @@ h1 span {
 #dataTable {
     margin: 50px;
     display: inline-block;
+    margin-bottom: 0px;
 }
 .widthbtn{
     width: 100px;
@@ -206,16 +207,15 @@ body {
 }
 
 .btn_control {
-    margin-top: 50px;
+       height: 222px;
+    line-height: 222px
 }
 
 .avarta_1 {
     width: 60%;
 }
 
-.checkbox {
-    margin-top: 54px;
-}
+
 
 .table_article {
     width: 100%;
@@ -575,4 +575,11 @@ border: none;
 }
 .col2{
     margin-top: 20px;
+}
+.checkboxhe{
+    height: 222px;
+    line-height: 222px;
+}
+.mark-air{
+    margin-left: 34px;
 }

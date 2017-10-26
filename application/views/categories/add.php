@@ -6,6 +6,8 @@
             <h1 class="title">Add categories</h1>
             <div> <a href="<?php echo base_url('categories/home') ?>" title="" class="btn btn-warning back">Back</a></div>
             <br>
+            <label for="">Name</label>
+            <br> 
             <input type="text" class="form-control form-control-line" name="input_text" class="input_text">
             <br>
             <input type="submit" name="submit" value="Add new categories" class="btn  btn-primary add-cate ">

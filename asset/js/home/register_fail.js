@@ -14,6 +14,13 @@ $(document).ready(function() {
 				maxlength : 30,
 				
 			},
+			Username : {
+
+				required : true,
+				maxlength: 30,
+				minlength: 6,
+				
+			},
 			email : {
 
 				required : true,
@@ -23,11 +30,15 @@ $(document).ready(function() {
 			password : {
 
 				required : true,
+				maxlength: 30,
+				minlength: 6,
 				
 			},
 			password_confirm : {
 
 				required : true,
+				maxlength: 30,
+				minlength: 6,
 					
 			},	
 

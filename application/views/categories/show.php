@@ -9,7 +9,7 @@
     </div>
     <div>
     <span class="addcate1"> <a href="<?php echo base_url('article/home')  ?>" title="" class="btn btn-primary ">Back</a></span>
-    <span class="addcate1"> <a href="<?php echo base_url('categories/add') ?>" title="" class="btn btn-warning btn-addct">Add Categories</a></span>
+    <span class="addcate1"> <a href="<?php echo base_url('categories/add') ?>" title="" class="btn btn-primary btn-addct">Add Categories</a></span>
     <button class="btn btn-danger delete_std" data-toggle="modal" data-target="#delall"> Delete</button>
     </div>
         <table class="table container responstable">

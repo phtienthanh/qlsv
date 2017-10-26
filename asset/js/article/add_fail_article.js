@@ -13,7 +13,8 @@ $(document).ready(function() {
 			title : {
 				
 				required : true,
-				
+				maxlength: 100,
+				minlength: 6,
 			},
 			author : {
 				
@@ -21,16 +22,8 @@ $(document).ready(function() {
 				
 			},
 			categories : {
-				
 				required : true,
-				
 			},
-			content : {
-				
-				required : true,
-				
-			},
-
 		},
 
 		messages : {
@@ -45,13 +38,8 @@ $(document).ready(function() {
 				required : "Author not be empty",
 				
 			},
-			content : {
-				
-				required : "Content not be empty",
-				
-			},
 			categories : {
-
+			
 				required : "Categories not be empty",
 				
 			},

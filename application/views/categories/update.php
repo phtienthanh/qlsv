@@ -7,7 +7,7 @@
 <body>
     <div class="insert">
         <form class="wrapper" action="" method="POST">
-            <div><a class=" btn btn-warning" href="<?php echo base_url('categories/home')?>">Back</a> </div>
+            <div><a class=" btn btn-primary" href="<?php echo base_url('categories/home')?>">Back</a> </div>
             <br>
             <label for="">Name</label>
             <br>

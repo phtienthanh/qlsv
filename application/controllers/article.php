@@ -78,6 +78,10 @@ class article extends MY_Controller {
 
        	$data = $this->Marticle->get_all_article();
 
+       	$this->load->model('Msinhvien');
+
+       	$this->data['authorSv'] = $this->Msinhvien->get_all_sinhvien();
+
        	$slug = create_slug($this->input->post('title')).'.html';
 
        	$this->load->model('Mcategories');
@@ -106,9 +110,7 @@ class article extends MY_Controller {
    			
 	       	$this->form_validation->set_rules('title', 'title', 'required');
 
-	       	$this->form_validation->set_message('required', '%s không được bỏ trống');
-	       	
-	       	$this->form_validation->set_rules('content', 'content', 'required');
+	       	$this->form_validation->set_message('required', '%s not be empty');
 
 	       	$this->form_validation->set_message('is_unique', '%s đã tồn tại');
 

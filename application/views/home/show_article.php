@@ -1,9 +1,9 @@
 <html>
 <body>
     <div class="container">
+           <h1 class="title">Show article</h1>
     <div class="col-md-8">
-        <h1 class="my-4">Show article</h1>
-
+    
         <?php if(isset($searchAr) && count($searchAr)) { ?>
 
         <h3 class="title"> Tìm thấy <?php echo $searchAr; ?> kết quả</h3>
@@ -58,7 +58,7 @@
         <div class="paging"><?php echo $paginator; ?></div>
     </div>
         <div class="col-md-4">
-            <div class="card my-4">
+            <div class="card mb-4">
                 <h5 class="card-header">Search</h5>
                 <div class="card-body">
                     <form action="" class="Form_insert form_search form_search_show" method="get" accept-charset="utf-8">

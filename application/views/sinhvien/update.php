@@ -6,21 +6,21 @@
             <h1 class="title">Update student</h1>
             <p class="title"><?php  if (isset($upload_fail) && count($upload_fail) > 0) { echo $upload_fail; } ?></p>
             <h3 class="title"><?php echo $this->session->flashdata('message_update'); ?></h3>
-            <span class="btn-block"> <a href="<?php echo base_url('sinhvien/show')  ?>" title="" class="btn btn-success widthbtn ">Back</a></span>
+            <span class="btn-block"> <a href="<?php echo base_url('sinhvien/show')  ?>" title="" class="btn btn-primary widthbtn ">Back</a></span>
             <br>
             <label for="">First name</label>
             <br>
             <input type="text" name="first_name" class="form-control" placeholder="First name" value="<?php
             if (isset($student["first_name"]) && count($student["first_name"]) > 0) {
              echo $student["first_name"]; }?>">
-            <?php echo form_error("first_name"); ?>
+            <label class="error"> <?php echo form_error("first_name"); ?></label>
             <br>
             <label for="">Last name</label>
             <br>
             <input type="text" name="last_name" class="form-control" placeholder="Last name" value="<?php
             if (isset($student["last_name"]) && count($student["last_name"]) > 0) {
              echo $student["last_name"]; }?>">
-            <?php echo form_error("last_name"); ?>
+            <label class="error"> <?php echo form_error("last_name"); ?></label>
             <br>
             <label for="">Email</label>
             <br>
@@ -50,7 +50,7 @@
             <?php echo form_error("role"); ?>
             <br>
             <br>
-            <input class="btn btn-warning widthbtn" type="submit" name="insert"  value="Update">
+            <input class="btn btn-success widthbtn" type="submit" name="insert"  value="Update">
             <span><a class="btn btn-success " href="<?php echo base_url();?>sinhvien/changepass/<?php echo $student["id"];?>" title=""> Change password</a></span>
         </form>
     </div>

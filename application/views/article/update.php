@@ -7,14 +7,14 @@
         <div class="page-wrapper">
             <div class="container-fluid page-wrapper">
                 <div class="row page-titles">
-                    
+    
                     <div class="title">
                         <h1 class="colorMana"> Update article</h3>
                         <p class="title"><?php echo $this->session->flashdata('message_upload'); ?></p>
                         <?php echo $this->session->flashdata('message_add'); ?>
                     </div>
-                    <div>
-                        <a href="<?php echo base_url();?>article/home" class="btn  hidden-sm-down btn btn-success widthbtn"> Back</a>
+                    <div class="mark-air">
+                        <a href="<?php echo base_url();?>article/home" class="btn  hidden-sm-down btn btn-primary widthbtn"> Back</a>
                     </div>
                 </div>
                 <div class="row row_ud">
@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12 btn-form">
-                                            <input type="submit" name="submit" class="btn btn-warning update-btn widthbtn" value="Update">
+                                            <input type="submit" name="submit" class="btn btn-success update-btn widthbtn" value="Update">
                                         </div>
                                     </div>
                                 </form>
