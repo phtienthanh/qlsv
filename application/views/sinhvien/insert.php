@@ -36,13 +36,11 @@
             <h3 for="">Role</h3>
             <?php 
             if(isset($role) && count($role) > 0) { 
-
                 foreach ($role as $keyRole => $valRole) { ?>
 
                     <tr selected>
                         <input name='<?php echo $valRole['id']; ?>' type='checkbox' value='<?php echo $valRole['id']; ?>' /><?php echo $valRole['name']; ?>
                     </tr>
-                   
             <?php 
                 }  
 

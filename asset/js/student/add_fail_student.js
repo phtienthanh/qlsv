@@ -6,9 +6,10 @@ $(document).ready(function() {
 	    
 	});
 
-	jQuery.validator.addMethod("lettersonly", function(value, element) 
-	{
-	return this.optional(element) || /^[a-z,0-9,"",_]+$/i.test(value);
+	jQuery.validator.addMethod("lettersonly", function(value, element) {
+
+		return this.optional(element) || /^[a-z,0-9,"",_]+$/i.test(value);
+
 	}, "Only alphabets, numbers and underscores '_'");
 
 	$('.Form_insert').validate({
@@ -48,22 +49,18 @@ $(document).ready(function() {
 
 		messages : {
 			email : {
-				
 				required : "Email not be empty",
 				email: "Email not formatted",
-				
 			},
 			password :  {
-
-				required : "Password not be empty",
-				
+				required : "Password not be empty",	
 			},
-
 			password_confirm :  {
-
 				required : " Confirm Password not be empty",
-				
 			},
+			Username : {
+				required : "Username not be empty",
+			}
 
 		},
 
