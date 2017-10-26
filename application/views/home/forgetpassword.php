@@ -10,12 +10,11 @@
             <br>
             <a class="btn btn-default btn-back" href="<?php echo base_url();?>home/login" title="">Back</a>
             <br>
-            <h3 for="">Please enter email</h3>
-            <br>
+            <h3 for="">Email</h3>
             <input type="text" name="email" class="form-control" placeholder="Email" value="<?php echo set_value(" first_name "); ?>">
             <?php echo form_error("email"); ?>
             <br>
-            <input type="submit" name="submit" value="Forget" class="btn btn-success btn-insert">
+            <input type="submit" name="submit" value="Send email" class="btn btn-success ">
         </form>
     </div>
 </body>

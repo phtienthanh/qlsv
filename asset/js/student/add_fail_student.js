@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 	jQuery.validator.addMethod("lettersonly", function(value, element) 
 	{
-	return this.optional(element) || /^[a-z,1-9,"",_]+$/i.test(value);
+	return this.optional(element) || /^[a-z,0-9,"",_]+$/i.test(value);
 	}, "Only alphabets, numbers and underscores '_'");
 
 	$('.Form_insert').validate({

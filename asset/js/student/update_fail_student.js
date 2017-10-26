@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 	jQuery.validator.addMethod("lettersonly", function(value, element) 
 	{
-	return this.optional(element) || /^[a-z,1-9,"",_]+$/i.test(value);
+	return this.optional(element) || /^[a-z,0-9,"",_]+$/i.test(value);
 	}, "Only alphabets, numbers and underscores '_'");
 	
 	$('.Form_insert').validate({
@@ -16,9 +16,7 @@ $(document).ready(function() {
 		rules : {
 
 			first_name : {
-
 				maxlength: 30,
-
 			},
 			username : {
 				lettersonly: true,
@@ -27,14 +25,10 @@ $(document).ready(function() {
 				minlength: 6,
 			},
 			last_name : {
-
 				maxlength: 30,
-
 			},
 			role : {
-
 				required : true,
-
 			},
 		
 		},
@@ -42,11 +36,12 @@ $(document).ready(function() {
 		messages : {
 
 			role : {
-				
 				required : "Role not be empty",
-
 			},
-			
+			username : {
+				required : "Username not be empty",
+			},
+
 		},
 
 	});

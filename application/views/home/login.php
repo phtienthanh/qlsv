@@ -15,6 +15,7 @@
     <form  class="Form_login" action="<?php echo base_url(); ?>home/login"  method="POST" role="form">
         <div class="form-group form-gr">
             <div class="title"> Login</div>
+            <div class=" title errors"><?php echo $this->session->flashdata('message'); ?></div>
             <label for="">Email</label>
             <br>
             <input type="text" class="form-control" name="email" placeholder="Email">
@@ -27,8 +28,9 @@
             <?php echo form_error('password'); ?>
             <br>
             <input type="submit" name="submit" value="Login" class="btn btn-success  btn_login" data-toggle="modal" data-target=".bs-example-modal-sm">
-            <p ><?php echo $this->session->flashdata('message_login'); ?></p>
-             <div class="error"> <?php echo $this->session->flashdata('message'); ?></div>
+            <p class="title"><?php echo $this->session->flashdata('message_login'); ?></p>
+            
+             
         </div>
     </form>
 </body>
