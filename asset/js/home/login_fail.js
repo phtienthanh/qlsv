@@ -5,12 +5,10 @@ $(document).ready(function() {
 		rules : {
 
 			email : {
-				
 				required : true,
 				email:true,
 				maxlength: 30,
 				minlength: 6,
-				
 			},
 			password : {
 				required : true,
@@ -23,14 +21,10 @@ $(document).ready(function() {
 		messages : {
 
 			email : {
-
 				required : "Email  not be empty",
-
 			},
 			password : {
-
 				required : "Password not be empty",
-				
 			},
 		},
 

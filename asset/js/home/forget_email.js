@@ -5,18 +5,15 @@ $(document).ready(function() {
 		rules : {
 
 			email : {
-				
 				required : true,
-				
+				email:true,
 			},
 			
 		},
 		messages : {
 
 			email : {
-
 				required : "Email not be empty ",
-				
 			},
 			
 		},
