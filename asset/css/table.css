@@ -281,7 +281,7 @@ body {
     margin-top: 20px !important;
 }*/
 
-.error {
+.error, .errors {
 
     color: red;
     font-size: 16px;
@@ -447,7 +447,9 @@ body {
     font-size: 17px;
     font-weight: bold;
 }
-
+.btn-back{
+    background-color: #e7e7e7;
+}
 .btn-insert {
     margin-top: 20px;
 }
@@ -487,11 +489,6 @@ body {
 .succes .close{
     line-height: 50px;
     margin-right: 16px;
-}
-.succesLogin{
-    background-color: #fff;
-    height:50px; color:#000;
-    text-align: left;
 }
 .fail{
      text-align: center;
@@ -557,12 +554,17 @@ border: none;
     background: url("../img/header_bg.jpg") no-repeat fixed 0 0 rgba(0, 0, 0, 0);
 }
 .succesLogin{
+       width: 500px;
     text-align: center;
     font-weight: bold;
     font-size: 25px;
-    background: url(../img/header_bg.jpg) no-repeat fixed 0 0 rgba(0, 0, 0, 0);
-    color: #fff;
+    background: #fff;
+    color: black;
     margin-top: 40px;
+    height: 50px;
+    line-height: 50px;
+    display: inline-block;
+    border-radius: 5px;
 }
 .changepassForm {
     background-color: #fff;

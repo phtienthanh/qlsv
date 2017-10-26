@@ -118,6 +118,8 @@ class Home extends MY_Controller {
 		       	
 			       	$this->form_validation->set_rules('last_name', 'Last name','required');
 
+			       	$this->form_validation->set_rules('username', 'Username','required');
+
 			       	$this->form_validation->set_message('required', '%s not be empty');
 		      		
 		      		if ($this->form_validation->run()) {
@@ -126,7 +128,7 @@ class Home extends MY_Controller {
 
 							"first_name" => $this->input->post("first_name"),
 							
-							"last_name" => $this->input->post("last_name")
+							"last_name" => $this->input->post("last_name"),
 							
 						);	
 
@@ -772,7 +774,7 @@ class Home extends MY_Controller {
         
        	$config = array();	
 
-       	$keyWord = trim($this->input->get('keyWord', TRUE));
+       	$keyWord = trim($this->input->get('keyword', TRUE));
 
        	if (!isset($_GET['page'])) {
 
@@ -791,6 +793,8 @@ class Home extends MY_Controller {
 			$config['total_rows'] = $this->Marticle->show_number_article();
 
 		} else {
+
+			$this->load->model('Marticle');
 
 			$config['total_rows'] = $this->Marticle->show_number_title_article($keyWord);
 

@@ -45,7 +45,7 @@
                                         <label class="col-md-12">First Name</label>
                                         <div class="col-md-12">
                                             <input type="text" name="first_name" placeholder="First name" class="form-control form-control-line" value="<?php if(isset($student['first_name']) && count($student['first_name']) > 0) { echo $student["first_name"]; }?>">
-                                            <?php echo form_error("first_name"); ?>
+                                            <label class="errors"><?php echo form_error("first_name"); ?></label>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -53,7 +53,15 @@
                                         <div class="col-md-12">
                                             <input type="text" name="last_name" placeholder="Last name" class="form-control form-control-line" value="<?php if(isset($student['last_name']) && count($student['last_name']) > 0) {
                                              echo $student["last_name"]; } ?>">
-                                            <?php echo form_error("last_name"); ?>
+                                            <label class="errors"><?php echo form_error("last_name"); ?></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Username</label>
+                                        <div class="col-md-12">
+                                            <input type="text" readonly="value" name="username" placeholder="Username" class="form-control form-control-line" value="<?php if(isset($student['username']) && count($student['username']) > 0) {
+                                             echo $student["username"]; } ?>">
+                                            <label class="errors"><?php echo form_error("username"); ?></label>
                                         </div>
                                     </div>
                                     <div class="form-group">

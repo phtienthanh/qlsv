@@ -5,6 +5,11 @@ $(document).ready(function() {
 		$('.userfile').click();
 	    
 	});
+
+	jQuery.validator.addMethod("lettersonly", function(value, element) 
+	{
+	return this.optional(element) || /^[a-z,1-9,"",_]+$/i.test(value);
+	}, "Only alphabets, numbers and underscores '_'");
 	
 	$('.Form_insert').validate({
 		
@@ -14,6 +19,12 @@ $(document).ready(function() {
 
 				maxlength: 30,
 
+			},
+			username : {
+				lettersonly: true,
+				required : true,
+				maxlength: 30,
+				minlength: 6,
 			},
 			last_name : {
 

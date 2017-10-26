@@ -5,7 +5,7 @@
         <form action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <h1 class="title">Register student</h1>
             <p class="title"><?php echo $this->session->flashdata('message_register'); ?></p>
-            <a class="btn btn-default btn-register" href="<?php echo base_url();?>home/login" title="">Back</a>
+            <a class="btn btn-default btn-back" href="<?php echo base_url();?>home/login" title="">Back</a>
             <h3 for="">First name</h3>
             <input type="text" name="first_name" class="form-control" placeholder="First name" value="<?php echo set_value("first_name"); ?>">
             <?php echo form_error("first_name"); ?>

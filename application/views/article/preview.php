@@ -6,7 +6,7 @@
                 <div class="row page-titles">
                     <h1 class="title colorMana">Preview article</h1>
                     <div class="col-lg-12 col-xlg-9 col-md-7 ">
-                        <a href="<?php echo base_url();?>article/home" class="btn hidden-sm-down btn-primary"> Back</a>
+                        <a href="<?php echo base_url();?>article/home" class="btn hidden-sm-down  btn-default btn-back"> Back</a>
                     </div>
                 </div>
                  <br> 

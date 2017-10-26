@@ -14,7 +14,7 @@
                         <?php echo $this->session->flashdata('message_add'); ?>
                     </div>
                     <div class="mark-air">
-                        <a href="<?php echo base_url();?>article/home" class="btn  hidden-sm-down btn btn-primary widthbtn"> Back</a>
+                        <a href="<?php echo base_url();?>article/home" class="btn  hidden-sm-down  btn-default btn-back widthbtn"> Back</a>
                     </div>
                 </div>
                 <div class="row row_ud">

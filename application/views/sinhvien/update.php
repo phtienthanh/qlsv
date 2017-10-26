@@ -6,7 +6,7 @@
             <h1 class="title">Update student</h1>
             <p class="title"><?php  if (isset($upload_fail) && count($upload_fail) > 0) { echo $upload_fail; } ?></p>
             <h3 class="title"><?php echo $this->session->flashdata('message_update'); ?></h3>
-            <span class="btn-block"> <a href="<?php echo base_url('sinhvien/show')  ?>" title="" class="btn btn-primary widthbtn ">Back</a></span>
+            <span class="btn-block"> <a href="<?php echo base_url('sinhvien/show')  ?>" title="" class="btn  btn-default btn-back widthbtn ">Back</a></span>
             <br>
             <label for="">First name</label>
             <br>
@@ -21,6 +21,13 @@
             if (isset($student["last_name"]) && count($student["last_name"]) > 0) {
              echo $student["last_name"]; }?>">
             <label class="error"> <?php echo form_error("last_name"); ?></label>
+            <br>
+            <label for="">Username</label>
+            <br>
+            <input type="text" name="username" class="form-control" placeholder="Username" value="<?php
+            if (isset($student["username"]) && count($student["username"]) > 0) {
+             echo $student["username"]; }?>">
+            <label class="error"> <?php echo form_error("username"); ?></label>
             <br>
             <label for="">Email</label>
             <br>

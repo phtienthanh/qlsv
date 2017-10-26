@@ -15,7 +15,7 @@ $(document).ready(function() {
 
 			email : {
 
-				required : "First name  không được để trống",
+				required : "Email not be empty ",
 				
 			},
 			

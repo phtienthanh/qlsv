@@ -4,7 +4,7 @@
     <div class="insert">
         <form class="wrapper Form_insert " action="" name="myForm" method="post" accept-charset="utf-8" id="dataTable">
             <h1 class="title">Add categories</h1>
-            <div> <a href="<?php echo base_url('categories/home') ?>" title="" class="btn btn-warning back">Back</a></div>
+            <div> <a href="<?php echo base_url('categories/home') ?>" title="" class="btn  btn-default btn-back back">Back</a></div>
             <br>
             <label for="">Name</label>
             <br> 

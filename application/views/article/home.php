@@ -9,7 +9,7 @@
     <br>
     <br>
     <div class="col-md-2 col2">
-        <span class="back"> <a href="<?php echo base_url('home') ?>" title="" class="btn btn-primary">Back</a></span>
+        <span class="back"> <a href="<?php echo base_url('home') ?>" title="" class="btn btn-default btn-back">Back</a></span>
     <br>
     <span class=""> <a href="<?php echo base_url('article/add') ?>" <?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-primary back">Add article</a></span>
     <span class="addcate"> <a href="<?php echo base_url('categories/home') ?>"<?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-warning back">Manage categories</a></span>

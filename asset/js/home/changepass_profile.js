@@ -31,19 +31,19 @@ $(document).ready(function() {
 
 			old_password : {
 
-				// required : "First name không được để trống",
+				required : "Current password  field is required",
 				minlength: "Enter at least 8 characters",
 				
 			},
 			new_password : {
 
-				// required : "Last name không được để trống",
+				required : "New password  field is required",
 				minlength: "Enter at least 8 characters",
 				
 			},
 			new_password_confirm : {
 
-				// required : "Email không được để trống",
+				required : "Confirm password  field is required",,
 				minlength: "Enter at least 8 characters",
 				
 			},
