@@ -8,21 +8,25 @@
             <br>
             <span > <a href="<?php echo base_url('home/profile/'.$id)?>" title="" class="btn  btn-default btn-back widthbtn">Back</a></span>
             <br>
+            <br>
             <label for="">Current password</label>
             <input type="password"  class="form-control" name="old_password" placeholder="Current password">
             <div class="fail2">
                 <?php echo form_error('old_password'); ?>
             </div>
+            <br>
             <label for="">New password</label>
             <input type="password"  class="form-control" name="new_password" placeholder="New password">
             <div class="fail2">
                 <?php echo form_error('new_password'); ?>
             </div>
+            <br>
             <label for="">Confirm password</label>
             <input type="password"  class="form-control" name="new_password_confirm" placeholder="Confirm password">
             <div class="fail2">
                 <?php echo form_error("new_password_confirm"); ?>
             </div>
+            <br>
             <input type="submit" class="btn btn-success widthbtn"  name="change" value="Change" class="color_input">
         </form>
         </p>

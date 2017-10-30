@@ -349,6 +349,10 @@ body {
 
     color: #fff;
 }
+.form_profile .col-md-12 .error {
+
+    color: red;
+}
 .cols .error {
 
         color: red;

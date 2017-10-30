@@ -10,23 +10,22 @@
         <form class="login wrapper changepassForm" action="" method="POST">
              <h1 class="title"> Change password</h1>
             <h3 class="title"><?php if (isset($changeSucces) && count($changeSucces) > 0) { echo $changeSucces; } ?></h3>
-            <span> <a href="<?php echo base_url('sinhvien/show') ?>" title="" class="btn btn-primary">Back</a></span>
-            <br>
-            <br>
-            <label for="">Current password</label>
-            <br>
+            <span> <a href="<?php echo base_url('sinhvien/show') ?>" title="" class="btn btn-default btn-back">Back</a></span>
+            <h3 for="">Current password</h3>
             <input type="password" class="form-control" name="old_password" placeholder="Current password">
+            <div class="errors">
             <?php echo form_error('old_password'); ?>
-            <br>
-            <label for="">New password</label>
-            <br>
+            </div>
+            <h3 for="">New password</h3>
             <input type="password" class="form-control" name="new_password" placeholder="New password">
-            <?php echo form_error("new_password"); ?>
-            <br>
-            <label for="">Confirm password</label>
-            <br>
+            <div class="errors">
+            <?php echo form_error("new_password"); ?> 
+            </div>
+            <h3 for="">Confirm password</h3>
             <input type="password" class="form-control" name="new_password_confirm" placeholder="Confirm password">
-            <?php echo form_error("new_password_confirm"); ?>
+            <div class="errors">
+            <?php echo form_error("new_password_confirm"); ?>   
+            </div>
             <br>
             <input type="submit" class="btn btn-success" name="Change" value="Change password" class="color_input">
         </form>

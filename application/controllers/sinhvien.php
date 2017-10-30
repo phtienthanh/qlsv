@@ -602,11 +602,13 @@ class Sinhvien extends MY_Controller {
 
         		}
 
-				$this->form_validation->set_rules('old_password', $this->lang->line('change_password_validation_old_password_label'), 'required');
+				$this->form_validation->set_rules('old_password','old password', 'required|min_length[6]|max_length[30]');
 
-				$this->form_validation->set_rules('new_password', $this->lang->line('change_password_validation_new_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[new_password_confirm]');
+				$this->form_validation->set_rules('new_password', 'new password ', 'required|min_length[6]|max_length[30]|matches[new_password_confirm]');
 
-				$this->form_validation->set_rules('new_password_confirm', $this->lang->line('change_password_validation_new_password_confirm_label'), 'required');
+				$this->form_validation->set_rules('new_password_confirm','new password confirm', 'required|min_length[6]|max_length[30]');
+
+				$this->form_validation->set_message('required','The %s not be empty');
 				
 				$this->load->model('ion_auth_model');
 				

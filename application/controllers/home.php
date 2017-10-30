@@ -114,7 +114,11 @@ class Home extends MY_Controller {
 		      
 		      	if ($this->input->post("submit")) {
 
-			       	$this->form_validation->set_rules('username', 'Username','required');
+		      		$this->form_validation->set_rules('first_name', 'Username','max_length[30]');
+
+		      		$this->form_validation->set_rules('last_name', 'Username','max_length[30]');
+
+			       	$this->form_validation->set_rules('username', 'Username','required|max_length[30]|min_length[6]');
 
 			       	$this->form_validation->set_message('required', '%s not be empty');
 		      		
@@ -125,6 +129,8 @@ class Home extends MY_Controller {
 							"first_name" => $this->input->post("first_name"),
 							
 							"last_name" => $this->input->post("last_name"),
+
+							"username" => $this->input->post("username"),
 							
 						);	
 
@@ -635,9 +641,9 @@ class Home extends MY_Controller {
 
     		if (count($checkId) > 0) {
 
-				$this->form_validation->set_rules('old_password','Current password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']');
+				$this->form_validation->set_rules('old_password','Current password', 'required|min_length[6]|max_length[30]');
 
-				$this->form_validation->set_rules('new_password', 'New password', 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[new_password_confirm]');
+				$this->form_validation->set_rules('new_password', 'New password', 'required|min_length[6]|max_length[30]');
 
 				$this->form_validation->set_rules('new_password_confirm', 'Password confirm', 'required');
 				

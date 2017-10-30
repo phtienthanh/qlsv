@@ -24,16 +24,16 @@ $(document).ready(function() {
 		messages : {
 
 			old_password : {
-				required : "Current password  field is required",
-				minlength: "Enter at least 8 characters",
+				required : "Current password not be empty",
+				minlength: "Enter at least 6 characters",
 			},
 			new_password : {
-				required : "New password  field is required",
-				minlength: "Enter at least 8 characters",
+				required : "New password not be empty",
+				minlength: "Enter at least 6 characters",
 			},
 			new_password_confirm : {
-				required : "Confirm password  field is required",,
-				minlength: "Enter at least 8 characters",
+				required : "Confirm password not be empty",
+				minlength: "Enter at least 6 characters",
 			},
 
 		},

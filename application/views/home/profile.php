@@ -20,9 +20,14 @@
                                     Upload image
                                 </div>
                                 <center class="m-t-30"> <img src="<?php echo base_url(); ?>medias/student/<?php echo $student["avatar"]; ?>" width="150" />
-                                    <input type="file" name="userfile" class="btn">
+
+                                    <div>
+                                         <br>
+                                    <input type="file" name="userfile" class="userfile hinden">
+                                    <p class="btn btn-primary btn_select ">Select image</p>
                                     <input type="text" class="hinden" name="img_name" value="<?php echo $student["avatar"]; ?>">
-                                    <input type="submit" name="submit" value="upload" class="btn btn-success">
+                                    <input type="submit" name="submit" value="Upload" class="btn btn-success">
+                                    </div>
                                     <h4 class="card-title m-t-10">
                                         <?php if (isset($student['last_name']) && count($student['last_name']) > 0) {
 
@@ -40,7 +45,7 @@
                                 User information
                             </div>
                             <div class="card-block">
-                                <form action="" method="post" class="form-horizontal form-material">
+                                <form class="form_profile" method="post" class="form-horizontal form-material">
                                     <div class="form-group">
                                         <label class="col-md-12">First Name</label>
                                         <div class="col-md-12">
@@ -59,7 +64,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Username</label>
                                         <div class="col-md-12">
-                                            <input type="text" readonly="value" name="username" placeholder="Username" class="form-control form-control-line" value="<?php if(isset($student['username']) && count($student['username']) > 0) {
+                                            <input type="text"  name="username" placeholder="Username" class="form-control form-control-line" value="<?php if(isset($student['username']) && count($student['username']) > 0) {
                                              echo $student["username"]; } ?>">
                                             <label class="errors"><?php echo form_error("username"); ?></label>
                                         </div>
@@ -104,4 +109,7 @@
         </div>
     </div>
 </body>
+ <script src="<?php echo base_url(); ?>asset/js/jquery.validate.min.js"></script>
+    <script src="<?php echo base_url(); ?>asset/js/jquery.validate.js"></script>
+    <script src="<?php echo base_url(); ?>asset/js/home/profile_fail.js"></script>
 </html>

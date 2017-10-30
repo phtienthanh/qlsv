@@ -32,7 +32,7 @@
             <span id="eror_cfpassword"> </span>
             <h3 for="">Avatar</h3>
             <input type="file" name="userfile" class="userfile hinden">
-             <p class="btn btn-primary btn_select btn-insert ">Select image</p>
+            <p class="btn btn-primary btn_select btn-insert ">Select image</p>
             <h3 for="">Role</h3>
             <?php 
             if(isset($role) && count($role) > 0) { 
