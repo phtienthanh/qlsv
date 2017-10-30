@@ -27,14 +27,18 @@
                     
                             if ($valAuthorSv['first_name'] != "" || $valAuthorSv['last_name'] != "") { ?>
                     
-                            <option value="<?php echo $valAuthorSv['first_name'].$valAuthorSv['last_name']; ?>">
-                                <?php echo $valAuthorSv['first_name'].$valAuthorSv['last_name']; ?>
+                            <option value="<?php echo $valAuthorSv['first_name'].$valAuthorSv['last_name']; ?>" <?php if ($name == $valAuthorSv['first_name']." ".$valAuthorSv['last_name']) { echo "selected";
+                                
+                            }  ?>>
+                                <?php echo $valAuthorSv['first_name']." ".$valAuthorSv['last_name']; ?>
                             </option>
                 <?php
                             }  else {
                             
                             ?>
-                                <option value="<?php echo $valAuthorSv['first_name'].$valAuthorSv['last_name']; ?>">
+                                <option value="<?php echo $valAuthorSv['username']; ?>" <?php if ($username == $valAuthorSv['username'] ) {
+                                   echo "selected";
+                                } ?>>
                                     <?php echo $valAuthorSv['username']; ?>
                                 </option>
                             <?php
@@ -79,6 +83,7 @@
         </form>
     </div>
 </body>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+    <script src="<?php echo base_url(); ?>asset/js/jquery.validate.min.js"></script>
+    <script src="<?php echo base_url(); ?>asset/js/jquery.validate.js"></script>
 <script src="<?php echo base_url();?>asset/js/article/add_fail_article.js"></script>
 </html>

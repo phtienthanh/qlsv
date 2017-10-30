@@ -17,7 +17,7 @@
         </form>
     </div>
 </body>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
+    <script src="<?php echo base_url(); ?>asset/js/jquery.validate.min.js"></script>
+    <script src="<?php echo base_url(); ?>asset/js/jquery.validate.js"></script>
 <script src="<?php echo base_url();?>asset/js/categories/add_fail_categories.js"></script>
 </html>

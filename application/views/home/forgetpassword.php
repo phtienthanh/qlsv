@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <body class="forgetBody">
     <div class="insert">
         <form class="form_forget" action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
@@ -18,7 +17,7 @@
         </form>
     </div>
 </body>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
+<script src="<?php echo base_url(); ?>asset/js/jquery.validate.min.js"></script>
+<script src="<?php echo base_url(); ?>asset/js/jquery.validate.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>asset/js/home/forget_email.js"></script>
 </html>

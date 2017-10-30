@@ -51,6 +51,8 @@ class MY_Controller extends CI_Controller {
             }
   			
             $first_name = $userInfo->first_name;
+
+            $username = $userInfo->username;
   			
             $email = $userInfo->email;
   			
@@ -63,6 +65,8 @@ class MY_Controller extends CI_Controller {
             $this->data['id'] = $id;
   			
             $this->data['first_name'] = $first_name;
+
+            $this->data['username'] = $username;
   			
             $this->data['email'] = $email;
   			
@@ -71,6 +75,8 @@ class MY_Controller extends CI_Controller {
             $this->data['password'] = $password;
   			
             $this->data['avatar'] = $avatar; 
+
+            $this->data['name'] =  $first_name." ".$last_name;
       
 		}
 

@@ -180,10 +180,6 @@ class Sinhvien extends MY_Controller {
 
         $this->data['identity_column'] = $identity_column;
         
-        // $this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'required');
-        
-        // $this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'required');
-        
         if($identity_column !== 'email') {
 
             $this->form_validation->set_rules('identity', $this->lang->line('create_user_validation_identity_label'),'required|is_unique['.$tables['users'].'.'.$identity_column.']');
@@ -196,9 +192,9 @@ class Sinhvien extends MY_Controller {
 
         }
       
-        $this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length['.$this->config->item('min_password_length', 'ion_auth').']|max_length['.$this->config->item('max_password_length', 'ion_auth').']|matches[password_confirm]');
+        $this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[6]|max_length[30]|matches[password_confirm]');
 
-        $this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required');
+        $this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required|min_length[6]|max_length[30]');
 
         if ($this->form_validation->run() == true) {
 
@@ -387,14 +383,10 @@ class Sinhvien extends MY_Controller {
 		      	$this->data['student'] = $this->Msinhvien->get_id_sinhvien($id); 
 		      	
 		      	if ($this->input->post("insert")) {
-			
-			       	$this->form_validation->set_rules('first_name', 'First name', 'required');
-		       	
-			       	$this->form_validation->set_rules('last_name', 'Last name', 'required');
 			       	
 			       	$this->form_validation->set_rules('email', 'Email', 'required');
 		
-			       	$this->form_validation->set_message('required', '%s không được bỏ trống');
+			       	$this->form_validation->set_message('required', '%s not be empty ');
 		    
 			       	if ($this->form_validation->run()) {
 		

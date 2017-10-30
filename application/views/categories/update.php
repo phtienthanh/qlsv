@@ -4,9 +4,9 @@
 <head>
     <title>Animated login form</title>
 </head>
-<body>
+<body class="dangkiBody">
     <div class="insert">
-        <form class="wrapper" action="" method="POST">
+        <form class="Form_insert" action="" method="POST">
             <div><a class=" btn  btn-default btn-back" href="<?php echo base_url('categories/home')?>">Back</a> </div>
             <br>
             <label for="">Name</label>
@@ -15,7 +15,7 @@
                 if(isset($student['name']) && count($student['name']) > 0) {echo $student['name'];} ?>">
             <?php echo form_error("input_text"); ?>
             <br>
-            <input type="submit" class="btn btn-success" name="change" value="change" class="color_input">
+            <input type="submit" class="btn btn-success" name="change" value="Change" class="color_input">
         </form>
         </p>
     </div>

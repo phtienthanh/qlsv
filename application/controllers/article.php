@@ -220,6 +220,10 @@ class article extends MY_Controller {
 
 				$data['categoriess'] = $this->Mcategories->get_all_categories();
 
+				$this->load->model('Msinhvien');
+
+       			$data['authorSv'] = $this->Msinhvien->get_all_sinhvien();
+
 				$checkSlug = create_slug($this->input->post('slug'));
 
 		      	$data['student'] = $this->Marticle->get_slug_article($slug); 
