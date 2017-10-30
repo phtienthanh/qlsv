@@ -2,14 +2,13 @@
 <body>
     <div class="container">
            <h1 class="title">Show article</h1>
-    <div class="col-md-8">
-    
-        <?php if(isset($searchAr) && count($searchAr)) { ?>
+           <?php if(isset($searchAr) && count($searchAr)) { ?>
 
-        <h3 class="title"> Tìm thấy <?php echo $searchAr; ?> kết quả</h3>
+        <h3 class="title searchAr"> Found <?php echo $searchAr; ?> result</h3>
 
         <?php } ?>
-
+    <div class="col-md-8">
+    
         <?php if (count($query) == 0) { ?>
 
         <h3 class="title">No article show to</h3>

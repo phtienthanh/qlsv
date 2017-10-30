@@ -354,7 +354,7 @@ body {
         color: red;
     font-size: 16px;
     font-weight: normal;
-    
+
 }
 
 .page {
@@ -378,6 +378,9 @@ body {
     border: 1px solid rgba(0, 0, 0, .125);
     margin: 50px 0;
     overflow: hidden;
+}
+.searchAr{
+    color: blue;
 }
 
 .card-body {
