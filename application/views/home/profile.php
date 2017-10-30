@@ -46,38 +46,38 @@
                             </div>
                             <div class="card-block">
                                 <form class="form_profile" method="post" class="form-horizontal form-material">
-                                    <div class="form-group">
-                                        <label class="col-md-12">First Name</label>
+                                    <div class="form-group btn-gre">
+                                        <h3 class="col-md-12">First Name</h3>
                                         <div class="col-md-12">
                                             <input type="text" name="first_name" placeholder="First name" class="form-control form-control-line" value="<?php if(isset($student['first_name']) && count($student['first_name']) > 0) { echo $student["first_name"]; }?>">
-                                            <label class="errors"><?php echo form_error("first_name"); ?></label>
+                                            <span class="errors"><?php echo form_error("first_name"); ?></span>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Last Name</label>
+                                    <div class="form-group btn-gre">
+                                        <h3 class="col-md-12">Last Name</h3>
                                         <div class="col-md-12">
                                             <input type="text" name="last_name" placeholder="Last name" class="form-control form-control-line" value="<?php if(isset($student['last_name']) && count($student['last_name']) > 0) {
                                              echo $student["last_name"]; } ?>">
-                                            <label class="errors"><?php echo form_error("last_name"); ?></label>
+                                            <span class="errors"><?php echo form_error("last_name"); ?></span>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Username</label>
+                                    <div class="form-group btn-gre">
+                                        <h3 class="col-md-12">Username</h3>
                                         <div class="col-md-12">
                                             <input type="text"  name="username" placeholder="Username" class="form-control form-control-line" value="<?php if(isset($student['username']) && count($student['username']) > 0) {
                                              echo $student["username"]; } ?>">
-                                            <label class="errors"><?php echo form_error("username"); ?></label>
+                                            <span class="errors"><?php echo form_error("username"); ?></span>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="example-email" class="col-md-12">Email</label>
+                                    <div class="form-group btn-gre">
+                                        <h3 for="example-email" class="col-md-12">Email</h3>
                                         <div class="col-md-12">
                                             <input type="email" readonly="value" name="email" class="form-control form-control-line" name="example-email" id="example-email" value="<?php echo  $student["email"]; ?>">
                                             <?php echo form_error("email"); ?>
                                         </div>
                                     </div>
-                                    <div class="form-group form-g">
-                                        <label class="col-md-12 col-role">Role</label>
+                                    <div class="form-group btn-gre form-g">
+                                        <h3 class="col-md-12 col-role">Role</h3>
                                             <br>
                                             
                                             <?php if(isset($role) && count($role) > 0) { ?>
@@ -92,7 +92,7 @@
                                         
                                             <?php echo form_error("role"); ?>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group btn-gre">
                                         <div class="col-sm-6 btn-form">
                                             <input type="submit" name="submit" class="btn btn-success" value="Update">
                                         </div>

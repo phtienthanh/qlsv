@@ -38,22 +38,22 @@
                         <div class="card">
                             <div class="card-block">
                                 <form action="" name="myForm" method="post" class="form-horizontal form-material form_update" enctype="multipart/form-data">
-                                    <div class="form-group">
-                                        <label class="col-md-12">Title</label>
+                                    <div class="form-group btn-gre">
+                                        <h3 class="col-md-12">Title</h3>
                                         <div class="col-md-12 cols">
                                             <input type="text" name="title" placeholder="Title" class="form-control form-control-line" value="<?php echo $student["title"]; ?>">
                                         </div>
                                         <?php echo form_error("title"); ?>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Slug</label>
+                                    <div class="form-group btn-gre">
+                                        <h3 class="col-md-12">Slug</h3>
                                         <div class="col-md-12 cols">
                                             <input type="text" name="slug" placeholder="Slug" class="form-control form-control-line" value="<?php echo substr($student["slug"],0,-5); ?>">
                                         </div>
                                         <?php echo form_error("slug"); ?>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Author</label>
+                                    <div class="form-group btn-gre">
+                                        <h3 class="col-md-12">Author</h3>
                                         <div class="col-md-12 cols">
                                             <select name="author" class="form-control form-control-line cate categories">
                                                 <?php 
@@ -88,15 +88,15 @@
                                         </div>
                                         <?php echo form_error("author"); ?>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="example-email" class="col-md-12">Content</label>
+                                    <div class="form-group btn-gre">
+                                        <h3 for="example-email" class="col-md-12">Content</h3>
                                         <div class="col-md-12 cols">
                                             <textarea rows="4" cols="85" class="form-control form-control-line" name="content"><?php echo $student["content"];?></textarea>
                                         </div>
                                         <?php echo form_error("content"); ?>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Categories</label>
+                                    <div class="form-group btn-gre">
+                                        <h3 class="col-md-12">Categories</h3>
                                         <div class="col-md-12 cols">
                                             <select name="categories" class="form-control form-control-line cate">
                                                 
@@ -125,7 +125,7 @@
                                             </select>   
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group btn-gre">
                                         <div class="col-sm-12 btn-form">
                                             <input type="submit" name="submit" class="btn btn-success update-btn widthbtn" value="Update">
                                         </div>
