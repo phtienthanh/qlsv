@@ -3,7 +3,6 @@
 <body class="dangkiBody">
     </style>
     <h1 class="title colorMana">Manage categories</h1>
-
     <div class="title">
         <?php echo $this->session->flashdata('message_add'); ?>
     </div>

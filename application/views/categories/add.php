@@ -10,7 +10,7 @@
             <br> 
             <input type="text" class="form-control form-control-line" name="input_text" class="input_text">
             <br>
-            <input type="submit" name="submit" value="Add new categories" class="btn  btn-primary add-cate ">
+            <input type="submit" name="submit" value="Add new categories" class="btn btn-success add-cate ">
             <br>
             <?php echo form_error("input_text"); ?>
             <span id="eror_cfpassword"></span>
