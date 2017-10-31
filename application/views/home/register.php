@@ -29,8 +29,6 @@
             <input type="submit" name="submit" value="Register" class="btn btn-success btn-insert">
         </form>
     </div>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
     <script src="<?php echo base_url();?>asset/js/home/register_fail.js"></script>
 </body>
 </html>

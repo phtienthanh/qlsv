@@ -34,7 +34,5 @@
         </div>
     </form>
 </body>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>asset/js/home/login_fail.js"></script>
 </html>

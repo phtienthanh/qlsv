@@ -20,18 +20,23 @@
                                     Upload image
                                 </div>
                                 <center class="m-t-30"> <img src="<?php echo base_url(); ?>medias/student/<?php echo $student["avatar"]; ?>" width="150" />
-
                                     <div>
-                                         <br>
-                                    <input type="file" name="userfile" class="userfile hinden">
-                                    <p class="btn btn-primary btn_select ">Select image</p>
+                                    <br>
+                                   <input type="file" name="userfile"  class="custom-file-input">
+                                   <br>
+                                    <!-- <p class=" ">Select image</p> -->
                                     <input type="text" class="hinden" name="img_name" value="<?php echo $student["avatar"]; ?>">
                                     <input type="submit" name="submit" value="Upload" class="btn btn-success">
                                     </div>
-                                    <h4 class="card-title m-t-10">
-                                        <?php if (isset($student['last_name']) && count($student['last_name']) > 0) {
 
-                                            echo $student["last_name"];
+                                    <h4 class="card-title m-t-10">
+                                        <?php if ($student['last_name'] == "") {
+
+                                            echo $student["username"];
+
+                                        } else {
+
+                                            echo  $student['last_name'];
 
                                         }?>
                                     </h4>
@@ -109,7 +114,5 @@
         </div>
     </div>
 </body>
- <script src="<?php echo base_url(); ?>asset/js/jquery.validate.min.js"></script>
-    <script src="<?php echo base_url(); ?>asset/js/jquery.validate.js"></script>
     <script src="<?php echo base_url(); ?>asset/js/home/profile_fail.js"></script>
 </html>

@@ -31,8 +31,7 @@
             <?php echo form_error("password_confirm"); ?>
             <span id="eror_cfpassword"> </span>
             <h3 for="">Avatar</h3>
-            <input type="file" name="userfile" class="userfile hinden">
-            <p class="btn btn-primary btn_select btn-insert ">Select image</p>
+            <input type="file" name="userfile"  class="custom-file-input">
             <h3 for="">Role</h3>
             <?php 
             if(isset($role) && count($role) > 0) { 
@@ -51,8 +50,6 @@
             <input type="submit" name="submit" value="Insert" class="btn btn-success btn-insert">
         </form>
     </div>
-    <script src="<?php echo base_url(); ?>asset/js/jquery.validate.min.js"></script>
-    <script src="<?php echo base_url(); ?>asset/js/jquery.validate.js"></script>
     <script src="<?php echo base_url(); ?>asset/js/student/add_fail_student.js"></script>
 </body>
 

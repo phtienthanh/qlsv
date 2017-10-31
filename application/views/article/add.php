@@ -14,8 +14,7 @@
             <textarea rows="4" class="form-control form-control-line content" name="content" cols="35"></textarea>
             <?php echo form_error("content"); ?>
             <h3 for="">Avatar <label class="img_bb">*(Bắt buộc chọn ảnh)</label></h3>
-            <input type="file" name="userfile" class="avatar hinden">
-            <p class="btn btn-primary btn_select">Select image</p>
+            <input type="file" name="userfile"  class="custom-file-input">
             <?php echo form_error("userfile"); ?>
             <h3 for="">Author</h3>
             <!-- <input type="text" class="form-control form-control-line author" name="author" placeholder="Author" value="<?php echo set_value("author"); ?>"> -->
@@ -83,7 +82,5 @@
         </form>
     </div>
 </body>
-    <script src="<?php echo base_url(); ?>asset/js/jquery.validate.min.js"></script>
-    <script src="<?php echo base_url(); ?>asset/js/jquery.validate.js"></script>
 <script src="<?php echo base_url();?>asset/js/article/add_fail_article.js"></script>
 </html>

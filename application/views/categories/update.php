@@ -13,14 +13,12 @@
             <br>
             <input type="text" class="form-control form-control-line" name="input_text" value="<?php
                 if(isset($student['name']) && count($student['name']) > 0) {echo $student['name'];} ?>">
-            <?php echo form_error("input_text"); ?>
+                <span class="error"><?php echo form_error("input_text"); ?> </span>
             <br>
             <input type="submit" class="btn btn-success" name="change" value="Change" class="color_input">
         </form>
         </p>
     </div>
 </body>
-    <script src="<?php echo base_url(); ?>asset/js/jquery.validate.min.js"></script>
-    <script src="<?php echo base_url(); ?>asset/js/jquery.validate.js"></script>
 <script src="<?php echo base_url();?>asset/js/categories/update_fail_categories.js"></script>
 </html>

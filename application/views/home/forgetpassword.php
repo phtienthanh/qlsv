@@ -18,7 +18,5 @@
         </form>
     </div>
 </body>
-<script src="<?php echo base_url(); ?>asset/js/jquery.validate.min.js"></script>
-<script src="<?php echo base_url(); ?>asset/js/jquery.validate.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>asset/js/home/forget_email.js"></script>
 </html>

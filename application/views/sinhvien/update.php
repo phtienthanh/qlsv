@@ -28,9 +28,10 @@
             <h3 for="">Avatar</h3>
             <img src="<?php echo base_url();?>medias/student/<?php  if (isset($student["avatar"]) && count($student["avatar"]) > 0) {
              echo $student["avatar"]; }?>" width="150">
+             <br>
             <input type="text" name="img_name" class="form-control hinden" value="<?php echo $student["avatar"]; ?>"/>
-            <input type="file" name="userfile" class="userfile hinden">
-             <p class="btn btn-primary btn_select ">Select image</p>
+            <br>
+            <input type="file" name="userfile"  class="custom-file-input">
             <?php echo form_error("avarta"); ?>
             <h3 for="">Role</h3>
             <?php if(isset($roleUpdate) && count($roleUpdate) > 0) { ?>
@@ -51,7 +52,5 @@
     </div>
     <?php echo form_open_multipart('home/upload');?>
 </body>
-<script src="<?php echo base_url(); ?>asset/js/jquery.validate.min.js"></script>
-<script src="<?php echo base_url(); ?>asset/js/jquery.validate.js"></script>
 <script src="<?php echo base_url();?>asset/js/student/update_fail_student.js"></script>
 </html>

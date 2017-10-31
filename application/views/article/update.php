@@ -22,8 +22,9 @@
                             <div class="">
                                 <form action="<?php echo base_url();?>article/upload/<?php echo  $student["id"]; ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                                     <center class="m-t-30"> <img class="img_article" src="<?php echo base_url();?>medias/article/<?php echo $student["image"]; ?>" width="150" />
-                                        <input type="file" name="userfile" class="userfile hinden">
-                                        <p class="btn btn-primary btn_select ">Select image</p>
+                                        <br>
+                                        <input type="file" name="userfile"  class="custom-file-input">
+                                        <br>
                                         <input type="text" class="hinden" name="img_name" value="<?php echo $student["image"]; ?>">
                                         <input type="submit" name="submit" value="Upload" class="btn btn-success">
                                 </form>
@@ -138,8 +139,6 @@
             </div>
         </div>
     </div>
-    <script src="<?php echo base_url(); ?>asset/js/jquery.validate.min.js"></script>
-    <script src="<?php echo base_url(); ?>asset/js/jquery.validate.js"></script>
     <script src="<?php echo base_url();?>asset/js/article/update_fail.js"></script>
 </body>
 

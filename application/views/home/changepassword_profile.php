@@ -27,7 +27,5 @@
         </p>
     </div>
 </body>
-<script src="<?php echo base_url(); ?>asset/js/jquery.validate.min.js"></script>
-<script src="<?php echo base_url(); ?>asset/js/jquery.validate.js"></script>
 <script src="<?php echo base_url();?>asset/js/home/changepass_profile.js"></script>
 </html>
