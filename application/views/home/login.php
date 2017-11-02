@@ -19,13 +19,13 @@
             <label for="">Email</label>
             <br>
             <input type="text" class="form-control" name="email" placeholder="Email">
-            <?php echo form_error('email'); ?>
+            <span class="error"><?php echo form_error('email'); ?></span>
             <br>
             <br>
             <label for="">Password</label>
             <br>
             <input type="password" class="form-control" name="password" id="" placeholder="Password">
-            <?php echo form_error('password'); ?>
+            <span class="error"><?php echo form_error('password'); ?></span>
             <br>
             <input type="submit" name="submit" value="Login" class="btn btn-success  btn_login" data-toggle="modal" data-target=".bs-example-modal-sm">
             <p class="title"><?php echo $this->session->flashdata('message_login'); ?></p>

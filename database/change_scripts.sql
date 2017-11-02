@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
-
+INSERT INTO `categories` (`id`, `name`, `is_deleted`) VALUES (NULL, 'All', '0');
 --
 -- Table structure for table `groups`
 --

@@ -12,7 +12,7 @@
             <br>
             <input type="submit" name="submit" value="Add new categories" class="btn btn-success add-cate ">
             <br>
-            <?php echo form_error("input_text"); ?>
+            <span class="errors"><?php echo form_error("input_text"); ?></span>
             <span id="eror_cfpassword"></span>
         </form>
     </div>

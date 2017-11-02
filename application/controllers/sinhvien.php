@@ -192,9 +192,11 @@ class Sinhvien extends MY_Controller {
 
         }
       
-        $this->form_validation->set_rules('password', $this->lang->line('create_user_validation_password_label'), 'required|min_length[6]|max_length[30]|matches[password_confirm]');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]|max_length[30]|matches[password_confirm]');
 
-        $this->form_validation->set_rules('password_confirm', $this->lang->line('create_user_validation_password_confirm_label'), 'required|min_length[6]|max_length[30]');
+        $this->form_validation->set_rules('password_confirm', 'password confirm', 'required|min_length[6]|max_length[30]');
+
+        $this->form_validation->set_message('detail', '%s does not match password confirm');
 
         if ($this->form_validation->run() == true) {
 

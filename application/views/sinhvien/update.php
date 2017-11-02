@@ -32,7 +32,7 @@
             <input type="text" name="img_name" class="form-control hinden" value="<?php echo $student["avatar"]; ?>"/>
             <br>
             <input type="file" name="userfile"  class="custom-file-input">
-            <?php echo form_error("avarta"); ?>
+           <span class="error"> <?php echo form_error("avatar"); ?></span>
             <h3 for="">Role</h3>
             <?php if(isset($roleUpdate) && count($roleUpdate) > 0) { ?>
 
@@ -43,7 +43,7 @@
             
             <?php } ?>  
         
-            <?php echo form_error("role"); ?>
+            <span class="error"> <?php echo form_error("role"); ?></span>
             <br>
             <br>
             <input class="btn btn-success widthbtn" type="submit" name="insert"  value="Update">

@@ -8,23 +8,20 @@
             <a class="btn btn-default btn-back" href="<?php echo base_url();?>home/login" title="">Back</a>
             <h3 for="">First name</h3>
             <input type="text" name="first_name" class="form-control" placeholder="First name" value="<?php echo set_value("first_name"); ?>">
-            <?php echo form_error("first_name"); ?>
             <h3 for="">Last name</h3>
             <input type="text" name="last_name" class="form-control" placeholder="Last name" value="<?php echo set_value("last_name"); ?>">
-            <?php echo form_error("last_name"); ?>
             <h3 for="">Username</h3>
             <input type="text" name="Username" class="form-control" placeholder="Username" value="<?php echo set_value("Username"); ?>">
-            <?php echo form_error("Username"); ?>
+            <span class="error"><?php echo form_error("Username"); ?></span>
             <h3 for="">Email</h3>
             <input type="text" name="email" placeholder="Email" class="form-control" value="<?php echo set_value("email");?>">
-            <?php echo form_error("email"); ?>
+            <span class="error"><?php echo form_error("email"); ?></span>
             <h3 for="">Password</h3>
-
             <input type="password" name="password" placeholder="Password" class="form-control" value="<?php echo set_value("password");?>">
-            <?php echo form_error("password"); ?>
+            <span class="error"><?php echo form_error("password"); ?></span>
             <h3 for="">Confirm Password</h3>
             <input type="password" name="password_confirm" placeholder="Confirm password" class="form-control cf_password" value="<?php echo set_value("password_confirm");?>">
-            <?php echo form_error("password_confirm"); ?>
+            <span class="error"><?php echo form_error("password_confirm"); ?></span>
             <br>
             <input type="submit" name="submit" value="Register" class="btn btn-success btn-insert">
         </form>

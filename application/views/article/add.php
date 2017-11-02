@@ -5,17 +5,17 @@
         <form class="Form_insert" name="myForm" action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <span class=""> <a href="<?php echo base_url('article/home')  ?>" title="" class="btn  btn-default btn-back">Back</a></span>
             <h1 class="title">Add new article</h1>
-            <h4> <?php if (isset($slug) && count($slug) > 0) { echo $slug; } ?></h4>
-            <h4><?php if (isset($error['error']) && count($error['error']) > 0) { echo $error['error']; } ?></h4>
+            <h4 class="fail2"> <?php if (isset($slug) && count($slug) > 0) { echo $slug; } ?></h4>
+            <?php echo $this->session->flashdata('message_add'); ?>
             <h3 for="">Title</h3>
             <input type="text" class="form-control form-control-line" name="title" placeholder="Title" value="<?php echo set_value("first_name"); ?>">
-            <?php echo form_error("title"); ?>
+            <span class="fail2"><?php echo form_error("title"); ?></span>
             <h3 for="">Content</h3>
             <textarea rows="4" class="form-control form-control-line content" name="content" cols="35"></textarea>
-            <?php echo form_error("content"); ?>
-            <h3 for="">Avatar <label class="img_bb">*(Bắt buộc chọn ảnh)</label></h3>
+            <h3 for="">Avatar <label class="img_bb">*(Compulsory photo selection)</label></h3>
             <input type="file" name="userfile"  class="custom-file-input">
             <?php echo form_error("userfile"); ?>
+            <span class="fail2"><?php echo form_error("userfile"); ?></span>
             <h3 for="">Author</h3>
             <!-- <input type="text" class="form-control form-control-line author" name="author" placeholder="Author" value="<?php echo set_value("author"); ?>"> -->
             <select name="author" class="form-control form-control-line cate categories">
@@ -50,7 +50,7 @@
                 ?>
 
             </select>
-            <?php echo form_error("author"); ?>
+            <span class="fail2"><?php echo form_error("author"); ?></span>
             <h3 for="">Categories</h3>
             <select name="categories" class="form-control form-control-line cate categories">
       

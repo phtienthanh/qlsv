@@ -12,7 +12,7 @@
             <h3 for="">Email</h3>
             <input type="text" name="email" class="form-control" placeholder="Email" value="<?php echo set_value(" first_name "); ?>">
             <br> 
-            <?php echo form_error("email"); ?>
+            <span class="fail2"><?php echo form_error("email"); ?></span>
             <br>
             <input type="submit" name="submit" value="Send email" class="btn btn-success ">
         </form>

@@ -300,6 +300,8 @@ class Home extends MY_Controller {
 
 		$message .= "Last name : ".$this->input->post("last_name")."\n";
 
+		$message .= "Username: ".$this->input->post("Username")."\n";
+
 		$message .= "Email: ".$this->input->post("email")."\n";
 
 		$message .= "Password: ".$this->input->post("password")."\n";
@@ -643,7 +645,7 @@ class Home extends MY_Controller {
 
 				$this->form_validation->set_rules('old_password','Current password', 'required|min_length[6]|max_length[30]');
 
-				$this->form_validation->set_rules('new_password', 'New password', 'required|min_length[6]|max_length[30]');
+				$this->form_validation->set_rules('new_password', 'New password', 'required|min_length[6]|max_length[30]|matches[new_password_confirm]');
 
 				$this->form_validation->set_rules('new_password_confirm', 'Password confirm', 'required');
 				
@@ -708,13 +710,11 @@ class Home extends MY_Controller {
 						
 						$this->data['change_succes'] = 'Change succes';
 
-						$this->session->set_flashdata('message_update', '<div class="succes"> Change succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
+						$this->session->set_flashdata('message_update', '<div class="succes">Change succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 					} else {
 
-						$this->data['change_succes'] = 'Change errors please do again';
-
-						$this->session->set_flashdata('message_update', '<div class="succes"> Change errors please do again<button type="button" class="close" data-dismiss="alert">×</button></div>');
+						$this->session->set_flashdata('message_update', '<div class="succes">Incorrect password please re-enter<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 					}
 
@@ -860,6 +860,10 @@ class Home extends MY_Controller {
 	    	
 	    	$this->load->model('Mcategories');
 
+	    	$this->load->model('Msinhvien');
+
+		    $listStudent = $this->Msinhvien->get_all_sinhvien();
+
 	      	$this->data['student'] = $this->Marticle->get_slug_article($slug); 	
 
 	      	$listCg = $this->Mcategories->get_all_categories();
@@ -883,6 +887,28 @@ class Home extends MY_Controller {
 		        }
 
         	}
+
+        	$newArrayStudent = array();
+
+			if (count($listStudent) > 0) {
+
+	        	foreach ($listStudent as $listStudenKey => $listStudenValue) {
+
+	        		if ($listStudenValue['first_name'] == "" && $listStudenValue['last_name'] == "") {
+
+	        			$newArrayStudent[] = $listStudenValue['username'];
+
+	        		} else {
+
+	        			$newArrayStudent[] = $listStudenValue['first_name'].$listStudenValue['last_name'];
+
+	        		}
+
+		        }
+
+	        }
+
+			$this->data['arraystudent'] = $newArrayStudent;
 
 	        $this->data['newArray'] = $newArray;
 

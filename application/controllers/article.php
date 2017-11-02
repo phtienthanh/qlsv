@@ -106,8 +106,6 @@ class article extends MY_Controller {
 
        	$this->data['authorSv'] = $this->Msinhvien->get_sinhvienEsc();
 
-
-
        	$slug = create_slug($this->input->post('title')).'.html';
 
        	$this->load->model('Mcategories');
@@ -138,7 +136,7 @@ class article extends MY_Controller {
 
 	       	$this->form_validation->set_message('required', '%s not be empty');
 
-	       	$this->form_validation->set_message('is_unique', '%s đã tồn tại');
+	       	$this->form_validation->set_message('is_unique', '%s already exists');
 
 	       	$this->form_validation->set_rules('author', 'author', 'required');
 
@@ -192,7 +190,9 @@ class article extends MY_Controller {
 
 					if (!$this->upload->do_upload()) {
 
-						$this->data['error'] = array('error' => $this->upload->display_errors());
+						$this->session->set_flashdata('message_add', '<div class="succes">'.$this->upload->display_errors().'<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+                    	redirect('article/add');
 
 					} else {
 
@@ -259,8 +259,6 @@ class article extends MY_Controller {
 			       	$this->form_validation->set_rules('title','title','required');
 
 			       	$this->form_validation->set_message('required','%s không được bỏ trống');
-			       	
-			       	$this->form_validation->set_rules('content','content','required');
 
 			       	$this->form_validation->set_rules('author','author','required');
 
