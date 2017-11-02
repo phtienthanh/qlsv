@@ -34,9 +34,33 @@ class article extends MY_Controller {
 
 		$this->load->model('Mcategories');
 
+		$this->load->model('Msinhvien');
+
 		$listCg = $this->Mcategories->get_all_categories();
 
-        $newArray = array();
+		$listStudent = $this->Msinhvien->get_all_sinhvien();
+
+		$newArrayStudent = array();
+
+		if (count($listStudent) > 0) {
+
+        	foreach ($listStudent as $listStudenKey => $listStudenValue) {
+
+        		if ($listStudenValue['first_name'] == "" && $listStudenValue['last_name'] == "") {
+
+        			$newArrayStudent[] = $listStudenValue['username'];
+
+        		} else {
+
+        			$newArrayStudent[] = $listStudenValue['first_name'].$listStudenValue['last_name'];
+
+        		}
+
+	        }
+
+	        $this->data['arraystudent'] = $newArrayStudent;
+
+        }
 
         if (count($listCg) > 0) {
 
@@ -54,9 +78,9 @@ class article extends MY_Controller {
 
 	        }
 
-        }
+	        $this->data['newArray'] = $newArray;
 
-        $this->data['newArray'] = $newArray;
+        }
 
 		$this->load->model('Marticle');
 
@@ -80,7 +104,9 @@ class article extends MY_Controller {
 
        	$this->load->model('Msinhvien');
 
-       	$this->data['authorSv'] = $this->Msinhvien->get_all_sinhvien();
+       	$this->data['authorSv'] = $this->Msinhvien->get_sinhvienEsc();
+
+
 
        	$slug = create_slug($this->input->post('title')).'.html';
 
@@ -222,7 +248,7 @@ class article extends MY_Controller {
 
 				$this->load->model('Msinhvien');
 
-       			$data['authorSv'] = $this->Msinhvien->get_all_sinhvien();
+       			$data['authorSv'] = $this->Msinhvien->get_sinhvienEsc();
 
 				$checkSlug = create_slug($this->input->post('slug'));
 
@@ -402,6 +428,10 @@ class article extends MY_Controller {
 
 		      	$listCg = $this->Mcategories->get_all_categories();
 
+		      	$this->load->model('Msinhvien');
+
+		      	$listStudent = $this->Msinhvien->get_all_sinhvien();
+
 	        	$newArray = array();
 
 	        	if (count($listCg) > 0) {
@@ -421,6 +451,28 @@ class article extends MY_Controller {
 			        }
 
 	        	}
+
+	        	$newArrayStudent = array();
+
+				if (count($listStudent) > 0) {
+
+		        	foreach ($listStudent as $listStudenKey => $listStudenValue) {
+
+		        		if ($listStudenValue['first_name'] == "" && $listStudenValue['last_name'] == "") {
+
+		        			$newArrayStudent[] = $listStudenValue['username'];
+
+		        		} else {
+
+		        			$newArrayStudent[] = $listStudenValue['first_name'].$listStudenValue['last_name'];
+
+		        		}
+
+			        }
+
+		        }
+
+ 				$this->data['arraystudent'] = $newArrayStudent;
 
 		        $this->data['newArray'] = $newArray;
 

@@ -44,7 +44,7 @@ class Categories extends MY_Controller {
 
             $this->form_validation->set_rules('input_text', 'Name', 'required');
 
-            $this->form_validation->set_message('required', '%s không được bỏ trống');
+            $this->form_validation->set_message('required', '%s not be empty');
 
             $this->load->model('Mcategories');
 
@@ -54,7 +54,7 @@ class Categories extends MY_Controller {
               
                 $this->form_validation->set_rules('input_text', 'Name', 'required|is_unique[categories.name]');
 
-                $this->form_validation->set_message('required', '%s không được bỏ trống');
+                $this->form_validation->set_message('required', '%s not be empty');
             
                 $this->form_validation->set_message('is_unique', '%s đã tồn tại');
 
@@ -102,7 +102,7 @@ class Categories extends MY_Controller {
                   
                     $this->form_validation->set_rules('input_text', 'name', 'required');
 
-                    $this->form_validation->set_message('required', '%s không được bỏ trống');
+                    $this->form_validation->set_message('required', '%s not be empty');
                     
                     if ($this->form_validation->run()) {
 

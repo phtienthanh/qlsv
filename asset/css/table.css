@@ -210,16 +210,23 @@ body {
 .row_xxx {
     border: 1px solid rgba(0, 0, 0, .125);
     background-color: #fff;
+    padding: 10px;
+}
+.body-content{
+    padding-left: 30px;
 }
 
 .content1 {
     
    background: #Fff;
-    height: 100px;
+    height: 123px;
     text-overflow: ellipsis;
     white-space: inherit;
     border: none;
     font-size: 16px;
+    padding:0;
+    font-family: -webkit-pictograph;
+    word-break: normal;
 }
 
 .back {
@@ -229,8 +236,8 @@ body {
 
 .btn_control {
        height: 222px;
-    line-height: 222px
-}   
+      float: right;
+  }
 
 .table_article {
     width: 100%;
@@ -245,6 +252,12 @@ body {
 .card-block {
 
     padding: 20px;
+}
+.btn-group{
+    margin: 0;
+}
+.datetime{
+    float: right;
 }
 
 .row_ud {
@@ -290,11 +303,6 @@ body {
     margin-top: 15px;
     margin-left: 50px !important;
 }
-
-/*.btn-addct {
-
-    margin-top: 20px !important;
-}*/
 
 .error, .errors {
 
@@ -468,7 +476,7 @@ body {
 }
 
 .title_article {
-    font-size: 26px;
+    font-size: 20px;
 }
 
 .upload_img_p {
@@ -478,6 +486,7 @@ body {
     color: #8C6635;
     font-size: 17px;
     font-weight: bold;
+
 }
 .btn-back{
     background-color: #e7e7e7;
@@ -615,14 +624,27 @@ border: none;
 .col2{
     margin-top: 20px;
 }
-/*.checkboxhe,.avarta_1{
+.avarta_1{
     height: 222px;
     line-height: 222px;
-}*/
+    left: 50%; 
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    position:absolute;
+}
 .rowCheckbox{
 
 }
+.checkboxhe{
+   z-index: 1;
+    position: relative;
+    height: 30px;
+    width: 20px;
+
+}
 .height-img{
+    width: 374px;
     overflow: hidden;
      height: 222px;
     line-height: 222px;

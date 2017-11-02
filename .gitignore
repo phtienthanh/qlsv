@@ -10,3 +10,6 @@ application/logs/*
 /application/config/config.php
 /application/config/database.php
 
+/medias/*.*
+!/medias/article/doanthi.jpg
+!/medias/student/doanthi.jpg

@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 09, 2017 at 09:30 AM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Host: 127.0.0.1:3306
+-- Generation Time: Nov 02, 2017 at 09:30 AM
+-- Server version: 5.7.19
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -26,8 +28,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `article`
 --
 
-CREATE TABLE `article` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `article`;
+CREATE TABLE IF NOT EXISTS `article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `content` text COLLATE utf8_unicode_ci NOT NULL,
   `author` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -35,7 +38,8 @@ CREATE TABLE `article` (
   `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `is_deleted` tinyint(1) NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `date` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
+  `date` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -44,18 +48,13 @@ CREATE TABLE `article` (
 -- Table structure for table `categories`
 --
 
-CREATE TABLE `categories` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `is_deleted` int(11) NOT NULL
+  `is_deleted` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `categories`
---
-
-INSERT INTO `categories` (`id`, `name`, `is_deleted`) VALUES
-(1, 'All', 0);
 
 -- --------------------------------------------------------
 
@@ -63,12 +62,14 @@ INSERT INTO `categories` (`id`, `name`, `is_deleted`) VALUES
 -- Table structure for table `groups`
 --
 
-CREATE TABLE `groups` (
-  `id` mediumint(8) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `groups`;
+CREATE TABLE IF NOT EXISTS `groups` (
+  `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `description` varchar(100) NOT NULL,
-  `security` int(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `security` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `groups`
@@ -85,8 +86,9 @@ INSERT INTO `groups` (`id`, `name`, `description`, `security`) VALUES
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(15) DEFAULT NULL,
   `username` varchar(100) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
@@ -106,15 +108,16 @@ CREATE TABLE `users` (
   `lang_folder` varchar(50) DEFAULT NULL,
   `avatar` varchar(255) NOT NULL,
   `is_deleted` tinyint(1) NOT NULL,
-  `token` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `token` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `lang_folder`, `avatar`, `is_deleted`, `token`) VALUES
-(84, '127.0.0.1', 'doanthi2241@gmail.com', '$2y$08$kjUkk6vv1paSMGGhhH6FZu9JKO8MhUmAiebeVrM4Vo5fCNCS2HtN2', NULL, 'doanthi2241@gmail.com', NULL, NULL, NULL, NULL, 1506409941, 1507540671, 1, 'doanthi12311', '1231232122', NULL, NULL, NULL, '1507540093.png', 0, NULL);
+(1, '::1', 'Admin123', '$2y$08$x5HlS3IXVilY68.GbHkZ3.7wNH7ICfVnygYf3k6JPk4m0bwaf7yIa', NULL, 'admin@gmail.com', NULL, NULL, NULL, NULL, 1509614825, 1509614871, 1, '', 'Admin', NULL, NULL, NULL, 'doanthi.jpg', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -122,86 +125,25 @@ INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`
 -- Table structure for table `users_groups`
 --
 
-CREATE TABLE `users_groups` (
-  `id` int(11) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `users_groups`;
+CREATE TABLE IF NOT EXISTS `users_groups` (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` int(11) UNSIGNED NOT NULL,
-  `group_id` mediumint(8) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `group_id` mediumint(8) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uc_users_groups` (`user_id`,`group_id`),
+  KEY `fk_users_groups_users1_idx` (`user_id`),
+  KEY `fk_users_groups_groups1_idx` (`group_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=275 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users_groups`
 --
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
-(176, 84, 1),
-(175, 84, 2);
+(274, 1, 1),
+(273, 1, 3);
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `article`
---
-ALTER TABLE `article`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `categories`
---
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `groups`
---
-ALTER TABLE `groups`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users_groups`
---
-ALTER TABLE `users_groups`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uc_users_groups` (`user_id`,`group_id`),
-  ADD KEY `fk_users_groups_users1_idx` (`user_id`),
-  ADD KEY `fk_users_groups_groups1_idx` (`group_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `article`
---
-ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `groups`
---
-ALTER TABLE `groups`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
---
--- AUTO_INCREMENT for table `users_groups`
---
-ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
 --
 -- Constraints for dumped tables
 --
@@ -212,6 +154,7 @@ ALTER TABLE `users_groups`
 ALTER TABLE `users_groups`
   ADD CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

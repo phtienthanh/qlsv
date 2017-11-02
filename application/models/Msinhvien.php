@@ -16,6 +16,18 @@ class Msinhvien extends CI_Model {
 
     }
 
+     public function get_sinhvienEsc() {
+
+        $this->db->order_by('id', 'esc');
+    
+        $query = $this->db->get('users');
+    
+        $ar = $query->result_array();
+
+        return $ar;
+
+    }
+
     public function insert($data) {
 
         if (isset($data) && count($data) > 0) {

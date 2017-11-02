@@ -744,6 +744,10 @@ class Home extends MY_Controller {
 
     	$listCg = $this->Mcategories->get_all_categories();
 
+    	$this->load->model('Msinhvien');
+
+		$listStudent = $this->Msinhvien->get_all_sinhvien();
+
         $newArray = array();
 
         if (isset($listCg) && count($listCg) > 0) {
@@ -763,6 +767,28 @@ class Home extends MY_Controller {
 	        }
 
         }
+
+        $newArrayStudent = array();
+
+		if (count($listStudent) > 0) {
+
+        	foreach ($listStudent as $listStudenKey => $listStudenValue) {
+
+        		if ($listStudenValue['first_name'] == "" && $listStudenValue['last_name'] == "") {
+
+        			$newArrayStudent[] = $listStudenValue['username'];
+
+        		} else {
+
+        			$newArrayStudent[] = $listStudenValue['first_name'].$listStudenValue['last_name'];
+
+        		}
+
+	        }
+
+        }
+
+		$this->data['arraystudent'] = $newArrayStudent;
 
         $this->data['newArray'] = $newArray;
 

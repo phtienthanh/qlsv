@@ -25,7 +25,7 @@
         <div>
             <?php if (count($article) == 0) { ?>
 
-                <h3 class="title">There are no records</h3>
+                <h3 class="title" style="color:#FFF">There are no records</h3>
 
             <?php } ?>
            
@@ -43,8 +43,11 @@
                                     <div class="row row_xxx row_xxx<?php echo $valArticle['id'];?>">
                                         <div class="col-md-4 height-img">
                                         <input type="checkbox" class="checkboxhe" <?php if ($AdminPr == false) { echo 'disabled'; } ?> name="checkboxlist[]" value="<?php echo $valArticle['id'];?>">
-                                         <img class="avarta_1" src="<?php echo base_url();?>medias/article/<?php echo $valArticle['image']; ?>" width="90%"></div>
-                                        <div class="col-md-6">
+                                            <div class="img-avarta">
+                                                <img class="avarta_1" src="<?php echo base_url();?>medias/article/<?php echo $valArticle['image']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 body-content">
                                             <p class="title_article">
                                                 <?php 
 
@@ -62,19 +65,36 @@
                                             </p>
                                             <pre class="content1">
                                                 <?php
-                                                
-                                                echo substr(htmlentities($valArticle['content']), 0, 100);
-                                                
-                                                echo "...";
+                                                if (strlen($valArticle['content']) > 200){
+
+                                                    echo substr( preg_replace('/([^\pL\.\ ]+)/u', '', strip_tags($valArticle['content'])),0,200); echo '...';
+                                                    
+                                                } else {
+
+                                                    echo $valArticle['content'];
+                                                }
                                                 
                                                 ?>
+
                                             </pre>
-                                            <div class="form-group">
+                                            <div class="form-group btn-group">
                                                 <label><b>Author :</b></label>
-                                                <span><?php echo $valArticle["author"]; ?></span>
+                                                <span><?php if (in_array($valArticle["author"], $arraystudent)) {
+
+                                                        echo $valArticle["author"];
+                                                    
+                                                    } else {
+
+                                                        echo "Admin";
+
+                                                    } ?></span>
                                                 <br> 
                                                 <label><b>Categories : </b></label>
                                                 <span><?php echo $newArray[$valArticle['categories']] ?></span>
+                                            </div>
+                                            <div class="form-group datetime">
+                                                <label><b>Poster on: </b></label>
+                                                <span><?php echo $valArticle['date']; ?></span>
                                             </div>
                                         </div>
                                         <div class=" btn_control">
