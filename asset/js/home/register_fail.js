@@ -36,13 +36,14 @@ $(document).ready(function() {
 				required : true,
 				maxlength: 30,
 				minlength: 6,
-				
+
 			},
 			password_confirm : {
 
 				required : true,
 				maxlength: 30,
 				minlength: 6,
+				equalTo: "#password",
 					
 			},	
 

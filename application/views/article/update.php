@@ -9,7 +9,7 @@
                 <div class="row page-titles">
                     <div class="title">
                         <h1 class="colorMana"> Update article</h3>
-                        <p class="title"><?php echo $this->session->flashdata('message_upload'); ?></p>
+                        <p class="title colorMana"><?php echo $this->session->flashdata('message_upload'); ?></p>
                         <?php echo $this->session->flashdata('message_add'); ?>
                     </div>
                     <div class="mark-air">

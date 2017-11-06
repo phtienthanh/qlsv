@@ -12,7 +12,7 @@
                 <?php echo form_error('old_password'); ?>
             </span>
             <h3 for="">New password</h3>
-            <input type="password"  class="form-control" name="new_password" placeholder="New password">
+            <input type="password"  class="form-control password" name="new_password" placeholder="New password">
             <span class="fail2">
                 <?php echo form_error('new_password'); ?>
             </span>

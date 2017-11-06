@@ -331,6 +331,8 @@ class article extends MY_Controller {
 	    		$this->data['student'] = $this->Marticle->get_article($id);
 
 		      	if ($_FILES['userfile']['name'] == '') {
+
+		      		$this->session->set_flashdata('message_upload', '<div class="fail succes">You did not select a file to upload.<button type="button" class="close" data-dismiss="alert">×</button></div>');
 						
 					redirect('article/update/'.$this->data['student']['slug']); 
 

@@ -186,6 +186,8 @@ class Home extends MY_Controller {
 
 					);
 
+		   			$this->session->set_flashdata('message_upload', '<div class="fail succes">You did not select a file to upload.<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
 					redirect('home/profile/'.$id); 
 		   			
 		   		} 
@@ -208,7 +210,7 @@ class Home extends MY_Controller {
 
 					if (!$this->upload->do_upload()) {
 
-						$this->session->set_flashdata('message_upload', '<div class="succes">Upload fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
+						$this->session->set_flashdata('message_upload', '<div class="fail succes">Upload fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
 					
 						redirect('home/profile/'.$id); 
 

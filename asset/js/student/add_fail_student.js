@@ -40,6 +40,7 @@ $(document).ready(function() {
 				required : true,
 			},
 			password_confirm : {
+				equalTo: ".password",
 				minlength: 6,
 				maxlength: 30,
 				required : true,

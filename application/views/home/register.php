@@ -17,7 +17,7 @@
             <input type="text" name="email" placeholder="Email" class="form-control" value="<?php echo set_value("email");?>">
             <span class="error"><?php echo form_error("email"); ?></span>
             <h3 for="">Password</h3>
-            <input type="password" name="password" placeholder="Password" class="form-control" value="<?php echo set_value("password");?>">
+            <input type="password" id="password" name="password" placeholder="Password" class="form-control" value="<?php echo set_value("password");?>">
             <span class="error"><?php echo form_error("password"); ?></span>
             <h3 for="">Confirm Password</h3>
             <input type="password" name="password_confirm" placeholder="Confirm password" class="form-control cf_password" value="<?php echo set_value("password_confirm");?>">
