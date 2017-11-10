@@ -30,13 +30,13 @@
                                     </div>
 
                                     <h4 class="card-title m-t-10">
-                                        <?php if ($student['last_name'] == "") {
+                                        <?php if ($student['last_name'] == "" && $student['first_name'] == "" ) {
 
                                             echo $student["username"];
 
                                         } else {
 
-                                            echo  $student['last_name'];
+                                            echo  $student['first_name']." ".$student['last_name'];
 
                                         }?>
                                     </h4>

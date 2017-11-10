@@ -5,7 +5,7 @@
         <form class="Form_insert" name="myForm" action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <span class=""> <a href="<?php echo base_url('article/home')  ?>" title="" class="btn  btn-default btn-back">Back</a></span>
             <h1 class="title">Add new article</h1>
-            <h4 class="fail2"> <?php if (isset($slug) && count($slug) > 0) { echo $slug; } ?></h4>
+            <h4 class=" title fail2"> <?php if (isset($slug) && count($slug) > 0) { echo $slug; } ?></h4>
             <?php echo $this->session->flashdata('message_add'); ?>
             <h3 for="">Title</h3>
             <input type="text" class="form-control form-control-line" name="title" placeholder="Title" value="<?php echo set_value("first_name"); ?>">

@@ -280,11 +280,9 @@ class Sinhvien extends MY_Controller {
 
 	        } else {
 
-	        	$success = 'Please select a role';
+				$this->session->set_flashdata('message_update', '<div class="fail">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-				$this->data['succes'] = $success;
-
-				$this->load->view('sinhvien/insert', $this->data);
+				redirect('sinhvien/create_user');
 
 	        }
         	
@@ -446,7 +444,7 @@ class Sinhvien extends MY_Controller {
 					        	
 					        }
 								
-								$this->session->set_flashdata('message_update', '<div class="succes"> Update succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
+								$this->session->set_flashdata('message_update', '<div class="succes"> Update success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 								redirect('sinhvien/update/'.$id); 
 
@@ -670,16 +668,14 @@ class Sinhvien extends MY_Controller {
 					$change = $this->ion_auth->change_password($identity, $this->input->post('old_password'), $this->input->post('new_password'));
 
 					if ($change) {
-						
-						$this->data['change_succes'] = 'Change succes';
 
-						$this->session->set_flashdata('message_update', '<div class="succes"> Change succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
+						$this->session->set_flashdata('message_update', '<div class="succes"> Change password succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 					} else {
 
 						$this->data['changeSucces'] = 'Change errors please do again';
 
-						$this->session->set_flashdata('message_update', '<div class="succes"> Change errors please do again<button type="button" class="close" data-dismiss="alert">×</button></div>');
+						$this->session->set_flashdata('message_update', '<div class="fail"> Change password errors please do again<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 					}
 

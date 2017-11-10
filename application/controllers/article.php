@@ -148,9 +148,9 @@ class article extends MY_Controller {
 
     			if (count($values) > 0) {
 
-    				$data = "Slug exists";
+    				$this->session->set_flashdata('message_add', '<div class="fail">Slug exists<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-    				$this->data['slug'] = $data;
+                    redirect('article/add');
 
     			} else {
 
@@ -190,7 +190,7 @@ class article extends MY_Controller {
 
 					if (!$this->upload->do_upload()) {
 
-						$this->session->set_flashdata('message_add', '<div class="succes">'.$this->upload->display_errors().'<button type="button" class="close" data-dismiss="alert">×</button></div>');
+						$this->session->set_flashdata('message_add', '<div class="fail">'.$this->upload->display_errors().'<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
                     	redirect('article/add');
 
@@ -282,7 +282,7 @@ class article extends MY_Controller {
 						
 						if ($this->Marticle->update_slug_article($slug, $listUpdate)) {
 
-							$this->session->set_flashdata('message_add', '<div class="succes">Update success<button type="button" class="close" data-dismiss="alert">×</button></div>');
+							$this->session->set_flashdata('message_add', '<div class="succes">Update article success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 		                   	redirect('article/update/'.$slug);
 							
@@ -332,7 +332,7 @@ class article extends MY_Controller {
 
 		      	if ($_FILES['userfile']['name'] == '') {
 
-		      		$this->session->set_flashdata('message_upload', '<div class="fail succes">You did not select a file to upload.<button type="button" class="close" data-dismiss="alert">×</button></div>');
+		      		$this->session->set_flashdata('message_upload', '<div class="fail">You did not select a image to upload.<button type="button" class="close" data-dismiss="alert">×</button></div>');
 						
 					redirect('article/update/'.$this->data['student']['slug']); 
 

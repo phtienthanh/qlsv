@@ -5,6 +5,9 @@
     <div class="insert">
         <form action="" name="myForm" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <h1 class="title">Add new student</h1>
+            <div class="title">
+                <?php echo $this->session->flashdata('message_update'); ?>
+            </div>
             <h3><?php if (isset($error) && count($error) > 0) {echo $error; } ?></h3>
             <h3><?php if (isset($succes) && count($succes) > 0 ) {echo $succes; } ?></h3>
             <span><a class="btn  btn-default btn-back btn-insert" href="<?php echo base_url();?>sinhvien/show" title="">Back</a></span>

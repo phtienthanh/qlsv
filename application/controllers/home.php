@@ -507,7 +507,7 @@ class Home extends MY_Controller {
 
 						if ($this->email->send()) {
 							
-							$checkMail = "Send mail succes please check your mail again";
+							$checkMail = "Send mail success please check your mail again";
 
 						} else {
 
@@ -712,7 +712,7 @@ class Home extends MY_Controller {
 
 					if ($change) {
 
-						$this->session->set_flashdata('message_update', '<div class="succes">Change succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
+						$this->session->set_flashdata('message_update', '<div class="succes">Change password succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 						redirect('home/profile/'.$id);
 
