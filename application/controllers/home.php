@@ -507,7 +507,7 @@ class Home extends MY_Controller {
 
 						if ($this->email->send()) {
 							
-							$checkMail = "Please check your mail again";
+							$checkMail = "Send mail succes please check your mail again";
 
 						} else {
 
@@ -547,10 +547,12 @@ class Home extends MY_Controller {
 			
 		  	if ($this->input->post("submit")) {
 
-	        	$this->form_validation->set_rules('new_password', 'Password', 'required|matches[new_password_confirm]');
+	        	$this->form_validation->set_rules('new_password', 'Password', 'required');
 
-		       	$this->form_validation->set_rules('new_password_confirm', 'Confirm password', 'required');
-		       	
+		       	$this->form_validation->set_rules('new_password_confirm', 'Confirm password', 'required|matches[new_password]');
+
+		       	$this->form_validation->set_message('required', '%s not be empty');
+
 	        	if ($this->form_validation->run()) {
 
 	        		$this->load->model('Msinhvien');
@@ -709,18 +711,18 @@ class Home extends MY_Controller {
 					$change = $this->ion_auth->change_password($identity, $this->input->post('old_password'), $this->input->post('new_password'));
 
 					if ($change) {
-						
-						$this->data['change_succes'] = 'Change succes';
 
 						$this->session->set_flashdata('message_update', '<div class="succes">Change succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
+						redirect('home/profile/'.$id);
+
 					} else {
 
-						$this->session->set_flashdata('message_update', '<div class="succes">Incorrect password please re-enter<button type="button" class="close" data-dismiss="alert">×</button></div>');
+						$this->session->set_flashdata('message_update', '<div class="fail">Incorrect password please re-enter<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+						redirect('home/changepass_profile/'.$id);
 
 					}
-
-					redirect('home/profile/'.$id);
 
 				}
 
