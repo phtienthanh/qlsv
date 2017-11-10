@@ -547,9 +547,9 @@ class Home extends MY_Controller {
 			
 		  	if ($this->input->post("submit")) {
 
-	        	$this->form_validation->set_rules('new_password', 'Password', 'required');
+	        	$this->form_validation->set_rules('new_password', 'Password', 'required|min_length[6]|max_length[30]');
 
-		       	$this->form_validation->set_rules('new_password_confirm', 'Confirm password', 'required|matches[new_password]');
+		       	$this->form_validation->set_rules('new_password_confirm', 'Confirm password', 'required|matches[new_password]|min_length[6]|max_length[30]');
 
 		       	$this->form_validation->set_message('required', '%s not be empty');
 
