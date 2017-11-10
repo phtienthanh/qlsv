@@ -507,15 +507,15 @@ class Home extends MY_Controller {
 
 						if ($this->email->send()) {
 							
-							$checkMail = "Send mail success please check your mail again";
+							$this->session->set_flashdata('message_checkmail', '<div class="succes" style="width:100%;">Send mail success please check your mail again<button type="button" class="close" s>×</button></div>');
 
 						} else {
 
-							$checkMail = "Send mail fail";
+							$this->session->set_flashdata('message_checkmail', '<div class="fail">Send mail fail<button type="button" class="close" s>×</button></div>');
 
 						}
 
-						$this->data['checkMail'] = $checkMail;
+						redirect('home/forget');
 	
 					} else {
 
