@@ -42,7 +42,7 @@
 
                                     <?php } ?>">
                                 <td>
-                                    <input type="checkbox" name="checkboxlist[]" value=<?php echo $valStudent[ 'id'];?> <?php if ($AdminPr == false) { echo 'disabled'; } ?> >
+                                    <input type="checkbox" class="checkbox_role" name="checkboxlist[]" value=<?php echo $valStudent[ 'id'];?> <?php if ($AdminPr == false) { echo 'disabled'; } ?> >
                                 </td>
                                 <td>
                                     <?php echo $valStudent['id']; ?> 

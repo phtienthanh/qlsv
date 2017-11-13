@@ -6,7 +6,7 @@ class Mcategories extends CI_Model {
 
     public function get_all_categories() {
 
-        $this->db->order_by("id", "desc");
+        $this->db->order_by("id", "esc");
     
         $query = $this->db->get('categories');
     

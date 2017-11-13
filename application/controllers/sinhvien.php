@@ -669,7 +669,7 @@ class Sinhvien extends MY_Controller {
 
 					if ($change) {
 
-						$this->session->set_flashdata('message_update', '<div class="succes"> Change password succes<button type="button" class="close" data-dismiss="alert">×</button></div>');
+						$this->session->set_flashdata('message_update', '<div class="succes"> Change password success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 					} else {
 

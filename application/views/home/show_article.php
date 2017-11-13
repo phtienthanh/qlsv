@@ -37,7 +37,14 @@
                         </h2>
                         <div class="card-text">
                             <div>
-                                <p><?php echo substr( preg_replace('/([^\pL\.\ ]+)/u', '', strip_tags($row['content'])),0,400); echo '...'; ?></p>
+                                <?php if (strlen($row['content']) > 200){
+
+                                    echo substr( preg_replace('/([^\pL\.\ ]+)/u', '', strip_tags($row['content'])),0,200); echo '...';
+                                    
+                                } else {
+
+                                    echo $row['content'];
+                                } ?>
                             </div>
                             
                         </div>

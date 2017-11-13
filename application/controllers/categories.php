@@ -100,7 +100,7 @@ class Categories extends MY_Controller {
                 
                 if ($this->input->post("change")) {
                   
-                    $this->form_validation->set_rules('input_text', 'name', 'required');
+                    $this->form_validation->set_rules('input_text', 'name', 'required|min_length[6]|max_length[30]');
 
                     $this->form_validation->set_message('required', '%s not be empty');
                     

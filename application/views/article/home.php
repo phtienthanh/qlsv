@@ -21,7 +21,7 @@
     <?php } ?>
     </div>
     
-    <div class="col-md-10">
+    <div class="col-md-10 content-10">
         <div>
             <?php if (count($article) == 0) { ?>
 
@@ -77,7 +77,7 @@
                                                 ?>
 
                                             </pre>
-                                            <div class="form-group btn-group">
+                                            <div class="form-group btn-group col-md-12">
                                                 <label><b>Author :</b></label>
                                                 <span><?php if (in_array($valArticle["author"], $arraystudent)) {
 
@@ -91,11 +91,12 @@
                                                 <br> 
                                                 <label><b>Categories : </b></label>
                                                 <span><?php echo $newArray[$valArticle['categories']] ?></span>
-                                            </div>
-                                            <div class="form-group datetime">
+                                                <div class="form-group datetime">
                                                 <label><b>Poster on: </b></label>
                                                 <span><?php echo $valArticle['date']; ?></span>
                                             </div>
+                                            </div>
+                                            
                                         </div>
                                         <div class=" btn_control">
                                             <span><a class="btn btn-success" href="<?php echo base_url();?>article/update/<?php echo $valArticle['slug']; ?>"<?php if ($AdminPr == false) { echo 'disabled'; } ?>><span class="glyphicon glyphicon-pencil"></span></a></span>

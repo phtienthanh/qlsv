@@ -213,13 +213,17 @@ body {
     padding: 10px;
 }
 .body-content{
-    padding-left: 30px;
+    padding-left: 10px;
+    margin-left: 20px;
+}
+.content-10{
+    padding-bottom: 50px;
 }
 
 .content1 {
     
    background: #Fff;
-    height: 123px;
+    height: 100px;
     text-overflow: ellipsis;
     white-space: inherit;
     border: none;
@@ -259,11 +263,17 @@ body {
 .datetime{
     float: right;
 }
+.for-footer{
+    border-top: none;
+}
 
 .row_ud {
 
     padding: 40px 20px;
    
+}
+.checkbox_role{
+    margin: 10px !important;
 }
 
 .m-t-30 {

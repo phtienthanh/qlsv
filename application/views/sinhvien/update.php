@@ -38,7 +38,7 @@
 
                 <?php foreach ($roleUpdate as $keyRole => $valRole) { ?>
     
-                    <tr selected><input name='<?php echo $valRole['id']; ?>' type='checkbox' value='<?php echo $valRole['id']; ?>'<?php if (in_array($valRole['name'], $UserGroup) == true) {  echo "checked";} ?>/> <?php echo $valRole['name']; ?></tr>         
+                    <tr selected><input class="checkbox_role" name='<?php echo $valRole['id']; ?>' type='checkbox' value='<?php echo $valRole['id']; ?>'<?php if (in_array($valRole['name'], $UserGroup) == true) {  echo "checked";} ?>/> <?php echo $valRole['name']; ?></tr>         
                 <?php } ?>
             
             <?php } ?>  
