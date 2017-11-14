@@ -96,6 +96,24 @@ class Msinhvien extends CI_Model {
 
     }
 
+     public function get_email_sinhvien($email) {
+
+        if (isset($email) && count($email) > 0) {
+        
+            $this->load->database();
+
+            $this->db->where("email", $email);
+
+            return $this->db->get($this->table)->row_array();
+
+        } else {
+
+            return false;
+            
+        }
+
+    }
+
     public function changepass_sinhvien($id, $data) {
 
         if (isset($id) && count($id) > 0) {

@@ -212,10 +212,6 @@ body {
     background-color: #fff;
     padding: 10px;
 }
-.body-content{
-    padding-left: 10px;
-    margin-left: 20px;
-}
 .content-10{
     padding-bottom: 50px;
 }
@@ -241,6 +237,8 @@ body {
 .btn_control {
        height: 222px;
       float: right;
+      text-align: center;
+      padding: 0;
   }
 
 .table_article {
@@ -501,6 +499,9 @@ body {
 .btn-back{
     background-color: #e7e7e7;
 }
+.modal-footer{
+    border-top: 0px !important;
+}
 .btn-insert {
     margin-top: 20px;
 }
@@ -654,7 +655,6 @@ border: none;
 
 }
 .height-img{
-    width: 374px;
     overflow: hidden;
      height: 222px;
     line-height: 222px;

@@ -47,7 +47,7 @@
                                                 <img class="avarta_1" src="<?php echo base_url();?>medias/article/<?php echo $valArticle['image']; ?>">
                                             </div>
                                         </div>
-                                        <div class="col-md-6 body-content">
+                                        <div class="col-md-7 body-content">
                                             <p class="title_article">
                                                 <?php 
 
@@ -98,8 +98,7 @@
                                             </div>
                                             
                                         </div>
-                                        <div class=" btn_control">
-                                            <span><a class="btn btn-success" href="<?php echo base_url();?>article/update/<?php echo $valArticle['slug']; ?>"<?php if ($AdminPr == false) { echo 'disabled'; } ?>><span class="glyphicon glyphicon-pencil"></span></a></span>
+                                        <div class="col-md-1 btn_control"> 
                                             <div class="modal fade" id="<?php echo $valArticle['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -117,6 +116,7 @@
                                                 </div>
                                             </div>
                                             <span><a class="btn btn-warning" href="<?php echo base_url();?>article/preview/<?php echo $valArticle['slug']; ?>" title=""><span class="glyphicon glyphicon-eye-open"></span></a></span>
+                                            <span><a class="btn btn-success" href="<?php echo base_url();?>article/update/<?php echo $valArticle['slug']; ?>"<?php if ($AdminPr == false) { echo 'disabled'; } ?>><span class="glyphicon glyphicon-pencil"></span></a></span>
                                         </div>
                                     </div>
                                 </td>

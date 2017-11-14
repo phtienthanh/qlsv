@@ -493,7 +493,13 @@ class Home extends MY_Controller {
 
         		$user = $this->Msinhvien->forget_password($this->input->post('email'));
 
-        		if (count($user) > 0) {
+        		if ($user == false) {
+
+        			$this->session->set_flashdata('message_checkmail', '<div class="fail succes" style="width:100%;">Email does not exist<button type="button" class="close" s>×</button></div>');
+
+        			redirect('home/forget');
+
+        		} else {
 
         			$id = $user["0"]['id'];
 
@@ -524,12 +530,6 @@ class Home extends MY_Controller {
         				$this->data['checkMail'] = $checkMail;
 
 					}
-
-        		} else {
-
-        			$checkMail = "Email does not exist";
-
-        			$this->data['checkMail'] = $checkMail;
         		
         		}
 
