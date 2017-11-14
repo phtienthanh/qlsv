@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/header.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/table.css">
     <script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
+    <script  src="<?php echo base_url();?>asset/js/jquery.validate.js"></script>
     <script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url();?>asset/js/home/header.js"></script>
 </head>
