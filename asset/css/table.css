@@ -217,9 +217,8 @@ body {
 }
 
 .content1 {
-    
    background: #Fff;
-    height: 100px;
+    height: 124px;
     text-overflow: ellipsis;
     white-space: inherit;
     border: none;
@@ -262,6 +261,7 @@ body {
     margin: 0;
 }
 .datetime{
+    margin-bottom: 0;
     float: right;
 }
 .for-footer{
