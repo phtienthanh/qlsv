@@ -172,7 +172,7 @@ class Msinhvien extends CI_Model {
             
             if ($query->num_rows() == 1) {
                  
-                return $query->result_array();
+                return $query->row_array();
                 
             } else {
                      

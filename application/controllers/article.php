@@ -36,7 +36,7 @@ class article extends MY_Controller {
 
 		$this->load->model('Msinhvien');
 
-		$listCg = $this->Mcategories->get_all_categories();
+		$listCategories = $this->Mcategories->get_all_categories();
 
 		$listStudent = $this->Msinhvien->get_all_sinhvien();
 
@@ -62,17 +62,17 @@ class article extends MY_Controller {
 
         }
 
-        if (count($listCg) > 0) {
+        if (count($listCategories) > 0) {
 
-        	foreach ($listCg as $listCgKey => $listCgValue) {
+        	foreach ($listCategories as $listCategoriesKey => $listCategoriesValue) {
 
-	        	if ($listCgValue['is_deleted'] == 0) {
+	        	if ($listCategoriesValue['is_deleted'] == 0) {
 
-	        		$newArray[$listCgValue['id']] = $listCgValue['name'];
+	        		$newArray[$listCategoriesValue['id']] = $listCategoriesValue['name'];
 	        		
 	        	}  else {
 
-	        		$newArray[$listCgValue['id']] = "All";
+	        		$newArray[$listCategoriesValue['id']] = "All";
 
 	        	}
 
@@ -100,7 +100,7 @@ class article extends MY_Controller {
 
 		$this->load->model('Marticle');
 
-       	$data = $this->Marticle->get_all_article();
+       	$listArticle = $this->Marticle->get_all_article();
 
        	$this->load->model('Msinhvien');
 
@@ -116,11 +116,11 @@ class article extends MY_Controller {
 
        	if ($this->input->post("submit")) {
 
-       		if (count($data) > 0) {
+       		if (count($listArticle) > 0) {
 
-       			foreach ($data as $key => $value) {
+       			foreach ($listArticle as $keylistArticle => $valuelistArticle) {
 
-	       			if ($this->input->post('title') == $value['title'] && $value['is_deleted'] == "0" )  {
+	       			if ($this->input->post('title') == $valuelistArticle['title'] && $valuelistArticle['is_deleted'] == "0" )  {
 
 	       				$this->form_validation->set_rules('title', 'title', '|is_unique[article.title]');
 	       			
@@ -154,7 +154,7 @@ class article extends MY_Controller {
 
     			} else {
 
-    				$list = array(
+    				$listCreate = array(
 
 						"title" => $this->input->post('title'),
 						
@@ -196,7 +196,7 @@ class article extends MY_Controller {
 
 					} else {
 
-						if ($this->Marticle->insert($list)) {
+						if ($this->Marticle->insert($listCreate)) {
 
 							$this->session->set_flashdata('message_add', '<div class="succes">Add new article success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
@@ -426,7 +426,7 @@ class article extends MY_Controller {
 
 		    	$this->load->model('Mcategories');
 
-		      	$listCg = $this->Mcategories->get_all_categories();
+		      	$listCategories = $this->Mcategories->get_all_categories();
 
 		      	$this->load->model('Msinhvien');
 
@@ -434,17 +434,17 @@ class article extends MY_Controller {
 
 	        	$newArray = array();
 
-	        	if (count($listCg) > 0) {
+	        	if (count($listCategories) > 0) {
 
-	        		foreach ($listCg as $keyCg => $listCgValue) {
+	        		foreach ($listCategories as $keyCategories => $listCategoriesValue) {
 
-			        	if ($listCgValue['is_deleted'] == 0) {
+			        	if ($listCategoriesValue['is_deleted'] == 0) {
 
-			        		$newArray[$listCgValue['id']] = $listCgValue['name'];
+			        		$newArray[$listCategoriesValue['id']] = $listCategoriesValue['name'];
 			        		
 			        	}  else {
 
-			        		$newArray[$listCgValue['id']] = "All";
+			        		$newArray[$listCategoriesValue['id']] = "All";
 
 			        	}
 
@@ -476,7 +476,7 @@ class article extends MY_Controller {
 
 		        $this->data['newArray'] = $newArray;
 
-				$this->data['categories'] = $listCg;
+				$this->data['categories'] = $listCategories;
 
 				$this->data['article'] = $this->Marticle->get_all_article();
 

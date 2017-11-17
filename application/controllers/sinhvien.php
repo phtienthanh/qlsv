@@ -32,25 +32,25 @@ class Sinhvien extends MY_Controller {
   
         $this->load->model('Mrole');
 
-        $listCg = $this->Mrole->get_all_role();
+        $listUserGroup = $this->Mrole->get_all_role();
 
-        $listGr = $this->Mrole->get_all_group();
+        $listRole = $this->Mrole->get_all_group();
 
-        $newArray = array();
+        $listGroup = array();
 
-         if (isset($listCg) && count($listCg) > 0) {
+        if (count($listRole) > 0) {
 
-        	foreach ($listGr as $keyListGr => $valListGr) {
+        	foreach ($listRole as $keyListRole => $valueListRole) {
 
-	        	$newArray[$valListGr['id']] = $this->Mrole->get_name_role($valListGr['id'])['name'];
-
-	        }
+        		$listGroup[$valueListRole['id']] = $valueListRole['name'];
+        		
+        	}
 
         }
 
-        $this->data['newArray'] = $newArray;
+        $this->data['newArray'] = $listGroup;
 
-		$this->data['role'] = $listCg;
+		$this->data['role'] = $listUserGroup;
 
 		$this->load->model('Msinhvien');
 		
@@ -70,17 +70,17 @@ class Sinhvien extends MY_Controller {
 
         $this->load->model('Mrole');
 
-        $listRl = $this->Mrole->get_all_group();
+        $listRole = $this->Mrole->get_all_group();
 
 		$listGroup = array();
 
-        if (count($listRl) > 0) {
+        if (count($listRole) > 0) {
 
-        	foreach ($listRl as $keyListRl => $valListRl) {
+        	foreach ($listRole as $keylistRole => $vallistRole) {
 
-        		if ($this->input->post($valListRl['id']) == $valListRl['id'] ) {
+        		if ($this->input->post($vallistRole['id']) == $vallistRole['id'] ) {
 
-	        		$listGroup[] = $this->input->post($valListRl['id']);
+	        		$listGroup[] = $this->input->post($vallistRole['id']);
 
 	        	}
 
@@ -210,7 +210,7 @@ class Sinhvien extends MY_Controller {
 
 	            if ($_FILES['userfile']['name'] == '') {
 
-			        $listCr = array(
+			        $listCreate = array(
 			        	
 			            'first_name' => $this->input->post('first_name'),
 			            'last_name'  => $this->input->post('last_name'),
@@ -219,7 +219,7 @@ class Sinhvien extends MY_Controller {
 
 			        );
 						
-			        if ($this->ion_auth->register($identity, $password, $email, $listCr, $listGroup)) {
+			        if ($this->ion_auth->register($identity, $password, $email, $listCreate, $listGroup)) {
 
 			        	if ($this->email->send()) {
 
@@ -239,7 +239,7 @@ class Sinhvien extends MY_Controller {
 
 	        	} else {
 
-					$listCr = array(
+					$listCreate = array(
 
 			            'first_name' => $this->input->post('first_name'),
 			            'last_name' => $this->input->post('last_name'),
@@ -256,7 +256,7 @@ class Sinhvien extends MY_Controller {
 
 					} else {
 			    	
-			        	if ($this->ion_auth->register($identity, $password, $email, $listCr, $listGroup)) {
+			        	if ($this->ion_auth->register($identity, $password, $email, $listCreate, $listGroup)) {
 
 				        	if ($this->email->send()) {
 
@@ -364,20 +364,24 @@ class Sinhvien extends MY_Controller {
 
 		       	$this->load->model('Mrole');
 
-		       	$listRl = $this->Mrole->get_all_group();
+		       	$listRole = $this->Mrole->get_all_group();
 
 				$listUserGroup = array();
 
 				$listIdgroup = array();
 
 				$getListGroup = $this->ion_auth->get_users_groups($id)->result();
-				
-				foreach ($getListGroup as $keyGetListGroup => $valGetListGroup) {
+
+				if (count($getListGroup) > 0) {
+					
+					foreach ($getListGroup as $keyGetListGroup => $valGetListGroup) {
 
 					$listUserGroup[] = $valGetListGroup->name;
 
 					$listIdgroup[] = $valGetListGroup->id;
 					
+					}
+
 				}
 
 		      	$this->data['student'] = $this->Msinhvien->get_id_sinhvien($id); 
@@ -406,17 +410,17 @@ class Sinhvien extends MY_Controller {
 
 						if ($this->Msinhvien->update($id, $listUpdate)) {
 
-							$listGr = $this->Mrole->get_all_group();
+							$listRole = $this->Mrole->get_all_group();
 
-			         		if (count($listGr) > 0) {
+			         		if (count($listRole) > 0) {
 
 			         			$listGroup = array();
 
-			        			foreach ($listGr as $keyListGr => $valListGr) {
+			        			foreach ($listRole as $keylistRole => $vallistRole) {
 			        				
-			        				if ($this->input->post($valListGr['id']) == $valListGr['id']) {
+			        				if ($this->input->post($vallistRole['id']) == $vallistRole['id']) {
 
-				        				$listGroup[] = $this->input->post($valListGr['id']);
+				        				$listGroup[] = $this->input->post($vallistRole['id']);
 
 						        	}
 
@@ -438,7 +442,7 @@ class Sinhvien extends MY_Controller {
 
 					        } else {
 
-					        	$this->session->set_flashdata('message_update', '<div class="fail">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
+					        	$this->session->set_flashdata('message_update', '<div class="fail"> Update success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 								redirect('sinhvien/update/'.$id);
 					        	
@@ -508,13 +512,13 @@ class Sinhvien extends MY_Controller {
 
 					        	if ($this->Msinhvien->update($id, $listUpdate)) {
 
-						        	$listGr = $this->Mrole->get_all_group();
+						        	$listRole = $this->Mrole->get_all_group();
 
 									if (count($listGr) > 0) {
 
 					         			$listGroup = array();
 
-					        			foreach ($listGr as $keyListGr => $valListGr) {
+					        			foreach ($listRole as $keyListRole => $valListRole) {
 					        				
 					        				if ($this->input->post($valListGr['id']) == $valListGr['id']) {
 
@@ -572,7 +576,7 @@ class Sinhvien extends MY_Controller {
     	
     		}
 
-			$this->data['roleUpdate'] = $listRl;
+			$this->data['roleUpdate'] = $listRole;
 
 			$this->data['UserGroup'] = $listUserGroup;	
 	   		

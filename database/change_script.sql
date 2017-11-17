@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 02, 2017 at 09:30 AM
+-- Generation Time: Nov 17, 2017 at 08:12 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
-INSERT INTO `categories` (`id`, `name`, `is_deleted`) VALUES (NULL, 'All', '0');
+
 --
 -- Table structure for table `groups`
 --
@@ -110,14 +110,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `is_deleted` tinyint(1) NOT NULL,
   `token` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `lang_folder`, `avatar`, `is_deleted`, `token`) VALUES
-(1, '::1', 'Admin123', '$2y$08$x5HlS3IXVilY68.GbHkZ3.7wNH7ICfVnygYf3k6JPk4m0bwaf7yIa', NULL, 'admin@gmail.com', NULL, NULL, NULL, NULL, 1509614825, 1509614871, 1, '', 'Admin', NULL, NULL, NULL, 'doanthi.jpg', 0, NULL);
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -134,15 +127,7 @@ CREATE TABLE IF NOT EXISTS `users_groups` (
   UNIQUE KEY `uc_users_groups` (`user_id`,`group_id`),
   KEY `fk_users_groups_users1_idx` (`user_id`),
   KEY `fk_users_groups_groups1_idx` (`group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=275 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `users_groups`
---
-
-INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
-(274, 1, 1),
-(273, 1, 3);
+) ENGINE=InnoDB AUTO_INCREMENT=291 DEFAULT CHARSET=utf8;
 
 --
 -- Constraints for dumped tables

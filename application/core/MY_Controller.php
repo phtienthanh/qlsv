@@ -15,6 +15,14 @@ class MY_Controller extends CI_Controller {
 		if ($this->ion_auth->logged_in() == true) {
 
 			$userInfo = $this->ion_auth->user()->row();
+
+            if (count($userInfo) == 0) {
+
+                $this->ion_auth->logout();
+
+                redirect('home/login', 'refresh');
+            
+            }
             
             $id = $userInfo->id;
 
@@ -28,24 +36,28 @@ class MY_Controller extends CI_Controller {
 
             $listRoler = $this->Mrole->get_role_groups($id);
 
-            foreach ($listRoler as $keyListRole => $valListRole) {
+            if (count($listRoler) > 0) {
 
-                if ($valListRole['group_id'] == '1') {
+                foreach ($listRoler as $keyListRole => $valListRole) {
 
-                    $this->data['AdminPr'] = true;
+                    if ($valListRole['group_id'] == '1') {
+
+                        $this->data['AdminPr'] = true;
+                            
+                    }
+
+                    if ($valListRole['group_id'] == '2') {
+
+                        $this->data['MemberPr'] = true;
                         
-                }
+                    }
 
-                if ($valListRole['group_id'] == '2') {
+                    if ($valListRole['group_id'] == '3') {
 
-                    $this->data['MemberPr'] = true;
-                    
-                }
+                        $this->data['UserPr'] = true;
+                        
+                    }
 
-                if ($valListRole['group_id'] == '3') {
-
-                    $this->data['UserPr'] = true;
-                    
                 }
 
             }

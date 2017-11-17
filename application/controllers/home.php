@@ -100,18 +100,22 @@ class Home extends MY_Controller {
 		        
 		       	$this->load->model('Mrole');
 
-		       	$listRl = $this->Mrole->get_all_group();
+		       	$listRole = $this->Mrole->get_all_group();
 
 				$listGroup = array();
 
 				$getListGroup = $this->ion_auth->get_users_groups()->result();
-				
-				foreach ($getListGroup as $keyGetListGroup => $valGetListGroup) {
 
-					$listGroup[] = $valGetListGroup->name;
+				if (count($getListGroup) > 0) {
+
+					foreach ($getListGroup as $keyGetListGroup => $valGetListGroup) {
+
+						$listGroup[] = $valGetListGroup->name;
 					
+					}
+
 				}
-		      
+				
 		      	if ($this->input->post("submit")) {
 
 		      		$this->form_validation->set_rules('first_name', 'Username','max_length[30]');
@@ -154,7 +158,7 @@ class Home extends MY_Controller {
  
 		    	$this->data['getUserGroups'] = $listGroup;
 
-		    	$this->data['role'] = $listRl;
+		    	$this->data['role'] = $listRole;
 
 				$this->load->view("home/profile", $this->data);
 
@@ -501,7 +505,7 @@ class Home extends MY_Controller {
 
         		} else {
 
-        			$id = $user["0"]['id'];
+        			$id = $user['id'];
 
         			$listUpdate = array(	
 			
@@ -605,12 +609,6 @@ class Home extends MY_Controller {
 
 		}
 
-	}
-
-	public function success() {
-
-		$this->load->view('home/success');
-	
 	}
 
 	public function active($id) {
@@ -746,7 +744,7 @@ class Home extends MY_Controller {
 
     	$this->load->model('Mcategories');
 
-    	$listCg = $this->Mcategories->get_all_categories();
+    	$listCategories = $this->Mcategories->get_all_categories();
 
     	$this->load->model('Msinhvien');
 
@@ -754,17 +752,17 @@ class Home extends MY_Controller {
 
         $newArray = array();
 
-        if (isset($listCg) && count($listCg) > 0) {
+        if (count($listCategories) > 0) {
 
-        	foreach ($listCg as $keyListCg => $valListCg) {
+        	foreach ($listCategories as $keyListCategories => $valListCategories) {
 
-	        	if ($valListCg['is_deleted'] == 0) {
+	        	if ($valListCategories['is_deleted'] == 0) {
 
-	        		$newArray[$valListCg['id']] = $valListCg['name'];
+	        		$newArray[$valListCategories['id']] = $valListCategories['name'];
 	        		
 	        	}  else {
 
-	        		$newArray[$valListCg['id']] = "All";
+	        		$newArray[$valListCategories['id']] = "All";
 
 	        	}
 
@@ -796,7 +794,7 @@ class Home extends MY_Controller {
 
         $this->data['newArray'] = $newArray;
 
-		$this->data['categories'] = $listCg;	
+		$this->data['categories'] = $listCategories;	
 
     	$perpage = 10;
         
@@ -870,21 +868,21 @@ class Home extends MY_Controller {
 
 	      	$this->data['student'] = $this->Marticle->get_slug_article($slug); 	
 
-	      	$listCg = $this->Mcategories->get_all_categories();
+	      	$listCategories = $this->Mcategories->get_all_categories();
 
         	$newArray = array();
 
-        	if (isset($listCg) && count($listCg) > 0) {
+        	if (count($listCategories) > 0) {
 
-        		foreach ($listCg as $keyListCg => $valListCg) {
+        		foreach ($listCategories as $keyListCategories => $valListCategories) {
 
-		        	if ($valListCg['is_deleted'] == 0) {
+		        	if ($valListCategories['is_deleted'] == 0) {
 
-		        		$newArray[$valListCg['id']] = $valListCg['name'];
+		        		$newArray[$valListCategories['id']] = $valListCategories['name'];
 		        		
 		        	}  else {
 
-		        		$newArray[$valListCg['id']] = "All";
+		        		$newArray[$valListCategories['id']] = "All";
 
 		        	}
 
@@ -916,7 +914,7 @@ class Home extends MY_Controller {
 
 	        $this->data['newArray'] = $newArray;
 
-			$this->data['categories'] = $listCg;
+			$this->data['categories'] = $listCategories;
 
 			$this->data['article'] = $this->Marticle->get_all_article();
 

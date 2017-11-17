@@ -78,7 +78,9 @@
 
             </select>
             <?php echo form_error("categories"); ?>
-            <input type="submit" name="submit" value="Insert" class="btn btn-success btn-insert">
+            <div>
+                <input type="submit" name="submit" value="Insert" class="btn btn-success btn-insert">
+            </div>
         </form>
     </div>
 </body>
