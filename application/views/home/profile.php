@@ -88,9 +88,10 @@
                                             <?php if(isset($role) && count($role) > 0) { ?>
 
                                                 <?php foreach ($role as $keyRole => $valRoler) { ?>
-
-                                                    <tr selected><input class="checkbox_role" name='<?php echo $valRoler['id']; ?>' type='checkbox' value='<?php echo $valRoler['id']; ?>' <?php if (in_array($valRoler['name'], $getUserGroups) == true) {echo "checked";} ?> disabled/> <?php echo $valRoler['name']; ?></tr>
-
+                                                    <div class="role_tr">
+                                                        <tr selected><input class="checkbox_role" name='<?php echo $valRoler['id']; ?>' type='checkbox' value='<?php echo $valRoler['id']; ?>' <?php if (in_array($valRoler['name'], $getUserGroups) == true) {echo "checked";} ?> disabled/> <?php echo $valRoler['name']; ?></tr>
+                                                    </div>
+                                                    
                                                 <?php } ?>
                                             
                                             <?php } ?>  

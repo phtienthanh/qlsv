@@ -224,9 +224,12 @@ body {
     white-space: inherit;
     border: none;
     font-size: 16px;
-    padding:0;
     font-family: -webkit-pictograph;
     word-break: normal;
+}
+.role_tr{
+    display: inline-block;
+    padding-right: 15px;
 }
 
 .back {
@@ -273,7 +276,9 @@ body {
 .checkbox_role{
     margin: 10px !important;
 }
-
+.checkbox_role:first-child{
+    margin-left: 0px !important;
+}
 .m-t-30 {
     padding: 20px;
     background-color: #DCF3F4;

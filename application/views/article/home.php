@@ -48,7 +48,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-7 body-content">
-                                            <p class="title_article">
+                                            <p class="col-md-12 title_article">
                                                 <?php 
 
                                                 if (strlen($valArticle['title']) > 30) {
@@ -63,7 +63,7 @@
 
                                                 ?>
                                             </p>
-                                            <pre class="content1">
+                                            <pre class="col-md-12 content1">
                                                 <?php
                                                 if (strlen($valArticle['content']) > 200){
 

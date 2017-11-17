@@ -37,10 +37,11 @@
             <?php 
             if(isset($role) && count($role) > 0) { 
                 foreach ($role as $keyRole => $valRole) { ?>
-
-                    <tr selected>
-                        <input class="checkbox_role" name='<?php echo $valRole['id']; ?>' type='checkbox'  value='<?php echo $valRole['id']; ?>' /><?php echo $valRole['name']; ?>
-                    </tr>
+                    <div class="role_tr">
+                        <tr selected>
+                            <input class="checkbox_role" name='<?php echo $valRole['id']; ?>' type='checkbox'  value='<?php echo $valRole['id']; ?>' /><?php echo $valRole['name']; ?>
+                        </tr>
+                    </div> 
             <?php 
                 }  
 
