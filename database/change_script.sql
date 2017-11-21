@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 17, 2017 at 08:12 AM
+-- Generation Time: Nov 21, 2017 at 01:33 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -54,7 +54,14 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `is_deleted` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `is_deleted`) VALUES
+(1, 'All', 0);
 
 -- --------------------------------------------------------
 
@@ -110,7 +117,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `is_deleted` tinyint(1) NOT NULL,
   `token` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `lang_folder`, `avatar`, `is_deleted`, `token`) VALUES
+(1, '::1', '123123', '$2y$08$uKquSK8FycEjO75HMqI0QeiBP.8l4Q02qmdAAcL3voNVrNlRUbKjO', NULL, '123123123@gmail.com', NULL, NULL, NULL, NULL, 1510914470, 1511270079, 1, 'doanthi159', '123123123@gmail.com', NULL, NULL, NULL, 'doanthi.jpg', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -127,7 +141,14 @@ CREATE TABLE IF NOT EXISTS `users_groups` (
   UNIQUE KEY `uc_users_groups` (`user_id`,`group_id`),
   KEY `fk_users_groups_users1_idx` (`user_id`),
   KEY `fk_users_groups_groups1_idx` (`group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=291 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users_groups`
+--
+
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
+(1, 1, 1);
 
 --
 -- Constraints for dumped tables

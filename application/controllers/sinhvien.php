@@ -100,7 +100,7 @@ class Sinhvien extends MY_Controller {
 
                 $roleAdmin = "Admin ,";
                         
-                }
+            }
 
             if ($valListGroup == '2') {
 
@@ -590,7 +590,7 @@ class Sinhvien extends MY_Controller {
 
 	}
 
-    public function changepass($id) {
+    public function changePass($id) {
 	
     	if (isset($id) && count($id) > 0) {
 
@@ -600,7 +600,7 @@ class Sinhvien extends MY_Controller {
 
     		if (count($checkId) > 0) {
 
-    			if ($this->data['AdminPr'] == false) {
+    			if ($this->data['AdmindPr'] == false) {
             
             		redirect('home/index');
 
