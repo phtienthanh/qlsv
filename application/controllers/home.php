@@ -742,8 +742,7 @@ class Home extends MY_Controller {
 
     public function show_article() {
 
-    	$this->load->model('Mcateg
-    		ories');
+    	$this->load->model('Mcategories');
 
     	$listCategories = $this->Mcategories->get_all_categories();
 
