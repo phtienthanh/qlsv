@@ -742,7 +742,8 @@ class Home extends MY_Controller {
 
     public function show_article() {
 
-    	$this->load->model('Mcategories');
+    	$this->load->model('Mcateg
+    		ories');
 
     	$listCategories = $this->Mcategories->get_all_categories();
 
@@ -750,7 +751,7 @@ class Home extends MY_Controller {
 
 		$listStudent = $this->Msinhvien->get_all_sinhvien();
 
-        $newArray = array();
+        $categoryVariable = array();
 
         if (count($listCategories) > 0) {
 
@@ -758,11 +759,11 @@ class Home extends MY_Controller {
 
 	        	if ($valListCategories['is_deleted'] == 0) {
 
-	        		$newArray[$valListCategories['id']] = $valListCategories['name'];
+	        		$categoryVariable[$valListCategories['id']] = $valListCategories['name'];
 	        		
 	        	}  else {
 
-	        		$newArray[$valListCategories['id']] = "All";
+	        		$categoryVariable[$valListCategories['id']] = "All";
 
 	        	}
 
@@ -792,7 +793,7 @@ class Home extends MY_Controller {
 
 		$this->data['arraystudent'] = $newArrayStudent;
 
-        $this->data['newArray'] = $newArray;
+        $this->data['newArray'] = $categoryVariable;
 
 		$this->data['categories'] = $listCategories;	
 
@@ -870,7 +871,7 @@ class Home extends MY_Controller {
 
 	      	$listCategories = $this->Mcategories->get_all_categories();
 
-        	$newArray = array();
+        	$categoryVariable = array();
 
         	if (count($listCategories) > 0) {
 
@@ -878,11 +879,11 @@ class Home extends MY_Controller {
 
 		        	if ($valListCategories['is_deleted'] == 0) {
 
-		        		$newArray[$valListCategories['id']] = $valListCategories['name'];
+		        		$categoryVariable[$valListCategories['id']] = $valListCategories['name'];
 		        		
 		        	}  else {
 
-		        		$newArray[$valListCategories['id']] = "All";
+		        		$categoryVariable[$valListCategories['id']] = "All";
 
 		        	}
 
@@ -912,7 +913,7 @@ class Home extends MY_Controller {
 
 			$this->data['arraystudent'] = $newArrayStudent;
 
-	        $this->data['newArray'] = $newArray;
+	        $this->data['newArray'] = $categoryVariable;
 
 			$this->data['categories'] = $listCategories;
 

@@ -432,7 +432,7 @@ class article extends MY_Controller {
 
 		      	$listStudent = $this->Msinhvien->get_all_sinhvien();
 
-	        	$newArray = array();
+	        	$categoryVariable = array();
 
 	        	if (count($listCategories) > 0) {
 
@@ -440,11 +440,11 @@ class article extends MY_Controller {
 
 			        	if ($listCategoriesValue['is_deleted'] == 0) {
 
-			        		$newArray[$listCategoriesValue['id']] = $listCategoriesValue['name'];
+			        		$categoryVariable[$listCategoriesValue['id']] = $listCategoriesValue['name'];
 			        		
 			        	}  else {
 
-			        		$newArray[$listCategoriesValue['id']] = "All";
+			        		$categoryVariable[$listCategoriesValue['id']] = "All";
 
 			        	}
 
@@ -474,7 +474,7 @@ class article extends MY_Controller {
 
  				$this->data['arraystudent'] = $newArrayStudent;
 
-		        $this->data['newArray'] = $newArray;
+		        $this->data['newArray'] = $categoryVariable;
 
 				$this->data['categories'] = $listCategories;
 
