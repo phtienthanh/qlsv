@@ -814,7 +814,7 @@ class Home extends MY_Controller {
 
 			$this->load->model('Marticle');
 
-			$this->data['query'] = $this->Marticle->show_all_article($perpage, $_GET['page']);
+			$this->data['query'] = $this->Marticle->show_article($perpage, $_GET['page']);
 
 			$config['total_rows'] = $this->Marticle->show_number_article();
 
