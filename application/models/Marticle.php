@@ -6,9 +6,9 @@ class Marticle extends CI_Model {
     
     public function get_all_article() {
 
-        $this->db->order_by("id", "desc");
+        $this->db->order_by('id', 'desc');
         
-        $this->db->where('is_deleted', "0");
+        $this->db->where('is_deleted', '0');
     
         $query = $this->db->get('article');
       
@@ -22,11 +22,11 @@ class Marticle extends CI_Model {
 
         if (isset($perpage) && count($perpage) > 0) {
 
-            $this->db->order_by("id", "desc");
+            $this->db->order_by('id', 'desc');
 
             $this->db->limit($perpage, $offset);
 
-            $this->db->where('title LIKE', "%".$title."%");
+            $this->db->where('title LIKE', '%'.$title.'%');
         
             $query = $this->db->get('article');
           
@@ -46,9 +46,9 @@ class Marticle extends CI_Model {
 
         if (isset($perpage) && count($perpage) > 0) {
 
-            $this->db->order_by("id", "desc");
+            $this->db->order_by('id', 'desc');
 
-            $this->db->where('is_deleted', "0");
+            $this->db->where('is_deleted', '0');
 
             $this->db->limit($perpage, $offset);
         
@@ -70,7 +70,7 @@ class Marticle extends CI_Model {
 
         if (isset($title) && count($title) > 0) {
 
-            $this->db->where('title LIKE', "%".$title."%");
+            $this->db->where('title LIKE', '%'.$title.'%');
 
             $this->db->where('is_deleted', 0);
         
@@ -126,7 +126,7 @@ class Marticle extends CI_Model {
             
             $this->load->database();
 
-            $this->db->where("id", $id);
+            $this->db->where('id', $id);
 
             return $this->db->get($this->table)->row_array();
 
@@ -144,9 +144,9 @@ class Marticle extends CI_Model {
         
             $this->load->database();
 
-            $this->db->where("slug", $slug);
+            $this->db->where('slug', $slug);
 
-            $this->db->where("is_deleted", 0);
+            $this->db->where('is_deleted', 0);
 
             return $this->db->get($this->table)->row_array();
 
@@ -164,9 +164,9 @@ class Marticle extends CI_Model {
         
             $this->load->database();
 
-            $this->db->where("slug", $slug);
+            $this->db->where('slug', $slug);
 
-            $this->db->where("is_deleted", 0);
+            $this->db->where('is_deleted', 0);
 
             return $this->db->get($this->table)->row_array();
 
@@ -184,7 +184,7 @@ class Marticle extends CI_Model {
        
             $this->load->database();
             
-            $this->db->where("id", $id);
+            $this->db->where('id', $id);
              
             if ($this->db->update($this->table, $data)) {
                
@@ -210,7 +210,7 @@ class Marticle extends CI_Model {
        
             $this->load->database();
             
-            $this->db->where("slug", $slug);
+            $this->db->where('slug', $slug);
              
             if ($this->db->update($this->table, $data)) {
                 
@@ -236,7 +236,7 @@ class Marticle extends CI_Model {
         
             $this->load->database();
             
-            $this->db->where("id", $id);
+            $this->db->where('id', $id);
 
             if ($this->db->update($this->table, $data)) {
                 

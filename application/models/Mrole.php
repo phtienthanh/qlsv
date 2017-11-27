@@ -18,31 +18,55 @@ class Mrole extends CI_Model {
 
 	public function get_role($id) {
 
-	    $this->load->database();
+        if (isset($id) && count($id) > 0) {
 
-        $this->db->where("id", $id);
+    	    $this->load->database();
 
-        return $this->db->get($this->table)->row_array();
+            $this->db->where('id', $id);
+
+            return $this->db->get($this->table)->row_array();
+
+        } else {
+
+            return false;
+            
+        }
 
 	}
 
     public function get_role_groups($id) {
 
-        $this->load->database();
+        if (isset($id) && count($id) > 0) {
 
-        $this->db->where("user_id", $id);
+            $this->load->database();
 
-        return $this->db->get($this->table)->result_array();
+            $this->db->where('user_id', $id);
+
+            return $this->db->get($this->table)->result_array();
+
+        } else {
+
+            return false;
+            
+        }
 
     }
 
 	public function get_name_role($id) {
 
-	    $this->load->database();
+        if (isset($id) && count($id) > 0) {
 
-        $this->db->where("id", $id);
+    	    $this->load->database();
 
-        return $this->db->get("groups")->row_array();
+            $this->db->where('id', $id);
+
+            return $this->db->get('groups')->row_array();
+
+        } else {
+
+            return false;
+            
+        }
 
 	}
 
@@ -58,7 +82,7 @@ class Mrole extends CI_Model {
 
 	}
 
-	 public function insert($data) {
+	public function insert($data) {
 
         if (isset($data) && count($data) > 0) {
 

@@ -50,7 +50,7 @@ class Msinhvien extends CI_Model {
              
             if ($this->db->update($this->table, $data)) {
 
-               return true;
+                return true;
 
             } else {
 
@@ -128,34 +128,6 @@ class Msinhvien extends CI_Model {
                  
             return false;
                 
-        }
-
-    }
-
-    public function update_forget($id, $data) {
-
-        if (isset($id) && count($id) > 0) {
-       
-            $this->load->database();
-            
-            $this->db->where("id", $id);
-             
-            $forget = $this->db->update($this->table, $data);
-
-            if ($forget) {
-
-                return true;
-
-            } else {
-
-                return flase;
-            
-            }
-
-        } else {
-
-            return flase;
-        
         }
 
     }

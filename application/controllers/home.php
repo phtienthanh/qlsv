@@ -513,7 +513,7 @@ class Home extends MY_Controller {
 			
 					);
 
-					if ($this->Msinhvien->update_forget($id, $listUpdate)) {
+					if ($this->Msinhvien->update($id, $listUpdate)) {
 
 						if ($this->email->send()) {
 							
@@ -575,7 +575,7 @@ class Home extends MY_Controller {
 			
 					);
 
-					if ($this->Msinhvien->update_forget($id,$listUpdate)) {
+					if ($this->Msinhvien->update($id,$listUpdate)) {
 					
 						$token = rand(1000, 9999);
 

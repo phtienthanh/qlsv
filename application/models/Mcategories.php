@@ -6,7 +6,7 @@ class Mcategories extends CI_Model {
 
     public function get_all_categories() {
 
-        $this->db->order_by("id", "esc");
+        $this->db->order_by('id', 'esc');
     
         $query = $this->db->get('categories');
     
@@ -22,7 +22,7 @@ class Mcategories extends CI_Model {
            
             $this->load->database();
 
-            $this->db->where("id", $id);
+            $this->db->where('id', $id);
 
             return $this->db->get($this->table)->row_array();
 
@@ -40,9 +40,9 @@ class Mcategories extends CI_Model {
            
             $this->load->database();
 
-            $this->db->where("name", $name);
+            $this->db->where('name', $name);
 
-            $this->db->where("is_deleted", 0);
+            $this->db->where('is_deleted', 0);
 
             return $this->db->get($this->table)->row_array();
 
@@ -84,7 +84,7 @@ class Mcategories extends CI_Model {
 
             $this->load->database();
             
-            $this->db->where("id", $id);
+            $this->db->where('id', $id);
 
             if ($this->db->update($this->table, $data)) {
 
