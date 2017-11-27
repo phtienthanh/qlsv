@@ -54,7 +54,7 @@ class Sinhvien extends MY_Controller {
 
 		$this->load->model('Msinhvien');
 		
-		$this->data['student'] = $this->Msinhvien->get_all_sinhvien();
+		$this->data['student'] = $this->Msinhvien->get_all_sinhvien('desc');
 
 		$this->load->view('Sinhvien/show', $this->data);
 
@@ -536,7 +536,7 @@ class Sinhvien extends MY_Controller {
 								        
 								        } else {
 
-								        	$this->session->set_flashdata('message_update', '<div class="succes fail">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
+								        	$this->session->set_flashdata('message_update', '<div class="succes fail">Update success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 											redirect('sinhvien/update/'.$id); 
 
@@ -600,7 +600,7 @@ class Sinhvien extends MY_Controller {
 
     		if (count($checkId) > 0) {
 
-    			if ($this->data['AdmindPr'] == false) {
+    			if ($this->data['AdminPr'] == false) {
             
             		redirect('home/index');
 

@@ -4,21 +4,9 @@ class Msinhvien extends CI_Model {
  
     protected $table = 'users';
 
-    public function get_all_sinhvien() {
+    public function get_all_sinhvien($order=null) {
 
-        $this->db->order_by('id', 'desc');
-    
-        $query = $this->db->get('users');
-    
-        $ar = $query->result_array();
-
-        return $ar;
-
-    }
-
-     public function get_sinhvienEsc() {
-
-        $this->db->order_by('id', 'esc');
+        $this->db->order_by('id', $order);
     
         $query = $this->db->get('users');
     
@@ -96,7 +84,7 @@ class Msinhvien extends CI_Model {
 
     }
 
-     public function get_email_sinhvien($email) {
+    public function get_email_sinhvien($email) {
 
         if (isset($email) && count($email) > 0) {
         
@@ -112,50 +100,6 @@ class Msinhvien extends CI_Model {
             
         }
 
-    }
-
-    public function changepass_sinhvien($id, $data) {
-
-        if (isset($id) && count($id) > 0) {
-
-            $this->load->database();
-            
-            $this->db->where("id", $id);
-             
-            if ($this->db->update($this->table, $data)) {
-       
-                return true;
-
-            } else {
-
-                return false;
-
-            }
-
-        } else {
-
-            return false;
-
-        }
-      
-    }
-
-    public function delete_checkbox($id, $data) {
-
-        if (isset($id) && count($id) > 0) {
-        
-            $this->load->database();
-            
-            $this->db->where("id", $id);
-
-            $this->db->update($this->table, $data);
-
-        } else {
-                 
-            return false;
-                
-        }
-    
     }
     
     public function forget_password($email) {

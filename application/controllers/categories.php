@@ -166,7 +166,7 @@ class Categories extends MY_Controller {
                 
                 );
 
-                $this->Mcategories->delete_checkbox($valDataId, $listUpdate);    
+                $this->Mcategories->update($valDataId, $listUpdate);    
 
             } 
 

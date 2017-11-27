@@ -38,7 +38,7 @@ class article extends MY_Controller {
 
 		$listCategories = $this->Mcategories->get_all_categories();
 
-		$listStudent = $this->Msinhvien->get_all_sinhvien();
+		$listStudent = $this->Msinhvien->get_all_sinhvien('esc');
 
 		$newArrayStudent = array();
 
@@ -104,7 +104,7 @@ class article extends MY_Controller {
 
        	$this->load->model('Msinhvien');
 
-       	$this->data['authorSv'] = $this->Msinhvien->get_sinhvienEsc();
+       	$this->data['authorSv'] = $this->Msinhvien->get_all_sinhvien('esc');
 
        	$slug = create_slug($this->input->post('title')).'.html';
 
@@ -112,7 +112,7 @@ class article extends MY_Controller {
 
        	$this->data['categories'] = $this->Mcategories->get_all_categories();
 
-       	$values = $this->Marticle->get_delete_article($slug);
+       	$values = $this->Marticle->get_slug_article($slug);
 
        	if ($this->input->post("submit")) {
 
@@ -248,7 +248,7 @@ class article extends MY_Controller {
 
 				$this->load->model('Msinhvien');
 
-       			$data['authorSv'] = $this->Msinhvien->get_sinhvienEsc();
+       			$data['authorSv'] = $this->Msinhvien->get_all_sinhvien('esc');
 
 				$checkSlug = create_slug($this->input->post('slug'));
 
@@ -430,7 +430,7 @@ class article extends MY_Controller {
 
 		      	$this->load->model('Msinhvien');
 
-		      	$listStudent = $this->Msinhvien->get_all_sinhvien();
+		      	$listStudent = $this->Msinhvien->get_all_sinhvien('esc');
 
 	        	$categoryVariable = array();
 

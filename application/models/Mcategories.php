@@ -104,31 +104,6 @@ class Mcategories extends CI_Model {
     
     }
     
-     public function delete_checkbox($id, $data) {
-
-        if (isset($id) && count($id) > 0) {
-        
-            $this->load->database();
-            
-            $this->db->where("id", $id);
-
-            if ($this->db->update($this->table, $data)) {
-                
-                return true;
-
-            } else {
-
-                return false;
-                
-            }
-
-        } else {
-
-            return false;
-
-        }
-    
-    }
 
 }
 

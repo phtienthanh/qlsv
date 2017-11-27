@@ -748,7 +748,7 @@ class Home extends MY_Controller {
 
     	$this->load->model('Msinhvien');
 
-		$listStudent = $this->Msinhvien->get_all_sinhvien();
+		$listStudent = $this->Msinhvien->get_all_sinhvien('desc');
 
         $categoryVariable = array();
 
@@ -864,7 +864,7 @@ class Home extends MY_Controller {
 
 	    	$this->load->model('Msinhvien');
 
-		    $listStudent = $this->Msinhvien->get_all_sinhvien();
+		    $listStudent = $this->Msinhvien->get_all_sinhvien('esc');
 
 	      	$this->data['student'] = $this->Marticle->get_slug_article($slug); 	
 
