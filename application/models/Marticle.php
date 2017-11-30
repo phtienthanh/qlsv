@@ -8,7 +8,7 @@ class Marticle extends CI_Model {
 
         $this->db->order_by('id', 'desc');
         
-        $this->db->where('is_deleted', '0');
+        $this->db->where('is_deleted', 0);
     
         $query = $this->db->get('article');
       
@@ -25,6 +25,8 @@ class Marticle extends CI_Model {
             $this->db->order_by('id', 'desc');
 
             $this->db->limit($perpage, $offset);
+
+            $this->db->where('is_deleted', 0);
 
             if (isset($title) && count($title) > 0) {
 
@@ -46,32 +48,18 @@ class Marticle extends CI_Model {
 
     }
 
-    public function show_number_title_article($title) {
+    public function show_number_title_article($title='') {
 
         if (isset($title) && count($title) > 0) {
 
             $this->db->where('title LIKE', '%'.$title.'%');
 
-            $this->db->where('is_deleted', 0);
+        }
+
+        $this->db->where('is_deleted', 0);
         
-            $query = $this->db->get('article');
-        
-            return $query->num_rows();
-
-        } else {
-
-            return false;
-
-        } 
-
-    }
-
-    public function show_number_article() {
-
-        $this->db->where('is_deleted', '0');
-    
         $query = $this->db->get('article');
-    
+        
         return $query->num_rows();
 
     }
@@ -100,32 +88,14 @@ class Marticle extends CI_Model {
 
     }
 
-    public function get_article($id) {
+    public function get_article($element, $data) {
 
-        if (isset($id) && count($id) > 0) {
+        if (isset($element) && count($element) > 0) {
             
             $this->load->database();
 
-            $this->db->where('id', $id);
-
-            return $this->db->get($this->table)->row_array();
-
-        } else {
-
-            return false;
-
-        }
-
-    }
-
-    public function get_slug_article($slug) {
-
-        if (isset($slug) && count($slug) > 0) {
-        
-            $this->load->database();
-
-            $this->db->where('slug', $slug);
-
+            $this->db->where($element, $data);
+            
             $this->db->where('is_deleted', 0);
 
             return $this->db->get($this->table)->row_array();
@@ -138,33 +108,13 @@ class Marticle extends CI_Model {
 
     }
 
-    public function get_delete_article($slug) {
+    public function update_article($element,$id, $data) {
 
-        if (isset($slug) && count($slug) > 0) {
-        
-            $this->load->database();
-
-            $this->db->where('slug', $slug);
-
-            $this->db->where('is_deleted', 0);
-
-            return $this->db->get($this->table)->row_array();
-
-        } else {
-
-            return false;
-
-        }
-
-    }
-
-    public function update($id, $data) {
-
-        if (isset($id) && count($id) > 0) {
+        if (isset($element) && count($element) > 0) {
        
             $this->load->database();
             
-            $this->db->where('id', $id);
+            $this->db->where($element, $id);
              
             if ($this->db->update($this->table, $data)) {
                
@@ -182,58 +132,6 @@ class Marticle extends CI_Model {
 
         }
 
-    }
-
-    public function update_slug_article($slug, $data) {
-
-        if (isset($slug) && count($slug) > 0) {
-       
-            $this->load->database();
-            
-            $this->db->where('slug', $slug);
-             
-            if ($this->db->update($this->table, $data)) {
-                
-                return true;
-
-            } else {
-
-                return false;
-
-            }
-
-        } else {
-
-            return false;
-
-        }
-
-    }
-
-    public function delete_checkbox($id, $data) {
-
-        if (isset($id) && count($id) > 0) {
-        
-            $this->load->database();
-            
-            $this->db->where('id', $id);
-
-            if ($this->db->update($this->table, $data)) {
-                
-                return true;
-
-            } else {
-
-                return false;
-
-            }
-
-        } else {
-
-            return false;
-
-        }
-    
     }
 
 }

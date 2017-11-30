@@ -66,126 +66,22 @@ class Msinhvien extends CI_Model {
 
     }
     
-    public function get_id_sinhvien($id) {
+    public function get_data_sinhvien($element,$data) {
 
-        if (isset($id) && count($id) > 0) {
+        if (isset($data) && count($data) > 0) {
         
             $this->load->database();
 
-            $this->db->where("id", $id);
+            $this->db->where($element, $data);
 
-            return $this->db->get($this->table)->row_array();
-
-        } else {
-
-            return false;
-            
-        }
-
-    }
-
-    public function get_email_sinhvien($email) {
-
-        if (isset($email) && count($email) > 0) {
-        
-            $this->load->database();
-
-            $this->db->where("email", $email);
-
-            return $this->db->get($this->table)->row_array();
-
-        } else {
-
-            return false;
-            
-        }
-
-    }
-    
-    public function forget_password($email) {
-
-        if (isset($email) && count($email) > 0) {
-
-            $this->load->database();
-            
             $this->db->where("is_deleted", 0);
 
-            $this->db->where("email", $email);
-
-            $query = $this->db->get($this->table);           
-            
-            if ($query->num_rows() == 1) {
-                 
-                return $query->row_array();
-                
-            } else {
-                     
-                return false;
-                    
-            }
+            return $this->db->get($this->table)->row_array();
 
         } else {
-                 
+
             return false;
-                
-        }
-
-    }
-
-    public function forget_tk($token) {
-
-        if (isset($token) && count($token) > 0) {
-
-            $this->load->database();
-
-            $this->db->where("token", $token);
-
-            $query = $this->db->get($this->table);         
-        
-            if ($query->num_rows() == 1) {
-             
-                return $query->row_array();
             
-            } else {
-                     
-                return false;
-                    
-            }
-
-        } else {
-                 
-            return false;
-                
-        }
-
-    }
-
-    public function get_exist_email($email) {
-
-        if (isset($email) && count($email) > 0) {
-
-            $this->load->database();
-
-            $this->db->where("email", $email);
-
-            $this->db->where("is_deleted", '0');
-
-            $query = $this->db->get('users');    
-        
-            if ($query->num_rows() > 1) {
-             
-                return true;
-            
-            } else {
-                     
-                return false;
-                    
-            }
-
-        } else {
-                 
-            return false;
-                
         }
 
     }

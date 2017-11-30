@@ -32,9 +32,9 @@ class Sinhvien extends MY_Controller {
   
         $this->load->model('Mrole');
 
-        $listUserGroup = $this->Mrole->get_all_role();
+        $listUserGroup = $this->Mrole->get_all_table('users_groups');
 
-        $listRole = $this->Mrole->get_all_group();
+        $listRole = $this->Mrole->get_all_table('groups');
 
         $listGroup = array();
 
@@ -70,7 +70,7 @@ class Sinhvien extends MY_Controller {
 
         $this->load->model('Mrole');
 
-        $listRole = $this->Mrole->get_all_group();
+        $listRole = $this->Mrole->get_all_table('groups');
 
 		$listGroup = array();
 
@@ -176,7 +176,7 @@ class Sinhvien extends MY_Controller {
 
         $identity_column = $this->config->item('identity', 'ion_auth');
 
-        $this->data['role'] = $this->Mrole->get_all_group(); 
+        $this->data['role'] = $this->Mrole->get_all_table('groups'); 
 
         $this->data['identity_column'] = $identity_column;
         
@@ -346,7 +346,7 @@ class Sinhvien extends MY_Controller {
 
     		$this->load->model('Msinhvien');
 	    
-	    	$checkId = $this->Msinhvien->get_id_sinhvien($id); 
+	    	$checkId = $this->Msinhvien->get_data_sinhvien('id',$id); 
 
     		if (count($checkId) > 0) {
 
@@ -364,7 +364,7 @@ class Sinhvien extends MY_Controller {
 
 		       	$this->load->model('Mrole');
 
-		       	$listRole = $this->Mrole->get_all_group();
+		       	$listRole = $this->Mrole->get_all_table('groups');
 
 				$listUserGroup = array();
 
@@ -384,7 +384,7 @@ class Sinhvien extends MY_Controller {
 
 				}
 
-		      	$this->data['student'] = $this->Msinhvien->get_id_sinhvien($id); 
+		      	$this->data['student'] =$this->Msinhvien->get_data_sinhvien('id',$id); 
 		      	
 		      	if ($this->input->post("insert")) {
 			       	
@@ -408,46 +408,46 @@ class Sinhvien extends MY_Controller {
 							
 							);
 
-						if ($this->Msinhvien->update($id, $listUpdate)) {
+							if ($this->Msinhvien->update($id, $listUpdate)) {
 
-							$listRole = $this->Mrole->get_all_group();
+								$listRole = $this->Mrole->get_all_table('groups');
 
-			         		if (count($listRole) > 0) {
+				         		if (count($listRole) > 0) {
 
-			         			$listGroup = array();
+				         			$listGroup = array();
 
-			        			foreach ($listRole as $keylistRole => $vallistRole) {
-			        				
-			        				if ($this->input->post($vallistRole['id']) == $vallistRole['id']) {
+				        			foreach ($listRole as $keylistRole => $vallistRole) {
+				        				
+				        				if ($this->input->post($vallistRole['id']) == $vallistRole['id']) {
 
-				        				$listGroup[] = $this->input->post($vallistRole['id']);
+					        				$listGroup[] = $this->input->post($vallistRole['id']);
 
-						        	}
+							        	}
 
-						        }
+							        }
 
-						        if (count($listGroup) > 0) {
+							        if (count($listGroup) > 0) {
 
-									$this->ion_auth_model->remove_from_group($listIdgroup, $id);
-						
-						        	$this->ion_auth_model->add_to_group($listGroup, $id);
-						        
+										$this->ion_auth_model->remove_from_group($listIdgroup, $id);
+							
+							        	$this->ion_auth_model->add_to_group($listGroup, $id);
+							        
+							        } else {
+
+							        	$this->session->set_flashdata('message_update', '<div class="fail">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+										redirect('sinhvien/update/'.$id); 
+
+							        }
+
 						        } else {
 
-						        	$this->session->set_flashdata('message_update', '<div class="fail">Please select a role<button type="button" class="close" data-dismiss="alert">×</button></div>');
+						        	$this->session->set_flashdata('message_update', '<div class="fail"> Update success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
-									redirect('sinhvien/update/'.$id); 
-
+									redirect('sinhvien/update/'.$id);
+						        	
 						        }
-
-					        } else {
-
-					        	$this->session->set_flashdata('message_update', '<div class="fail"> Update success<button type="button" class="close" data-dismiss="alert">×</button></div>');
-
-								redirect('sinhvien/update/'.$id);
-					        	
-					        }
-								
+									
 								$this->session->set_flashdata('message_update', '<div class="succes"> Update success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 								redirect('sinhvien/update/'.$id); 
@@ -512,7 +512,7 @@ class Sinhvien extends MY_Controller {
 
 					        	if ($this->Msinhvien->update($id, $listUpdate)) {
 
-						        	$listRole = $this->Mrole->get_all_group();
+						        	$listRole = $this->Mrole->get_all_table('groups');
 
 									if (count($listGr) > 0) {
 
@@ -558,6 +558,12 @@ class Sinhvien extends MY_Controller {
 
 										redirect('sinhvien/update/'.$id); 
 					            
+					            	} else {
+
+					            		$this->session->set_flashdata('message_update', '<div class="succes fail"> Update fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+										redirect('sinhvien/update/'.$id);
+
 					            	}
 
 					        	}				            
@@ -566,7 +572,13 @@ class Sinhvien extends MY_Controller {
 
 				       	}
 
-					} 
+					} else {
+
+						$this->session->set_flashdata('message_update', '<div class="succes fail"> Update fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+						redirect('sinhvien/update/'.$id);
+
+					}
 	    		
 	    		} 
 
@@ -596,7 +608,7 @@ class Sinhvien extends MY_Controller {
 
     		$this->load->model('Msinhvien');
 	    
-	    	$checkId = $this->Msinhvien->get_id_sinhvien($id); 
+	    	$checkId = $this->Msinhvien->get_data_sinhvien('id',$id); 
 
     		if (count($checkId) > 0) {
 
@@ -743,7 +755,7 @@ class Sinhvien extends MY_Controller {
 
 		        $this->load->model('Msinhvien');
 
-		        $data = $this->Msinhvien->get_id_sinhvien($valueDataId);
+		        $data = $this->Msinhvien->get_data_sinhvien('id',$valueDataId);
 
 		        if (file_exists("medias/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg") {
 		              

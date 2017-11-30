@@ -84,7 +84,7 @@ class Home extends MY_Controller {
 
 			$this->load->model('Msinhvien');
 
-	      	$getId = $this->Msinhvien->get_id_sinhvien($id);
+	      	$getId = $this->Msinhvien->get_data_sinhvien('id',$id);
 
 	      	if (count($getId) == 0) {
 
@@ -100,7 +100,7 @@ class Home extends MY_Controller {
 		        
 		       	$this->load->model('Mrole');
 
-		       	$listRole = $this->Mrole->get_all_group();
+		       	$listRole = $this->Mrole->get_all_table('groups');
 
 				$listGroup = array();
 
@@ -144,13 +144,19 @@ class Home extends MY_Controller {
 
 						} else {
 
-							$this->session->set_flashdata('message_profile', '<div class="succes">Update fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
+							$this->session->set_flashdata('message_profile', '<div class="succes fail">Update fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
 						}
 
 						redirect('home/profile/'.$id);
 
-				    }
+				    } else {
+
+						$this->session->set_flashdata('message_profile', '<div class="succes fail">Update fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+						redirect('home/profile/'.$id);
+
+					}
 
 		    	} 
 
@@ -178,7 +184,7 @@ class Home extends MY_Controller {
 
     		$this->load->model('Msinhvien');
 	    
-	   		$checkId = $this->Msinhvien->get_id_sinhvien($id); 
+	   		$checkId = $this->Msinhvien->get_data_sinhvien('id',$id); 
 			
 			if (count($checkId) > 0) {
 
@@ -495,7 +501,9 @@ class Home extends MY_Controller {
 
         		$this->load->model('Msinhvien');
 
-        		$user = $this->Msinhvien->forget_password($this->input->post('email'));
+        		$user = $this->Msinhvien->get_data_sinhvien('email',$this->input->post('email'));
+
+        		var_dump($user);exit();
 
         		if ($user == false) {
 
@@ -561,7 +569,7 @@ class Home extends MY_Controller {
 
 	        		$this->load->model('Msinhvien');
 
-	        		$user = $this->Msinhvien->forget_tk($token);
+	        		$user = $this->Msinhvien->get_data_sinhvien('token',$token);
 
 	        		$this->load->model('ion_auth_model');
 
@@ -597,7 +605,13 @@ class Home extends MY_Controller {
 
 					}
 				
-		    	}
+		    	} else {
+
+					$this->session->set_flashdata('message_update', '<div class="succes fail">Update password fail<button type="button" class="close" s>×</button></div>');
+
+					redirect('home/change/'.$token);
+
+				}
 
 	   		} 
 
@@ -641,7 +655,7 @@ class Home extends MY_Controller {
 
     		$this->load->model('Msinhvien');
 	    
-	    	$checkId = $this->Msinhvien->get_id_sinhvien($id); 
+	    	$checkId = $this->Msinhvien->get_data_sinhvien('id',$id); 
 
     		if (count($checkId) > 0) {
 
@@ -816,7 +830,7 @@ class Home extends MY_Controller {
 
 			$this->data['query'] = $this->Marticle->show_article($perpage, $_GET['page']);
 
-			$config['total_rows'] = $this->Marticle->show_number_article();
+			$config['total_rows'] = $this->Marticle->show_number_title_article($keyWord);
 
 		} else {
 

@@ -16,31 +16,13 @@ class Mcategories extends CI_Model {
 
     }
 
-    public function get_id_categories($id) {
+    public function get_categories($element,$data) {
 
-        if (isset($id) && count($id) > 0) {
+        if (isset($data) && count($data) > 0) {
            
             $this->load->database();
 
-            $this->db->where('id', $id);
-
-            return $this->db->get($this->table)->row_array();
-
-        } else {
-
-            return false;
-
-        }
-        
-    }
-
-    public function get_exist_categories($name) {
-
-        if (isset($name) && count($name) > 0) {
-           
-            $this->load->database();
-
-            $this->db->where('name', $name);
+            $this->db->where($element, $data);
 
             $this->db->where('is_deleted', 0);
 

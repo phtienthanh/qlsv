@@ -48,7 +48,7 @@ class Categories extends MY_Controller {
 
             $this->load->model('Mcategories');
 
-            $checkExist = $this->Mcategories->get_exist_categories($this->input->post('input_text'));
+            $checkExist = $this->Mcategories->get_categories('name',$this->input->post('input_text'));
 
             if (count($checkExist) > 0) {
               
@@ -56,7 +56,7 @@ class Categories extends MY_Controller {
 
                 $this->form_validation->set_message('required', '%s not be empty');
             
-                $this->form_validation->set_message('is_unique', '%s đã tồn tại');
+                $this->form_validation->set_message('is_unique', '%s already exist');
 
             }
 
@@ -76,8 +76,20 @@ class Categories extends MY_Controller {
 
                     redirect('categories/home');  
                     
+                } else {
+
+                    $this->session->set_flashdata('message_add', '<div class="succes fail">Add new categories fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+                    redirect('categories/home');
+                    
                 }   
                   
+            } else {
+
+                $this->session->set_flashdata('message_add', '<div class="succes fail">Add new categories fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+                redirect('categories/home');
+                
             }
 
         }
@@ -92,11 +104,11 @@ class Categories extends MY_Controller {
 
             $this->load->model('Mcategories');
 
-            $getId = $this->Mcategories->get_id_categories($id);
+            $getId = $this->Mcategories->get_categories('id',$id);
 
             if (count($getId) > 0) {
                 
-                $data['student'] = $this->Mcategories->get_id_categories($id);      
+                $data['student'] = $getId;      
                 
                 if ($this->input->post("change")) {
                   
@@ -118,6 +130,12 @@ class Categories extends MY_Controller {
 
                         redirect('categories/home');
 
+                    } else {
+
+                        $this->session->set_flashdata('message_add', '<div class="succes fail">Update new categories fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+                        redirect('categories/home');
+
                     }
                      
                 } 
@@ -126,7 +144,7 @@ class Categories extends MY_Controller {
 
             } else {
 
-            redirect('categories/home');
+                redirect('categories/home');
 
             } 
 
