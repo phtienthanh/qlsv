@@ -79,7 +79,7 @@
                                             </pre>
                                             <div class="form-group btn-group col-md-12">
                                                 <label><b>Author :</b></label>
-                                                <span><?php if (in_array($valArticle["author"], $arraystudent)) {
+                                                <span><?php if (in_array($valArticle["author"], $arrayStudent)) {
 
                                                         echo $valArticle["author"];
                                                     
@@ -90,7 +90,7 @@
                                                     } ?></span>
                                                 <br> 
                                                 <label><b>Categories : </b></label>
-                                                <span><?php echo $newArray[$valArticle['categories']] ?></span>
+                                                <span><?php echo $assignName[$valArticle['categories']] ?></span>
                                                 <div class="form-group datetime">
                                                 <label><b>Poster on: </b></label>
                                                 <span><?php echo $valArticle['date']; ?></span>

@@ -40,7 +40,7 @@ class article extends MY_Controller {
 
 		$listStudent = $this->Msinhvien->get_all_sinhvien('asc');
 
-		$newArrayStudent = array();
+		$newArrayStudent = $assignName = array();
 
 		if (count($listStudent) > 0) {
 
@@ -58,7 +58,7 @@ class article extends MY_Controller {
 
 	        }
 
-	        $this->data['arraystudent'] = $newArrayStudent;
+	        $this->data['arrayStudent'] = $newArrayStudent;
 
         }
 
@@ -68,17 +68,17 @@ class article extends MY_Controller {
 
 	        	if ($listCategoriesValue['is_deleted'] == 0) {
 
-	        		$newArray[$listCategoriesValue['id']] = $listCategoriesValue['name'];
+	        		$assignName[$listCategoriesValue['id']] = $listCategoriesValue['name'];
 	        		
 	        	}  else {
 
-	        		$newArray[$listCategoriesValue['id']] = "All";
+	        		$assignName[$listCategoriesValue['id']] = "All";
 
 	        	}
 
 	        }
 
-	        $this->data['newArray'] = $newArray;
+	        $this->data['assignName'] = $assignName;
 
         }
 
@@ -244,7 +244,7 @@ class article extends MY_Controller {
 
 				$this->load->model('Mcategories');
 
-				$data['categoriess'] = $this->Mcategories->get_all_categories();
+				$data['category_all'] = $this->Mcategories->get_all_categories();
 
 				$this->load->model('Msinhvien');
 
@@ -256,13 +256,13 @@ class article extends MY_Controller {
 		      	
 		      	if ($this->input->post("submit")) {
 
-			       	$this->form_validation->set_rules('title','title','required');
+			       	$this->form_validation->set_rules('title','title', 'required');
 
-			       	$this->form_validation->set_message('required','%s không được bỏ trống');
+			       	$this->form_validation->set_message('required', '%s not be empty');
 
-			       	$this->form_validation->set_rules('author','author','required');
+			       	$this->form_validation->set_rules('author', 'author', 'required');
 
-			       	$this->form_validation->set_rules('categories','categories','required');
+			       	$this->form_validation->set_rules('categories', 'categories', 'required');
 		    
 			       	if ($this->form_validation->run()) {
 
@@ -360,7 +360,7 @@ class article extends MY_Controller {
 
 						);
 
-						if ($this->Marticle->update_article('id',$id, $listUpdate)) {
+						if ($this->Marticle->update_article('id', $id, $listUpdate)) {
 							
 							$this->session->set_flashdata('message_upload', '<div class="fail">Upload fail. please upload the picture again<button type="button" class="close" data-dismiss="alert">×</button></div>');
 

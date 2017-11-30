@@ -48,7 +48,7 @@ class Sinhvien extends MY_Controller {
 
         }
 
-        $this->data['newArray'] = $listGroup;
+        $this->data['listGroup'] = $listGroup;
 
 		$this->data['role'] = $listUserGroup;
 
@@ -630,9 +630,9 @@ class Sinhvien extends MY_Controller {
 
 				$this->form_validation->set_rules('new_password', 'new password ', 'required|min_length[6]|max_length[30]|matches[new_password_confirm]');
 
-				$this->form_validation->set_rules('new_password_confirm','new password confirm', 'required|min_length[6]|max_length[30]');
+				$this->form_validation->set_rules('new_password_confirm', 'new password confirm', 'required|min_length[6]|max_length[30]');
 
-				$this->form_validation->set_message('required','The %s not be empty');
+				$this->form_validation->set_message('required', 'The %s not be empty');
 
 				$user = $this->ion_auth->user()->row();
 

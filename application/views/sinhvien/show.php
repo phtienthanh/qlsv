@@ -36,7 +36,7 @@
 
                                         <?php if ($valStudent['id'] == $valRole['user_id']) { ?>
 
-                                            <?php echo $newArray[$valRole['group_id']]; ?>
+                                            <?php echo $listGroup[$valRole['group_id']]; ?>
 
                                         <?php } ?>
 
@@ -64,7 +64,7 @@
 
                                         <?php if ($valStudent['id'] == $valRole['user_id']) { ?>
 
-                                            <?php echo $newArray[$valRole['group_id']]; ?> <br>
+                                            <?php echo $listGroup[$valRole['group_id']]; ?> <br>
 
                                         <?php } ?>
 

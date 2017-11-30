@@ -778,7 +778,7 @@ class Home extends MY_Controller {
 
         }
 
-		$this->data['arraystudent'] = $newArrayStudent;
+		$this->data['arrayStudent'] = $newArrayStudent;
 
         $this->data['newArray'] = $categoryVariable;
 

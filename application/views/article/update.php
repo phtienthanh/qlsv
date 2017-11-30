@@ -100,17 +100,17 @@
                                             <select name="categories" class="form-control form-control-line cate">
                                                 
                                                 <?php  
-                                                if(isset($categoriess) && count($categoriess) > 0) { 
+                                                if(isset($category_all) && count($category_all) > 0) { 
 
-                                                    foreach ($categoriess as $keyCategories => $valCategories) { 
+                                                    foreach ($category_all as $keyCategory_all => $valCategory_all) { 
 
-                                                        if ( $valCategories['is_deleted'] == 0) { ?>
+                                                        if ( $valCategory_all['is_deleted'] == 0) { ?>
 
-                                                            <option value="<?php echo $valCategories['id']; ?>" <?php if ($student[ "categories"] == $valCategories[ 'id'] ) { 
+                                                            <option value="<?php echo $valCategory_all['id']; ?>" <?php if ($student[ "category_all"] == $valCategory_all[ 'id'] ) { 
 
                                                                 echo "selected";
                                                                 
-                                                                } ?> > <?php echo $valCategories['name']; ?>
+                                                                } ?> > <?php echo $valCategory_all['name']; ?>
                                                                 
                                                             </option>
 

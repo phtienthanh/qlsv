@@ -52,7 +52,7 @@
                     </div>
                     <div class="card-footer footer_post">
                         <p class="cate_show"><b>Categories: </b><?php echo $newArray[$row['categories']] ?></p>
-                        <p class="cate_show"><b>Author: </b><?php if (in_array($row["author"], $arraystudent)) { echo $row["author"]; } else {echo "Admin";} ?></p>
+                        <p class="cate_show"><b>Author: </b><?php if (in_array($row["author"], $arrayStudent)) { echo $row["author"]; } else {echo "Admin";} ?></p>
                         <p><b> Poster on : </b> <span class="date-time"> <?php echo $row['date']; ?></span></p>
                     </div>
                 </div>
