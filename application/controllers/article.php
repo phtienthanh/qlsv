@@ -26,7 +26,7 @@ class article extends MY_Controller {
 
 	public function home() {
 
-		if ($this->data['UserPr'] == true && $this->data['AdminPr'] == false && $this->data['MemberPr'] == false ) {
+		if ($this->data['AdminPr'] == false && $this->data['MemberPr'] == false) {
             
             redirect('home/index');
 
