@@ -112,7 +112,7 @@ class article extends MY_Controller {
 
        	$this->data['categories'] = $this->Mcategories->get_all_categories();
 
-       	$values = $this->Marticle->get_article('slug',$slug);
+       	$values = $this->Marticle->get_article('slug', $slug);
 
        	if ($this->input->post("submit")) {
 
@@ -222,7 +222,7 @@ class article extends MY_Controller {
        			    	
     	}
 
-		$this->load->view('article/add',$this->data);
+		$this->load->view('article/add', $this->data);
 
 	}
 
