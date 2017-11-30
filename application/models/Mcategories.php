@@ -5,8 +5,6 @@ class Mcategories extends CI_Model {
     protected $table = 'categories';
 
     public function get_all_categories() {
-
-        $this->db->order_by('id', 'esc');
     
         $query = $this->db->get('categories');
     
@@ -26,7 +24,7 @@ class Mcategories extends CI_Model {
 
             $this->db->where('is_deleted', 0);
 
-            return $this->db->get($this->table)->row_array();
+            return $this->db->get($this->table)->result_array();
 
         } else {
 

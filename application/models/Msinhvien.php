@@ -66,7 +66,7 @@ class Msinhvien extends CI_Model {
 
     }
     
-    public function get_data_sinhvien($element,$data) {
+    public function get_data_sinhvien($element, $data) {
 
         if (isset($data) && count($data) > 0) {
         

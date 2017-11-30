@@ -38,7 +38,7 @@ class article extends MY_Controller {
 
 		$listCategories = $this->Mcategories->get_all_categories();
 
-		$listStudent = $this->Msinhvien->get_all_sinhvien('esc');
+		$listStudent = $this->Msinhvien->get_all_sinhvien('asc');
 
 		$newArrayStudent = array();
 
@@ -104,7 +104,7 @@ class article extends MY_Controller {
 
        	$this->load->model('Msinhvien');
 
-       	$this->data['authorSv'] = $this->Msinhvien->get_all_sinhvien('esc');
+       	$this->data['authorSv'] = $this->Msinhvien->get_all_sinhvien('asc');
 
        	$slug = create_slug($this->input->post('title')).'.html';
 
@@ -248,7 +248,7 @@ class article extends MY_Controller {
 
 				$this->load->model('Msinhvien');
 
-       			$data['authorSv'] = $this->Msinhvien->get_all_sinhvien('esc');
+       			$data['authorSv'] = $this->Msinhvien->get_all_sinhvien('asc');
 
 				$checkSlug = create_slug($this->input->post('slug'));
 
@@ -430,7 +430,7 @@ class article extends MY_Controller {
 
 		      	$this->load->model('Msinhvien');
 
-		      	$listStudent = $this->Msinhvien->get_all_sinhvien('esc');
+		      	$listStudent = $this->Msinhvien->get_all_sinhvien('asc');
 
 	        	$categoryVariable = array();
 
@@ -516,7 +516,7 @@ class article extends MY_Controller {
 			        
 		        if (unlink("medias/article/".$data['image'])) {
 
-		            $this->Marticle->update_article('id',$valDataId, $listUpdate);  
+		            $this->Marticle->update_article('id', $valDataId, $listUpdate);  
 		        
 		        }
      			

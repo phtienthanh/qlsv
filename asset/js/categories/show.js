@@ -38,17 +38,11 @@ $(document).ready(function() {
 
                     data = JSON.parse(data);
 
-                    if (data.status == 1) {
-
-                        $('.selected').not('.1').remove();
+                    $('.selected').not('.1').remove();
                     
-                        $(".Delete").click();
+                    $(".Delete1").click();
 
-                    } else {
-
-                        $(".Delete1").click();
-
-                    }
+                    $('#Delete1 .message-category').text(data.message);
 
                     $(".btn-can").click();
 

@@ -36,21 +36,14 @@ $(document).ready(function() {
 
                     data = JSON.parse(data);
 
-                    if( data.status == 0 ) {
+                    $(".Members.selected").remove();
 
-                        $(".nodelete").click();
+                    $(".User.selected").remove();
 
-                    } else {
+                    $('#Delete .messStudent').text(data.message);
 
-                        $(".Members.selected").remove();
+                    $(".Delete").click();              
 
-                        $(".User.selected").remove();
-
-                        $(".Delete").click();
-
-                    }               
-
-                    
                     $(".btn-can").click();
 
                 },

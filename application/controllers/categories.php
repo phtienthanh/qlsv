@@ -108,7 +108,7 @@ class Categories extends MY_Controller {
 
             if (count($getId) > 0) {
                 
-                $data['student'] = $getId;      
+                $data['student'] = $getId[0];      
                 
                 if ($this->input->post("change")) {
                   
@@ -160,53 +160,69 @@ class Categories extends MY_Controller {
 
         $this->load->model('Mcategories');
 
-        $dataId = $this->input->post('id');
+        if (!is_null($this->input->post()) &&  count($this->input->post()) > 0) {
+
+            $dataId = $this->input->post('id');
         
-        $checkAll = false;
-
-        foreach ($dataId as $keyDataId => $valDataId) {
-
-            if ($valDataId == "1") {
-
-                $checkAll = true;
-            
-            }
-
-        }
-
-        if ( $checkAll == false) {
+            $checkAll = false;
 
             foreach ($dataId as $keyDataId => $valDataId) {
 
-                $listUpdate = array(   
-        
-                    "is_deleted" => 1
+                if ($valDataId == "1") {
+
+                    $checkAll = true;
                 
+                } else {
+
+                    $listUpdate = array(   
+            
+                        "is_deleted" => 1
+                    
+                    );
+
+                    $this->Mcategories->update($valDataId, $listUpdate);   
+
+                }
+
+            }
+
+            if ($checkAll == false) {
+
+                $returnData = array(
+
+                    'status' => 1,
+                    'data' => $checkAll,
+                    'message' => "Delete !!!"
+                  
                 );
 
-                $this->Mcategories->update($valDataId, $listUpdate);    
+                echo json_encode($returnData);
 
-            } 
-
-            $returnData = array(
-
-                'status' => 1,
-                'data' => $checkAll,
-                'message' => "Delete !!!"
+                exit();
               
-            );
+            } else {
 
-            echo json_encode($returnData);
+                $returnData = array(
 
-            exit();
-          
+                    'status' => 1,
+                    'data' => null,
+                    'message' => "Can't Delete All!!!"
+                 
+                );
+
+                echo json_encode($returnData);
+
+                exit();
+
+            }  
+
         } else {
 
             $returnData = array(
 
                 'status' => 0,
                 'data' => null,
-                'message' => "Can't Delete !!!"
+                'message' => "Wrong Method !!!"
              
             );
 
@@ -214,7 +230,7 @@ class Categories extends MY_Controller {
 
             exit();
 
-        }  
+        }
 
     }       
    

@@ -503,8 +503,6 @@ class Home extends MY_Controller {
 
         		$user = $this->Msinhvien->get_data_sinhvien('email',$this->input->post('email'));
 
-        		var_dump($user);exit();
-
         		if ($user == false) {
 
         			$this->session->set_flashdata('message_checkmail', '<div class="fail succes" style="width:100%;">Email does not exist<button type="button" class="close" s>×</button></div>');
@@ -625,33 +623,17 @@ class Home extends MY_Controller {
 
 	}
 
-	public function active($id) {
-
-		if (isset($id) && count($id) > 0) {
-
-			$listUpdate = array(	
-
-				"active" => 1
-
-			);
-
-			$this->load->model('Msinhvien');
-
-			$this->Msinhvien->update($id, $listUpdate);
-
-			$this->load->view('home/active');
-
-		} else {
-
-			redirect('home');
-
-		}
-
-	}
-
 	public function changepass_profile($id) {
 
     	if (isset($id) && count($id) > 0) {
+
+    		$this->load->model('ion_auth_model');
+				
+			if (!$this->ion_auth->logged_in()) {
+
+				redirect('auth/login', 'refresh');
+
+			}
 
     		$this->load->model('Msinhvien');
 	    
@@ -665,14 +647,6 @@ class Home extends MY_Controller {
 
 				$this->form_validation->set_rules('new_password_confirm', 'Password confirm', 'required');
 				
-				$this->load->model('ion_auth_model');
-				
-				if (!$this->ion_auth->logged_in()) {
-
-					redirect('auth/login', 'refresh');
-
-				}
-
 				$user = $this->ion_auth->user()->row();
 
 				if ($this->form_validation->run() == false) {
@@ -878,7 +852,7 @@ class Home extends MY_Controller {
 
 	    	$this->load->model('Msinhvien');
 
-		    $listStudent = $this->Msinhvien->get_all_sinhvien('esc');
+		    $listStudent = $this->Msinhvien->get_all_sinhvien('asc');
 
 	      	$this->data['student'] = $this->Marticle->get_slug_article($slug); 	
 

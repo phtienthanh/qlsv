@@ -24,7 +24,7 @@ class Sinhvien extends MY_Controller {
 
     public function show() {
 
-    	if ($this->data['UserPr'] == true && $this->data['AdminPr'] == false && $this->data['MemberPr'] == false ) {
+    	if ($this->data['AdminPr'] == false && $this->data['MemberPr'] == false ) {
             
             redirect('home/index');
 
@@ -88,11 +88,7 @@ class Sinhvien extends MY_Controller {
 
         }
 
-        $roleAdmin = "";
-        
-        $roleMembers = "";
-
-        $roleUser = "";
+        $roleAdmin = $roleMembers = $roleUser = "";
 
         foreach ($listGroup as $keyListGroup => $valListGroup) {
 
@@ -366,9 +362,7 @@ class Sinhvien extends MY_Controller {
 
 		       	$listRole = $this->Mrole->get_all_table('groups');
 
-				$listUserGroup = array();
-
-				$listIdgroup = array();
+				$listUserGroup = $listIdGroup = array();
 
 				$getListGroup = $this->ion_auth->get_users_groups($id)->result();
 
@@ -376,15 +370,15 @@ class Sinhvien extends MY_Controller {
 					
 					foreach ($getListGroup as $keyGetListGroup => $valGetListGroup) {
 
-					$listUserGroup[] = $valGetListGroup->name;
+						$listUserGroup[] = $valGetListGroup->name;
 
-					$listIdgroup[] = $valGetListGroup->id;
+						$listIdGroup[] = $valGetListGroup->id;
 					
 					}
 
 				}
 
-		      	$this->data['student'] =$this->Msinhvien->get_data_sinhvien('id', $id); 
+		      	$this->data['student'] = $this->Msinhvien->get_data_sinhvien('id', $id); 
 		      	
 		      	if ($this->input->post("insert")) {
 			       	
@@ -428,7 +422,7 @@ class Sinhvien extends MY_Controller {
 
 							        if (count($listGroup) > 0) {
 
-										$this->ion_auth_model->remove_from_group($listIdgroup, $id);
+										$this->ion_auth_model->remove_from_group($listIdGroup, $id);
 							
 							        	$this->ion_auth_model->add_to_group($listGroup, $id);
 							        
@@ -530,7 +524,7 @@ class Sinhvien extends MY_Controller {
 
 								        if (count($listGroup) > 0) {
 
-											$this->ion_auth_model->remove_from_group($listIdgroup, $id);
+											$this->ion_auth_model->remove_from_group($listIdGroup, $id);
 								
 								        	$this->ion_auth_model->add_to_group($listGroup, $id);
 								        
@@ -566,7 +560,13 @@ class Sinhvien extends MY_Controller {
 
 					            	}
 
-					        	}				            
+					        	} else {
+
+					        		$this->session->set_flashdata('message_update', '<div class="succes fail"> Update fail<button type="button" class="close" data-dismiss="alert">×</button></div>');
+
+									redirect('sinhvien/update/'.$id);
+
+					        	}            
 
 				       		}
 
@@ -606,17 +606,25 @@ class Sinhvien extends MY_Controller {
 	
     	if (isset($id) && count($id) > 0) {
 
+    		if ($this->data['AdminPr'] == false) {
+            
+            	redirect('home/index');
+
+	        }
+
+	        $this->load->model('ion_auth_model');
+					
+			if (!$this->ion_auth->logged_in()) {
+
+				redirect('home/login', 'refresh');
+
+			}
+
     		$this->load->model('Msinhvien');
 	    
 	    	$checkId = $this->Msinhvien->get_data_sinhvien('id', $id); 
 
     		if (count($checkId) > 0) {
-
-    			if ($this->data['AdminPr'] == false) {
-            
-            		redirect('home/index');
-
-        		}
 
 				$this->form_validation->set_rules('old_password','old password', 'required|min_length[6]|max_length[30]');
 
@@ -625,14 +633,6 @@ class Sinhvien extends MY_Controller {
 				$this->form_validation->set_rules('new_password_confirm','new password confirm', 'required|min_length[6]|max_length[30]');
 
 				$this->form_validation->set_message('required','The %s not be empty');
-				
-				$this->load->model('ion_auth_model');
-				
-				if (!$this->ion_auth->logged_in()) {
-
-					redirect('auth/login', 'refresh');
-
-				}
 
 				$user = $this->ion_auth->user()->row();
 
@@ -717,93 +717,89 @@ class Sinhvien extends MY_Controller {
 
     public function delete_checkbox() {
 
-	    $dataId = $this->input->post('id');
+    	if (!is_null($this->input->post()) &&  count($this->input->post()) > 0) {
 
-	    $stack = false;
+		    $dataId = $this->input->post('id');
 
-	    foreach ($dataId as $keyDataId => $valDataId) {
+		    $stack = false;
 
-	      	if ($valDataId != "0") {
+		    foreach ($dataId as $keyDataId => $valDataId) {
 
-	        	$data = $this->Mrole->get_role_groups($valDataId);
+		      	if ($valDataId != "0") {
 
-		        if (count($data) < 3) {
+		        	$data = $this->Mrole->get_role_groups($valDataId);
 
-		          	foreach ($data as $keyData => $valData) {
+			        if (count($data) > 0) {
 
-			            if ($valData['group_id'] == "1") {
+			          	foreach ($data as $keyData => $valData) {
 
-			              	$stack = true;
+				            if ($valData['group_id'] == "1") {
 
-			            }
+				              	$stack = true;
 
-		          	}
-		          
-		        } else {
+				            }
 
-		        	$stack = true;
+			          	}
 
-		        }
+			          	if ($stack == false) {  	
 
-	      	}
+					        $this->load->model('Msinhvien');
 
-	    }
+					        $checkData = $this->Msinhvien->get_data_sinhvien('id', $valDataId);
 
-	    if ($stack == false) {
+					        if (file_exists("medias/student/".$checkData['avatar']) && $checkData['avatar'] != "doanthi.jpg") {
+					              
+					            if (unlink("medias/student/".$checkData['avatar'])) {
 
-	      	foreach ($dataId as $keyDataId => $valueDataId) {
+				                	$this->load->model('ion_auth_model');
 
-		        $this->load->model('Msinhvien');
+				                	$this->ion_auth_model->delete_user($valDataId);    
+				              
+				              	} 
+					          
+					        } else if (file_exists("medias/student/".$checkData['avatar']) && $checkData['avatar'] == "doanthi.jpg") {
 
-		        $data = $this->Msinhvien->get_data_sinhvien('id', $valueDataId);
+				          		$this->load->model('ion_auth_model');
 
-		        if (file_exists("medias/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg") {
-		              
-		            if (unlink("medias/student/".$data['avatar'])) {
+				            	$this->ion_auth_model->delete_user($valDataId);    
 
-	                	$this->load->model('ion_auth_model');
+					        }
+					        
+							$returnData = array(
 
-	                	$this->ion_auth_model->delete_user($valueDataId);    
-	              
-	              	} 
-		          
-		        } else if (file_exists("medias/student/".$data['avatar']) && $data['avatar'] == "doanthi.jpg") {
+							    'status' => 1,
+							    'data' => $stack,
+							    'message' => "Delete Account Success !!!"
+							  
+							);
 
-	          		$this->load->model('ion_auth_model');
+						    echo json_encode($returnData);
 
-	            	$this->ion_auth_model->delete_user($valueDataId);    
+						    exit();
 
-		        }
+					    } else {
 
-	    	}
-	        
-			$returnData = array(
+					      	$returnData = array(
 
-			    'status' => 1,
-			    'data' => $stack,
-			    'message' => "Delete !!!"
-			  
-			);
+					         	'status' => 1,
+					         	'data' => null,
+					         	'message' => "Can't Delete Admin Account !!!"
+					         
+					      	);
 
-		    echo json_encode($returnData);
+					      	echo json_encode($returnData);
 
-		    exit();
+					      	exit();
 
-	    } else {
+					    }
+			          
+			        }
 
-	      	$returnData = array(
+		      	}
 
-	         	'status' => 0,
-	         	'data' => null,
-	         	'message' => "Can't Delete Admin Account !!!"
-	         
-	      	);
+		    }
 
-	      	echo json_encode($returnData);
-
-	      	exit();
-
-	    }     
+		}  
 
     }  
    
