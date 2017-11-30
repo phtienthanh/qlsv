@@ -16,7 +16,7 @@ class Mcategories extends CI_Model {
 
     }
 
-    public function get_categories($element,$data) {
+    public function get_categories($element, $data) {
 
         if (isset($data) && count($data) > 0) {
            

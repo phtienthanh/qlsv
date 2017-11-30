@@ -84,7 +84,7 @@ class Home extends MY_Controller {
 
 			$this->load->model('Msinhvien');
 
-	      	$getId = $this->Msinhvien->get_data_sinhvien('id',$id);
+	      	$getId = $this->Msinhvien->get_data_sinhvien('id', $id);
 
 	      	if (count($getId) == 0) {
 
@@ -184,7 +184,7 @@ class Home extends MY_Controller {
 
     		$this->load->model('Msinhvien');
 	    
-	   		$checkId = $this->Msinhvien->get_data_sinhvien('id',$id); 
+	   		$checkId = $this->Msinhvien->get_data_sinhvien('id', $id); 
 			
 			if (count($checkId) > 0) {
 
@@ -216,7 +216,7 @@ class Home extends MY_Controller {
 
 				} else {
 
-					$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'],-4);
+					$_FILES['userfile']['name'] = time().substr($_FILES['userfile']['name'], -4);
 
 					if (!$this->upload->do_upload()) {
 
@@ -569,7 +569,7 @@ class Home extends MY_Controller {
 
 	        		$this->load->model('Msinhvien');
 
-	        		$user = $this->Msinhvien->get_data_sinhvien('token',$token);
+	        		$user = $this->Msinhvien->get_data_sinhvien('token', $token);
 
 	        		$this->load->model('ion_auth_model');
 
@@ -583,7 +583,7 @@ class Home extends MY_Controller {
 			
 					);
 
-					if ($this->Msinhvien->update($id,$listUpdate)) {
+					if ($this->Msinhvien->update($id, $listUpdate)) {
 					
 						$token = rand(1000, 9999);
 
@@ -655,7 +655,7 @@ class Home extends MY_Controller {
 
     		$this->load->model('Msinhvien');
 	    
-	    	$checkId = $this->Msinhvien->get_data_sinhvien('id',$id); 
+	    	$checkId = $this->Msinhvien->get_data_sinhvien('id', $id); 
 
     		if (count($checkId) > 0) {
 

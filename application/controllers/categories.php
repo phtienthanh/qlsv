@@ -48,7 +48,7 @@ class Categories extends MY_Controller {
 
             $this->load->model('Mcategories');
 
-            $checkExist = $this->Mcategories->get_categories('name',$this->input->post('input_text'));
+            $checkExist = $this->Mcategories->get_categories('name', $this->input->post('input_text'));
 
             if (count($checkExist) > 0) {
               
@@ -104,7 +104,7 @@ class Categories extends MY_Controller {
 
             $this->load->model('Mcategories');
 
-            $getId = $this->Mcategories->get_categories('id',$id);
+            $getId = $this->Mcategories->get_categories('id', $id);
 
             if (count($getId) > 0) {
                 

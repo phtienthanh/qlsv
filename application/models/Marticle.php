@@ -108,7 +108,7 @@ class Marticle extends CI_Model {
 
     }
 
-    public function update_article($element,$id, $data) {
+    public function update_article($element, $id, $data) {
 
         if (isset($element) && count($element) > 0) {
        

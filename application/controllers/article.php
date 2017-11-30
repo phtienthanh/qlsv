@@ -232,7 +232,7 @@ class article extends MY_Controller {
 
 			$this->load->model('Marticle');
 
-			$checkSlugs = $this->Marticle->get_article('slug',$slug);
+			$checkSlugs = $this->Marticle->get_article('slug', $slug);
 
 			if (count($checkSlugs) > 0) {
 
@@ -252,7 +252,7 @@ class article extends MY_Controller {
 
 				$checkSlug = create_slug($this->input->post('slug'));
 
-		      	$data['student'] = $this->Marticle->get_article('slug',$slug); 
+		      	$data['student'] = $this->Marticle->get_article('slug', $slug); 
 		      	
 		      	if ($this->input->post("submit")) {
 
@@ -280,7 +280,7 @@ class article extends MY_Controller {
 						
 						);	
 						
-						if ($this->Marticle->update_article('slug',$slug, $listUpdate)) {
+						if ($this->Marticle->update_article('slug', $slug, $listUpdate)) {
 
 							$this->session->set_flashdata('message_add', '<div class="succes">Update article success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
@@ -324,7 +324,7 @@ class article extends MY_Controller {
 
      		$this->load->model('Marticle');
 
-    		$checkId = $this->Marticle->get_article('id',$id);
+    		$checkId = $this->Marticle->get_article('id', $id);
 
     		if (count($checkId) > 0) {
 
@@ -386,7 +386,7 @@ class article extends MY_Controller {
 
 						);
 
-						if ($this->Marticle->update_article('id',$id, $listUpdate)) {
+						if ($this->Marticle->update_article('id', $id, $listUpdate)) {
 
 							$this->session->set_flashdata('message_upload', '<div class="succes">Upload success<button type="button" class="close" data-dismiss="alert">×</button></div>');
 
@@ -418,11 +418,11 @@ class article extends MY_Controller {
 
 			$this->load->model('Marticle');
 
-			$checkSlug = $this->Marticle->get_article('slug',$slug);
+			$checkSlug = $this->Marticle->get_article('slug', $slug);
 
 			if (count($checkSlug) > 0) {
 
-				$this->data['student'] = $this->Marticle->get_article('slug',$slug); 	
+				$this->data['student'] = $this->Marticle->get_article('slug', $slug); 	
 
 		    	$this->load->model('Mcategories');
 
@@ -504,7 +504,7 @@ class article extends MY_Controller {
 
 			$this->load->model('Marticle');
 
-			$data = $this->Marticle->get_article('id',$valDataId);
+			$data = $this->Marticle->get_article('id', $valDataId);
 
 			$listUpdate = array(	
 		
@@ -522,7 +522,7 @@ class article extends MY_Controller {
      			
      		} else if (file_exists("medias/article/".$data['image']) && $data['image'] == "doanthi.jpg") {
 
-     			$this->Marticle->update_article('id',$valDataId, $listUpdate);  
+     			$this->Marticle->update_article('id', $valDataId, $listUpdate);  
 
      		}
 	

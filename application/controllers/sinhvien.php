@@ -346,7 +346,7 @@ class Sinhvien extends MY_Controller {
 
     		$this->load->model('Msinhvien');
 	    
-	    	$checkId = $this->Msinhvien->get_data_sinhvien('id',$id); 
+	    	$checkId = $this->Msinhvien->get_data_sinhvien('id', $id); 
 
     		if (count($checkId) > 0) {
 
@@ -384,7 +384,7 @@ class Sinhvien extends MY_Controller {
 
 				}
 
-		      	$this->data['student'] =$this->Msinhvien->get_data_sinhvien('id',$id); 
+		      	$this->data['student'] =$this->Msinhvien->get_data_sinhvien('id', $id); 
 		      	
 		      	if ($this->input->post("insert")) {
 			       	
@@ -608,7 +608,7 @@ class Sinhvien extends MY_Controller {
 
     		$this->load->model('Msinhvien');
 	    
-	    	$checkId = $this->Msinhvien->get_data_sinhvien('id',$id); 
+	    	$checkId = $this->Msinhvien->get_data_sinhvien('id', $id); 
 
     		if (count($checkId) > 0) {
 
@@ -755,7 +755,7 @@ class Sinhvien extends MY_Controller {
 
 		        $this->load->model('Msinhvien');
 
-		        $data = $this->Msinhvien->get_data_sinhvien('id',$valueDataId);
+		        $data = $this->Msinhvien->get_data_sinhvien('id', $valueDataId);
 
 		        if (file_exists("medias/student/".$data['avatar']) && $data['avatar'] != "doanthi.jpg") {
 		              
