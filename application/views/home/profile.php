@@ -84,7 +84,6 @@
                                     <div class="form-group btn-gre form-g">
                                         <h3 class="col-md-12 col-role">Role</h3>
                                             <br>
-                                            
                                             <?php if(isset($role) && count($role) > 0) { ?>
 
                                                 <?php foreach ($role as $keyRole => $valRoler) { ?>

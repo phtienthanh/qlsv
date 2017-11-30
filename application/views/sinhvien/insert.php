@@ -43,9 +43,11 @@
                         </tr>
                     </div> 
             <?php 
+
                 }  
 
-            } 
+            }
+             
             ?>
             <?php echo form_error("role"); ?>
             <br>

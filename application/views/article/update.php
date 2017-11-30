@@ -106,7 +106,7 @@
 
                                                         if ( $valCategory_all['is_deleted'] == 0) { ?>
 
-                                                            <option value="<?php echo $valCategory_all['id']; ?>" <?php if ($student[ "category_all"] == $valCategory_all[ 'id'] ) { 
+                                                            <option value="<?php echo $valCategory_all['id']; ?>" <?php if ($student[ "category_all"] == $valCategory_all['id'] ) { 
 
                                                                 echo "selected";
                                                                 

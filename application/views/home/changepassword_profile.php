@@ -25,7 +25,6 @@
             <br>
             <input type="submit" class="btn btn-success widthbtn"  name="change" value="Change" class="color_input">
         </form>
-        </p>
     </div>
 </body>
 <script src="<?php echo base_url();?>asset/js/home/changepass_profile.js"></script>

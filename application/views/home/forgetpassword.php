@@ -11,7 +11,7 @@
             <a class="btn btn-default btn-back" href="<?php echo base_url();?>home/login" title="">Back</a>
             <br>
             <h3 for="">Email</h3>
-            <input type="text" name="email" class="form-control" placeholder="Email" value="<?php echo set_value(" first_name "); ?>">
+            <input type="text" name="email" class="form-control" placeholder="Email" value="<?php echo set_value("first_name"); ?>">
             <br> 
             <span class="fail2"><?php echo form_error("email"); ?></span>
             <br>

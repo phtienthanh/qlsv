@@ -42,8 +42,11 @@
                     <?php } ?>
                     <ul class="nav navbar-nav navbar-right">
                         <?php if ($checkLogin == false) { ?>
+
                             <li class="li_menu"><a class="manage_login1" href="<?php echo base_url(); ?>home/login">Login</a></li>
+                        
                         <?php } ?>
+                        
                         <?php if ($checkLogin == true) { ?>
 
                             <li class="dropdown manage_logout"> <a href="#" class="dropdown-toggle fa fa-user " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>

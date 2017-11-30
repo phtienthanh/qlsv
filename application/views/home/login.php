@@ -29,8 +29,6 @@
             <br>
             <input type="submit" name="submit" value="Login" class="btn btn-success  btn_login" data-toggle="modal" data-target=".bs-example-modal-sm">
             <p class="title"><?php echo $this->session->flashdata('message_login'); ?></p>
-            
-             
         </div>
     </form>
 </body>

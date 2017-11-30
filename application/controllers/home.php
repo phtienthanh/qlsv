@@ -501,7 +501,7 @@ class Home extends MY_Controller {
 
         		$this->load->model('Msinhvien');
 
-        		$user = $this->Msinhvien->get_data_sinhvien('email',$this->input->post('email'));
+        		$user = $this->Msinhvien->get_data_sinhvien('email', $this->input->post('email'));
 
         		if ($user == false) {
 

@@ -32,8 +32,7 @@
 
                                                         echo "Admin";
                                                         
-                                                    } ?>
-                                            </p>
+                                                    } ?></p>
                                         </div>
                                         <label class="col-md-3"><b>Categories :</b></label>
                                         <div class="col-md-3">
@@ -53,7 +52,7 @@
 
                                             if(isset($student["content"]) && count($student["content"]) > 0) {
 
-                                                echo nl2br( $student["content"], false);
+                                                echo nl2br($student["content"], false);
                                             
                                             } ?>
                                         </p>

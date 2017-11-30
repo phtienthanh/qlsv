@@ -17,7 +17,7 @@
             <label for="">Confirm password</label>
             <br>
             <input type="password" class="form-control" name="new_password_confirm" placeholder="Confirm password">
-              <span class="fail2">
+            <span class="fail2">
                 <?php echo form_error("new_password_confirm"); ?>
             </span>
             <br>
