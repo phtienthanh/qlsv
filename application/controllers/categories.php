@@ -48,9 +48,9 @@ class Categories extends MY_Controller {
 
             $this->load->model('Mcategories');
 
-            $checkExist = $this->Mcategories->get_categories('name', $this->input->post('input_text'));
+            $checkNameExist = $this->Mcategories->get_categories('name', $this->input->post('input_text'));
 
-            if (count($checkExist) > 0) {
+            if (count($checkNameExist) > 0) {
               
                 $this->form_validation->set_rules('input_text', 'Name', 'required|is_unique[categories.name]');
 
@@ -108,7 +108,7 @@ class Categories extends MY_Controller {
 
             if (count($getId) > 0) {
                 
-                $data['student'] = $getId[0];      
+                $data['categories'] = $getId[0];      
                 
                 if ($this->input->post("change")) {
                   
