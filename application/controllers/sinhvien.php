@@ -337,6 +337,13 @@ class Sinhvien extends MY_Controller {
     }
 
     public function update($id) {
+
+
+		if ($this->data['AdminPr'] == false) {
+    
+    		redirect('home/index');
+
+		}
     	
     	if (isset($id) && count($id) > 0) {
 
@@ -346,12 +353,6 @@ class Sinhvien extends MY_Controller {
 
     		if (count($checkId) > 0) {
 
-				if ($this->data['AdminPr'] == false) {
-            
-            		redirect('home/index');
-
-        		}
-		        
 		    	if ($this->input->post("change_password")) {
 
 		    		redirect('sinhvien/changepass/'.$id);  
@@ -603,22 +604,22 @@ class Sinhvien extends MY_Controller {
 	}
 
     public function changePass($id) {
-	
-    	if (isset($id) && count($id) > 0) {
 
-    		if ($this->data['AdminPr'] == false) {
+    	if ($this->data['AdminPr'] == false) {
             
             	redirect('home/index');
 
 	        }
 
-	        $this->load->model('ion_auth_model');
-					
-			if (!$this->ion_auth->logged_in()) {
+        $this->load->model('ion_auth_model');
+				
+		if (!$this->ion_auth->logged_in()) {
 
-				redirect('home/login', 'refresh');
+			redirect('home/login', 'refresh');
 
-			}
+		}
+	
+    	if (isset($id) && count($id) > 0) {
 
     		$this->load->model('Msinhvien');
 	    
