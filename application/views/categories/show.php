@@ -14,8 +14,7 @@
         <table class="table container responstable">
         <thead class="thead-inverse">
             <tr>
-                <th>
-                    <INPUT type="checkbox" name="checkAll" class="checkAll" /> </th>
+                <th><INPUT type="checkbox" name="checkAll" class="checkAll" /></th>
                 <th>Id</th>
                 <th>Name</th>
                 <th class="center"></th>
@@ -30,22 +29,10 @@
                     <?php if ($valCategories['is_deleted'] == 0 ) { ?>
 
                         <tr class="reload <?php echo $valCategories['id']; ?>">
-                            <td><input type="checkbox" name="checkboxlist[]" value=<?php echo $valCategories[ 'id']; ?> ></td>
+                            <td><input type="checkbox" name="checkboxlist[]" value="<?php echo $valCategories['id']; ?>"></td>
                             <td><?php echo $valCategories['id']; ?></td>
                             <td><?php echo $valCategories['name']; ?></td>
-                            <td class="center"><a class="btn btn-success" 
-                                
-                                <?php 
-
-                                    if ($valCategories['id'] == '1') {
-
-                                        echo 'disabled';
-
-                                    }
-
-                                ?>
-
-                                href="<?php echo base_url();?>categories/update/<?php echo $valCategories['id']; ?>" title="">Update</a></td>
+                            <td class="center"><a class="btn btn-success" <?php if ($valCategories['id'] == '1') { echo 'disabled'; } ?> href="<?php echo base_url(); ?>categories/update/<?php echo $valCategories['id']; ?>" title="">Update</a></td>
                         </tr>
                         
                     <?php } ?>

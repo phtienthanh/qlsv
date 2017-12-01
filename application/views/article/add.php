@@ -45,6 +45,7 @@
                                 </option>
 
                             <?php
+                            
                             }
                     
                         }
@@ -57,8 +58,9 @@
             <span class="fail2"><?php echo form_error("author"); ?></span>
             <h3 for="">Categories</h3>
             <select name="categories" class="form-control form-control-line cate categories">
-                
+
                 <?php 
+
                     if (isset($categories) && count($categories) > 0) {
 
                         foreach ($categories as $keyCategories => $valCategories) { 

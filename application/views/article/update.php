@@ -28,7 +28,7 @@
                                         <input type="text" class="hinden" name="img_name" value="<?php echo $get_article["image"]; ?>">
                                         <input type="submit" name="submit" value="Upload" class="btn btn-success">
                                 </form>
-                                <h4 class="card-title m-t-10"><?php echo  $get_article["title"]; ?></h4>
+                                <h4 class="card-title m-t-10"><?php echo $get_article["title"]; ?></h4>
                                 </center>
                             </div>
                         </div>
@@ -57,7 +57,9 @@
                                         <h3 class="col-md-12">Author</h3>
                                         <div class="col-md-12 cols">
                                             <select name="author" class="form-control form-control-line cate categories">
+                                                
                                                 <?php 
+                                                
                                                     if (isset($authorSv) && count($authorSv) > 0) {
 
                                                         foreach ($authorSv as $keyAuthorSv => $valAuthorSv) { 
@@ -70,7 +72,8 @@
 
                                                                     <?php
 
-                                                                        if ($get_article["author"] == $valAuthorSv['first_name'].$valAuthorSv['last_name']) { 
+                                                                        if ($get_article["author"] == $valAuthorSv['first_name'].$valAuthorSv['last_name']) {
+
                                                                             echo "selected"; 
 
                                                                         }
@@ -81,20 +84,16 @@
 
                                                                 </option>
 
-                                                            <?php
+                                                            <?php } else { ?>
 
-                                                            }  else {
-                                                            
-                                                            ?>
                                                                 <option value="<?php echo  $valAuthorSv['username']; ?>"
 
-                                                                <?php 
+                                                                <?php if ($get_article["author"] == $valAuthorSv['username']) {
                                                                 
-                                                                if ($get_article["author"] == $valAuthorSv['username'] ) {
                                                                    echo "selected";
-                                                                }
-
-                                                                ?>>
+                                                                
+                                                                } ?>>
+                                                                
                                                                     <?php echo $valAuthorSv['username']; ?>
 
                                                                 </option>
@@ -125,26 +124,28 @@
                                             <select name="categories" class="form-control form-control-line cate">
                                                 
                                                 <?php  
+
                                                 if (isset($category_all) && count($category_all) > 0) { 
 
                                                     foreach ($category_all as $keyCategory_all => $valCategory_all) { 
 
-                                                        if ($valCategory_all['is_deleted'] == 0) { ?>
+                                                        if ($valCategory_all['is_deleted'] == 0) { 
 
-                                                            <option value="<?php echo $valCategory_all['id']; ?>" <?php if ($get_article["categories"] == $valCategory_all['id']) { 
+                                                ?>
 
-                                                                    echo "selected";
-                                                                
-                                                                } ?> > <?php echo $valCategory_all['name']; ?>
-                                                                
-                                                            </option>
+                                                    <option value="<?php echo $valCategory_all['id']; ?>" <?php if ($get_article["categories"] == $valCategory_all['id']) { echo "selected"; } ?>> <?php echo $valCategory_all['name']; ?>
+                                                        
+                                                    </option>
 
                                                 <?php
+                                                
                                                         }
                                                 
                                                     }
 
-                                                } ?>
+                                                } 
+
+                                                ?>
 
                                             </select>   
                                         </div>

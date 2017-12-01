@@ -10,16 +10,12 @@
             <label for="">New password</label>
             <br>
             <input type="password" class="form-control" name="new_password" placeholder="New password">
-            <span class="fail2">
-               <?php echo form_error("new_password"); ?>
-            </span>
+            <span class="fail2"><?php echo form_error("new_password"); ?></span>
             <br>
             <label for="">Confirm password</label>
             <br>
             <input type="password" class="form-control" name="new_password_confirm" placeholder="Confirm password">
-            <span class="fail2">
-                <?php echo form_error("new_password_confirm"); ?>
-            </span>
+            <span class="fail2"><?php echo form_error("new_password_confirm"); ?></span>
             <br>
             <input type="submit" class="btn btn-success" name="submit" value="Change" class="color_input">
         </form>

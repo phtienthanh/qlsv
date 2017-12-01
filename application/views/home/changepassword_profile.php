@@ -4,8 +4,8 @@
 <body class="dangkiBody">
     <div class="insert">
         <form class="login wrapper Form_insert" action="" method="POST">
-            <h1 class="title"> Change password</h1>
-            <span > <a href="<?php echo base_url('home/profile/'.$id)?>" title="" class="btn  btn-default btn-back widthbtn">Back</a></span>
+            <h1 class="title">Change password</h1>
+            <span><a href="<?php echo base_url('home/profile/'.$id)?>" title="" class="btn  btn-default btn-back widthbtn">Back</a></span>
             <p class="title"><?php echo $this->session->flashdata('message_update'); ?></p>
             <h3 for="">Current password</h3>
             <input type="password"  class="form-control" name="old_password" placeholder="Current password">
