@@ -80,6 +80,12 @@ class Home extends MY_Controller {
 
 	public function profile($id) {
 
+		if (!$this->ion_auth->logged_in()) {
+
+			redirect('home');
+
+		}
+
 		if (isset($id) && count($id) > 0) {
 
 			$this->load->model('Msinhvien');
@@ -92,12 +98,6 @@ class Home extends MY_Controller {
 
 	      	} else {
 
-				if (!$this->ion_auth->logged_in()) {
-
-					redirect('home');
-
-				}
-		        
 		       	$this->load->model('Mrole');
 
 		       	$listRole = $this->Mrole->get_all_table('groups');
@@ -758,7 +758,7 @@ class Home extends MY_Controller {
 
         }
 
-        $newArrayStudent = array();
+        $nameStudent = array();
 
 		if (count($listStudent) > 0) {
 
@@ -766,11 +766,11 @@ class Home extends MY_Controller {
 
         		if ($listStudenValue['first_name'] == "" && $listStudenValue['last_name'] == "") {
 
-        			$newArrayStudent[] = $listStudenValue['username'];
+        			$nameStudent[] = $listStudenValue['username'];
 
         		} else {
 
-        			$newArrayStudent[] = $listStudenValue['first_name'].$listStudenValue['last_name'];
+        			$nameStudent[] = $listStudenValue['first_name'].$listStudenValue['last_name'];
 
         		}
 
@@ -778,9 +778,9 @@ class Home extends MY_Controller {
 
         }
 
-		$this->data['arrayStudent'] = $newArrayStudent;
+		$this->data['nameStudent'] = $nameStudent;
 
-        $this->data['newArray'] = $categoryVariable;
+        $this->data['categoryVariable'] = $categoryVariable;
 
 		$this->data['categories'] = $listCategories;	
 
@@ -854,7 +854,7 @@ class Home extends MY_Controller {
 
 		    $listStudent = $this->Msinhvien->get_all_sinhvien('asc');
 
-	      	$this->data['student'] = $this->Marticle->get_slug_article($slug); 	
+	      	$this->data['get_article'] = $this->Marticle->get_article('slug', $slug);	
 
 	      	$listCategories = $this->Mcategories->get_all_categories();
 
@@ -878,7 +878,7 @@ class Home extends MY_Controller {
 
         	}
 
-        	$newArrayStudent = array();
+        	$nameStudent = array();
 
 			if (count($listStudent) > 0) {
 
@@ -886,11 +886,11 @@ class Home extends MY_Controller {
 
 	        		if ($listStudenValue['first_name'] == "" && $listStudenValue['last_name'] == "") {
 
-	        			$newArrayStudent[] = $listStudenValue['username'];
+	        			$nameStudent[] = $listStudenValue['username'];
 
 	        		} else {
 
-	        			$newArrayStudent[] = $listStudenValue['first_name'].$listStudenValue['last_name'];
+	        			$nameStudent[] = $listStudenValue['first_name'].$listStudenValue['last_name'];
 
 	        		}
 
@@ -898,9 +898,9 @@ class Home extends MY_Controller {
 
 	        }
 
-			$this->data['arraystudent'] = $newArrayStudent;
+			$this->data['nameStudent'] = $nameStudent;
 
-	        $this->data['newArray'] = $categoryVariable;
+	        $this->data['categoryVariable'] = $categoryVariable;
 
 			$this->data['categories'] = $listCategories;
 
