@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/header.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>asset/css/table.css">
     <script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery.min.js"></script>
-    <script  src="<?php echo base_url();?>asset/js/jquery.validate.js"></script>
-    <script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url();?>asset/js/home/header.js"></script>
+    <script  src="<?php echo base_url(); ?>asset/js/jquery.validate.js"></script>
+    <script src="<?php echo base_url(); ?>asset/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>asset/js/home/header.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-default">
@@ -34,8 +34,8 @@
 
                         <?php if ($AdminPr == true || $MemberPr == true) { ?>
                     
-                            <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url();?>sinhvien/show">Manage student</a></li>
-                            <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url();?>article/home">Manage article</a></li>
+                            <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url(); ?>sinhvien/show">Manage student</a></li>
+                            <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url(); ?>article/home">Manage article</a></li>
                             <li class="li_menu"><a class="color_menu" href="<?php echo base_url(); ?>home/show_article?page=">Show article</a></li>
                     
                         <?php } ?>

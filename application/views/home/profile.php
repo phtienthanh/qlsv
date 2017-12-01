@@ -31,7 +31,7 @@
 
                                     <h4 class="card-title m-t-10">
 
-                                        <?php if ($student['last_name'] == "" && $student['first_name'] == "" ) {
+                                        <?php if ($student['last_name'] == "" && $student['first_name'] == "") {
 
                                             echo $student["username"];
 
@@ -63,16 +63,14 @@
                                     <div class="form-group btn-gre">
                                         <h3 class="col-md-12">Last Name</h3>
                                         <div class="col-md-12">
-                                            <input type="text" name="last_name" placeholder="Last name" class="form-control form-control-line" value="<?php if (isset($student['last_name']) && count($student['last_name']) > 0) {
-                                             echo $student["last_name"]; } ?>">
+                                            <input type="text" name="last_name" placeholder="Last name" class="form-control form-control-line" value="<?php if (isset($student['last_name']) && count($student['last_name']) > 0) { echo $student["last_name"]; } ?>">
                                             <span class="errors"><?php echo form_error("last_name"); ?></span>
                                         </div>
                                     </div>
                                     <div class="form-group btn-gre">
                                         <h3 class="col-md-12">Username</h3>
                                         <div class="col-md-12">
-                                            <input type="text"  name="username" placeholder="Username" class="form-control form-control-line" value="<?php if (isset($student['username']) && count($student['username']) > 0) {
-                                             echo $student["username"]; } ?>">
+                                            <input type="text"  name="username" placeholder="Username" class="form-control form-control-line" value="<?php if (isset($student['username']) && count($student['username']) > 0) { echo $student["username"]; } ?>">
                                             <span class="errors"><?php echo form_error("username"); ?></span>
                                         </div>
                                     </div>

@@ -19,7 +19,7 @@
 
         <?php foreach($query as $row) { ?>
 
-            <?php if ($row['is_deleted'] == 0 ) { ?>
+            <?php if ($row['is_deleted'] == 0) { ?>
 
                 <div class="card mb-4">
                     <div class="image_post">
@@ -30,7 +30,7 @@
 
                             <?php if (strlen($row['title']) > 30 ) {
 
-                                echo substr($row['title'], 0, 30); echo '...';
+                                echo substr($row['title'], 0, 30).'...';
                                 
                             } else {
 
@@ -44,7 +44,7 @@
 
                                 <?php if (strlen($row['content']) > 200) {
 
-                                    echo substr(preg_replace('/([^\pL\.\ ]+)/u', '', strip_tags($row['content'])), 0, 200); echo '...';
+                                    echo substr(preg_replace('/([^\pL\.\ ]+)/u', '', strip_tags($row['content'])), 0, 200).'...';
                                     
                                 } else {
 

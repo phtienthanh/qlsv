@@ -9,21 +9,18 @@
             <span class="btn-block"> <a href="<?php echo base_url('sinhvien/show')  ?>" title="" class="btn  btn-default btn-back widthbtn ">Back</a></span>
             <h3 for="">First name</h3>
             <input type="text" name="first_name" class="form-control" placeholder="First name" value="<?php
-            if (isset($student["first_name"]) && count($student["first_name"]) > 0) {
-             echo $student["first_name"]; }?>">
+            if (isset($student["first_name"]) && count($student["first_name"]) > 0) { echo $student["first_name"]; } ?>">
             <span class="error"> <?php echo form_error("first_name"); ?></span>
             <h3 for="">Last name</h3>
             <input type="text" name="last_name" class="form-control" placeholder="Last name" value="<?php
-            if (isset($student["last_name"]) && count($student["last_name"]) > 0) {
-             echo $student["last_name"]; }?>">
+            if (isset($student["last_name"]) && count($student["last_name"]) > 0) { echo $student["last_name"]; } ?>">
             <span class="error"> <?php echo form_error("last_name"); ?></span>
             <h3 for="">Username</h3>
             <input type="text" name="username" class="form-control" placeholder="Username" value="<?php
-            if (isset($student["username"]) && count($student["username"]) > 0) {
-             echo $student["username"]; }?>">
+            if (isset($student["username"]) && count($student["username"]) > 0) { echo $student["username"]; } ?>">
             <span class="error"> <?php echo form_error("username"); ?></span>
             <h3 for="">Email</h3>
-            <input type="text" name="email" class="form-control" readonly="value" placeholder="Email" value="<?php if (isset($student["email"]) && count($student["email"]) > 0) { echo $student["email"];}?> ">
+            <input type="text" name="email" class="form-control" readonly="value" placeholder="Email" value="<?php if (isset($student["email"]) && count($student["email"]) > 0) { echo $student["email"]; } ?> ">
             <br>
             <h3 for="">Avatar</h3>
             <img src="<?php echo base_url();?>medias/student/<?php  if (isset($student["avatar"]) && count($student["avatar"]) > 0) {
@@ -68,7 +65,9 @@
             <span><a class="btn btn-success " href="<?php echo base_url();?>sinhvien/changepass/<?php echo $student["id"];?>" title=""> Change password</a></span>
         </form>
     </div>
+
     <?php echo form_open_multipart('home/upload');?>
+    
 </body>
 <script src="<?php echo base_url();?>asset/js/student/update_fail_student.js"></script>
 </html>

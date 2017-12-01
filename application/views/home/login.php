@@ -9,7 +9,7 @@
     </style>
     </nav>
     <div class="tow-btn">
-        <a class="btn btn-default btn-register" href="<?php echo base_url();?>home/register" title="">Register</a>
+        <a class="btn btn-default btn-register" href="<?php echo base_url(); ?>home/register" title="">Register</a>
         <a class="btn btn-default" href="<?php echo base_url(); ?>home/forget" title="">Forgot password</a>
     </div>
     <form  class="Form_login" action="<?php echo base_url(); ?>home/login"  method="POST" role="form">
