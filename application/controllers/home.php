@@ -373,23 +373,21 @@ class Home extends MY_Controller {
         	
         	if ($this->ion_auth->register($identity, $password, $email, $dataRg, $listRole)) {
 
-	        	if($this->email->send()){
+	        	if ($this->email->send()) {
 
-	        		$this->session->set_flashdata('message_login', '<div class="succes">Account Successfully Created<button type="button" class="close" s>×</button></div>');
-	        
-	           		redirect('home/login');
+	        		$this->session->set_flashdata('message_login', '<div class="succes">Account Successfully Created<button type="button" class="close">×</button></div>');
 
 	        	} else {
 
-	        		$this->session->set_flashdata('message_login', '<div class="succes">Account Successfully Created but error sending mail<button type="button" class="close" s>×</button></div>');
-	        
-	           		redirect('home/login');
+	        		$this->session->set_flashdata('message_login', '<div class="succes">Account Successfully Created but error sending mail<button type="button" class="close">×</button></div>');
 	        	
 	        	}
+
+	           	redirect('home/login');
 	
         	} else {
 
-        		$this->session->set_flashdata('message_register', '<div class="false">Register account false Created<button type="button" class="close" s>×</button></div>');
+        		$this->session->set_flashdata('message_register', '<div class="false">Register account false Created<button type="button" class="close">×</button></div>');
         
            		redirect('home/register');
 
@@ -605,7 +603,7 @@ class Home extends MY_Controller {
 				
 		    	} else {
 
-					$this->session->set_flashdata('message_update', '<div class="succes fail">Update password fail<button type="button" class="close" s>×</button></div>');
+					$this->session->set_flashdata('message_update', '<div class="succes fail">Update password fail<button type="button" class="close">×</button></div>');
 
 					redirect('home/change/'.$token);
 
@@ -625,15 +623,15 @@ class Home extends MY_Controller {
 
 	public function changepass_profile($id) {
 
-    	if (isset($id) && count($id) > 0) {
-
-    		$this->load->model('ion_auth_model');
+		$this->load->model('ion_auth_model');
 				
-			if (!$this->ion_auth->logged_in()) {
+		if (!$this->ion_auth->logged_in()) {
 
-				redirect('auth/login', 'refresh');
+			redirect('auth/login', 'refresh');
 
-			}
+		}
+
+    	if (isset($id) && count($id) > 0) {
 
     		$this->load->model('Msinhvien');
 	    

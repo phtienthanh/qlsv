@@ -6,13 +6,13 @@
         <form class="Form_insert" name="myForm" action="" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <span class=""> <a href="<?php echo base_url('article/home')  ?>" title="" class="btn  btn-default btn-back">Back</a></span>
             <h1 class="title">Add new article</h1>
-            <h4 class=" title fail2"> <?php if (isset($slug) && count($slug) > 0) {echo $slug;} ?></h4>
+            <h4 class=" title fail2"> <?php if (isset($slug) && count($slug) > 0) { echo $slug; } ?></h4>
 
             <?php echo $this->session->flashdata('message_add'); ?>
 
             <h3 for="">Title</h3>
             <input type="text" class="form-control form-control-line" name="title" placeholder="Title" value="<?php echo set_value("first_name");?>">
-            <span class="fail2"><?php echo form_error("title");?></span>
+            <span class="fail2"><?php echo form_error("title"); ?></span>
             <h3 for="">Content</h3>
             <textarea rows="4" class="form-control form-control-line content" name="content" cols="35"></textarea>
             <h3 for="">Avatar <label class="img_bb">*(Compulsory photo selection)</label></h3>
@@ -29,15 +29,15 @@
                     
                             if ($valAuthorSv['first_name'] != "" || $valAuthorSv['last_name'] != "") { ?>
                             
-                                <option value="<?php echo $valAuthorSv['first_name'].$valAuthorSv['last_name']; ?>"<?php if($name == $valAuthorSv['first_name']."".$valAuthorSv['last_name']) {echo "selected";}?>>
+                                <option value="<?php echo $valAuthorSv['first_name'].$valAuthorSv['last_name']; ?>"<?php if ($name == $valAuthorSv['first_name']."".$valAuthorSv['last_name']) { echo "selected";}?>>
 
-                                    <?php echo $valAuthorSv['first_name']."".$valAuthorSv['last_name'];?>
+                                    <?php echo $valAuthorSv['first_name']." ".$valAuthorSv['last_name'];?>
 
                                 </option>
 
-                             <?php } else {?>
+                             <?php } else { ?>
 
-                                <option value="<?php echo $valAuthorSv['username']; ?>" <?php if($username==$valAuthorSv['username']) {echo "selected";}?>>
+                                <option value="<?php echo $valAuthorSv['username']; ?>" <?php if ($username == $valAuthorSv['username']) { echo "selected"; } ?>>
 
                                     <?php echo $valAuthorSv['username']; ?>
                                 
