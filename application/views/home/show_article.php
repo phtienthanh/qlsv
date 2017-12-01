@@ -39,11 +39,12 @@
                             <div>
                                 <?php if (strlen($row['content']) > 200){
 
-                                    echo substr( preg_replace('/([^\pL\.\ ]+)/u', '', strip_tags($row['content'])),0,200); echo '...';
+                                    echo substr(preg_replace('/([^\pL\.\ ]+)/u', '', strip_tags($row['content'])), 0, 200); echo '...';
                                     
                                 } else {
 
                                     echo $row['content'];
+
                                 } ?>
                             </div>
                             
@@ -52,7 +53,7 @@
                     </div>
                     <div class="card-footer footer_post">
                         <p class="cate_show"><b>Categories: </b><?php echo $categoryVariable[$row['categories']] ?></p>
-                        <p class="cate_show"><b>Author: </b><?php if (in_array($row["author"], $nameStudent)) { echo $row["author"]; } else {echo "Admin";} ?></p>
+                        <p class="cate_show"><b>Author: </b><?php if (in_array($row["author"], $nameStudent)) { echo $row["author"]; } else { echo "Admin"; } ?></p>
                         <p><b> Poster on : </b> <span class="date-time"> <?php echo $row['date']; ?></span></p>
                     </div>
                 </div>

@@ -22,7 +22,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php if(isset($categories) && count($categories) > 0) { ?>
+            <?php if (isset($categories) && count($categories) > 0) { ?>
 
                 <?php foreach ($categories as $keyCategories => $valCategories) { ?>
 

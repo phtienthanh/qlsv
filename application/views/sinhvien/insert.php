@@ -8,8 +8,8 @@
             <div class="title">
                 <?php echo $this->session->flashdata('message_update'); ?>
             </div>
-            <h3><?php if (isset($error) && count($error) > 0) {echo $error; } ?></h3>
-            <h3><?php if (isset($succes) && count($succes) > 0 ) {echo $succes; } ?></h3>
+            <h3><?php if (isset($error) && count($error) > 0) { echo $error; } ?></h3>
+            <h3><?php if (isset($succes) && count($succes) > 0 ) { echo $succes; } ?></h3>
             <span><a class="btn  btn-default btn-back btn-insert" href="<?php echo base_url();?>sinhvien/show" title="">Back</a></span>
             <br>
             <h3 for="">First name</h3>
@@ -35,8 +35,10 @@
             <input type="file" name="userfile"  class="custom-file-input">
             <h3 for="">Role</h3>
             <?php 
-            if(isset($role) && count($role) > 0) { 
+            if (isset($role) && count($role) > 0) { 
+
                 foreach ($role as $keyRole => $valRole) { ?>
+                
                     <div class="role_tr">
                         <tr selected>
                             <input class="checkbox_role" name='<?php echo $valRole['id']; ?>' type='checkbox'  value='<?php echo $valRole['id']; ?>' /><?php echo $valRole['name']; ?>

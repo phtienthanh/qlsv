@@ -67,7 +67,7 @@
                                                 <?php
                                                 if (strlen($valArticle['content']) > 200){
 
-                                                    echo substr( preg_replace('/([^\pL\.\ ]+)/u', '', strip_tags($valArticle['content'])),0,200); echo '...';
+                                                    echo substr( preg_replace('/([^\pL\.\ ]+)/u', '', strip_tags($valArticle['content'])), 0, 200); echo '...';
                                                     
                                                 } else {
 

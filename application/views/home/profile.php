@@ -54,14 +54,14 @@
                                     <div class="form-group btn-gre">
                                         <h3 class="col-md-12">First Name</h3>
                                         <div class="col-md-12">
-                                            <input type="text" name="first_name" placeholder="First name" class="form-control form-control-line" value="<?php if(isset($student['first_name']) && count($student['first_name']) > 0) { echo $student["first_name"]; }?>">
+                                            <input type="text" name="first_name" placeholder="First name" class="form-control form-control-line" value="<?php if (isset($student['first_name']) && count($student['first_name']) > 0) { echo $student["first_name"]; }?>">
                                             <span class="errors"><?php echo form_error("first_name"); ?></span>
                                         </div>
                                     </div>
                                     <div class="form-group btn-gre">
                                         <h3 class="col-md-12">Last Name</h3>
                                         <div class="col-md-12">
-                                            <input type="text" name="last_name" placeholder="Last name" class="form-control form-control-line" value="<?php if(isset($student['last_name']) && count($student['last_name']) > 0) {
+                                            <input type="text" name="last_name" placeholder="Last name" class="form-control form-control-line" value="<?php if (isset($student['last_name']) && count($student['last_name']) > 0) {
                                              echo $student["last_name"]; } ?>">
                                             <span class="errors"><?php echo form_error("last_name"); ?></span>
                                         </div>
@@ -69,7 +69,7 @@
                                     <div class="form-group btn-gre">
                                         <h3 class="col-md-12">Username</h3>
                                         <div class="col-md-12">
-                                            <input type="text"  name="username" placeholder="Username" class="form-control form-control-line" value="<?php if(isset($student['username']) && count($student['username']) > 0) {
+                                            <input type="text"  name="username" placeholder="Username" class="form-control form-control-line" value="<?php if (isset($student['username']) && count($student['username']) > 0) {
                                              echo $student["username"]; } ?>">
                                             <span class="errors"><?php echo form_error("username"); ?></span>
                                         </div>
@@ -84,11 +84,11 @@
                                     <div class="form-group btn-gre form-g">
                                         <h3 class="col-md-12 col-role">Role</h3>
                                             <br>
-                                            <?php if(isset($role) && count($role) > 0) { ?>
+                                            <?php if (isset($role) && count($role) > 0) { ?>
 
                                                 <?php foreach ($role as $keyRole => $valRoler) { ?>
                                                     <div class="role_tr">
-                                                        <tr selected><input class="checkbox_role" name='<?php echo $valRoler['id']; ?>' type='checkbox' value='<?php echo $valRoler['id']; ?>' <?php if (in_array($valRoler['name'], $getUserGroups) == true) {echo "checked";} ?> disabled/> <?php echo $valRoler['name']; ?></tr>
+                                                        <tr selected><input class="checkbox_role" name='<?php echo $valRoler['id']; ?>' type='checkbox' value='<?php echo $valRoler['id']; ?>' <?php if (in_array($valRoler['name'], $getUserGroups) == true) { echo "checked"; } ?> disabled/> <?php echo $valRoler['name']; ?></tr>
                                                     </div>
                                                     
                                                 <?php } ?>

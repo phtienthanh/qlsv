@@ -24,11 +24,11 @@
             </tr>
         </thead>
         <tbody>
-            <?php if(isset($student) && count($student > 0)) { ?>
+            <?php if (isset($student) && count($student > 0)) { ?>
 
-                <?php foreach($student as $keyStudent => $valStudent) {  ?>
+                <?php foreach ($student as $keyStudent => $valStudent) {  ?>
 
-                    <?php if( $valStudent['is_deleted'] == 0) {?>
+                    <?php if ( $valStudent['is_deleted'] == 0) {?>
 
                         <tr class="reload">
                             <tr class=" <?php foreach ($role as $keyRole => $valRole) {  ?>

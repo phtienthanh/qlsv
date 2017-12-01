@@ -49,7 +49,7 @@
                                     <div class="form-group btn-gre">
                                         <h3 class="col-md-12">Slug</h3>
                                         <div class="col-md-12 cols">
-                                            <input type="text" name="slug" placeholder="Slug" class="form-control form-control-line" value="<?php echo substr($get_article["slug"],0,-5); ?>">
+                                            <input type="text" name="slug" placeholder="Slug" class="form-control form-control-line" value="<?php echo substr($get_article["slug"], 0, -5); ?>">
                                         </div>
                                         <span class="fail2"><?php echo form_error("slug"); ?></span>
                                     </div>
@@ -91,7 +91,7 @@
                                     <div class="form-group btn-gre">
                                         <h3 for="example-email" class="col-md-12">Content</h3>
                                         <div class="col-md-12 cols">
-                                            <textarea rows="4" cols="85" class="form-control form-control-line" name="content"><?php echo $get_article["content"];?></textarea>
+                                            <textarea rows="4" cols="85" class="form-control form-control-line" name="content"><?php echo $get_article["content"]; ?></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group btn-gre">
@@ -100,11 +100,11 @@
                                             <select name="categories" class="form-control form-control-line cate">
                                                 
                                                 <?php  
-                                                if(isset($category_all) && count($category_all) > 0) { 
+                                                if (isset($category_all) && count($category_all) > 0) { 
 
                                                     foreach ($category_all as $keyCategory_all => $valCategory_all) { 
 
-                                                        if ( $valCategory_all['is_deleted'] == 0) { ?>
+                                                        if ($valCategory_all['is_deleted'] == 0) { ?>
 
                                                             <option value="<?php echo $valCategory_all['id']; ?>" <?php if ($get_article["categories"] == $valCategory_all['id']) { 
 

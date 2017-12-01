@@ -31,7 +31,7 @@
                             
                                 <option value="<?php echo $valAuthorSv['first_name'].$valAuthorSv['last_name']; ?>"<?php if ($name == $valAuthorSv['first_name']."".$valAuthorSv['last_name']) { echo "selected";}?>>
 
-                                    <?php echo $valAuthorSv['first_name']." ".$valAuthorSv['last_name'];?>
+                                    <?php echo $valAuthorSv['first_name']." ".$valAuthorSv['last_name']; ?>
 
                                 </option>
 

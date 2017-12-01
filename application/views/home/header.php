@@ -31,7 +31,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <?php if ($checkLogin == true ) { ?>
 
-                        <?php  if ($AdminPr == true || $MemberPr == true) { ?>
+                        <?php if ($AdminPr == true || $MemberPr == true) { ?>
                     
                             <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url();?>sinhvien/show">Manage student</a></li>
                             <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url();?>article/home">Manage article</a></li>
