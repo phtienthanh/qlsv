@@ -22,6 +22,7 @@
             </tr>
         </thead>
         <tbody>
+
             <?php if (isset($categories) && count($categories) > 0) { ?>
 
                 <?php foreach ($categories as $keyCategories => $valCategories) { ?>
@@ -32,8 +33,19 @@
                             <td><input type="checkbox" name="checkboxlist[]" value=<?php echo $valCategories[ 'id']; ?> ></td>
                             <td><?php echo $valCategories['id']; ?></td>
                             <td><?php echo $valCategories['name']; ?></td>
-                            <td class="center"><a class="btn btn-success" <?php if ($valCategories['id'] == '1') {
-                               echo 'disabled';} ?> href="<?php echo base_url();?>categories/update/<?php echo $valCategories['id']; ?>" title="">Update</a></td>
+                            <td class="center"><a class="btn btn-success" 
+                                
+                                <?php 
+
+                                    if ($valCategories['id'] == '1') {
+
+                                        echo 'disabled';
+
+                                    }
+
+                                ?>
+
+                                href="<?php echo base_url();?>categories/update/<?php echo $valCategories['id']; ?>" title="">Update</a></td>
                         </tr>
                         
                     <?php } ?>

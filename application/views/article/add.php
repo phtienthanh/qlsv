@@ -21,6 +21,7 @@
             <span class="fail2"><?php echo form_error("userfile"); ?></span>
             <h3 for="">Author</h3>
             <select name="author" class="form-control form-control-line cate categories">
+
                 <?php
 
                     if (isset($authorSv) && count($authorSv) > 0) {
@@ -29,7 +30,7 @@
                     
                             if ($valAuthorSv['first_name'] != "" || $valAuthorSv['last_name'] != "") { ?>
                             
-                                <option value="<?php echo $valAuthorSv['first_name'].$valAuthorSv['last_name']; ?>"<?php if ($name == $valAuthorSv['first_name']."".$valAuthorSv['last_name']) { echo "selected";}?>>
+                                <option value="<?php echo $valAuthorSv['first_name'].$valAuthorSv['last_name']; ?>"<?php if ($name == $valAuthorSv['first_name'].$valAuthorSv['last_name']) { echo "selected"; }?>>
 
                                     <?php echo $valAuthorSv['first_name']." ".$valAuthorSv['last_name']; ?>
 
@@ -51,10 +52,12 @@
                     }
 
                 ?>
+
             </select>
             <span class="fail2"><?php echo form_error("author"); ?></span>
             <h3 for="">Categories</h3>
             <select name="categories" class="form-control form-control-line cate categories">
+                
                 <?php 
                     if (isset($categories) && count($categories) > 0) {
 
@@ -67,6 +70,7 @@
                                     <?php echo $valCategories['name']; ?>
                             
                                 </option>
+
                             <?php
                     
                             }
@@ -76,6 +80,7 @@
                     }
 
                 ?>
+
             </select>
             <?php echo form_error("categories"); ?>
             <div>

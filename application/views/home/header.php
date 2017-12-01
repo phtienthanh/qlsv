@@ -29,6 +29,7 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+
                     <?php if ($checkLogin == true ) { ?>
 
                         <?php if ($AdminPr == true || $MemberPr == true) { ?>
@@ -40,7 +41,9 @@
                         <?php } ?>
                     
                     <?php } ?>
+
                     <ul class="nav navbar-nav navbar-right">
+                        
                         <?php if ($checkLogin == false) { ?>
 
                             <li class="li_menu"><a class="manage_login1" href="<?php echo base_url(); ?>home/login">Login</a></li>

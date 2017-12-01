@@ -736,7 +736,7 @@ class Home extends MY_Controller {
 
 		$listStudent = $this->Msinhvien->get_all_sinhvien('desc');
 
-        $categoryVariable = array();
+        $categoryName = array();
 
         if (count($listCategories) > 0) {
 
@@ -744,11 +744,11 @@ class Home extends MY_Controller {
 
 	        	if ($valListCategories['is_deleted'] == 0) {
 
-	        		$categoryVariable[$valListCategories['id']] = $valListCategories['name'];
+	        		$categoryName[$valListCategories['id']] = $valListCategories['name'];
 	        		
 	        	}  else {
 
-	        		$categoryVariable[$valListCategories['id']] = "All";
+	        		$categoryName[$valListCategories['id']] = "All";
 
 	        	}
 
@@ -778,7 +778,7 @@ class Home extends MY_Controller {
 
 		$this->data['nameStudent'] = $nameStudent;
 
-        $this->data['categoryVariable'] = $categoryVariable;
+        $this->data['categoryName'] = $categoryName;
 
 		$this->data['categories'] = $listCategories;	
 
@@ -856,7 +856,7 @@ class Home extends MY_Controller {
 
 	      	$listCategories = $this->Mcategories->get_all_categories();
 
-        	$categoryVariable = array();
+        	$categoryName = array();
 
         	if (count($listCategories) > 0) {
 
@@ -864,11 +864,11 @@ class Home extends MY_Controller {
 
 		        	if ($valListCategories['is_deleted'] == 0) {
 
-		        		$categoryVariable[$valListCategories['id']] = $valListCategories['name'];
+		        		$categoryName[$valListCategories['id']] = $valListCategories['name'];
 		        		
 		        	}  else {
 
-		        		$categoryVariable[$valListCategories['id']] = "All";
+		        		$categoryName[$valListCategories['id']] = "All";
 
 		        	}
 
@@ -898,7 +898,7 @@ class Home extends MY_Controller {
 
 			$this->data['nameStudent'] = $nameStudent;
 
-	        $this->data['categoryVariable'] = $categoryVariable;
+	        $this->data['categoryName'] = $categoryName;
 
 			$this->data['categories'] = $listCategories;
 

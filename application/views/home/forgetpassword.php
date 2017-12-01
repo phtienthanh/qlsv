@@ -4,7 +4,7 @@
     <div class="insert">
         <form class="form_forget" action="" class="Form_insert" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <h1 class="title">Forget password</h1>
-            <h3 class="title error"><?php if (isset($checkMail) && count($checkMail) > 0){ echo $checkMail; } ?></h3>
+            <h3 class="title error"><?php if (isset($checkMail) && count($checkMail) > 0) { echo $checkMail; } ?></h3>
             <p class=" title"><?php echo $this->session->flashdata('message_checkmail'); ?></p>
             <br>
             <br>

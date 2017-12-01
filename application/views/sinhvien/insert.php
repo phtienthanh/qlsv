@@ -34,7 +34,9 @@
             <h3 for="">Avatar</h3>
             <input type="file" name="userfile"  class="custom-file-input">
             <h3 for="">Role</h3>
-            <?php 
+
+            <?php
+
             if (isset($role) && count($role) > 0) { 
 
                 foreach ($role as $keyRole => $valRole) { ?>
@@ -44,6 +46,7 @@
                             <input class="checkbox_role" name='<?php echo $valRole['id']; ?>' type='checkbox'  value='<?php echo $valRole['id']; ?>' /><?php echo $valRole['name']; ?>
                         </tr>
                     </div> 
+
             <?php 
 
                 }  
@@ -51,7 +54,9 @@
             }
              
             ?>
+
             <?php echo form_error("role"); ?>
+            
             <br>
             <input type="submit" name="submit" value="Insert" class="btn btn-success btn-insert">
         </form>

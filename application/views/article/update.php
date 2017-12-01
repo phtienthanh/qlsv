@@ -62,20 +62,45 @@
 
                                                         foreach ($authorSv as $keyAuthorSv => $valAuthorSv) { 
                                                     
-                                                            if ($valAuthorSv['first_name'] != "" || $valAuthorSv['last_name'] != "") {?>
-                                                                <option value="<?php echo $valAuthorSv['first_name'].$valAuthorSv['last_name']; ?>" <?php if ($get_article["author"] == $valAuthorSv['first_name'].$valAuthorSv['last_name']) { echo "selected"; } ?>>
+                                                            if ($valAuthorSv['first_name'] != "" || $valAuthorSv['last_name'] != "") {
+
+                                                            ?>
+
+                                                                <option value="<?php echo $valAuthorSv['first_name'].$valAuthorSv['last_name']; ?>" 
+
+                                                                    <?php
+
+                                                                        if ($get_article["author"] == $valAuthorSv['first_name'].$valAuthorSv['last_name']) { 
+                                                                            echo "selected"; 
+
+                                                                        }
+
+                                                                    ?>>
+
                                                                     <?php echo $valAuthorSv['first_name']." ".$valAuthorSv['last_name']; ?>
+
                                                                 </option>
+
                                                             <?php
+
                                                             }  else {
                                                             
                                                             ?>
-                                                                <option value="<?php echo  $valAuthorSv['username']; ?>" <?php if ($get_article["author"] == $valAuthorSv['username'] ) {
+                                                                <option value="<?php echo  $valAuthorSv['username']; ?>"
+
+                                                                <?php 
+                                                                
+                                                                if ($get_article["author"] == $valAuthorSv['username'] ) {
                                                                    echo "selected";
-                                                                }?>>
+                                                                }
+
+                                                                ?>>
                                                                     <?php echo $valAuthorSv['username']; ?>
+
                                                                 </option>
+                                                            
                                                             <?php
+                                                            
                                                             }
                                                     
                                                         }

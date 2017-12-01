@@ -4,12 +4,19 @@
         <div class="page-wrapper">
             <div class="container-fluid page-wrapper">
                 <div class="row page-titles">
-                    <h1 class="title colorMana"><?php
-                        if (isset($get_article["title"]) && count($get_article["title"]) > 0) {
-                        
-                            echo $get_article["title"];
+                    <h1 class="title colorMana">
 
-                        } ?></h1>
+                        <?php
+
+                            if (isset($get_article["title"]) && count($get_article["title"]) > 0) {
+                            
+                                echo $get_article["title"];
+
+                            } 
+
+                        ?>
+                            
+                    </h1>
                     <div class="col-lg-12 col-xlg-9 col-md-7 ">
                         <a href="<?php echo base_url();?>article/home" class="btn hidden-sm-down  btn-default btn-back"> Back</a>
                     </div>
@@ -24,40 +31,56 @@
                                     <div class="form-group">
                                         <label class="col-md-3"><b>Author :</b></label>
                                         <div class="col-md-3">
-                                            <p><?php if (in_array($get_article["author"], $nameStudent)) {
+                                            <p>
+
+                                                <?php 
+
+                                                    if (in_array($get_article["author"], $nameStudent)) {
 
                                                         echo $get_article["author"];
-                                                    
+                                                        
                                                     } else {
 
                                                         echo "Admin";
                                                         
-                                                    } ?></p>
+                                                    }
+
+                                                ?>
+                                                        
+                                            </p>
                                         </div>
                                         <label class="col-md-3"><b>Categories :</b></label>
                                         <div class="col-md-3">
-                                            <p><?php 
-                                                if (isset($categoryVariable[$get_article['categories']]) && count($categoryVariable[$get_article['categories']]) > 0) {
+                                            <p>
 
-                                                    echo $categoryVariable[$get_article['categories']];
-                                                 
-                                                } ?>
+                                                <?php 
+                                                
+                                                    if (isset($categoryName[$get_article['categories']]) && count($categoryName[$get_article['categories']]) > 0) {
+
+                                                        echo $categoryName[$get_article['categories']];
+                                                     
+                                                    } 
+
+                                                ?>
                                                     
                                             </p>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <p class="col-md-12">
+
                                             <?php 
 
-                                            if (isset($get_article["content"]) && count($get_article["content"]) > 0) {
+                                                if (isset($get_article["content"]) && count($get_article["content"]) > 0) {
 
-                                                echo nl2br($get_article["content"], false);
-                                            
-                                            } ?>
+                                                    echo nl2br($get_article["content"], false);
+                                                
+                                                } 
+
+                                            ?>
+
                                         </p>
                                     </div>
-                                   
                                 </form>
                             </div>
                         </div>

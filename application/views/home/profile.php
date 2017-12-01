@@ -30,6 +30,7 @@
                                     </div>
 
                                     <h4 class="card-title m-t-10">
+
                                         <?php if ($student['last_name'] == "" && $student['first_name'] == "" ) {
 
                                             echo $student["username"];
@@ -39,6 +40,7 @@
                                             echo  $student['first_name']." ".$student['last_name'];
 
                                         }?>
+
                                     </h4>
                                 </center>
                             </form>
@@ -84,11 +86,23 @@
                                     <div class="form-group btn-gre form-g">
                                         <h3 class="col-md-12 col-role">Role</h3>
                                             <br>
+
                                             <?php if (isset($role) && count($role) > 0) { ?>
 
                                                 <?php foreach ($role as $keyRole => $valRoler) { ?>
+
                                                     <div class="role_tr">
-                                                        <tr selected><input class="checkbox_role" name='<?php echo $valRoler['id']; ?>' type='checkbox' value='<?php echo $valRoler['id']; ?>' <?php if (in_array($valRoler['name'], $getUserGroups) == true) { echo "checked"; } ?> disabled/> <?php echo $valRoler['name']; ?></tr>
+                                                        <tr selected><input class="checkbox_role" name='<?php echo $valRoler['id']; ?>' type='checkbox' value='<?php echo $valRoler['id']; ?>'
+
+                                                        <?php
+                                                        
+                                                            if (in_array($valRoler['name'], $getUserGroups) == true) {
+                                                                
+                                                                echo "checked"; 
+
+                                                            }
+
+                                                        ?> disabled/> <?php echo $valRoler['name']; ?></tr>
                                                     </div>
                                                     
                                                 <?php } ?>

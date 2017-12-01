@@ -34,13 +34,27 @@
             <input type="file" name="userfile"  class="custom-file-input">
            <span class="error"> <?php echo form_error("avatar"); ?></span>
             <h3 for="">Role</h3>
+
             <?php if (isset($roleUpdate) && count($roleUpdate) > 0) { ?>
 
                 <?php foreach ($roleUpdate as $keyRole => $valRole) { ?>
 
                     <div class="role_tr">
                       <tr selected>
-                        <input class="checkbox_role" name='<?php echo $valRole['id']; ?>' type='checkbox' value='<?php echo $valRole['id']; ?>'<?php if (in_array($valRole['name'], $UserGroup) == true) { echo "checked"; } ?>/> <?php echo $valRole['name']; ?></tr>      
+                        <input class="checkbox_role" name='<?php echo $valRole['id']; ?>' type='checkbox' value='<?php echo $valRole['id']; ?>'
+
+                        <?php
+
+                            if (in_array($valRole['name'], $UserGroup) == true) {
+
+                                echo "checked";
+
+                            }
+
+                        ?>/>
+
+                        <?php echo $valRole['name']; ?></tr>      
+                    
                     </div>
     
                 <?php } ?>

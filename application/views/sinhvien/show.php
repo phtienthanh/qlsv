@@ -26,39 +26,35 @@
         <tbody>
             <?php if (isset($student) && count($student > 0)) { ?>
 
-                <?php foreach ($student as $keyStudent => $valStudent) {  ?>
+                <?php foreach ($student as $keyStudent => $valStudent) { ?>
 
-                    <?php if ( $valStudent['is_deleted'] == 0) {?>
+                    <?php if ($valStudent['is_deleted'] == 0) { ?>
 
                         <tr class="reload">
-                            <tr class=" <?php foreach ($role as $keyRole => $valRole) {  ?>
+                            <tr class="
 
-                                        <?php if ($valStudent['id'] == $valRole['user_id']) { ?>
+                                <?php foreach ($role as $keyRole => $valRole) {  ?>
 
-                                            <?php echo $listGroup[$valRole['group_id']]; ?>
+                                    <?php if ($valStudent['id'] == $valRole['user_id']) { ?>
 
-                                        <?php } ?>
+                                        <?php echo $listGroup[$valRole['group_id']]; ?>
 
-                                    <?php } ?>">
+                                    <?php } ?>
+
+                                <?php } ?>">
+
                                 <td>
                                     <input type="checkbox" class="checkbox_role" name="checkboxlist[]" value=<?php echo $valStudent[ 'id'];?> <?php if ($AdminPr == false) { echo 'disabled'; } ?> >
                                 </td>
-                                <td>
-                                    <?php echo $valStudent['id']; ?> 
-                                </td>
-                                <td>
-                                    <?php echo $valStudent['first_name']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $valStudent['last_name']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $valStudent['email']; ?>
-                                </td>
+                                <td><?php echo $valStudent['id']; ?></td>
+                                <td><?php echo $valStudent['first_name']; ?></td>
+                                <td><?php echo $valStudent['last_name']; ?></td>
+                                <td><?php echo $valStudent['email']; ?></td>
                                 <td>
                                     <img src="<?php echo base_url();?>medias/student/<?php echo $valStudent['avatar']; ?>" height="75px">
                                 </td>
                                 <td>
+
                                     <?php foreach ($role as $keyRole => $valRole) {  ?>
 
                                         <?php if ($valStudent['id'] == $valRole['user_id']) { ?>
@@ -68,6 +64,7 @@
                                         <?php } ?>
 
                                     <?php } ?>
+
                                 </td>
                                 <td><a class="btn btn-default glyphicon glyphicon-edit" <?php if ($AdminPr == false) {
                                     echo 'disabled'; } ?> href="<?php echo base_url();?>sinhvien/update/<?php echo $valStudent['id']; ?>" title=""></a></td>

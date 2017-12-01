@@ -12,17 +12,20 @@
         <span class="back"> <a href="<?php echo base_url('home');?>" title="" class="btn btn-default btn-back">Back</a></span>
     <br>
     <span class=""> <a href="<?php echo base_url('article/add') ?>" <?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-primary back">Add article</a></span>
-    <span class="addcate"> <a href="<?php echo base_url('categories/home') ?>"<?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-warning back">Manage categories</a></span>
+    <span class="addcate"> <a href="<?php echo base_url('categories/home') ?>" <?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-warning back">Manage categories</a></span>
     <br>
+
     <?php if (count($article) > 0) { ?>
 
         <button class="btn btn-danger back delete" <?php if ($AdminPr == false) { echo 'disabled'; } ?> data-toggle="modal" data-target="#delall"> Delete</button>
 
     <?php } ?>
+
     </div>
     
     <div class="col-md-10 content-10">
         <div>
+
             <?php if (count($article) == 0) { ?>
 
                 <h3 class="title" style="color:#FFF">There are no records</h3>
@@ -33,11 +36,13 @@
         <table class="table_article">
             <thead class="thead-inverse"></thead>
             <tbody>
+
                 <?php if (isset($article) && count($article) > 0) { ?>
 
                     <?php foreach ($article as $keyArticle => $valArticle) { ?>
 
                         <?php if ($valArticle['is_deleted'] == 0) { ?>
+
                             <tr>
                                 <td>
                                     <div class="row row_xxx row_xxx<?php echo $valArticle['id'];?>">
@@ -49,6 +54,7 @@
                                         </div>
                                         <div class="col-md-7 body-content">
                                             <p class="col-md-12 title_article">
+
                                                 <?php 
 
                                                 if (strlen($valArticle['title']) > 30) {
@@ -62,35 +68,47 @@
                                                 } 
 
                                                 ?>
+
                                             </p>
                                             <pre class="col-md-12 content1">
+
                                                 <?php
-                                                if (strlen($valArticle['content']) > 200){
 
-                                                    echo substr( preg_replace('/([^\pL\.\ ]+)/u', '', strip_tags($valArticle['content'])), 0, 200); echo '...';
+                                                    if (strlen($valArticle['content']) > 200) {
+
+                                                        echo substr(preg_replace('/([^\pL\.\ ]+)/u', '', strip_tags($valArticle['content'])), 0, 200); echo '...';
+                                                        
+                                                    } else {
+
+                                                        echo $valArticle['content'];
+
+                                                    }
                                                     
-                                                } else {
-
-                                                    echo $valArticle['content'];
-                                                }
-                                                
                                                 ?>
 
                                             </pre>
                                             <div class="form-group btn-group col-md-12">
                                                 <label><b>Author :</b></label>
-                                                <span><?php if (in_array($valArticle["author"], $studentName)) {
+                                                <span>
 
-                                                        echo $valArticle["author"];
-                                                    
-                                                    } else {
+                                                    <?php 
 
-                                                        echo "Admin";
+                                                        if (in_array($valArticle["author"], $studentName)) {
 
-                                                    } ?></span>
+                                                            echo $valArticle["author"];
+                                                        
+                                                        } else {
+
+                                                            echo "Admin";
+
+                                                        }
+
+                                                    ?>
+                                                        
+                                                </span>
                                                 <br> 
                                                 <label><b>Categories : </b></label>
-                                                <span><?php echo $listName[$valArticle['categories']] ?></span>
+                                                <span><?php echo $listName[$valArticle['categories']]; ?></span>
                                                 <div class="form-group datetime">
                                                 <label><b>Poster on: </b></label>
                                                 <span><?php echo $valArticle['date']; ?></span>
@@ -121,11 +139,13 @@
                                     </div>
                                 </td>
                             </tr>
+
                         <?php } ?>
 
                     <?php } ?>
 
                 <?php } ?>
+
             </tbody>
         </table>
     </div>

@@ -26,7 +26,9 @@
         <div id="header" style="background-position: 50% 0%; height:100%;" data-stellar-background-ratio="0.5">
             <div class="container">
                 <div class="title">
-                 <?php echo $this->session->flashdata('message'); ?> 
+
+                    <?php echo $this->session->flashdata('message'); ?> 
+                
                 </div>
                 <div class="row">
                     <!-- Logo -->

@@ -1,17 +1,19 @@
 <html>
 <body>
     <div class="container">
-           <h1 class="title">Show article</h1>
-           <?php if(isset($searchAr) && count($searchAr)) { ?>
+        <h1 class="title">Show article</h1>
+
+        <?php if(isset($searchAr) && count($searchAr)) { ?>
 
         <h3 class="title searchAr"> Found <?php echo $searchAr; ?> result</h3>
 
         <?php } ?>
+
     <div class="col-md-8">
     
         <?php if (count($query) == 0) { ?>
 
-        <h3 class="title">No article show to</h3>
+            <h3 class="title">No article show to</h3>
 
         <?php } ?>
 
@@ -25,19 +27,22 @@
                     </div>
                     <div class="card-body">
                         <h2 class="card-title">
-                        <?php if (strlen($row['title']) > 30 ) {
 
-                            echo substr($row['title'],0,30); echo '...';
-                            
-                        } else {
+                            <?php if (strlen($row['title']) > 30 ) {
 
-                            echo $row['title'];
-                           
-                        } ?>    
+                                echo substr($row['title'], 0, 30); echo '...';
+                                
+                            } else {
+
+                                echo $row['title'];
+                               
+                            } ?>
+
                         </h2>
                         <div class="card-text">
                             <div>
-                                <?php if (strlen($row['content']) > 200){
+
+                                <?php if (strlen($row['content']) > 200) {
 
                                     echo substr(preg_replace('/([^\pL\.\ ]+)/u', '', strip_tags($row['content'])), 0, 200); echo '...';
                                     
@@ -46,15 +51,32 @@
                                     echo $row['content'];
 
                                 } ?>
+
                             </div>
                             
                         </div>
                         <a class="btn btn-primary" href="<?php echo base_url();?>home/preview/<?php echo $row['slug']; ?>" title="">Article detail</a>
                     </div>
                     <div class="card-footer footer_post">
-                        <p class="cate_show"><b>Categories: </b><?php echo $categoryVariable[$row['categories']] ?></p>
-                        <p class="cate_show"><b>Author: </b><?php if (in_array($row["author"], $nameStudent)) { echo $row["author"]; } else { echo "Admin"; } ?></p>
-                        <p><b> Poster on : </b> <span class="date-time"> <?php echo $row['date']; ?></span></p>
+                        <p class="cate_show"><b>Categories: </b><?php echo $categoryName[$row['categories']]; ?></p>
+                        <p class="cate_show"><b>Author: </b>
+
+                            <?php
+
+                                if (in_array($row["author"], $nameStudent)) {
+
+                                    echo $row["author"]; 
+
+                                } else {
+
+                                    echo "Admin"; 
+
+                                } 
+
+                            ?>
+
+                        </p>
+                        <p><b> Poster on : </b> <span class="date-time"><?php echo $row['date']; ?></span></p>
                     </div>
                 </div>
             
