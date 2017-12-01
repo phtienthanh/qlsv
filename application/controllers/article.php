@@ -8,9 +8,7 @@ class article extends MY_Controller {
 	        
         parent::__construct();
 
-        $this->load->helper("slug", "form");
-
-        $this->load->helper('date');
+        $this->load->helper("slug", "form", "date");
 
         $this->load->library('form_validation');
 
@@ -40,7 +38,7 @@ class article extends MY_Controller {
 
 		$listStudent = $this->Msinhvien->get_all_sinhvien('asc');
 
-		$newArrayStudent = $assignName = array();
+		$studentName = $listName = array();
 
 		if (count($listStudent) > 0) {
 
@@ -48,17 +46,17 @@ class article extends MY_Controller {
 
         		if ($listStudenValue['first_name'] == "" && $listStudenValue['last_name'] == "") {
 
-        			$newArrayStudent[] = $listStudenValue['username'];
+        			$studentName[] = $listStudenValue['username'];
 
         		} else {
 
-        			$newArrayStudent[] = $listStudenValue['first_name'].$listStudenValue['last_name'];
+        			$studentName[] = $listStudenValue['first_name'].$listStudenValue['last_name'];
 
         		}
 
 	        }
 
-	        $this->data['arrayStudent'] = $newArrayStudent;
+	        $this->data['studentName'] = $studentName;
 
         }
 
@@ -68,17 +66,17 @@ class article extends MY_Controller {
 
 	        	if ($listCategoriesValue['is_deleted'] == 0) {
 
-	        		$assignName[$listCategoriesValue['id']] = $listCategoriesValue['name'];
+	        		$listName[$listCategoriesValue['id']] = $listCategoriesValue['name'];
 	        		
 	        	}  else {
 
-	        		$assignName[$listCategoriesValue['id']] = "All";
+	        		$listName[$listCategoriesValue['id']] = "All";
 
 	        	}
 
 	        }
 
-	        $this->data['assignName'] = $assignName;
+	        $this->data['listName'] = $listName;
 
         }
 
@@ -214,19 +212,21 @@ class article extends MY_Controller {
 
 	    		}
 
-			}	
+			}
 				       
-   		} else if ($this->input->post("back")) {
-
-   			redirect('article/home');	  
-       			    	
-    	}
+   		}
 
 		$this->load->view('article/add', $this->data);
 
 	}
 
 	public function update($slug) {
+
+		if ($this->data['AdminPr'] == false) {
+	            
+	       	redirect('home/index');
+
+	    }
 
 		if (isset($slug) && count($slug) > 0) {
 
@@ -235,12 +235,6 @@ class article extends MY_Controller {
 			$checkSlugs = $this->Marticle->get_article('slug', $slug);
 
 			if (count($checkSlugs) > 0) {
-
-				if ($this->data['AdminPr'] == false) {
-	            
-	            	redirect('home/index');
-
-	        	}
 
 				$this->load->model('Mcategories');
 
@@ -252,7 +246,7 @@ class article extends MY_Controller {
 
 				$checkSlug = create_slug($this->input->post('slug'));
 
-		      	$data['student'] = $this->Marticle->get_article('slug', $slug); 
+		      	$data['get_article'] = $this->Marticle->get_article('slug', $slug); 
 		      	
 		      	if ($this->input->post("submit")) {
 
@@ -328,7 +322,7 @@ class article extends MY_Controller {
 
     		if (count($checkId) > 0) {
 
-	    		$this->data['student'] = $checkId;
+	    		$this->data['get_article'] = $checkId;
 
 		      	if ($_FILES['userfile']['name'] == '') {
 
@@ -422,7 +416,7 @@ class article extends MY_Controller {
 
 			if (count($checkSlug) > 0) {
 
-				$this->data['student'] = $this->Marticle->get_article('slug', $slug); 	
+				$this->data['get_article'] = $checkSlug; 	
 
 		    	$this->load->model('Mcategories');
 
@@ -452,7 +446,7 @@ class article extends MY_Controller {
 
 	        	}
 
-	        	$newArrayStudent = array();
+	        	$nameStudent = array();
 
 				if (count($listStudent) > 0) {
 
@@ -460,11 +454,11 @@ class article extends MY_Controller {
 
 		        		if ($listStudenValue['first_name'] == "" && $listStudenValue['last_name'] == "") {
 
-		        			$newArrayStudent[] = $listStudenValue['username'];
+		        			$nameStudent[] = $listStudenValue['username'];
 
 		        		} else {
 
-		        			$newArrayStudent[] = $listStudenValue['first_name'].$listStudenValue['last_name'];
+		        			$nameStudent[] = $listStudenValue['first_name'].$listStudenValue['last_name'];
 
 		        		}
 
@@ -472,9 +466,9 @@ class article extends MY_Controller {
 
 		        }
 
- 				$this->data['arraystudent'] = $newArrayStudent;
+ 				$this->data['nameStudent'] = $nameStudent;
 
-		        $this->data['newArray'] = $categoryVariable;
+		        $this->data['categoryVariable'] = $categoryVariable;
 
 				$this->data['categories'] = $listCategories;
 
@@ -498,36 +492,40 @@ class article extends MY_Controller {
 
     public function delete_checkbox() {
 
-		$dataId = $this->input->post('id');
+		if (!is_null($this->input->post()) &&  count($this->input->post()) > 0) {
 
-		foreach ($dataId as $keyDataId => $valDataId) {
+			$dataId = $this->input->post('id');	
 
-			$this->load->model('Marticle');
+			foreach ($dataId as $keyDataId => $valDataId) {
 
-			$data = $this->Marticle->get_article('id', $valDataId);
+				$this->load->model('Marticle');
 
-			$listUpdate = array(	
-		
-				"is_deleted" => 1
-				
-			);	
+				$data = $this->Marticle->get_article('id', $valDataId);
 
-			if (file_exists("medias/article/".$data['image']) && $data['image'] != "doanthi.jpg") {
+				$listUpdate = array(	
+			
+					"is_deleted" => 1
+					
+				);	
+
+				if (file_exists("medias/article/".$data['image']) && $data['image'] != "doanthi.jpg") {
+				        
+			        if (unlink("medias/article/".$data['image'])) {
+
+			            $this->Marticle->update_article('id', $valDataId, $listUpdate);  
 			        
-		        if (unlink("medias/article/".$data['image'])) {
+			        }
+	     			
+	     		} else if (file_exists("medias/article/".$data['image']) && $data['image'] == "doanthi.jpg") {
 
-		            $this->Marticle->update_article('id', $valDataId, $listUpdate);  
-		        
-		        }
-     			
-     		} else if (file_exists("medias/article/".$data['image']) && $data['image'] == "doanthi.jpg") {
+	     			$this->Marticle->update_article('id', $valDataId, $listUpdate);  
 
-     			$this->Marticle->update_article('id', $valDataId, $listUpdate);  
+	     		}
+		
+			}		
 
-     		}
-	
-		}		
+	    }
 
-    }
+	}
 
 }

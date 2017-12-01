@@ -37,6 +37,7 @@
             <?php if(isset($roleUpdate) && count($roleUpdate) > 0) { ?>
 
                 <?php foreach ($roleUpdate as $keyRole => $valRole) { ?>
+                
                     <div class="role_tr">
                       <tr selected>
                         <input class="checkbox_role" name='<?php echo $valRole['id']; ?>' type='checkbox' value='<?php echo $valRole['id']; ?>'<?php if (in_array($valRole['name'], $UserGroup) == true) { echo "checked";} ?>/> <?php echo $valRole['name']; ?></tr>      
