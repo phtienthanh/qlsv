@@ -32,16 +32,21 @@
 
                     <?php if ($checkLogin == true ) { ?>
 
-                        <?php if ($AdminPr == true || $MemberPr == true) { ?>
+                        <?php if ($AdminPr == true ) { ?>
                     
                             <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url(); ?>sinhvien/show">Manage student</a></li>
+
+                        <?php } ?>
+
+                        <?php if ($Editor == true || $AdminPr == true) { ?>
+
                             <li class="li_menu"><a class="manage_student color_menu" href="<?php echo base_url(); ?>article/home">Manage article</a></li>
-                            <li class="li_menu"><a class="color_menu" href="<?php echo base_url(); ?>home/show_article?page=">Show article</a></li>
-                    
+
                         <?php } ?>
                     
                     <?php } ?>
 
+                    <li class="li_menu"><a class="color_menu" href="<?php echo base_url(); ?>home/show_article?page=">Show article</a></li>
                     <ul class="nav navbar-nav navbar-right">
                         
                         <?php if ($checkLogin == false) { ?>

@@ -24,7 +24,7 @@ class Sinhvien extends MY_Controller {
 
     public function show() {
 
-    	if ($this->data['AdminPr'] == false && $this->data['MemberPr'] == false ) {
+    	if ($this->data['AdminPr'] == false) {
             
             redirect('home/index');
 
@@ -88,7 +88,7 @@ class Sinhvien extends MY_Controller {
 
         }
 
-        $roleAdmin = $roleMembers = $roleUser = "";
+        $roleAdmin = $roleEditor = "";
 
         foreach ($listGroup as $keyListGroup => $valListGroup) {
 
@@ -100,13 +100,7 @@ class Sinhvien extends MY_Controller {
 
             if ($valListGroup == '2') {
 
-                $roleMembers = "Members ,";
-                
-            }
-
-            if ($valListGroup == '3') {
-
-                $roleUser = "User";
+                $roleEditor = "Editor ,";
                 
             }
 
@@ -162,7 +156,7 @@ class Sinhvien extends MY_Controller {
 
 		$message .= "Password: ".$this->input->post("password")."\n";
 
-		$message .= "Role: ".$roleAdmin.$roleMembers.$roleUser."\n";
+		$message .= "Role: ".$roleAdmin.$roleEditor."\n";
 
         $this->email->message($message); 
 
@@ -741,64 +735,60 @@ class Sinhvien extends MY_Controller {
 				            }
 
 			          	}
-
-			          	if ($stack == false) {  	
-
-					        $this->load->model('Msinhvien');
-
-					        $checkData = $this->Msinhvien->get_data_sinhvien('id', $valDataId);
-
-					        if (file_exists("medias/student/".$checkData['avatar']) && $checkData['avatar'] != "doanthi.jpg") {
-					              
-					            if (unlink("medias/student/".$checkData['avatar'])) {
-
-				                	$this->load->model('ion_auth_model');
-
-				                	$this->ion_auth_model->delete_user($valDataId);    
-				              
-				              	} 
-					          
-					        } else if (file_exists("medias/student/".$checkData['avatar']) && $checkData['avatar'] == "doanthi.jpg") {
-
-				          		$this->load->model('ion_auth_model');
-
-				            	$this->ion_auth_model->delete_user($valDataId);    
-
-					        }
-					        
-							$returnData = array(
-
-							    'status' => 1,
-							    'data' => $stack,
-							    'message' => "Delete Account Success !!!"
-							  
-							);
-
-						    echo json_encode($returnData);
-
-						    exit();
-
-					    } else {
-
-					      	$returnData = array(
-
-					         	'status' => 1,
-					         	'data' => null,
-					         	'message' => "Can't Delete Admin Account !!!"
-					         
-					      	);
-
-					      	echo json_encode($returnData);
-
-					      	exit();
-
-					    }
 			          
 			        }
+
+		        	if ($stack == false) {
+
+				        $this->load->model('Msinhvien');
+
+				        $checkData = $this->Msinhvien->get_data_sinhvien('id', $valDataId);
+
+				        if (file_exists("medias/student/".$checkData['avatar']) && $checkData['avatar'] != "doanthi.jpg") {
+				              
+				            if (unlink("medias/student/".$checkData['avatar'])) {
+
+			                	$this->load->model('ion_auth_model');
+
+			                	$this->ion_auth_model->delete_user($valDataId);    
+			              
+			              	} 
+				          
+				        } else if (file_exists("medias/student/".$checkData['avatar']) && $checkData['avatar'] == "doanthi.jpg") {
+
+			          		$this->load->model('ion_auth_model');
+
+			            	$this->ion_auth_model->delete_user($valDataId);    
+
+				        }
+				        
+						$returnData = array(
+
+						    'status' => 1,
+						    'data' => $stack,
+						    'message' => "Delete Account Success !!!"
+						  
+						);
+
+				    } else {
+
+				      	$returnData = array(
+
+				         	'status' => 1,
+				         	'data' => null,
+				         	'message' => "Can't Delete Admin Account !!!"
+				         
+				      	);
+
+				    }
 
 		      	}
 
 		    }
+
+			echo json_encode($returnData);
+		    
+		    exit();
 
 		}  
 

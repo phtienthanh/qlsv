@@ -11,13 +11,13 @@
     <div class="col-md-2 col2">
         <span class="back"> <a href="<?php echo base_url('home');?>" title="" class="btn btn-default btn-back">Back</a></span>
     <br>
-    <span class=""> <a href="<?php echo base_url('article/add') ?>" <?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-primary back">Add article</a></span>
-    <span class="addcate"> <a href="<?php echo base_url('categories/home') ?>" <?php if ($AdminPr == false) { echo 'disabled'; } ?> class="btn btn-warning back">Manage categories</a></span>
+    <span class=""> <a href="<?php echo base_url('article/add') ?>"  class="btn btn-primary back">Add article</a></span>
+    <span class="addcate"> <a href="<?php echo base_url('categories/home') ?>"  class="btn btn-warning back">Manage categories</a></span>
     <br>
 
     <?php if (count($article) > 0) { ?>
 
-        <button class="btn btn-danger back delete" <?php if ($AdminPr == false) { echo 'disabled'; } ?> data-toggle="modal" data-target="#delall"> Delete</button>
+        <button class="btn btn-danger back delete"  data-toggle="modal" data-target="#delall"> Delete</button>
 
     <?php } ?>
 
@@ -47,7 +47,7 @@
                                 <td>
                                     <div class="row row_xxx row_xxx<?php echo $valArticle['id'];?>">
                                         <div class="col-md-4 height-img">
-                                        <input type="checkbox" class="checkboxhe" <?php if ($AdminPr == false) { echo 'disabled'; } ?> name="checkboxlist[]" value="<?php echo $valArticle['id'];?>">
+                                        <input type="checkbox" class="checkboxhe"  name="checkboxlist[]" value="<?php echo $valArticle['id'];?>">
                                             <div class="img-avarta">
                                                 <img class="avarta_1" src="<?php echo base_url();?>medias/article/<?php echo $valArticle['image']; ?>">
                                             </div>
@@ -134,7 +134,7 @@
                                                 </div>
                                             </div>
                                             <span><a class="btn btn-warning" href="<?php echo base_url();?>article/preview/<?php echo $valArticle['slug']; ?>" title=""><span class="glyphicon glyphicon-eye-open"></span></a></span>
-                                            <span><a class="btn btn-success" href="<?php echo base_url();?>article/update/<?php echo $valArticle['slug']; ?>"<?php if ($AdminPr == false) { echo 'disabled'; } ?>><span class="glyphicon glyphicon-pencil"></span></a></span>
+                                            <span><a class="btn btn-success" href="<?php echo base_url();?>article/update/<?php echo $valArticle['slug']; ?>"><span class="glyphicon glyphicon-pencil"></span></a></span>
                                         </div>
                                     </div>
                                 </td>

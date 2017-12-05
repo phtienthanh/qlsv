@@ -17,12 +17,6 @@ class Categories extends MY_Controller {
             redirect('home/login');
 
         }
-        
-        if ($this->data['AdminPr'] == false) {
-            
-            redirect('home/index');
-
-        }
 
         $this->load->view('home/header', $this->data);
         

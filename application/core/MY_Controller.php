@@ -30,9 +30,7 @@ class MY_Controller extends CI_Controller {
 
             $this->data['AdminPr'] = false;
 
-            $this->data['MemberPr'] = false;
-             
-            $this->data['UserPr'] = false;
+            $this->data['Editor'] = false;
 
             $listRoler = $this->Mrole->get_role_groups($id);
 
@@ -48,13 +46,7 @@ class MY_Controller extends CI_Controller {
 
                     if ($valListRole['group_id'] == '2') {
 
-                        $this->data['MemberPr'] = true;
-                        
-                    }
-
-                    if ($valListRole['group_id'] == '3') {
-
-                        $this->data['UserPr'] = true;
+                        $this->data['Editor'] = true;
                         
                     }
 

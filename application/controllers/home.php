@@ -20,7 +20,7 @@ class Home extends MY_Controller {
 
 	public function index() {		
     
-    	$this->load->view('home/home');
+    	redirect('home/show_article');
 
     }
 
@@ -276,7 +276,7 @@ class Home extends MY_Controller {
 
         $config['protocol'] = 'smtp';
 	        
-        $config['smtp_host'] = 'ssl://smtp.gmail.com';
+        $config['smtp_host'] = 'ssl://smtp.googlemail.com';
         
         $config['smtp_port'] = '465';
         
@@ -318,7 +318,7 @@ class Home extends MY_Controller {
 
 		$message .= "Password: ".$this->input->post("password")."\n";
 
-		$message .= "Role: "."User"."\n";
+		$message .= "Role: "."Editor"."\n";
 
         $this->email->message($message); 
 
@@ -365,7 +365,7 @@ class Home extends MY_Controller {
  
             );
 
-            $listRole = array('3');
+            $listRole = array('2');
 
         }
 

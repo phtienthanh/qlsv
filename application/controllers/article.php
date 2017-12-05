@@ -24,12 +24,6 @@ class article extends MY_Controller {
 
 	public function home() {
 
-		if ($this->data['AdminPr'] == false && $this->data['MemberPr'] == false) {
-            
-            redirect('home/index');
-
-        }
-
 		$this->load->model('Mcategories');
 
 		$this->load->model('Msinhvien');
@@ -89,12 +83,6 @@ class article extends MY_Controller {
 	}
 
 	public function add() {
-
-		if ($this->data['AdminPr'] == false) {
-            
-            redirect('home/index');
-
-        }
 
 		$this->load->model('Marticle');
 
@@ -222,12 +210,6 @@ class article extends MY_Controller {
 
 	public function update($slug) {
 
-		if ($this->data['AdminPr'] == false) {
-	            
-	       	redirect('home/index');
-
-	    }
-
 		if (isset($slug) && count($slug) > 0) {
 
 			$this->load->model('Marticle');
@@ -307,12 +289,6 @@ class article extends MY_Controller {
     }
 
     public function upload($id) {
-
-		if ($this->data['AdminPr'] == false) {
-            
-            redirect('home/index');
-
-        }
 
      	if (isset($id) && count($id) > 0) {
 

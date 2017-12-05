@@ -83,7 +83,6 @@ class Mcategories extends CI_Model {
         }
     
     }
-    
 
 }
 

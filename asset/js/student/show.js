@@ -36,9 +36,7 @@ $(document).ready(function() {
 
                     data = JSON.parse(data);
 
-                    $(".Members.selected").remove();
-
-                    $(".User.selected").remove();
+                    $(".Editor.selected").remove();
 
                     $('#Delete .messStudent').text(data.message);
 
