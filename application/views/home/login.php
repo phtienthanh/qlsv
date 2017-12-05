@@ -8,10 +8,6 @@
     <style type="text/css" media="screen">
     </style>
     </nav>
-    <div class="tow-btn">
-        <a class="btn btn-default btn-register" href="<?php echo base_url(); ?>home/register" title="">Register</a>
-        <a class="btn btn-default" href="<?php echo base_url(); ?>home/forget" title="">Forgot password</a>
-    </div>
     <form  class="Form_login" action="<?php echo base_url(); ?>home/login"  method="POST" role="form">
         <div class="form-group form-gr">
             <div class="title"> Login</div>
@@ -28,6 +24,10 @@
             <span class="error"><?php echo form_error('password'); ?></span>
             <br>
             <input type="submit" name="submit" value="Login" class="btn btn-success  btn_login" data-toggle="modal" data-target=".bs-example-modal-sm">
+            <div class="tow-btn float_r">
+                <a class="btn" href="<?php echo base_url(); ?>home/register" title="">Register</a>
+                <a class="btn" href="<?php echo base_url(); ?>home/forget" title="">Forgot password</a>
+            </div>
             <p class="title"><?php echo $this->session->flashdata('message_login'); ?></p>
         </div>
     </form>

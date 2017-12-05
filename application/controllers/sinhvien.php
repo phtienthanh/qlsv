@@ -503,15 +503,15 @@ class Sinhvien extends MY_Controller {
 
 						        	$listRole = $this->Mrole->get_all_table('groups');
 
-									if (count($listGr) > 0) {
+									if (count($listRole) > 0) {
 
 					         			$listGroup = array();
 
 					        			foreach ($listRole as $keyListRole => $valListRole) {
 					        				
-					        				if ($this->input->post($valListGr['id']) == $valListGr['id']) {
+					        				if ($this->input->post($valListRole['id']) == $valListRole['id']) {
 
-						        				$listGroup[] = $this->input->post($valListGr['id']);
+						        				$listGroup[] = $this->input->post($valListRole['id']);
 
 								        	}
 

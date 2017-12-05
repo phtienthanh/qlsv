@@ -25,7 +25,9 @@ If you like this solution, you might also want to check out the 1.0 version:
 .responstable tr:nth-child(odd) {
     background-color: #EAF3F3;
 }
-
+.float_r{
+    padding-top: 20px;
+}
 .btn-file {
     position: relative;
     overflow: hidden;

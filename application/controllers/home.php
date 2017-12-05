@@ -276,7 +276,7 @@ class Home extends MY_Controller {
 
         $config['protocol'] = 'smtp';
 	        
-        $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+        $config['smtp_host'] = 'ssl://smtp.gmail.com';
         
         $config['smtp_port'] = '465';
         
