@@ -174,6 +174,6 @@ UPDATE `groups` SET `name` = 'Editor', `description` = 'Editor' WHERE `groups`.`
 -- Delete field to table 'groups'
 -- Ron
 -- 05/12/2017 
-DELETE FROM 'groups' WHERE `groups`.`id` = 3;
+DELETE FROM `groups` WHERE `id` = 3;
 
 
