@@ -124,7 +124,7 @@ class Sinhvien extends MY_Controller {
         
         $config['smtp_user'] = 'doanthi2241@gmail.com';
         
-        $config['smtp_pass'] = 'doanthi123';
+        $config['smtp_pass'] = 'Doanthi123';
         
         $config['charset'] = 'utf-8';
         
